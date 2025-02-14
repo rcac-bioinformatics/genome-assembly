@@ -10,24 +10,22 @@
 # incubator: The Carpentries Incubator
 # Note that you can also use a custom carpentry type. For more info,
 # see the documentation: https://carpentries.github.io/sandpaper-docs/editing.html
-carpentry: 'incubator'
-
-# Custom carpentry description
-# This will be used as the alt text for the logo
-# carpentry_description: "Custom Carpentry"
+carpentry: 'rcac'
+varnish: aseetharam/varnish
+#carpentry_description: "Custom Carpentry"
 
 # Overall title for pages.
-title: 'Lesson Title'
+title: 'Genome Assembly: Hands-on Training'
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
-created: '2025-02-14'
+created: '2025-02-05'
 
 # Comma-separated list of keywords for the lesson
-keywords: 'software, data, lesson, The Carpentries'
+keywords: 'gene-assembly, pacbio, oxford-nanopore, hifasm, flye, medaka, busco, quast'
 
 # Life cycle stage of the lesson
 # possible values: pre-alpha, alpha, beta, stable
-life_cycle: 'pre-alpha'
+life_cycle: 'stable'
 
 # License of the lesson materials (recommended CC-BY 4.0)
 license: 'CC-BY 4.0'
@@ -39,46 +37,29 @@ source: 'https://example.com/FIXME-template-source'
 branch: 'main'
 
 # Who to contact if there are any issues
-contact: 'team@carpentries.org'
+contact: 'rcac-help@purdue.edu'
 
-# Navigation ------------------------------------------------
-#
-# Use the following menu items to specify the order of
-# individual pages in each dropdown section. Leave blank to
-# include all pages in the folder.
-#
-# Example -------------
-#
-# episodes:
-# - introduction.md
-# - first-steps.md
-#
-# learners:
-# - setup.md
-#
-# instructors:
-# - instructor-notes.md
-#
-# profiles:
-# - one-learner.md
-# - another-learner.md
-
-# Order of episodes in your lesson
-episodes: 
+episodes:
 - introduction.Rmd
+- assembly-strategies.Rmd
+- data-quality-control.Rmd
+- pacbio-hifi-assembly.Rmd
+- oxford-nanopore-assembly.Rmd
+- hybrid-assembly.Rmd
+- scaffolding-using-ogm.Rmd
+- assembly-evaluation.Rmd
+- assembly-visualization.Rmd
 
-# Information for Learners
-learners: 
 
-# Information for Instructors
-instructors: 
-
-# Learner Profiles
-profiles: 
-
-# Customisation ---------------------------------------------
 #
-# This space below is where custom yaml items (e.g. pinning
-# sandpaper and varnish versions) should live
+learners:
+ - setup.md
+#
+instructors:
+- instructor-notes.md
+#
+profiles:
+- learner-profiles.md
 
 
+disable_sidebar_numbering: true

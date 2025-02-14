@@ -1,117 +1,150 @@
 ---
-title: 'introduction'
+title: 'Introduction to Genome assembly'
 teaching: 10
 exercises: 2
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How do you write a lesson using R Markdown and `{sandpaper}`?
+- What is genome assembly, and why is it important?
+- What sequencing technologies can be used for genome assembly?
+- What are _de novo_ and reference-guided assemblies?
+- What challenges arise when generating high-quality assemblies?
+- What software tools are used for assembling genomes?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain how to use markdown with the new lesson template
-- Demonstrate how to include pieces of code, figures, and nested challenge blocks
+- Learn key concepts and terminology related to genome assembly.
+- Understand datasets and tools used for genome assembly.
+- Describe major sequencing technologies and their impact on assembly.
+- Identify common computational challenges in genome assembly.
+- Explain fundamental strategies and algorithms used in genome assembly.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Introduction
 
-This is a lesson created via The Carpentries Workbench. It is written in
-[Pandoc-flavored Markdown][pandoc] for static files (with extension `.md`) and
-[R Markdown][r-markdown] for dynamic files that can render code into output
-(with extension `.Rmd`). Please refer to the [Introduction to The Carpentries
-Workbench][carpentries-workbench] for full documentation.
+## What is Genome Assembly?
 
-What you need to know is that there are three sections required for a valid
-Carpentries lesson template:
+Genome assembly is the process of reconstructing a complete genome sequence by arranging fragmented DNA sequences (reads) into a continuous sequence.
 
- 1. `questions` are displayed at the beginning of the episode to prime the
-    learner for the content.
- 2. `objectives` are the learning objectives for an episode displayed with
-    the questions.
- 3. `keypoints` are displayed at the end of the episode to reinforce the
-    objectives.
+* Goal is to achieve a high-quality reference genome that accurately represents the structure and sequence of an organism's DNA.
+* It enables deeper understanding of genes, their function, and evolutionary history.
+* Vital for studying complex traits, species diversity, and disease mechanisms.
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
-
-Inline instructor notes can help inform instructors of timing challenges
-associated with the lessons. They appear in the "Instructor View"
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::: challenge 
-
-## Challenge 1: Can you do it?
-
-What is the output of this command?
-
-```r
-paste("This", "new", "lesson", "looks", "good")
-```
-
-:::::::::::::::::::::::: solution 
-
-## Output
- 
-```output
-[1] "This new lesson looks good"
-```
-
-:::::::::::::::::::::::::::::::::
+![Genome Assembly](https://github.com/user-attachments/assets/8f1b2924-4af4-46f5-a925-b927b0fdfc81)
 
 
-## Challenge 2: how do you nest solutions within challenge blocks?
+## Imporance of Genome Assembly
 
-:::::::::::::::::::::::: solution 
+- Applications in medicine, agriculture, conservation, and biotechnology:
+   * Human genetics: Assembling genomes to identify disease-causing mutations.
+   * Crop improvement: Identifying beneficial traits in plant genomes.
+   * Conservation biology: Sequencing endangered species to understand genetic diversity.
 
-You can add a line with at least three colons and a `solution` tag.
+- Examples of major genome sequencing projects (Human Genome Project, Vertebrate Genome Project).
 
-:::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-## Figures
-
-You can include figures generated from R Markdown:
+![Number of genomes in NCBI](https://github.com/user-attachments/assets/bd5e664b-cf76-4c33-a2ad-250040444a0b)
 
 
-``` r
-pie(
-  c(Sky = 78, "Sunny side of pyramid" = 17, "Shady side of pyramid" = 5), 
-  init.angle = 315, 
-  col = c("deepskyblue", "yellow", "yellow3"), 
-  border = FALSE
-)
-```
+## De Novo vs. Reference-Guided Assembly
 
-<div class="figure" style="text-align: center">
-<img src="fig/introduction-rendered-pyramid-1.png" alt="pie chart illusion of a pyramid"  />
-<p class="caption">Sun arise each and every morning</p>
-</div>
-Or you can use pandoc markdown for static figures with the following syntax:
+- De novo assembly:
+   - Used when no reference genome exists.
+   - Requires assembling the genome from scratch using computational methods.
+   - Example: Assembling a new plant species genome.
+- Reference-guided assembly:
+   - Aligns reads to a closely related reference genome.
+   - Useful for identifying variations but limited by reference bias.
+   - Example: Human genome resequencing for variant detection.
 
-`![optional caption that appears below the figure](figure url){alt='alt text for
-accessibility purposes'}`
 
-![You belong in The Carpentries!](https://raw.githubusercontent.com/carpentries/logo/master/Badge_Carpentries.svg){alt='Blue Carpentries hex person logo with no text.'}
+<img width="755" alt="Assembly types" src="https://github.com/user-attachments/assets/002b3956-0679-41b9-aac5-f3c1e1f72a4b" />
 
-## Math
 
-One of our episodes contains $\LaTeX$ equations when describing how to create
-dynamic reports with {knitr}, so we now use mathjax to describe this:
 
-`$\alpha = \dfrac{1}{(1 - \beta)^2}$` becomes: $\alpha = \dfrac{1}{(1 - \beta)^2}$
+## Basic Steps in Genome Assembly
 
-Cool, right?
+1. Sequencing: Generating raw reads from a genome.
+2. Preprocessing & Quality Control: Filtering and trimming reads.
+3. Assembly: Aligning and merging overlapping reads into contigs.
+4. Scaffolding: Ordering contigs into larger scaffolds using long-range sequencing data or mapping techniques.
+5. Polishing: Correcting errors using additional data.
+6. Quality Assessment: Evaluating assembly completeness and accuracy.
+7. Downstream Analysis: Annotating genes, identifying variants, and studying genome structure.
+
+![Steps Overview](https://github.com/user-attachments/assets/ac4f82b2-1488-4ba8-b2c7-b1976a393f82)
+
+
+reference: [10.1016/j.xpro.2022.101506](https://doi.org/10.1016/j.xpro.2022.101506)
+
+
+## Data types for Genome Assembly
+
+**Illumina**
+
+- Excels at high-throughput, short-read sequencing with high accuracy.
+
+- Uses Sequencing-by-Synthesis (SBS). DNA is fragmented, adapters are attached, and the fragments are immobilized on a flowcell. A polymerase incorporates fluorescently labeled nucleotides, and a camera captures the emitted signals in real time. Each cycle represents one nucleotide added to the growing DNA strand.
+
+**PacBio HiFi**
+
+- provide accurate long reads, balancing throughput and error correction.
+
+- Uses Single Molecule, Real-Time (SMRT) sequencing. DNA is ligated into circular molecules and loaded onto a chip with zero-mode waveguides (ZMWs). A polymerase synthesizes the complementary strand, incorporating fluorescently labeled nucleotides. The system detects light pulses in real time, capturing multiple passes of the same molecule to generate highly accurate HiFi reads.
+
+**Oxford Nanopore**
+
+- enables ultra-long reads but requires more advanced error correction.
+
+- A single DNA strand is passed through a biological nanopore embedded in a membrane. As nucleotides move through the pore, they cause characteristic disruptions in an electrical current, which are interpreted by machine-learning algorithms to determine the sequence.
+
+
+![Sequencing Instruments](https://github.com/user-attachments/assets/62914627-e17d-4fd6-aceb-ae5dc48626d8)
+
+
+
+## Challenges in Genome Assembly
+
+
+- **Repetitive Elements**: Identical or similar sequences that occur multiple times in the genome, making it difficult to resolve unique regions.
+- **Heterozygosity**: Presence of two or more alleles at a given locus, leading to ambiguous read alignments.
+- **Polyploidy**: Multiple copies of chromosomes, complicating assembly due to similar sequences.
+- **Genome Size**: Large genomes require more computational resources and specialized algorithms.
+- **Error Correction**: Addressing sequencing errors and distinguishing true variants from artifacts.
+- **Structural Variants**: Large-scale rearrangements, duplications, deletions, and inversions that disrupt contiguity.
+
+![Challenges in Genome Assembly](https://github.com/user-attachments/assets/f1ec5463-6a81-466e-b4ce-a0a4d8344005)
+
+## Main programs used for Genome Assembly
+
+- Data QC:
+   * NanoPlot: Visualization of sequencing data quality.
+   * FiltLong: Filtering long reads based on quality and length.
+- Assembly:
+   * HiFiasm: HiFi assembler for PacBio data.
+   * Flye: de novo assembler for long reads.
+- Post-processing:
+   * Medaka: Basecaller and consensus polishing for Flye assembly.
+   * Bionano Solve: Optical mapping for scaffolding and validation.
+- Evaluation:
+   * QUAST: Quality assessment tool for evaluating assemblies.
+   * Compleasm (BUSCO alternative): Benchmarking tool for assessing genome completeness.
+   * KAT: Kmer-based evaluation of assembly accuracy and completeness.
+
+
+
+<img src="https://github.com/user-attachments/assets/17b9ec7a-343e-4c80-baf5-066b4ac130ec" alt="Programs used in this workshop" width="50%">
+
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Use `.md` files for episodes when you want static content
-- Use `.Rmd` files for episodes when you need to generate output
-- Run `sandpaper::check_lesson()` to identify any issues with your lesson
-- Run `sandpaper::build_lesson()` to preview your lesson locally
+- **Genome assembly** reconstructs complete genome sequences from fragmented DNA reads.
+- **De novo** assembly builds genomes without a reference, while **reference-guided** assembly uses existing genomes.
+- **Sequencing technologies** like Illumina, PacBio HiFi, and Oxford Nanopore offer different read lengths and error rates.
+- **Challenges** include repetitive elements, heterozygosity, and error correction.
+- **Tools** many programs are available for data QC, assembly, post-processing, and evaluation - choice depends on data type and research goals.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 

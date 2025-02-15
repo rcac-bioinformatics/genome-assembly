@@ -204,19 +204,12 @@
 <div class="accordion accordion-flush" id="accordionFlushcurrent">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-headingcurrent">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
         Assembly Strategies
         </span>
-      </button>
+      
     </div><!--/div.accordion-header-->
-
-    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
-      <div class="accordion-body">
-        <ul><li><a href="#introduction-to-topic">Introduction to Topic</a></li>
-        </ul></div><!--/div.accordion-body-->
-    </div><!--/div.accordion-collapse-->
 
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
@@ -341,7 +334,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Assembly Strategies</h1>
-        <p>Last updated on 2025-02-14 |
+        <p>Last updated on 2025-02-15 |
 
         <a href="https://example.com/FIXME-template-source/edit/main/episodes/assembly-strategies.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -376,11 +369,202 @@
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="introduction-to-topic">Introduction to Topic<a class="anchor" aria-label="anchor" href="#introduction-to-topic"></a></h2>
-<hr class="half-width"><ul><li>depth and coverage</li>
-<li>assemblers</li>
-<li>evaluation</li>
-</ul><div id="keypoints1" class="callout keypoints">
+<div class="section level3">
+<h3 id="assembly-strategies">Assembly Strategies<a class="anchor" aria-label="anchor" href="#assembly-strategies"></a></h3>
+<p>Genome assembly involves choosing the right approach based on
+sequencing technology, read type, genome complexity, and research
+objectives. This chapter introduces key factors influencing assembly
+strategy selection, from read length and coverage requirements to
+computational trade-offs. We will explore different methods—PacBio HiFi
+with HiFiasm, ONT with Flye, and hybrid assemblies—along with
+scaffolding techniques like Bionano Optical Genome Mapping (OGM) and
+Hi-C, which help improve genome continuity and organization. Finally,
+we’ll discuss assembly evaluation tools such as BUSCO and QUAST to
+assess the completeness and quality of assembled genomes.</p>
+<div class="section level4">
+<h4 id="factors-influencing-the-choice-of-strategy">Factors Influencing the Choice of Strategy<a class="anchor" aria-label="anchor" href="#factors-influencing-the-choice-of-strategy"></a></h4>
+<ul><li>
+<strong>Read length</strong>: Affects the ability to resolve
+repeats; short reads struggle with complex regions, while long reads
+improve contiguity.<br></li>
+<li>
+<strong>Coverage depth</strong>: Crucial for assembly accuracy, with
+HiFi requiring 20-30x, ONT needing 50-100x, and hybrid assemblies
+depending on short-read support for polishing.<br></li>
+<li>
+<strong>Genome complexity</strong>: Includes repeat content,
+heterozygosity, and polyploidy, which influence assembly success and
+determine whether specialized tools or additional scaffolding methods
+are needed.<br></li>
+<li>
+<strong>Computational resources</strong>: Vary across assembly
+strategies, with HiFiasm being RAM-intensive, Flye being more
+lightweight, and hybrid assemblies requiring additional processing for
+polishing.<br></li>
+<li>
+<strong>Sequencing budget</strong>: Plays a role, as HiFi sequencing
+is costlier but highly accurate, ONT is cheaper but requires more data
+for error correction, and hybrid approaches balance cost and
+quality.<br></li>
+<li>
+<strong>Downstream analyses</strong>: Structural variation
+detection, gene annotation, or chromosome-level assemblies influence the
+choice of assembler and the need for scaffolding methods like Hi-C or
+Bionano OGM.</li>
+</ul></div>
+</div>
+<div class="section level3">
+<h3 id="comparative-assembly-strategies">Comparative Assembly Strategies<a class="anchor" aria-label="anchor" href="#comparative-assembly-strategies"></a></h3>
+<table class="table"><colgroup><col width="25%"><col width="21%"><col width="24%"><col width="28%"></colgroup><thead><tr class="header"><th>Factor</th>
+<th>PacBio HiFi</th>
+<th>ONT</th>
+<th>Hybrid (ONT + Illumina)</th>
+</tr></thead><tbody><tr class="odd"><td><strong>Read length</strong></td>
+<td>~15-20kb</td>
+<td>10-100kb+</td>
+<td>Mix of short &amp; long</td>
+</tr><tr class="even"><td><strong>Read accuracy</strong></td>
+<td>High (~99%)</td>
+<td>Moderate (~90%)</td>
+<td>High (after polishing)</td>
+</tr><tr class="odd"><td><strong>Coverage needed</strong></td>
+<td>20-30x</td>
+<td>50-100x</td>
+<td>ONT: 50x + Illumina: 30x</td>
+</tr><tr class="even"><td><strong>Cost per Gb</strong></td>
+<td>Expensive</td>
+<td>Lower</td>
+<td>Medium</td>
+</tr><tr class="odd"><td><strong>Error profile</strong></td>
+<td>Random errors, low indels</td>
+<td>Higher error rate, systematic errors</td>
+<td>ONT errors corrected by Illumina</td>
+</tr><tr class="even"><td><strong>Computational requirements</strong></td>
+<td>High RAM required</td>
+<td>Moderate RAM required</td>
+<td>Moderate</td>
+</tr><tr class="odd"><td><strong>Best for</strong></td>
+<td>High-accuracy assemblies</td>
+<td>Ultra-long contigs</td>
+<td>Combines advantages of both</td>
+</tr><tr class="even"><td><strong>Repeat resolution</strong></td>
+<td>Good</td>
+<td>Very good</td>
+<td>Very good</td>
+</tr><tr class="odd"><td><strong>Scaffolding needed</strong></td>
+<td>Rarely needed</td>
+<td>May be needed</td>
+<td>Sometimes needed</td>
+</tr><tr class="even"><td><strong>Polishing required</strong></td>
+<td>Not required</td>
+<td>Required (Racon + Medaka)</td>
+<td>Required (Pilon)</td>
+</tr><tr class="odd"><td><strong>Structural variant detection</strong></td>
+<td>Good</td>
+<td>Excellent</td>
+<td>Good</td>
+</tr><tr class="even"><td><strong>Haplotype phasing</strong></td>
+<td>Excellent</td>
+<td>Good</td>
+<td>Moderate</td>
+</tr><tr class="odd"><td><strong>Genome size suitability</strong></td>
+<td>Suitable for large and small genomes</td>
+<td>Best for large genomes</td>
+<td>Best for complex genomes</td>
+</tr><tr class="even"><td><strong>Downstream applications</strong></td>
+<td>Reference-quality genome assembly, annotation</td>
+<td>Structural variation analysis, de novo assembly</td>
+<td>Genome correction, variant calling, scaffolding</td>
+</tr></tbody></table><div class="section level4">
+<h4 id="contig-vs--scaffold-vs--chromosome-level-assembly"><strong>Contig vs. Scaffold vs. Chromosome-Level
+Assembly</strong><a class="anchor" aria-label="anchor" href="#contig-vs--scaffold-vs--chromosome-level-assembly"></a></h4>
+<p>Genome assemblies progress through different levels of completeness
+and organization:</p>
+<ul><li>
+<strong>Contig-level assembly</strong>: The raw output of
+assemblers, consisting of contiguous sequences without known order or
+orientation. Longer contigs indicate better assembly continuity.<br></li>
+<li>
+<strong>Scaffold-level assembly</strong>: Contigs linked together
+using additional data (e.g., long-range mate-pair reads, optical maps,
+or Hi-C). Gaps (represented as ’N’s) remain where connections exist but
+sequence information is missing.<br></li>
+<li>
+<strong>Chromosome-level assembly</strong>: The highest-quality
+assembly, where scaffolds are further ordered and oriented into full
+chromosomes using genetic maps, Hi-C data, or synteny with a reference
+genome.</li>
+</ul><p>Higher levels of assembly provide better genome context, but require
+additional scaffolding methods beyond de novo assembly.</p>
+</div>
+<div class="section level4">
+<h4 id="workflow-for-various-assemblies">Workflow for Various Assemblies<a class="anchor" aria-label="anchor" href="#workflow-for-various-assemblies"></a></h4>
+<p>In this workshop, we will use HiFiasm for PacBio HiFi assemblies,
+Flye for ONT assemblies, and Flye in hybrid mode for ONT + Illumina
+assemblies, followed by quality assessment using BUSCO and QUAST to
+evaluate completeness and accuracy.</p>
+</div>
+</div>
+<div class="section level3">
+<h3 id="assembly-evaluation">Assembly Evaluation<a class="anchor" aria-label="anchor" href="#assembly-evaluation"></a></h3>
+<ul><li>Why assessing genome assembly quality is crucial before downstream
+analyses.<br></li>
+<li>Metrics to determine assembly completeness, accuracy, and
+contiguity.</li>
+</ul><div class="section level4">
+<h4 id="busco-benchmarking-universal-single-copy-orthologs"><strong>1. BUSCO (Benchmarking Universal Single-Copy
+Orthologs)</strong><a class="anchor" aria-label="anchor" href="#busco-benchmarking-universal-single-copy-orthologs"></a></h4>
+<ul><li>Evaluates genome completeness using a conserved set of single-copy
+orthologs.<br></li>
+<li>Reports four categories:
+<ul><li>
+<strong>Complete (Single-Copy/Duplicated)</strong>: Genes present
+and intact.<br></li>
+<li>
+<strong>Fragmented</strong>: Genes partially recovered but not fully
+intact.<br></li>
+<li>
+<strong>Missing</strong>: Genes absent, indicating potential
+assembly gaps.<br></li>
+</ul></li>
+<li>How to interpret BUSCO scores for genome assemblies.<br></li>
+<li>Example BUSCO command and output format.</li>
+</ul></div>
+</div>
+<div class="section level3">
+<h3 id="quast-quality-assessment-tool-for-genome-assemblies"><strong>2. QUAST (Quality Assessment Tool for Genome
+Assemblies)</strong><a class="anchor" aria-label="anchor" href="#quast-quality-assessment-tool-for-genome-assemblies"></a></h3>
+<ul><li>Provides summary statistics such as <strong>N50, L50, number of
+contigs, GC content, genome size estimates, and
+misassemblies</strong>.<br></li>
+<li>Can compare multiple assemblies to assess improvement with different
+strategies.<br></li>
+<li>Example QUAST command and output interpretation.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="additional-considerations-for-evaluation"><strong>3. Additional Considerations for Evaluation</strong><a class="anchor" aria-label="anchor" href="#additional-considerations-for-evaluation"></a></h3>
+<ul><li>
+<strong>K-mer-based methods (e.g., Merqury)</strong> for
+<strong>comparing assemblies to raw reads</strong> (especially useful
+when no reference genome is available).<br></li>
+<li>
+<strong>Dot plots and synteny analysis</strong> to visualize
+structural correctness.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="bionano-and-hi-c-reads-in-genome-assembly"><strong>Bionano and Hi-C Reads in Genome Assembly</strong><a class="anchor" aria-label="anchor" href="#bionano-and-hi-c-reads-in-genome-assembly"></a></h3>
+<p><strong>Bionano Optical Genome Mapping (OGM)</strong> provides
+ultra-long, label-based maps of DNA molecules, helping to scaffold
+contigs, detect misassemblies, and resolve large structural variations.
+It improves genome continuity by linking fragmented sequences,
+especially in repeat-rich or complex genomes.</p>
+<p><strong>Hi-C sequencing</strong> captures chromatin interactions,
+allowing scaffolding of contigs into chromosome-scale assemblies based
+on physical proximity in the nucleus. It helps in ordering and orienting
+scaffolds, identifying misassemblies, and resolving haplotypes, making
+it essential for generating <strong>chromosome-level genome
+assemblies</strong>.</p>
+<div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
@@ -397,7 +581,11 @@
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</section></div> <!-- / div.lesson-content -->
+</div>
+
+
+
+      </div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="../instructor/introduction.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
         <a class="chapter-link float-end" href="../instructor/data-quality-control.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
@@ -455,7 +643,7 @@ any links that you are not going to use.
   "url": "https://FIXME-template-source.github.io/NA/instructor/assembly-strategies.html",
   "identifier": "https://FIXME-template-source.github.io/NA/instructor/assembly-strategies.html",
   "dateCreated": "2025-02-05",
-  "dateModified": "2025-02-14",
+  "dateModified": "2025-02-15",
   "datePublished": "2025-02-15"
 }
 

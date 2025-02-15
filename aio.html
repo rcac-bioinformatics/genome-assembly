@@ -1286,7 +1286,7 @@ Create a slurm script to run NanoPlot on the HiFi reads.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>The stdout from the NanoPlot run will look like this:</p>
 <pre><code>2025-02-13 12:13:19,155 NanoPlot 1.44.1 started with arguments Namespace(threads=16, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_output', no_static=False, prefix='col_0_pacbio', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['9994.q20.CCS.fastq.gz'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_output/col_0_pacbio')
@@ -1384,7 +1384,7 @@ Create a slurm script to run NanoPlot on the basecalled ONT reads.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
   <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <p>The stdout from the NanoPlot run will look like this:</p>
 <pre><code>2025-02-13 12:15:51,066 NanoPlot 1.44.1 started with arguments Namespace(threads=8, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_output', no_static=False, prefix='col_0_ont', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['basecalled_2025-02-12.fastq'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_output/col_0_ont')
@@ -1633,7 +1633,7 @@ frequency distribution plots.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>A: High error rates in ONT reads can lead to k-mer counting errors,
 causing the analysis to fail. K-mer analyses reads rely on accuracy to
@@ -2774,29 +2774,24 @@ strengths and limitations, so it is recommended to try different
 polishing strategies to achieve the best results for your specific
 dataset. <code>Medaka</code> is a popular choice for polishing ONT
 assemblies due to its accuracy and efficiency.</p>
-<p>Running Medaka polishing on the assembly:</p>
+</div>
+<div class="section level3">
+<h3 id="hifiasm-for-ont-data-optional">HiFiasm for ONT Data (Optional)<a class="anchor" aria-label="anchor" href="#hifiasm-for-ont-data-optional"></a>
+</h3>
+<p>Since HiFiasm also supports ONT reads for assembly, we can test it
+out to access the quality of the assembly. The basic command structure
+is as follows:</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">### HiFiasm for ONT Data (Optional)</span></span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a> </span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="ex">Since</span> HiFiasm also supports ONT reads for assembly, we can test it out to access the quality of the assembly. The basic command structure is as follows:</span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="kw">```</span><span class="fu">bash</span></span>
-<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
-<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
-<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="ex">ml</span> hifiasm</span>
-<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="ex">hifiasm</span> <span class="dt">\</span></span>
-<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a>    <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
-<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a>    <span class="at">-o</span> athaliana_ont.asm <span class="dt">\</span></span>
-<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a>    <span class="at">--ont</span> <span class="dt">\</span></span>
-<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a>    basecalled_2025-02-12-filtered_60x.fastq</span></code></pre>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="ex">ml</span> hifiasm</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="ex">hifiasm</span> <span class="dt">\</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>    <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>    <span class="at">-o</span> athaliana_ont.asm <span class="dt">\</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>    <span class="at">--ont</span> <span class="dt">\</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>    basecalled_2025-02-12-filtered_60x.fastq</span></code></pre>
 </div>
 <div id="post-processing" class="callout">
 <div class="callout-square">
@@ -2874,7 +2869,7 @@ any links that you are not going to use.
  -->
 </div></section><section id="aio-hybrid-assembly"><p>Content from <a href="hybrid-assembly.html">Hybrid Long Read Assembly (optional)</a></p>
 <hr>
-<p>Last updated on 2025-02-14 |
+<p>Last updated on 2025-02-15 |
 
         <a href="https://example.com/FIXME-template-source/edit/main/episodes/hybrid-assembly.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2905,14 +2900,50 @@ any links that you are not going to use.
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="introduction-to-topic">Introduction to Topic<a class="anchor" aria-label="anchor" href="#introduction-to-topic"></a>
-</h2>
-<hr class="half-width">
-<ul>
-<li>depth and coverage</li>
-<li>assemblers</li>
-<li>evaluation</li>
-</ul>
+<div class="section level3">
+<h3 id="flye-for-hybrid-assembly">Flye for Hybrid Assembly<a class="anchor" aria-label="anchor" href="#flye-for-hybrid-assembly"></a>
+</h3>
+<p>For hybrid assembly using <code>flye</code>, first, run the pipeline
+with all your reads in the –pacbio-raw mode (you can specify multiple
+files, no need to merge all you reads into one). Also add –iterations 0
+to stop the pipeline before polishing. Once the assembly finishes, run
+polishing using either PacBio or ONT reads only. Use the same assembly
+options, but add –resume-from polishing. Here is an example of a script
+that should do the job:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="ex">ml</span> flye</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="va">PBREADS</span><span class="op">=</span><span class="st">"9994.q20.CCS-filtered-60x.fastq"</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="va">ONTREADS</span><span class="op">=</span><span class="st">"basecalled_2025-02-12-filtered_60x.fastq"</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="ex">flye</span> <span class="dt">\</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>    <span class="at">--pacbio-raw</span> <span class="va">$PBREADS</span> <span class="va">$ONTREADS</span> <span class="dt">\</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>    <span class="at">--iterations</span> 0 <span class="dt">\</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>    <span class="at">--out-dir</span> hybrid_flye_out <span class="dt">\</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>    <span class="at">--genome-size</span> 135m <span class="dt">\</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>    <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="ex">flye</span> <span class="dt">\</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>   <span class="at">--pacbio-raw</span> <span class="va">$PBREADS</span> <span class="dt">\</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>   <span class="at">--resume-from</span> polishing <span class="dt">\</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>   <span class="at">--out-dir</span> hybrid_flye_out  <span class="dt">\</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>   <span class="at">--genome-size</span> 135m <span class="dt">\</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="evaluating-assembly-quality">Evaluating Assembly Quality<a class="anchor" aria-label="anchor" href="#evaluating-assembly-quality"></a>
+</h3>
+</div>
+<div class="section level3">
+<h3 id="common-issues-and-troubleshooting">Common Issues and Troubleshooting<a class="anchor" aria-label="anchor" href="#common-issues-and-troubleshooting"></a>
+</h3>
+</div>
+<div class="section level3">
+<h3 id="further-reading-and-additional-resources">Further Reading and Additional Resources<a class="anchor" aria-label="anchor" href="#further-reading-and-additional-resources"></a>
+</h3>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -2932,7 +2963,7 @@ any links that you are not going to use.
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</section></section><section id="aio-scaffolding-using-ogm"><p>Content from <a href="scaffolding-using-ogm.html">Scaffolding using Optical Genome Mapping</a></p>
+</div></section><section id="aio-scaffolding-using-ogm"><p>Content from <a href="scaffolding-using-ogm.html">Scaffolding using Optical Genome Mapping</a></p>
 <hr>
 <p>Last updated on 2025-02-15 |
 

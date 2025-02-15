@@ -240,19 +240,12 @@
 <div class="accordion accordion-flush" id="accordionFlushcurrent">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-headingcurrent">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
         Hybrid Long Read Assembly (optional)
         </span>
-      </button>
+      
     </div><!--/div.accordion-header-->
-
-    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
-      <div class="accordion-body">
-        <ul><li><a href="#introduction-to-topic">Introduction to Topic</a></li>
-        </ul></div><!--/div.accordion-body-->
-    </div><!--/div.accordion-collapse-->
 
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
@@ -341,7 +334,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Hybrid Long Read Assembly (optional)</h1>
-        <p>Last updated on 2025-02-14 |
+        <p>Last updated on 2025-02-15 |
 
         <a href="https://example.com/FIXME-template-source/edit/main/episodes/hybrid-assembly.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -376,11 +369,47 @@
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="introduction-to-topic">Introduction to Topic<a class="anchor" aria-label="anchor" href="#introduction-to-topic"></a></h2>
-<hr class="half-width"><ul><li>depth and coverage</li>
-<li>assemblers</li>
-<li>evaluation</li>
-</ul><div id="keypoints1" class="callout keypoints">
+<div class="section level3">
+<h3 id="flye-for-hybrid-assembly">Flye for Hybrid Assembly<a class="anchor" aria-label="anchor" href="#flye-for-hybrid-assembly"></a></h3>
+<p>For hybrid assembly using <code>flye</code>, first, run the pipeline
+with all your reads in the –pacbio-raw mode (you can specify multiple
+files, no need to merge all you reads into one). Also add –iterations 0
+to stop the pipeline before polishing. Once the assembly finishes, run
+polishing using either PacBio or ONT reads only. Use the same assembly
+options, but add –resume-from polishing. Here is an example of a script
+that should do the job:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="ex">ml</span> flye</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="va">PBREADS</span><span class="op">=</span><span class="st">"9994.q20.CCS-filtered-60x.fastq"</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="va">ONTREADS</span><span class="op">=</span><span class="st">"basecalled_2025-02-12-filtered_60x.fastq"</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="ex">flye</span> <span class="dt">\</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>    <span class="at">--pacbio-raw</span> <span class="va">$PBREADS</span> <span class="va">$ONTREADS</span> <span class="dt">\</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>    <span class="at">--iterations</span> 0 <span class="dt">\</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>    <span class="at">--out-dir</span> hybrid_flye_out <span class="dt">\</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>    <span class="at">--genome-size</span> 135m <span class="dt">\</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>    <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="ex">flye</span> <span class="dt">\</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>   <span class="at">--pacbio-raw</span> <span class="va">$PBREADS</span> <span class="dt">\</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>   <span class="at">--resume-from</span> polishing <span class="dt">\</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>   <span class="at">--out-dir</span> hybrid_flye_out  <span class="dt">\</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>   <span class="at">--genome-size</span> 135m <span class="dt">\</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="evaluating-assembly-quality">Evaluating Assembly Quality<a class="anchor" aria-label="anchor" href="#evaluating-assembly-quality"></a></h3>
+</div>
+<div class="section level3">
+<h3 id="common-issues-and-troubleshooting">Common Issues and Troubleshooting<a class="anchor" aria-label="anchor" href="#common-issues-and-troubleshooting"></a></h3>
+</div>
+<div class="section level3">
+<h3 id="further-reading-and-additional-resources">Further Reading and Additional Resources<a class="anchor" aria-label="anchor" href="#further-reading-and-additional-resources"></a></h3>
+<div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
@@ -397,7 +426,11 @@
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</section></div> <!-- / div.lesson-content -->
+</div>
+
+
+
+      </div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="../instructor/oxford-nanopore-assembly.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
         <a class="chapter-link float-end" href="../instructor/scaffolding-using-ogm.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
@@ -455,7 +488,7 @@ any links that you are not going to use.
   "url": "https://FIXME-template-source.github.io/NA/instructor/hybrid-assembly.html",
   "identifier": "https://FIXME-template-source.github.io/NA/instructor/hybrid-assembly.html",
   "dateCreated": "2025-02-05",
-  "dateModified": "2025-02-14",
+  "dateModified": "2025-02-15",
   "datePublished": "2025-02-15"
 }
 

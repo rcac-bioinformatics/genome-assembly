@@ -207,13 +207,6 @@ flye \
 
 There are many other polishing tools available, such as `Racon`, `Nanoploish`, and `medaka`, which can be used to further refine the ONT assembly. Each tool has its strengths and limitations, so it is recommended to try different polishing strategies to achieve the best results for your specific dataset. `Medaka` is a popular choice for polishing ONT assemblies due to its accuracy and efficiency.
 
-Running Medaka polishing on the assembly:
-
-```bash
-ml --force purge
-ml biocontainers
-
-
 
 ### HiFiasm for ONT Data (Optional)
  

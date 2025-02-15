@@ -24,11 +24,11 @@ exercises: 2
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-### Assembly Strategies
+## Assembly Strategies
 
 Genome assembly involves choosing the right approach based on sequencing technology, read type, genome complexity, and research objectives. This chapter introduces key factors influencing assembly strategy selection, from read length and coverage requirements to computational trade-offs. We will explore different methods—PacBio HiFi with HiFiasm, ONT with Flye, and hybrid assemblies—along with scaffolding techniques like Bionano Optical Genome Mapping (OGM) and Hi-C, which help improve genome continuity and organization. Finally, we’ll discuss assembly evaluation tools such as BUSCO and QUAST to assess the completeness and quality of assembled genomes.
 
-#### Factors Influencing the Choice of Strategy
+## Factors Influencing the Choice of Strategy
 
 - **Read length**: Affects the ability to resolve repeats; short reads struggle with complex regions, while long reads improve contiguity.  
 - **Coverage depth**: Crucial for assembly accuracy, with HiFi requiring 20-30x, ONT needing 50-100x, and hybrid assemblies depending on short-read support for polishing.  
@@ -37,7 +37,7 @@ Genome assembly involves choosing the right approach based on sequencing technol
 - **Sequencing budget**: Plays a role, as HiFi sequencing is costlier but highly accurate, ONT is cheaper but requires more data for error correction, and hybrid approaches balance cost and quality.  
 - **Downstream analyses**: Structural variation detection, gene annotation, or chromosome-level assemblies influence the choice of assembler and the need for scaffolding methods like Hi-C or Bionano OGM.
 
-#### Comparative Assembly Strategies
+## Comparative Assembly Strategies
 
 | Factor                      | PacBio HiFi             | ONT                        | Hybrid (ONT + Illumina)         |
 |-----------------------------|-------------------------|----------------------------|---------------------------------|
@@ -56,7 +56,7 @@ Genome assembly involves choosing the right approach based on sequencing technol
 | **Genome size suitability** | Suitable for large and small genomes | Best for large genomes | Best for complex genomes     |
 | **Downstream applications** | Reference-quality genome assembly, annotation | Structural variation analysis, de novo assembly | Genome correction, variant calling, scaffolding |
 
-#### **Contig vs. Scaffold vs. Chromosome-Level Assembly**  
+## **Contig vs. Scaffold vs. Chromosome-Level Assembly**  
 
 Genome assemblies progress through different levels of completeness and organization:  
 
@@ -66,45 +66,44 @@ Genome assemblies progress through different levels of completeness and organiza
 
 Higher levels of assembly provide better genome context, but require additional scaffolding methods beyond de novo assembly.
 
-#### Workflow for Various Assemblies
+## Workflow for Various Assemblies
 
 In this workshop, we will use HiFiasm for PacBio HiFi assemblies, Flye for ONT assemblies, and Flye in hybrid mode for ONT + Illumina assemblies, followed by quality assessment using BUSCO and QUAST to evaluate completeness and accuracy.
 
 
-##### PacBio HiFi Assembly with HiFiasm
+### PacBio HiFi Assembly with HiFiasm
 
 
 - **PacBio HiFi reads**: Highly accurate long reads with low error rates, suitable for de novo assembly without polishing.
 - **HiFiasm**: A specialized assembler for HiFi data, leveraging read accuracy and length to resolve complex regions and produce high-quality contigs.
 - **Workflow**: Run HiFiasm with HiFi reads, adjust parameters based on genome size and complexity, and evaluate the assembly using Compleasm and QUAST.
 
+![PacBio Assembly](https://github.com/user-attachments/assets/1f87d81a-707b-44ff-a8e1-49648f61de95)
 
-![PacBio Assembly](https://github.com/user-attachments/assets/652b2211-f5d1-4264-8b82-cd0925f62408)
 
-
-##### ONT Assembly with Flye
+### ONT Assembly with Flye
 
 - **ONT reads**: Ultra-long reads with higher error rates, requiring additional error correction and polishing steps.
 - **Flye**: A de novo assembler optimized for long reads, capable of resolving complex repeats and generating high-quality assemblies.
 - **Workflow**: Run Flye with ONT reads, adjust parameters based on genome size and complexity, and polish the assembly using Medaka for basecalling and consensus polishing.
 
-![ONT assembly](https://github.com/user-attachments/assets/3dc7bbcc-a875-4d75-8bb7-2b56d82bf5ff)
+![ONT assembly](https://github.com/user-attachments/assets/9864ae7d-a893-4aec-ad4a-ea57170c8c27)
 
 
-##### Hybrid (ONT + PacBio) Assembly with Flye
+### Hybrid (ONT + PacBio) Assembly with Flye
 
 - **Hybrid assembly**: Combines the strengths of both technologies for improved accuracy and contiguity.
 - **Workflow**: Run Flye with both ONT and PacBio reads, adjust parameters for hybrid mode, and polish the assembly using ONT or PacBio reads for error correction and consensus polishing.
 
-![Hybrid assembly](https://github.com/user-attachments/assets/f7fae4ec-0a07-4835-8836-20acc99aadb1)
+![Hybrid assembly](https://github.com/user-attachments/assets/9b51523d-2358-4ad3-b6b3-bfe5d0189e4d)
 
 
-#### Assembly Evaluation 
+## Assembly Evaluation 
 
 - Why assessing genome assembly quality is crucial before downstream analyses.  
 - Metrics to determine assembly completeness, accuracy, and contiguity.  
 
-##### **1. BUSCO (Benchmarking Universal Single-Copy Orthologs)**  
+### **1. BUSCO (Benchmarking Universal Single-Copy Orthologs)**  
 
 - Evaluates genome completeness using a conserved set of single-copy orthologs.  
 - Reports four categories:
@@ -114,18 +113,18 @@ In this workshop, we will use HiFiasm for PacBio HiFi assemblies, Flye for ONT a
 - How to interpret BUSCO scores for genome assemblies.  
 - Example BUSCO command and output format.  
 
-##### **2. QUAST (Quality Assessment Tool for Genome Assemblies)**  
+### **2. QUAST (Quality Assessment Tool for Genome Assemblies)**  
 
 - Provides summary statistics such as **N50, L50, number of contigs, GC content, genome size estimates, and misassemblies**.  
 - Can compare multiple assemblies to assess improvement with different strategies.  
 - Example QUAST command and output interpretation.  
 
-##### **3. Additional Considerations for Evaluation**  
+### **3. Additional Considerations for Evaluation**  
 
 - **K-mer-based methods (e.g., Merqury)** for **comparing assemblies to raw reads** (especially useful when no reference genome is available).  
 - **Dot plots and synteny analysis** to visualize structural correctness.  
 
-#### **Bionano and Hi-C Reads in Genome Assembly**  
+## **Bionano and Hi-C Reads in Genome Assembly**  
 
 **Bionano Optical Genome Mapping (OGM)** provides ultra-long, label-based maps of DNA molecules, helping to scaffold contigs, detect misassemblies, and resolve large structural variations. It improves genome continuity by linking fragmented sequences, especially in repeat-rich or complex genomes.  
 

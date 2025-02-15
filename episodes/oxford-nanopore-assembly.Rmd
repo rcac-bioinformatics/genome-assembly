@@ -6,13 +6,21 @@ exercises: 2
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- to do
+- What are the key features of ONT reads?
+- Why is Flye good for assembling ONT reads?
+- What are the main steps in the Flye assembly workflow?
+- How can you evaluate the quality of a Flye assembly?
+
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- to do
+- Understand the characteristics of ONT reads.
+- Learn about the Flye assembler and its advantages for ONT data.
+- Explore the key steps in the Flye assembly workflow.
+- Evaluate the quality of a Flye assembly using common metrics.
+
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -182,7 +190,7 @@ After generating the initial assembly, it is often beneficial to polish the asse
 
 Flye provides built-in polishing capabilities. By default, Flye performs one round of polishing to refine the assembly. However, you can customize the polishing process by running polishing separately after the initial assembly.
 
-To polish the assembly using `medaka`, you can use the following command:
+An example command to polish assembly with accurate PacBio HiFi reads:
 
 ```bash
 ml --force purge
@@ -269,9 +277,12 @@ done
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
 
-- point 1
-- point 2
-- point 3
+- ONT provides long-read sequencing data with high error rates.
+- Flye is a long-read assembler optimized for handling ONT data and producing highly contiguous assemblies.
+- The Flye assembly workflow involves read preprocessing, repeat graph construction, graph resolution, polishing, and post-processing.
+- Flye output includes the final assembly sequence, assembly graph, and summary information for evaluation.
+- Polishing the assembly can improve base-level accuracy and overall assembly quality.
+- Flye provides built-in polishing capabilities, and other tools like Racon, Nanopolish, and Medaka can be used for further refinement.
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::

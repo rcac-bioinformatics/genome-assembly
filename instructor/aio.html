@@ -1017,7 +1017,7 @@ Create a slurm script to run NanoPlot on the HiFi reads.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>The stdout from the NanoPlot run will look like this:</p>
 <pre><code>2025-02-13 12:13:19,155 NanoPlot 1.44.1 started with arguments Namespace(threads=16, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_output', no_static=False, prefix='col_0_pacbio', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['9994.q20.CCS.fastq.gz'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_output/col_0_pacbio')
@@ -1115,7 +1115,7 @@ Create a slurm script to run NanoPlot on the basecalled ONT reads.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
   <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
 <p>The stdout from the NanoPlot run will look like this:</p>
 <pre><code>2025-02-13 12:15:51,066 NanoPlot 1.44.1 started with arguments Namespace(threads=8, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_output', no_static=False, prefix='col_0_ont', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['basecalled_2025-02-12.fastq'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_output/col_0_ont')
@@ -1364,7 +1364,7 @@ frequency distribution plots.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>A: High error rates in ONT reads can lead to k-mer counting errors,
 causing the analysis to fail. K-mer analyses reads rely on accuracy to
@@ -1876,7 +1876,7 @@ see how it affects the assembly quality.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-1" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-1">
+<div id="nav-tabpanel-1-1" class="tab-pane show active" aria-labelledby="nav-tab-1-1" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1894,7 +1894,7 @@ see how it affects the assembly quality.</p>
 <span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>  9994.q20.CCS-filtered.fastq</span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-1-2" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-2">
+<div id="nav-tabpanel-1-2" class="tab-pane" aria-labelledby="nav-tab-1-2" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1912,7 +1912,7 @@ see how it affects the assembly quality.</p>
 <span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>  9994.q20.CCS-filtered.fastq</span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-1-3" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-3">
+<div id="nav-tabpanel-1-3" class="tab-pane" aria-labelledby="nav-tab-1-3" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1930,7 +1930,7 @@ see how it affects the assembly quality.</p>
 <span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>  9994.q20.CCS-filtered.fastq</span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-1-4" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-4">
+<div id="nav-tabpanel-1-4" class="tab-pane" aria-labelledby="nav-tab-1-4" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2155,7 +2155,7 @@ any links that you are not going to use.
 </div>
 </div></section><section id="aio-oxford-nanopore-assembly"><p>Content from <a href="oxford-nanopore-assembly.html">Oxford Nanopore Assembly using Flye</a></p>
 <hr>
-<p>Last updated on 2025-02-14 |
+<p>Last updated on 2025-02-15 |
 
         <a href="https://example.com/FIXME-template-source/edit/main/episodes/oxford-nanopore-assembly.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
@@ -2170,7 +2170,10 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>to do</li>
+<li>What are the key features of ONT reads?</li>
+<li>Why is Flye good for assembling ONT reads?</li>
+<li>What are the main steps in the Flye assembly workflow?</li>
+<li>How can you evaluate the quality of a Flye assembly?</li>
 </ul>
 </div>
 </div>
@@ -2180,7 +2183,10 @@ any links that you are not going to use.
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>to do</li>
+<li>Understand the characteristics of ONT reads.</li>
+<li>Learn about the Flye assembler and its advantages for ONT data.</li>
+<li>Explore the key steps in the Flye assembly workflow.</li>
+<li>Evaluate the quality of a Flye assembly using common metrics.</li>
 </ul>
 </div>
 </div>
@@ -2478,8 +2484,8 @@ long-read data like ONT reads.</p>
 performs one round of polishing to refine the assembly. However, you can
 customize the polishing process by running polishing separately after
 the initial assembly.</p>
-<p>To polish the assembly using <code>medaka</code>, you can use the
-following command:</p>
+<p>An example command to polish assembly with accurate PacBio HiFi
+reads:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2580,9 +2586,17 @@ GFA to FASTA using the following command:</p>
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
 <ul>
-<li>point 1</li>
-<li>point 2</li>
-<li>point 3</li>
+<li>ONT provides long-read sequencing data with high error rates.</li>
+<li>Flye is a long-read assembler optimized for handling ONT data and
+producing highly contiguous assemblies.</li>
+<li>The Flye assembly workflow involves read preprocessing, repeat graph
+construction, graph resolution, polishing, and post-processing.</li>
+<li>Flye output includes the final assembly sequence, assembly graph,
+and summary information for evaluation.</li>
+<li>Polishing the assembly can improve base-level accuracy and overall
+assembly quality.</li>
+<li>Flye provides built-in polishing capabilities, and other tools like
+Racon, Nanopolish, and Medaka can be used for further refinement.</li>
 </ul>
 </div>
 </div>
@@ -2654,7 +2668,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-scaffolding-using-ogm"><p>Content from <a href="scaffolding-using-ogm.html">Scaffolding using Optical Genome Mapping</a></p>
 <hr>
-<p>Last updated on 2025-02-14 |
+<p>Last updated on 2025-02-15 |
 
         <a href="https://example.com/FIXME-template-source/edit/main/episodes/scaffolding-using-ogm.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
@@ -2669,7 +2683,14 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>to do</li>
+<li>What is Bionano optical genome mapping (OGM) and how does it improve
+genome assembly?</li>
+<li>How does Bionano Solve hybrid scaffolding integrate optical maps
+with sequence assemblies?</li>
+<li>What are the key steps involved in running the Bionano Solve
+pipeline for hybrid scaffolding?</li>
+<li>How can you assess the quality of hybrid scaffolds generated by
+Bionano Solve?</li>
 </ul>
 </div>
 </div>
@@ -2679,21 +2700,626 @@ any links that you are not going to use.
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>to do</li>
+<li>Understand the principles of Bionano optical genome mapping (OGM)
+and its role in genome assembly.</li>
+<li>Learn how to run the Bionano Solve hybrid scaffolding pipeline to
+improve genome assemblies.</li>
+<li>Explore the key steps involved in scaffolding HiFiasm and Flye
+assemblies using Bionano Solve.</li>
+<li>Evaluate the quality of hybrid scaffolds generated by Bionano Solve
+and interpret the results.</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="introduction-to-topic">Introduction to Topic<a class="anchor" aria-label="anchor" href="#introduction-to-topic"></a>
-</h2>
-<hr class="half-width">
+<div class="section level3">
+<h3 id="introduction-to-bionano-optical-genome-mapping-ogm">Introduction to Bionano optical genome mapping (OGM)<a class="anchor" aria-label="anchor" href="#introduction-to-bionano-optical-genome-mapping-ogm"></a>
+</h3>
+<p>Bionano optical mapping is a high-resolution genome analysis
+technique that generates long-range structural information by labeling
+and imaging ultra-long DNA molecules. It provides genome-wide maps that
+can be used to scaffold contigs from sequencing-based assemblies,
+significantly improving contiguity and structural accuracy. By
+integrating Bionano maps with assemblies from PacBio HiFi and Oxford
+Nanopore Technologies (ONT), misassemblies can be corrected, chimeric
+contigs resolved, and scaffold N50s increased by orders of magnitude.
+This approach is particularly valuable for complex genomes, where
+repetitive sequences and structural variations pose challenges for
+traditional sequencing methods. Bionano hybrid scaffolding has become a
+standard for enhancing genome assemblies, enabling researchers to
+achieve high-quality, chromosome-level assemblies efficiently.</p>
+<figure><img src="https://github.com/user-attachments/assets/41c7c42b-c5e0-4d0d-b899-a479e62ffaee" alt="Overview of Bionano OGM" class="figure mx-auto d-block"><div class="figcaption">Overview of Bionano OGM</div>
+</figure>
+</div>
+<div class="section level3">
+<h3 id="bionano-solve-hybrid-scaffolding">Bionano Solve Hybrid Scaffolding<a class="anchor" aria-label="anchor" href="#bionano-solve-hybrid-scaffolding"></a>
+</h3>
+<p>Bionano Solve improves genome assembly by integrating optical genome
+mapping data with sequence assemblies, generating ultra-long hybrid
+scaffolds that enhance contiguity and accuracy. The pipeline identifies
+and resolves assembly conflicts, orders and orients sequence contigs,
+and estimates gap sizes between adjacent sequences.</p>
+<p>The scaffolding workflow involves:</p>
+<ol style="list-style-type: decimal">
+<li>In Silico Map Generation – Converting sequence assembly into a map
+format for alignment.</li>
+<li>Conflict Resolution – Aligning in silico maps to Bionano genome maps
+and identifying misassemblies.</li>
+<li>Hybrid Scaffolding – Merging high-confidence sequence and optical
+maps into a refined scaffold.</li>
+<li>Final Alignment – Mapping sequence contigs back to the hybrid
+scaffold for consistency validation.</li>
+<li>Output Generation – Producing final AGP and FASTA files with
+corrected genome structures.</li>
+</ol>
+<figure><img src="https://github.com/user-attachments/assets/e568386e-348d-4b18-82ca-e304369f0fed" alt="Scaffolding using Bionano" class="figure mx-auto d-block"><div class="figcaption">Scaffolding using Bionano</div>
+</figure><p><strong>What is the source of this data?</strong></p>
 <ul>
-<li>depth and coverage</li>
-<li>assemblers</li>
-<li>evaluation</li>
+<li>The optical genome mapping data was obtained from the project <a href="https://www.ebi.ac.uk/ena/browser/view/PRJEB50694" class="external-link">PRJEB50694</a>.<br>
+</li>
+<li>Data corresponds to <em>Arabidopsis thaliana</em> ecotype Col-0,
+generated using Bionano optical genome mapping technology.<br>
+</li>
+<li>The dataset is publicly available on the European Nucleotide Archive
+(ENA) and can be downloaded using:<br>
+</li>
+<li>The <code>.cmap</code> file contains high-resolution optical maps
+used for scaffolding and structural validation of genome
+assemblies.</li>
 </ul>
+<p>To download:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">wget</span> ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR522/ERR5229977/Col-0_2021-09-30.cmap</span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="installation-and-setup">Installation and Setup<a class="anchor" aria-label="anchor" href="#installation-and-setup"></a>
+</h3>
+<p>Bionano Solve is available on Bionano.com and can be installed on
+Linux-based systems. The software requires a valid license and access to
+Bionano data files for processing.</p>
+<p>Custom container with just the hybrid scaffolding tools can be used
+to run the Bionano Solve pipeline. On Negishi, you can add it to your
+PATH using the command below:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">$PATH</span>:/apps/biocontainers/exported-wrappers/bionano/3.8.0</span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="running-bionano-solve">Running Bionano Solve<a class="anchor" aria-label="anchor" href="#running-bionano-solve"></a>
+</h3>
+<p>To scaffold a genome using Bionano Solve, you need to provide the
+following input files:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">$PATH</span>:/apps/biocontainers/exported-wrappers/bionano/3.8.0</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="ex">run_hybridscaffold.sh</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="ex">-c</span> /opt/Solve3.7_10192021_74_1/HybridScaffold/1.0/hybridScaffold_DLE1_config.xml<span class="dt">\</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  <span class="at">-b</span> input.cmap <span class="dt">\</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  <span class="at">-n</span> genome.fasta <span class="dt">\</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  <span class="at">-u</span> CTTAAG <span class="dt">\</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>  <span class="at">-z</span> results_output.zip <span class="dt">\</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>  <span class="at">-w</span> log.txt <span class="dt">\</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>  <span class="at">-B</span> 2 <span class="dt">\</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>  <span class="at">-N</span> 2 <span class="dt">\</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>  <span class="at">-g</span> <span class="dt">\</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>  <span class="at">-f</span> <span class="dt">\</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>  <span class="at">-r</span> /opt/Solve3.7_10192021_74_1/RefAligner/1.0/sse/RefAligner <span class="dt">\</span></span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>  <span class="at">-p</span> /opt/Solve3.7_10192021_74_1/Pipeline/1.0 <span class="dt">\</span></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>  <span class="at">-o</span> output_dir</span></code></pre>
+</div>
+<div id="options-used" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="options-used" class="callout-inner">
+<h3 class="callout-title">Options used</h3>
+<div class="callout-content">
+<table class="table">
+<colgroup>
+<col width="12%">
+<col width="20%">
+<col width="66%">
+</colgroup>
+<thead><tr class="header">
+<th align="center"><strong>Option</strong></th>
+<th align="left"><strong>Argument</strong></th>
+<th><strong>Description</strong></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="center"><code>-c</code></td>
+<td align="left"><code>/opt/Solve3.7_10192021_74_1/HybridScaffold/1.0/hybridScaffold_DLE1_config.xml</code></td>
+<td>Specifies the hybrid scaffolding configuration file required for the
+pipeline.</td>
+</tr>
+<tr class="even">
+<td align="center"><code>-b</code></td>
+<td align="left"><code>input.cmap</code></td>
+<td>Input Bionano CMAP file, which contains the optical genome map
+data.</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>-n</code></td>
+<td align="left"><code>genome.fasta</code></td>
+<td>Input genome sequence in FASTA format from NGS assembly.</td>
+</tr>
+<tr class="even">
+<td align="center"><code>-u</code></td>
+<td align="left"><code>CTTAAG</code></td>
+<td>Specifies the sequence of the enzyme recognition site, overriding
+the one in the config XML file.</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>-z</code></td>
+<td align="left"><code>results_output.zip</code></td>
+<td>Generates a ZIP archive containing essential output files.</td>
+</tr>
+<tr class="even">
+<td align="center"><code>-w</code></td>
+<td align="left"><code>log.txt</code></td>
+<td>Defines the name of the status text file needed for IrysView.</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>-B</code></td>
+<td align="left"><code>2</code></td>
+<td>Conflict filter level: <code>2</code> means cut the contig at
+conflict points (required if not using <code>-M</code>).</td>
+</tr>
+<tr class="even">
+<td align="center"><code>-N</code></td>
+<td align="left"><code>2</code></td>
+<td>Conflict filter level: <code>2</code> means cut the contig at
+conflict points (same as <code>-B</code>, applied to sequencing
+contigs).</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>-g</code></td>
+<td align="left">(No argument)</td>
+<td>Enables trimming of overlapping NGS sequences during AGP and FASTA
+export.</td>
+</tr>
+<tr class="even">
+<td align="center"><code>-f</code></td>
+<td align="left">(No argument)</td>
+<td>Forces output generation and overwrites any existing files in the
+output directory.</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>-r</code></td>
+<td align="left"><code>/opt/Solve3.7_10192021_74_1/RefAligner/1.0/sse/RefAligner</code></td>
+<td>Specifies the path to the RefAligner program, which is required for
+scaffolding.</td>
+</tr>
+<tr class="even">
+<td align="center"><code>-p</code></td>
+<td align="left"><code>/opt/Solve3.7_10192021_74_1/Pipeline/1.0</code></td>
+<td>Specifies the directory for the de novo assembly pipeline (optional,
+required for <code>-x</code>).</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>-o</code></td>
+<td align="left"><code>output_dir</code></td>
+<td>Defines the output folder where scaffolded results will be
+stored.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="section level4">
+<h4 id="scffolding-hifiasm-assembly-with-bionano-solve">Scffolding HiFiasm assembly with Bionano Solve<a class="anchor" aria-label="anchor" href="#scffolding-hifiasm-assembly-with-bionano-solve"></a>
+</h4>
+<p>For HiFiasm assembly, you need to provide the HiFiasm assembly FASTA
+file as input to the Bionano Solve pipeline. The command structure
+remains the same, with the only change being the input sequence
+file.</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">$PATH</span>:/apps/biocontainers/exported-wrappers/bionano/3.8.0</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">run_hybridscaffold.sh</span> <span class="dt">\</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="at">-c</span> /opt/Solve3.7_10192021_74_1/HybridScaffold/1.0/hybridScaffold_DLE1_config.xml<span class="dt">\</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  <span class="at">-b</span> Evry.OpticalMap.Col-0.cmap <span class="dt">\</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  <span class="at">-n</span> hifiasm_60x/athaliana_hifi.asm.bp.p_ctg.fasta <span class="dt">\</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  <span class="at">-u</span> CTTAAG <span class="dt">\</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>  <span class="at">-z</span> results_bionano_hifiasm_scaffolding.zip <span class="dt">\</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>  <span class="at">-w</span> log.txt <span class="dt">\</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>  <span class="at">-B</span> 2 <span class="dt">\</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>  <span class="at">-N</span> 2 <span class="dt">\</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>  <span class="at">-g</span> <span class="dt">\</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>  <span class="at">-f</span> <span class="dt">\</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>  <span class="at">-r</span> /opt/Solve3.7_10192021_74_1/RefAligner/1.0/sse/RefAligner <span class="dt">\</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a>  <span class="at">-p</span> /opt/Solve3.7_10192021_74_1/Pipeline/1.0 <span class="dt">\</span></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a>  <span class="at">-o</span> bionano_hifiasm_scaffolding</span></code></pre>
+</div>
+</div>
+<div class="section level4">
+<h4 id="scffolding-flye-assembly-with-bionano-solve">Scffolding Flye assembly with Bionano Solve<a class="anchor" aria-label="anchor" href="#scffolding-flye-assembly-with-bionano-solve"></a>
+</h4>
+<p>For Flye assembly, the process is similar to HiFiasm, but you need to
+provide the Flye assembly FASTA file instead of the HiFiasm assembly.
+The command structure remains the same, with the only change being the
+input sequence file.</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">$PATH</span>:/apps/biocontainers/exported-wrappers/bionano/3.8.0</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">run_hybridscaffold.sh</span> <span class="dt">\</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="at">-c</span> /opt/Solve3.7_10192021_74_1/HybridScaffold/1.0/hybridScaffold_DLE1_config.xml<span class="dt">\</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="at">-b</span> workshop_assembly/col-0_bionano/Evry.OpticalMap.Col-0.cmap <span class="dt">\</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="at">-n</span> flye_ont_60x/assembly.fasta <span class="dt">\</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>  <span class="at">-u</span> CTTAAG <span class="dt">\</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>  <span class="at">-z</span> results_bionano_flye_scaffolding.zip <span class="dt">\</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>  <span class="at">-w</span> log.txt <span class="dt">\</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>  <span class="at">-B</span> 2 <span class="dt">\</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>  <span class="at">-N</span> 2 <span class="dt">\</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>  <span class="at">-g</span> <span class="dt">\</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>  <span class="at">-f</span> <span class="dt">\</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>  <span class="at">-r</span> /opt/Solve3.7_10192021_74_1/RefAligner/1.0/sse/RefAligner <span class="dt">\</span></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>  <span class="at">-p</span> /opt/Solve3.7_10192021_74_1/Pipeline/1.0 <span class="dt">\</span></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>  <span class="at">-o</span> bionano_flye_scaffolding</span></code></pre>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="understanding-hybrid-scaffolding-output">Understanding Hybrid Scaffolding Output<a class="anchor" aria-label="anchor" href="#understanding-hybrid-scaffolding-output"></a>
+</h3>
+<p>The output of the Bionano Solve pipeline includes scaffolded genome
+assemblies in AGP and FASTA formats, along with alignment and conflict
+resolution information. The hybrid scaffolds provide a more accurate
+representation of the genome structure, with improved contiguity and
+reduced misassemblies. The output files can be visualized using genome
+browsers or alignment viewers to assess the quality and completeness of
+the assembly.</p>
+<table class="table">
+<colgroup>
+<col width="48%">
+<col width="52%">
+</colgroup>
+<thead><tr class="header">
+<th><strong>Folder</strong></th>
+<th><strong>Contents</strong></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><strong>agp_fasta/</strong></td>
+<td>Final scaffolded genome assembly in FASTA, AGP format, alignment
+results, gap information, and logs.</td>
+</tr>
+<tr class="even">
+<td><strong>align0/</strong></td>
+<td>Initial alignment of optical maps to the sequence assembly,
+including XMAP, CMAP, and error logs.</td>
+</tr>
+<tr class="odd">
+<td><strong>align1/</strong></td>
+<td>Secondary alignment refinement, similar to align0 but after
+resolving initial inconsistencies.</td>
+</tr>
+<tr class="even">
+<td><strong>align_final/</strong></td>
+<td>Final alignment results of hybrid scaffolds to optical maps,
+including mapping rates and statistics.</td>
+</tr>
+<tr class="odd">
+<td><strong>assignAlignType/</strong></td>
+<td>Tracks conflicts between NGS contigs and optical maps, includes
+exclusion and trimming decisions.</td>
+</tr>
+<tr class="even">
+<td><strong>cut_conflicts/</strong></td>
+<td>Stores files related to contig trimming and conflict resolution
+between NGS and optical maps.</td>
+</tr>
+<tr class="odd">
+<td><strong>fa2cmap/</strong></td>
+<td>Converts the sequence assembly into Bionano’s CMAP format before
+integration with optical maps.</td>
+</tr>
+<tr class="even">
+<td><strong>hybrid_scaffolds/</strong></td>
+<td>Contains final scaffolded genome with CMAP, XMAP, AGP files, and a
+scaffolding report.</td>
+</tr>
+<tr class="odd">
+<td><strong>mergeNGS_BN/</strong></td>
+<td>Stores intermediate files merging NGS contigs with Bionano maps,
+including hybrid scaffold progress.</td>
+</tr>
+<tr class="even">
+<td><strong>results_output.zip</strong></td>
+<td>Compressed archive containing essential scaffolding results for easy
+sharing.</td>
+</tr>
+</tbody>
+</table>
+<p>Within <code>hybrid_scaffolds</code>, the files ending with
+<code>HYBRID_SCAFFOLD.fasta</code> and
+<code>HYBRID_SCAFFOLD_NOT_SCAFFOLDED.fasta</code> represent the final
+scaffolded genome and unplaced contigs, respectively. You will need to
+merge these files to obtain your final scaffolded genome assembly.</p>
+</div>
+<div class="section level3">
+<h3 id="quality-assessment-of-hybrid-scaffolds">Quality Assessment of Hybrid Scaffolds<a class="anchor" aria-label="anchor" href="#quality-assessment-of-hybrid-scaffolds"></a>
+</h3>
+<p>The hybird scaffolds report file will be in the
+<code>hybrid_scaffolds</code> directory and will provide a summary of
+the scaffolding process, including alignment statistics, conflict
+resolution, and scaffold N50 values. This report is essential for
+evaluating the quality and completeness of the hybrid scaffolds and
+identifying any potential issues that need further investigation.</p>
+<table class="table">
+<colgroup>
+<col width="61%">
+<col width="19%">
+<col width="19%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"><strong>Category</strong></th>
+<th align="right"><strong>PacBio HiFi (hifiasm)</strong></th>
+<th align="right"><strong>ONT (Flye)</strong></th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Original BioNano Genome Map</strong></td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+<tr class="even">
+<td align="left">Count</td>
+<td align="right">18</td>
+<td align="right">18</td>
+</tr>
+<tr class="odd">
+<td align="left">Min length (Mbp)</td>
+<td align="right">0.342</td>
+<td align="right">0.342</td>
+</tr>
+<tr class="even">
+<td align="left">Median length (Mbp)</td>
+<td align="right">3.956</td>
+<td align="right">3.956</td>
+</tr>
+<tr class="odd">
+<td align="left">Mean length (Mbp)</td>
+<td align="right">7.396</td>
+<td align="right">7.396</td>
+</tr>
+<tr class="even">
+<td align="left">N50 length (Mbp)</td>
+<td align="right">15.529</td>
+<td align="right">15.529</td>
+</tr>
+<tr class="odd">
+<td align="left">Max length (Mbp)</td>
+<td align="right">17.518</td>
+<td align="right">17.518</td>
+</tr>
+<tr class="even">
+<td align="left">Total length (Mbp)</td>
+<td align="right">133.124</td>
+<td align="right">133.124</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Original NGS Sequences</strong></td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+<tr class="even">
+<td align="left">Count</td>
+<td align="right">152</td>
+<td align="right">43</td>
+</tr>
+<tr class="odd">
+<td align="left">Min length (Mbp)</td>
+<td align="right">0.027</td>
+<td align="right">0.008</td>
+</tr>
+<tr class="even">
+<td align="left">Median length (Mbp)</td>
+<td align="right">0.050</td>
+<td align="right">0.276</td>
+</tr>
+<tr class="odd">
+<td align="left">Mean length (Mbp)</td>
+<td align="right">0.896</td>
+<td align="right">2.797</td>
+</tr>
+<tr class="even">
+<td align="left">N50 length (Mbp)</td>
+<td align="right">7.981</td>
+<td align="right">9.261</td>
+</tr>
+<tr class="odd">
+<td align="left">Max length (Mbp)</td>
+<td align="right">13.758</td>
+<td align="right">14.609</td>
+</tr>
+<tr class="even">
+<td align="left">Total length (Mbp)</td>
+<td align="right">136.156</td>
+<td align="right">120.259</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Conflict Resolution (BNG-NGS
+Alignment)</strong></td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+<tr class="even">
+<td align="left">Conflict cuts made to Bionano maps</td>
+<td align="right">2</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Conflict cuts made to NGS sequences</td>
+<td align="right">30</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Bionano maps to be cut</td>
+<td align="right">2</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">NGS sequences to be cut</td>
+<td align="right">18</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>NGS FASTA Sequence in Hybrid
+Scaffold</strong></td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+<tr class="odd">
+<td align="left">Count</td>
+<td align="right">40</td>
+<td align="right">26</td>
+</tr>
+<tr class="even">
+<td align="left">Min length (Mbp)</td>
+<td align="right">0.033</td>
+<td align="right">0.065</td>
+</tr>
+<tr class="odd">
+<td align="left">Median length (Mbp)</td>
+<td align="right">0.945</td>
+<td align="right">1.681</td>
+</tr>
+<tr class="even">
+<td align="left">Mean length (Mbp)</td>
+<td align="right">2.689</td>
+<td align="right">4.558</td>
+</tr>
+<tr class="odd">
+<td align="left">N50 length (Mbp)</td>
+<td align="right">8.437</td>
+<td align="right">9.261</td>
+</tr>
+<tr class="even">
+<td align="left">Max length (Mbp)</td>
+<td align="right">13.484</td>
+<td align="right">14.609</td>
+</tr>
+<tr class="odd">
+<td align="left">Total length (Mbp)</td>
+<td align="right">107.558</td>
+<td align="right">118.508</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Hybrid Scaffold FASTA</strong></td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+<tr class="odd">
+<td align="left">Count</td>
+<td align="right">11</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">Min length (Mbp)</td>
+<td align="right">0.104</td>
+<td align="right">0.524</td>
+</tr>
+<tr class="odd">
+<td align="left">Median length (Mbp)</td>
+<td align="right">11.824</td>
+<td align="right">12.426</td>
+</tr>
+<tr class="even">
+<td align="left">Mean length (Mbp)</td>
+<td align="right">10.518</td>
+<td align="right">9.891</td>
+</tr>
+<tr class="odd">
+<td align="left">N50 length (Mbp)</td>
+<td align="right">14.479</td>
+<td align="right">14.886</td>
+</tr>
+<tr class="even">
+<td align="left">Max length (Mbp)</td>
+<td align="right">15.227</td>
+<td align="right">16.188</td>
+</tr>
+<tr class="odd">
+<td align="left">Total length (Mbp)</td>
+<td align="right">115.698</td>
+<td align="right">118.689</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Hybrid Scaffold FASTA + Not Scaffolded
+NGS</strong></td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+<tr class="odd">
+<td align="left">Count</td>
+<td align="right">161</td>
+<td align="right">33</td>
+</tr>
+<tr class="even">
+<td align="left">Min length (Mbp)</td>
+<td align="right">0.024</td>
+<td align="right">0.006</td>
+</tr>
+<tr class="odd">
+<td align="left">Median length (Mbp)</td>
+<td align="right">0.051</td>
+<td align="right">0.159</td>
+</tr>
+<tr class="even">
+<td align="left">Mean length (Mbp)</td>
+<td align="right">0.896</td>
+<td align="right">3.650</td>
+</tr>
+<tr class="odd">
+<td align="left">N50 length (Mbp)</td>
+<td align="right">14.083</td>
+<td align="right">14.886</td>
+</tr>
+<tr class="even">
+<td align="left">Max length (Mbp)</td>
+<td align="right">15.227</td>
+<td align="right">16.188</td>
+</tr>
+<tr class="odd">
+<td align="left">Total length (Mbp)</td>
+<td align="right">144.295</td>
+<td align="right">120.440</td>
+</tr>
+</tbody>
+</table>
+<div id="which-assembler-and-data-performed-better" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div id="which-assembler-and-data-performed-better" class="callout-inner">
+<h3 class="callout-title">Which assembler and data performed better?</h3>
+<div class="callout-content">
+<ul>
+<li>The HiFiasm assembly with PacBio HiFi data resulted in a higher N50
+length and total length in the hybrid scaffold compared to the Flye
+assembly with ONT data.</li>
+<li>The conflict resolution process involved more cuts in the NGS
+sequences for the HiFiasm assembly, indicating a higher level of
+alignment discrepancies.</li>
+<li>The final hybrid scaffold from the HiFiasm assembly had a higher N50
+length and total length, suggesting better contiguity and completeness
+compared to the Flye assembly.</li>
+</ul>
+</div>
+</div>
+</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -2702,9 +3328,18 @@ any links that you are not going to use.
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
 <ul>
-<li>point 1</li>
-<li>point 2</li>
-<li>point 3</li>
+<li>Bionano optical genome mapping (OGM) provides long-range structural
+information for scaffolding genome assemblies.</li>
+<li>Bionano Solve hybrid scaffolding integrates optical maps with
+sequence assemblies to improve contiguity and accuracy.</li>
+<li>The Bionano Solve pipeline involves in silico map generation,
+conflict resolution, hybrid scaffolding, and final alignment.</li>
+<li>The output of Bionano Solve includes scaffolded genome assemblies in
+AGP and FASTA formats, alignment results, and conflict resolution
+information.</li>
+<li>Quality assessment of hybrid scaffolds involves evaluating alignment
+statistics, conflict resolution, scaffold N50 values, and completeness
+of the assembly.</li>
 </ul>
 </div>
 </div>
@@ -2713,7 +3348,7 @@ any links that you are not going to use.
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</section></section><section id="aio-assembly-evaluation"><p>Content from <a href="assembly-evaluation.html">Assembly Evaluation</a></p>
+</div></section><section id="aio-assembly-evaluation"><p>Content from <a href="assembly-evaluation.html">Assembly Evaluation</a></p>
 <hr>
 <p>Last updated on 2025-02-14 |
 
@@ -2883,8 +3518,8 @@ any links that you are not going to use.
   "url": "https://FIXME-template-source.github.io/NA/instructor/aio.html",
   "identifier": "https://FIXME-template-source.github.io/NA/instructor/aio.html",
   "dateCreated": "2025-02-05",
-  "dateModified": "2025-02-14",
-  "datePublished": "2025-02-14"
+  "dateModified": "2025-02-15",
+  "datePublished": "2025-02-15"
 }
 
   </script><script>

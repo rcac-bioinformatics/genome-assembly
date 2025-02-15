@@ -334,7 +334,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Oxford Nanopore Assembly using Flye</h1>
-        <p>Last updated on 2025-02-14 |
+        <p>Last updated on 2025-02-15 |
 
         <a href="https://example.com/FIXME-template-source/edit/main/episodes/oxford-nanopore-assembly.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -355,7 +355,10 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>to do</li>
+<ul><li>What are the key features of ONT reads?</li>
+<li>Why is Flye good for assembling ONT reads?</li>
+<li>What are the main steps in the Flye assembly workflow?</li>
+<li>How can you evaluate the quality of a Flye assembly?</li>
 </ul></div>
 </div>
 </div>
@@ -363,7 +366,10 @@
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>to do</li>
+<ul><li>Understand the characteristics of ONT reads.</li>
+<li>Learn about the Flye assembler and its advantages for ONT data.</li>
+<li>Explore the key steps in the Flye assembly workflow.</li>
+<li>Evaluate the quality of a Flye assembly using common metrics.</li>
 </ul></div>
 </div>
 </div>
@@ -610,8 +616,8 @@ long-read data like ONT reads.</p>
 performs one round of polishing to refine the assembly. However, you can
 customize the polishing process by running polishing separately after
 the initial assembly.</p>
-<p>To polish the assembly using <code>medaka</code>, you can use the
-following command:</p>
+<p>An example command to polish assembly with accurate PacBio HiFi
+reads:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -711,9 +717,17 @@ GFA to FASTA using the following command:</p>
 <div class="callout-inner">
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
-<ul><li>point 1</li>
-<li>point 2</li>
-<li>point 3</li>
+<ul><li>ONT provides long-read sequencing data with high error rates.</li>
+<li>Flye is a long-read assembler optimized for handling ONT data and
+producing highly contiguous assemblies.</li>
+<li>The Flye assembly workflow involves read preprocessing, repeat graph
+construction, graph resolution, polishing, and post-processing.</li>
+<li>Flye output includes the final assembly sequence, assembly graph,
+and summary information for evaluation.</li>
+<li>Polishing the assembly can improve base-level accuracy and overall
+assembly quality.</li>
+<li>Flye provides built-in polishing capabilities, and other tools like
+Racon, Nanopolish, and Medaka can be used for further refinement.</li>
 </ul></div>
 </div>
 </div>
@@ -783,8 +797,8 @@ any links that you are not going to use.
   "url": "https://FIXME-template-source.github.io/NA/instructor/oxford-nanopore-assembly.html",
   "identifier": "https://FIXME-template-source.github.io/NA/instructor/oxford-nanopore-assembly.html",
   "dateCreated": "2025-02-05",
-  "dateModified": "2025-02-14",
-  "datePublished": "2025-02-14"
+  "dateModified": "2025-02-15",
+  "datePublished": "2025-02-15"
 }
 
   </script><script>

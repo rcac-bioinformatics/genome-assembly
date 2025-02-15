@@ -66,6 +66,8 @@ Genome assemblies progress through different levels of completeness and organiza
 
 Higher levels of assembly provide better genome context, but require additional scaffolding methods beyond de novo assembly.
 
+![Assembly levels](https://github.com/user-attachments/assets/4b7406b6-747a-4a34-b816-e1de2cf444a9)
+
 ## Workflow for Various Assemblies
 
 In this workshop, we will use HiFiasm for PacBio HiFi assemblies, Flye for ONT assemblies, and Flye in hybrid mode for ONT + Illumina assemblies, followed by quality assessment using BUSCO and QUAST to evaluate completeness and accuracy.
@@ -103,26 +105,27 @@ In this workshop, we will use HiFiasm for PacBio HiFi assemblies, Flye for ONT a
 - Why assessing genome assembly quality is crucial before downstream analyses.  
 - Metrics to determine assembly completeness, accuracy, and contiguity.  
 
-### **1. BUSCO (Benchmarking Universal Single-Copy Orthologs)**  
+**1. BUSCO (Benchmarking Universal Single-Copy Orthologs)/ Compleasm**
 
-- Evaluates genome completeness using a conserved set of single-copy orthologs.  
-- Reports four categories:
-  - **Complete (Single-Copy/Duplicated)**: Genes present and intact.  
-  - **Fragmented**: Genes partially recovered but not fully intact.  
-  - **Missing**: Genes absent, indicating potential assembly gaps.  
-- How to interpret BUSCO scores for genome assemblies.  
-- Example BUSCO command and output format.  
+- [Compleasm](https://github.com/huangnengCSU/compleasm) is a faster alternative to BUSCO for assessing genome completeness based on single-copy orthologs. It evaluates genome completeness by checking for highly conserved, single-copy genes expected to be present in nearly all members of a given lineage. These genes are essential for basic cellular functions, making them reliable markers for assessing genome assembly quality.
 
-### **2. QUAST (Quality Assessment Tool for Genome Assemblies)**  
+- We expect these genes to be present in our organism because they are evolutionarily conserved and critical for survival. If many BUSCO genes are missing or fragmented, it suggests gaps, misassemblies, or sequencing errors, which can compromise downstream analyses like gene annotation and functional studies. A high BUSCO completeness score indicates a well-assembled genome with minimal missing data.
+
+- The BUSCO reports provide detailed statistics on the number of complete, fragmented, and missing BUSCO genes, as well as the percentage of genome completeness. The output helps identify areas for improvement and guide further optimization steps in the assembly process.
+
+![BUSCO genes](https://github.com/user-attachments/assets/d6cecf91-96a1-49a4-a91b-1f54c8a13013)
+
+**2. QUAST (Quality Assessment Tool for Genome Assemblies)**  
 
 - Provides summary statistics such as **N50, L50, number of contigs, GC content, genome size estimates, and misassemblies**.  
 - Can compare multiple assemblies to assess improvement with different strategies.  
 - Example QUAST command and output interpretation.  
 
-### **3. Additional Considerations for Evaluation**  
+**3. Additional Considerations for Evaluation**  
 
 - **K-mer-based methods (e.g., Merqury)** for **comparing assemblies to raw reads** (especially useful when no reference genome is available).  
 - **Dot plots and synteny analysis** to visualize structural correctness.  
+
 
 ## **Bionano and Hi-C Reads in Genome Assembly**  
 

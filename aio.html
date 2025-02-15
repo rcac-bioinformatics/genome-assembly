@@ -856,7 +856,8 @@ genome.</li>
 </ul>
 <p>Higher levels of assembly provide better genome context, but require
 additional scaffolding methods beyond de novo assembly.</p>
-</section><section><h2 class="section-heading" id="workflow-for-various-assemblies">Workflow for Various Assemblies<a class="anchor" aria-label="anchor" href="#workflow-for-various-assemblies"></a>
+<figure><img src="https://github.com/user-attachments/assets/4b7406b6-747a-4a34-b816-e1de2cf444a9" alt="Assembly levels" class="figure mx-auto d-block"><div class="figcaption">Assembly levels</div>
+</figure></section><section><h2 class="section-heading" id="workflow-for-various-assemblies">Workflow for Various Assemblies<a class="anchor" aria-label="anchor" href="#workflow-for-various-assemblies"></a>
 </h2>
 <hr class="half-width">
 <p>In this workshop, we will use HiFiasm for PacBio HiFi assemblies,
@@ -926,41 +927,30 @@ analyses.<br>
 <li>Metrics to determine assembly completeness, accuracy, and
 contiguity.</li>
 </ul>
-<div class="section level3">
-<h3 id="busco-benchmarking-universal-single-copy-orthologs">
-<strong>1. BUSCO (Benchmarking Universal Single-Copy
-Orthologs)</strong><a class="anchor" aria-label="anchor" href="#busco-benchmarking-universal-single-copy-orthologs"></a>
-</h3>
+<p><strong>1. BUSCO (Benchmarking Universal Single-Copy Orthologs)/
+Compleasm</strong></p>
 <ul>
-<li>Evaluates genome completeness using a conserved set of single-copy
-orthologs.<br>
-</li>
-<li>Reports four categories:
-<ul>
-<li>
-<strong>Complete (Single-Copy/Duplicated)</strong>: Genes present
-and intact.<br>
-</li>
-<li>
-<strong>Fragmented</strong>: Genes partially recovered but not fully
-intact.<br>
-</li>
-<li>
-<strong>Missing</strong>: Genes absent, indicating potential
-assembly gaps.<br>
-</li>
+<li><p><a href="https://github.com/huangnengCSU/compleasm" class="external-link">Compleasm</a>
+is a faster alternative to BUSCO for assessing genome completeness based
+on single-copy orthologs. It evaluates genome completeness by checking
+for highly conserved, single-copy genes expected to be present in nearly
+all members of a given lineage. These genes are essential for basic
+cellular functions, making them reliable markers for assessing genome
+assembly quality.</p></li>
+<li><p>We expect these genes to be present in our organism because they
+are evolutionarily conserved and critical for survival. If many BUSCO
+genes are missing or fragmented, it suggests gaps, misassemblies, or
+sequencing errors, which can compromise downstream analyses like gene
+annotation and functional studies. A high BUSCO completeness score
+indicates a well-assembled genome with minimal missing data.</p></li>
+<li><p>The BUSCO reports provide detailed statistics on the number of
+complete, fragmented, and missing BUSCO genes, as well as the percentage
+of genome completeness. The output helps identify areas for improvement
+and guide further optimization steps in the assembly process.</p></li>
 </ul>
-</li>
-<li>How to interpret BUSCO scores for genome assemblies.<br>
-</li>
-<li>Example BUSCO command and output format.</li>
-</ul>
-</div>
-<div class="section level3">
-<h3 id="quast-quality-assessment-tool-for-genome-assemblies">
-<strong>2. QUAST (Quality Assessment Tool for Genome
-Assemblies)</strong><a class="anchor" aria-label="anchor" href="#quast-quality-assessment-tool-for-genome-assemblies"></a>
-</h3>
+<figure><img src="https://github.com/user-attachments/assets/d6cecf91-96a1-49a4-a91b-1f54c8a13013" alt="BUSCO genes" class="figure mx-auto d-block"><div class="figcaption">BUSCO genes</div>
+</figure><p><strong>2. QUAST (Quality Assessment Tool for Genome
+Assemblies)</strong></p>
 <ul>
 <li>Provides summary statistics such as <strong>N50, L50, number of
 contigs, GC content, genome size estimates, and
@@ -971,11 +961,7 @@ strategies.<br>
 </li>
 <li>Example QUAST command and output interpretation.</li>
 </ul>
-</div>
-<div class="section level3">
-<h3 id="additional-considerations-for-evaluation">
-<strong>3. Additional Considerations for Evaluation</strong><a class="anchor" aria-label="anchor" href="#additional-considerations-for-evaluation"></a>
-</h3>
+<p><strong>3. Additional Considerations for Evaluation</strong></p>
 <ul>
 <li>
 <strong>K-mer-based methods (e.g., Merqury)</strong> for
@@ -985,9 +971,7 @@ when no reference genome is available).<br>
 <li>
 <strong>Dot plots and synteny analysis</strong> to visualize
 structural correctness.</li>
-</ul>
-</div>
-</section><section><h2 class="section-heading" id="bionano-and-hi-c-reads-in-genome-assembly">
+</ul></section><section><h2 class="section-heading" id="bionano-and-hi-c-reads-in-genome-assembly">
 <strong>Bionano and Hi-C Reads in Genome Assembly</strong><a class="anchor" aria-label="anchor" href="#bionano-and-hi-c-reads-in-genome-assembly"></a>
 </h2>
 <hr class="half-width">

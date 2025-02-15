@@ -650,7 +650,13 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>to do</li>
+<li>What factors influence the choice of genome assembly strategy?</li>
+<li>How do different assembly methods compare in terms of read length,
+accuracy, and computational requirements?</li>
+<li>What are the key steps in evaluating genome assemblies using BUSCO
+and QUAST?</li>
+<li>How do Bionano OGM and Hi-C sequencing improve genome continuity and
+organization?</li>
 </ul>
 </div>
 </div>
@@ -660,7 +666,13 @@ any links that you are not going to use.
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>to do</li>
+<li>Understand factors influencing the choice of genome assembly
+strategy.</li>
+<li>Compare different assembly methods based on read length, accuracy,
+and computational requirements.</li>
+<li>Learn how to evaluate genome assemblies using BUSCO and QUAST.</li>
+<li>Explore the role of Bionano OGM and Hi-C sequencing in improving
+genome continuity.</li>
 </ul>
 </div>
 </div>
@@ -719,10 +731,9 @@ choice of assembler and the need for scaffolding methods like Hi-C or
 Bionano OGM.</li>
 </ul>
 </div>
-</div>
-<div class="section level3">
-<h3 id="comparative-assembly-strategies">Comparative Assembly Strategies<a class="anchor" aria-label="anchor" href="#comparative-assembly-strategies"></a>
-</h3>
+<div class="section level4">
+<h4 id="comparative-assembly-strategies">Comparative Assembly Strategies<a class="anchor" aria-label="anchor" href="#comparative-assembly-strategies"></a>
+</h4>
 <table class="table">
 <colgroup>
 <col width="25%">
@@ -823,6 +834,7 @@ Bionano OGM.</li>
 </tr>
 </tbody>
 </table>
+</div>
 <div class="section level4">
 <h4 id="contig-vs--scaffold-vs--chromosome-level-assembly">
 <strong>Contig vs. Scaffold vs. Chromosome-Level
@@ -858,11 +870,63 @@ additional scaffolding methods beyond de novo assembly.</p>
 Flye for ONT assemblies, and Flye in hybrid mode for ONT + Illumina
 assemblies, followed by quality assessment using BUSCO and QUAST to
 evaluate completeness and accuracy.</p>
+<div class="section level5">
+<h5 id="pacbio-hifi-assembly-with-hifiasm">PacBio HiFi Assembly with HiFiasm<a class="anchor" aria-label="anchor" href="#pacbio-hifi-assembly-with-hifiasm"></a>
+</h5>
+<ul>
+<li>
+<strong>PacBio HiFi reads</strong>: Highly accurate long reads with
+low error rates, suitable for de novo assembly without polishing.</li>
+<li>
+<strong>HiFiasm</strong>: A specialized assembler for HiFi data,
+leveraging read accuracy and length to resolve complex regions and
+produce high-quality contigs.</li>
+<li>
+<strong>Workflow</strong>: Run HiFiasm with HiFi reads, adjust
+parameters based on genome size and complexity, and evaluate the
+assembly using Compleasm and QUAST.</li>
+</ul>
+<figure><img src="https://github.com/user-attachments/assets/652b2211-f5d1-4264-8b82-cd0925f62408" alt="PacBio Assembly" class="figure mx-auto d-block"><div class="figcaption">PacBio Assembly</div>
+</figure>
+</div>
+<div class="section level5">
+<h5 id="ont-assembly-with-flye">ONT Assembly with Flye<a class="anchor" aria-label="anchor" href="#ont-assembly-with-flye"></a>
+</h5>
+<ul>
+<li>
+<strong>ONT reads</strong>: Ultra-long reads with higher error
+rates, requiring additional error correction and polishing steps.</li>
+<li>
+<strong>Flye</strong>: A de novo assembler optimized for long reads,
+capable of resolving complex repeats and generating high-quality
+assemblies.</li>
+<li>
+<strong>Workflow</strong>: Run Flye with ONT reads, adjust
+parameters based on genome size and complexity, and polish the assembly
+using Medaka for basecalling and consensus polishing.</li>
+</ul>
+<figure><img src="https://github.com/user-attachments/assets/3dc7bbcc-a875-4d75-8bb7-2b56d82bf5ff" alt="ONT assembly" class="figure mx-auto d-block"><div class="figcaption">ONT assembly</div>
+</figure>
+</div>
+<div class="section level5">
+<h5 id="hybrid-ont-pacbio-assembly-with-flye">Hybrid (ONT + PacBio) Assembly with Flye<a class="anchor" aria-label="anchor" href="#hybrid-ont-pacbio-assembly-with-flye"></a>
+</h5>
+<ul>
+<li>
+<strong>Hybrid assembly</strong>: Combines the strengths of both
+technologies for improved accuracy and contiguity.</li>
+<li>
+<strong>Workflow</strong>: Run Flye with both ONT and PacBio reads,
+adjust parameters for hybrid mode, and polish the assembly using ONT or
+PacBio reads for error correction and consensus polishing.</li>
+</ul>
+<figure><img src="https://github.com/user-attachments/assets/f7fae4ec-0a07-4835-8836-20acc99aadb1" alt="Hybrid assembly" class="figure mx-auto d-block"><div class="figcaption">Hybrid assembly</div>
+</figure>
 </div>
 </div>
-<div class="section level3">
-<h3 id="assembly-evaluation">Assembly Evaluation<a class="anchor" aria-label="anchor" href="#assembly-evaluation"></a>
-</h3>
+<div class="section level4">
+<h4 id="assembly-evaluation">Assembly Evaluation<a class="anchor" aria-label="anchor" href="#assembly-evaluation"></a>
+</h4>
 <ul>
 <li>Why assessing genome assembly quality is crucial before downstream
 analyses.<br>
@@ -870,11 +934,11 @@ analyses.<br>
 <li>Metrics to determine assembly completeness, accuracy, and
 contiguity.</li>
 </ul>
-<div class="section level4">
-<h4 id="busco-benchmarking-universal-single-copy-orthologs">
+<div class="section level5">
+<h5 id="busco-benchmarking-universal-single-copy-orthologs">
 <strong>1. BUSCO (Benchmarking Universal Single-Copy
 Orthologs)</strong><a class="anchor" aria-label="anchor" href="#busco-benchmarking-universal-single-copy-orthologs"></a>
-</h4>
+</h5>
 <ul>
 <li>Evaluates genome completeness using a conserved set of single-copy
 orthologs.<br>
@@ -900,12 +964,11 @@ assembly gaps.<br>
 <li>Example BUSCO command and output format.</li>
 </ul>
 </div>
-</div>
-<div class="section level3">
-<h3 id="quast-quality-assessment-tool-for-genome-assemblies">
+<div class="section level5">
+<h5 id="quast-quality-assessment-tool-for-genome-assemblies">
 <strong>2. QUAST (Quality Assessment Tool for Genome
 Assemblies)</strong><a class="anchor" aria-label="anchor" href="#quast-quality-assessment-tool-for-genome-assemblies"></a>
-</h3>
+</h5>
 <ul>
 <li>Provides summary statistics such as <strong>N50, L50, number of
 contigs, GC content, genome size estimates, and
@@ -917,10 +980,10 @@ strategies.<br>
 <li>Example QUAST command and output interpretation.</li>
 </ul>
 </div>
-<div class="section level3">
-<h3 id="additional-considerations-for-evaluation">
+<div class="section level5">
+<h5 id="additional-considerations-for-evaluation">
 <strong>3. Additional Considerations for Evaluation</strong><a class="anchor" aria-label="anchor" href="#additional-considerations-for-evaluation"></a>
-</h3>
+</h5>
 <ul>
 <li>
 <strong>K-mer-based methods (e.g., Merqury)</strong> for
@@ -932,10 +995,11 @@ when no reference genome is available).<br>
 structural correctness.</li>
 </ul>
 </div>
-<div class="section level3">
-<h3 id="bionano-and-hi-c-reads-in-genome-assembly">
+</div>
+<div class="section level4">
+<h4 id="bionano-and-hi-c-reads-in-genome-assembly">
 <strong>Bionano and Hi-C Reads in Genome Assembly</strong><a class="anchor" aria-label="anchor" href="#bionano-and-hi-c-reads-in-genome-assembly"></a>
-</h3>
+</h4>
 <p><strong>Bionano Optical Genome Mapping (OGM)</strong> provides
 ultra-long, label-based maps of DNA molecules, helping to scaffold
 contigs, detect misassemblies, and resolve large structural variations.
@@ -955,9 +1019,23 @@ assemblies</strong>.</p>
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
 <ul>
-<li>point 1</li>
-<li>point 2</li>
-<li>point 3</li>
+<li>
+<strong>Genome assembly</strong> reconstructs complete genome
+sequences from fragmented DNA reads.</li>
+<li>
+<strong>De novo</strong> assembly builds genomes without a
+reference, while <strong>reference-guided</strong> assembly uses
+existing genomes.</li>
+<li>
+<strong>Sequencing technologies</strong> like Illumina, PacBio HiFi,
+and Oxford Nanopore offer different read lengths and error rates.</li>
+<li>
+<strong>Challenges</strong> include repetitive elements,
+heterozygosity, and error correction.</li>
+<li>
+<strong>Tools</strong> many programs are available for data QC,
+assembly, post-processing, and evaluation - choice depends on data type
+and research goals.</li>
 </ul>
 </div>
 </div>
@@ -966,6 +1044,7 @@ assemblies</strong>.</p>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
+</div>
 </div></section><section id="aio-data-quality-control"><p>Content from <a href="data-quality-control.html">Data Quality Control</a></p>
 <hr>
 <p>Last updated on 2025-02-14 |
@@ -1289,7 +1368,7 @@ Create a slurm script to run NanoPlot on the HiFi reads.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>The stdout from the NanoPlot run will look like this:</p>
 <pre><code>2025-02-13 12:13:19,155 NanoPlot 1.44.1 started with arguments Namespace(threads=16, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_output', no_static=False, prefix='col_0_pacbio', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['9994.q20.CCS.fastq.gz'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_output/col_0_pacbio')
@@ -1387,7 +1466,7 @@ Create a slurm script to run NanoPlot on the basecalled ONT reads.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
   <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
 <p>The stdout from the NanoPlot run will look like this:</p>
 <pre><code>2025-02-13 12:15:51,066 NanoPlot 1.44.1 started with arguments Namespace(threads=8, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_output', no_static=False, prefix='col_0_ont', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['basecalled_2025-02-12.fastq'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_output/col_0_ont')
@@ -1636,7 +1715,7 @@ frequency distribution plots.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>A: High error rates in ONT reads can lead to k-mer counting errors,
 causing the analysis to fail. K-mer analyses reads rely on accuracy to
@@ -2148,7 +2227,7 @@ see how it affects the assembly quality.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-1" class="tab-pane show active" aria-labelledby="nav-tab-1-1" role="tabpanel">
+<div id="nav-tabpanel-1-1" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-1">
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2166,7 +2245,7 @@ see how it affects the assembly quality.</p>
 <span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>  9994.q20.CCS-filtered.fastq</span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-1-2" class="tab-pane" aria-labelledby="nav-tab-1-2" role="tabpanel">
+<div id="nav-tabpanel-1-2" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-2">
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2184,7 +2263,7 @@ see how it affects the assembly quality.</p>
 <span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>  9994.q20.CCS-filtered.fastq</span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-1-3" class="tab-pane" aria-labelledby="nav-tab-1-3" role="tabpanel">
+<div id="nav-tabpanel-1-3" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-3">
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2202,7 +2281,7 @@ see how it affects the assembly quality.</p>
 <span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>  9994.q20.CCS-filtered.fastq</span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-1-4" class="tab-pane" aria-labelledby="nav-tab-1-4" role="tabpanel">
+<div id="nav-tabpanel-1-4" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-4">
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>

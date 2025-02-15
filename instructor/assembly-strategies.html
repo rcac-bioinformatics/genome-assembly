@@ -355,7 +355,13 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>to do</li>
+<ul><li>What factors influence the choice of genome assembly strategy?</li>
+<li>How do different assembly methods compare in terms of read length,
+accuracy, and computational requirements?</li>
+<li>What are the key steps in evaluating genome assemblies using BUSCO
+and QUAST?</li>
+<li>How do Bionano OGM and Hi-C sequencing improve genome continuity and
+organization?</li>
 </ul></div>
 </div>
 </div>
@@ -363,7 +369,13 @@
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>to do</li>
+<ul><li>Understand factors influencing the choice of genome assembly
+strategy.</li>
+<li>Compare different assembly methods based on read length, accuracy,
+and computational requirements.</li>
+<li>Learn how to evaluate genome assemblies using BUSCO and QUAST.</li>
+<li>Explore the role of Bionano OGM and Hi-C sequencing in improving
+genome continuity.</li>
 </ul></div>
 </div>
 </div>
@@ -412,9 +424,8 @@ detection, gene annotation, or chromosome-level assemblies influence the
 choice of assembler and the need for scaffolding methods like Hi-C or
 Bionano OGM.</li>
 </ul></div>
-</div>
-<div class="section level3">
-<h3 id="comparative-assembly-strategies">Comparative Assembly Strategies<a class="anchor" aria-label="anchor" href="#comparative-assembly-strategies"></a></h3>
+<div class="section level4">
+<h4 id="comparative-assembly-strategies">Comparative Assembly Strategies<a class="anchor" aria-label="anchor" href="#comparative-assembly-strategies"></a></h4>
 <table class="table"><colgroup><col width="25%"><col width="21%"><col width="24%"><col width="28%"></colgroup><thead><tr class="header"><th>Factor</th>
 <th>PacBio HiFi</th>
 <th>ONT</th>
@@ -475,7 +486,8 @@ Bionano OGM.</li>
 <td>Reference-quality genome assembly, annotation</td>
 <td>Structural variation analysis, de novo assembly</td>
 <td>Genome correction, variant calling, scaffolding</td>
-</tr></tbody></table><div class="section level4">
+</tr></tbody></table></div>
+<div class="section level4">
 <h4 id="contig-vs--scaffold-vs--chromosome-level-assembly"><strong>Contig vs. Scaffold vs. Chromosome-Level
 Assembly</strong><a class="anchor" aria-label="anchor" href="#contig-vs--scaffold-vs--chromosome-level-assembly"></a></h4>
 <p>Genome assemblies progress through different levels of completeness
@@ -503,17 +515,57 @@ additional scaffolding methods beyond de novo assembly.</p>
 Flye for ONT assemblies, and Flye in hybrid mode for ONT + Illumina
 assemblies, followed by quality assessment using BUSCO and QUAST to
 evaluate completeness and accuracy.</p>
+<div class="section level5">
+<h5 id="pacbio-hifi-assembly-with-hifiasm">PacBio HiFi Assembly with HiFiasm<a class="anchor" aria-label="anchor" href="#pacbio-hifi-assembly-with-hifiasm"></a></h5>
+<ul><li>
+<strong>PacBio HiFi reads</strong>: Highly accurate long reads with
+low error rates, suitable for de novo assembly without polishing.</li>
+<li>
+<strong>HiFiasm</strong>: A specialized assembler for HiFi data,
+leveraging read accuracy and length to resolve complex regions and
+produce high-quality contigs.</li>
+<li>
+<strong>Workflow</strong>: Run HiFiasm with HiFi reads, adjust
+parameters based on genome size and complexity, and evaluate the
+assembly using Compleasm and QUAST.</li>
+</ul><figure><img src="https://github.com/user-attachments/assets/652b2211-f5d1-4264-8b82-cd0925f62408" alt="PacBio Assembly" class="figure mx-auto d-block"><div class="figcaption">PacBio Assembly</div>
+</figure></div>
+<div class="section level5">
+<h5 id="ont-assembly-with-flye">ONT Assembly with Flye<a class="anchor" aria-label="anchor" href="#ont-assembly-with-flye"></a></h5>
+<ul><li>
+<strong>ONT reads</strong>: Ultra-long reads with higher error
+rates, requiring additional error correction and polishing steps.</li>
+<li>
+<strong>Flye</strong>: A de novo assembler optimized for long reads,
+capable of resolving complex repeats and generating high-quality
+assemblies.</li>
+<li>
+<strong>Workflow</strong>: Run Flye with ONT reads, adjust
+parameters based on genome size and complexity, and polish the assembly
+using Medaka for basecalling and consensus polishing.</li>
+</ul><figure><img src="https://github.com/user-attachments/assets/3dc7bbcc-a875-4d75-8bb7-2b56d82bf5ff" alt="ONT assembly" class="figure mx-auto d-block"><div class="figcaption">ONT assembly</div>
+</figure></div>
+<div class="section level5">
+<h5 id="hybrid-ont-pacbio-assembly-with-flye">Hybrid (ONT + PacBio) Assembly with Flye<a class="anchor" aria-label="anchor" href="#hybrid-ont-pacbio-assembly-with-flye"></a></h5>
+<ul><li>
+<strong>Hybrid assembly</strong>: Combines the strengths of both
+technologies for improved accuracy and contiguity.</li>
+<li>
+<strong>Workflow</strong>: Run Flye with both ONT and PacBio reads,
+adjust parameters for hybrid mode, and polish the assembly using ONT or
+PacBio reads for error correction and consensus polishing.</li>
+</ul><figure><img src="https://github.com/user-attachments/assets/f7fae4ec-0a07-4835-8836-20acc99aadb1" alt="Hybrid assembly" class="figure mx-auto d-block"><div class="figcaption">Hybrid assembly</div>
+</figure></div>
 </div>
-</div>
-<div class="section level3">
-<h3 id="assembly-evaluation">Assembly Evaluation<a class="anchor" aria-label="anchor" href="#assembly-evaluation"></a></h3>
+<div class="section level4">
+<h4 id="assembly-evaluation">Assembly Evaluation<a class="anchor" aria-label="anchor" href="#assembly-evaluation"></a></h4>
 <ul><li>Why assessing genome assembly quality is crucial before downstream
 analyses.<br></li>
 <li>Metrics to determine assembly completeness, accuracy, and
 contiguity.</li>
-</ul><div class="section level4">
-<h4 id="busco-benchmarking-universal-single-copy-orthologs"><strong>1. BUSCO (Benchmarking Universal Single-Copy
-Orthologs)</strong><a class="anchor" aria-label="anchor" href="#busco-benchmarking-universal-single-copy-orthologs"></a></h4>
+</ul><div class="section level5">
+<h5 id="busco-benchmarking-universal-single-copy-orthologs"><strong>1. BUSCO (Benchmarking Universal Single-Copy
+Orthologs)</strong><a class="anchor" aria-label="anchor" href="#busco-benchmarking-universal-single-copy-orthologs"></a></h5>
 <ul><li>Evaluates genome completeness using a conserved set of single-copy
 orthologs.<br></li>
 <li>Reports four categories:
@@ -530,10 +582,9 @@ assembly gaps.<br></li>
 <li>How to interpret BUSCO scores for genome assemblies.<br></li>
 <li>Example BUSCO command and output format.</li>
 </ul></div>
-</div>
-<div class="section level3">
-<h3 id="quast-quality-assessment-tool-for-genome-assemblies"><strong>2. QUAST (Quality Assessment Tool for Genome
-Assemblies)</strong><a class="anchor" aria-label="anchor" href="#quast-quality-assessment-tool-for-genome-assemblies"></a></h3>
+<div class="section level5">
+<h5 id="quast-quality-assessment-tool-for-genome-assemblies"><strong>2. QUAST (Quality Assessment Tool for Genome
+Assemblies)</strong><a class="anchor" aria-label="anchor" href="#quast-quality-assessment-tool-for-genome-assemblies"></a></h5>
 <ul><li>Provides summary statistics such as <strong>N50, L50, number of
 contigs, GC content, genome size estimates, and
 misassemblies</strong>.<br></li>
@@ -541,8 +592,8 @@ misassemblies</strong>.<br></li>
 strategies.<br></li>
 <li>Example QUAST command and output interpretation.</li>
 </ul></div>
-<div class="section level3">
-<h3 id="additional-considerations-for-evaluation"><strong>3. Additional Considerations for Evaluation</strong><a class="anchor" aria-label="anchor" href="#additional-considerations-for-evaluation"></a></h3>
+<div class="section level5">
+<h5 id="additional-considerations-for-evaluation"><strong>3. Additional Considerations for Evaluation</strong><a class="anchor" aria-label="anchor" href="#additional-considerations-for-evaluation"></a></h5>
 <ul><li>
 <strong>K-mer-based methods (e.g., Merqury)</strong> for
 <strong>comparing assemblies to raw reads</strong> (especially useful
@@ -551,8 +602,9 @@ when no reference genome is available).<br></li>
 <strong>Dot plots and synteny analysis</strong> to visualize
 structural correctness.</li>
 </ul></div>
-<div class="section level3">
-<h3 id="bionano-and-hi-c-reads-in-genome-assembly"><strong>Bionano and Hi-C Reads in Genome Assembly</strong><a class="anchor" aria-label="anchor" href="#bionano-and-hi-c-reads-in-genome-assembly"></a></h3>
+</div>
+<div class="section level4">
+<h4 id="bionano-and-hi-c-reads-in-genome-assembly"><strong>Bionano and Hi-C Reads in Genome Assembly</strong><a class="anchor" aria-label="anchor" href="#bionano-and-hi-c-reads-in-genome-assembly"></a></h4>
 <p><strong>Bionano Optical Genome Mapping (OGM)</strong> provides
 ultra-long, label-based maps of DNA molecules, helping to scaffold
 contigs, detect misassemblies, and resolve large structural variations.
@@ -571,9 +623,23 @@ assemblies</strong>.</p>
 <div class="callout-inner">
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
-<ul><li>point 1</li>
-<li>point 2</li>
-<li>point 3</li>
+<ul><li>
+<strong>Genome assembly</strong> reconstructs complete genome
+sequences from fragmented DNA reads.</li>
+<li>
+<strong>De novo</strong> assembly builds genomes without a
+reference, while <strong>reference-guided</strong> assembly uses
+existing genomes.</li>
+<li>
+<strong>Sequencing technologies</strong> like Illumina, PacBio HiFi,
+and Oxford Nanopore offer different read lengths and error rates.</li>
+<li>
+<strong>Challenges</strong> include repetitive elements,
+heterozygosity, and error correction.</li>
+<li>
+<strong>Tools</strong> many programs are available for data QC,
+assembly, post-processing, and evaluation - choice depends on data type
+and research goals.</li>
 </ul></div>
 </div>
 </div>
@@ -581,6 +647,7 @@ assemblies</strong>.</p>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
+</div>
 </div>
 
 

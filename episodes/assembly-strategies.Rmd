@@ -6,14 +6,20 @@ exercises: 2
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- to do
+- What factors influence the choice of genome assembly strategy?
+- How do different assembly methods compare in terms of read length, accuracy, and computational requirements?
+- What are the key steps in evaluating genome assemblies using BUSCO and QUAST?
+- How do Bionano OGM and Hi-C sequencing improve genome continuity and organization?
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- to do
+- Understand factors influencing the choice of genome assembly strategy.
+- Compare different assembly methods based on read length, accuracy, and computational requirements.
+- Learn how to evaluate genome assemblies using BUSCO and QUAST.
+- Explore the role of Bionano OGM and Hi-C sequencing in improving genome continuity.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -31,7 +37,7 @@ Genome assembly involves choosing the right approach based on sequencing technol
 - **Sequencing budget**: Plays a role, as HiFi sequencing is costlier but highly accurate, ONT is cheaper but requires more data for error correction, and hybrid approaches balance cost and quality.  
 - **Downstream analyses**: Structural variation detection, gene annotation, or chromosome-level assemblies influence the choice of assembler and the need for scaffolding methods like Hi-C or Bionano OGM.
 
-### Comparative Assembly Strategies
+#### Comparative Assembly Strategies
 
 | Factor                      | PacBio HiFi             | ONT                        | Hybrid (ONT + Illumina)         |
 |-----------------------------|-------------------------|----------------------------|---------------------------------|
@@ -64,12 +70,41 @@ Higher levels of assembly provide better genome context, but require additional 
 
 In this workshop, we will use HiFiasm for PacBio HiFi assemblies, Flye for ONT assemblies, and Flye in hybrid mode for ONT + Illumina assemblies, followed by quality assessment using BUSCO and QUAST to evaluate completeness and accuracy.
 
-### Assembly Evaluation 
+
+##### PacBio HiFi Assembly with HiFiasm
+
+
+- **PacBio HiFi reads**: Highly accurate long reads with low error rates, suitable for de novo assembly without polishing.
+- **HiFiasm**: A specialized assembler for HiFi data, leveraging read accuracy and length to resolve complex regions and produce high-quality contigs.
+- **Workflow**: Run HiFiasm with HiFi reads, adjust parameters based on genome size and complexity, and evaluate the assembly using Compleasm and QUAST.
+
+
+![PacBio Assembly](https://github.com/user-attachments/assets/652b2211-f5d1-4264-8b82-cd0925f62408)
+
+
+##### ONT Assembly with Flye
+
+- **ONT reads**: Ultra-long reads with higher error rates, requiring additional error correction and polishing steps.
+- **Flye**: A de novo assembler optimized for long reads, capable of resolving complex repeats and generating high-quality assemblies.
+- **Workflow**: Run Flye with ONT reads, adjust parameters based on genome size and complexity, and polish the assembly using Medaka for basecalling and consensus polishing.
+
+![ONT assembly](https://github.com/user-attachments/assets/3dc7bbcc-a875-4d75-8bb7-2b56d82bf5ff)
+
+
+##### Hybrid (ONT + PacBio) Assembly with Flye
+
+- **Hybrid assembly**: Combines the strengths of both technologies for improved accuracy and contiguity.
+- **Workflow**: Run Flye with both ONT and PacBio reads, adjust parameters for hybrid mode, and polish the assembly using ONT or PacBio reads for error correction and consensus polishing.
+
+![Hybrid assembly](https://github.com/user-attachments/assets/f7fae4ec-0a07-4835-8836-20acc99aadb1)
+
+
+#### Assembly Evaluation 
 
 - Why assessing genome assembly quality is crucial before downstream analyses.  
 - Metrics to determine assembly completeness, accuracy, and contiguity.  
 
-#### **1. BUSCO (Benchmarking Universal Single-Copy Orthologs)**  
+##### **1. BUSCO (Benchmarking Universal Single-Copy Orthologs)**  
 
 - Evaluates genome completeness using a conserved set of single-copy orthologs.  
 - Reports four categories:
@@ -79,18 +114,18 @@ In this workshop, we will use HiFiasm for PacBio HiFi assemblies, Flye for ONT a
 - How to interpret BUSCO scores for genome assemblies.  
 - Example BUSCO command and output format.  
 
-### **2. QUAST (Quality Assessment Tool for Genome Assemblies)**  
+##### **2. QUAST (Quality Assessment Tool for Genome Assemblies)**  
 
 - Provides summary statistics such as **N50, L50, number of contigs, GC content, genome size estimates, and misassemblies**.  
 - Can compare multiple assemblies to assess improvement with different strategies.  
 - Example QUAST command and output interpretation.  
 
-### **3. Additional Considerations for Evaluation**  
+##### **3. Additional Considerations for Evaluation**  
 
 - **K-mer-based methods (e.g., Merqury)** for **comparing assemblies to raw reads** (especially useful when no reference genome is available).  
 - **Dot plots and synteny analysis** to visualize structural correctness.  
 
-### **Bionano and Hi-C Reads in Genome Assembly**  
+#### **Bionano and Hi-C Reads in Genome Assembly**  
 
 **Bionano Optical Genome Mapping (OGM)** provides ultra-long, label-based maps of DNA molecules, helping to scaffold contigs, detect misassemblies, and resolve large structural variations. It improves genome continuity by linking fragmented sequences, especially in repeat-rich or complex genomes.  
 
@@ -99,10 +134,12 @@ In this workshop, we will use HiFiasm for PacBio HiFi assemblies, Flye for ONT a
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
+- **Genome assembly** reconstructs complete genome sequences from fragmented DNA reads.
+- **De novo** assembly builds genomes without a reference, while **reference-guided** assembly uses existing genomes.
+- **Sequencing technologies** like Illumina, PacBio HiFi, and Oxford Nanopore offer different read lengths and error rates.
+- **Challenges** include repetitive elements, heterozygosity, and error correction.
+- **Tools** many programs are available for data QC, assembly, post-processing, and evaluation - choice depends on data type and research goals.
 
-- point 1
-- point 2
-- point 3
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 

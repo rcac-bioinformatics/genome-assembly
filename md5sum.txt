@@ -14,6 +14,6 @@
 "episodes/assembly-evaluation.Rmd" "e850db07b4a463d573bb5c5079988cdb" "site/built/assembly-evaluation.md" "2025-02-16"
 "instructors/instructor-notes.md" "b863967929dd19d84709da75b237494a" "site/built/instructor-notes.md" "2025-02-14"
 "learners/reference.md" "946d57ce700fe56a4b78d666ba7d2c82" "site/built/reference.md" "2025-02-16"
-"learners/setup.md" "41d2381b74cba45f50f2fd5a7c200b6e" "site/built/setup.md" "2025-02-16"
+"learners/setup.md" "6ecd75750f527a2e55446b7b447306a6" "site/built/setup.md" "2025-02-16"
 "profiles/learner-profiles.md" "df52eaa1e675a85a368677f306f4221b" "site/built/learner-profiles.md" "2025-02-14"
 "renv/profiles/lesson-requirements/renv.lock" "3525f7b939ecb45daa633c375d75d54b" "site/built/renv.lock" "2025-02-14"

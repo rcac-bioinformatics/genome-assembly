@@ -113,18 +113,25 @@ In this workshop, we will use HiFiasm for PacBio HiFi assemblies, Flye for ONT a
 
 - The BUSCO reports provide detailed statistics on the number of complete, fragmented, and missing BUSCO genes, as well as the percentage of genome completeness. The output helps identify areas for improvement and guide further optimization steps in the assembly process.
 
-![BUSCO genes](https://github.com/user-attachments/assets/d6cecf91-96a1-49a4-a91b-1f54c8a13013)
+<img width="1030" alt="BUSCO genes" src="https://github.com/user-attachments/assets/e4c7951f-f4f1-4395-974c-abd6716d8cd1" />
 
 **2. QUAST (Quality Assessment Tool for Genome Assemblies)**  
 
-- Provides summary statistics such as **N50, L50, number of contigs, GC content, genome size estimates, and misassemblies**.  
-- Can compare multiple assemblies to assess improvement with different strategies.  
-- Example QUAST command and output interpretation.  
 
-**3. Additional Considerations for Evaluation**  
+- **Comprehensive Assembly Statistics**: QUAST provides detailed metrics beyond N50 and L50, including **total number of contigs, GC content, genome size estimation, and misassembly rates**, allowing in-depth evaluation of genome continuity and structure.  
 
-- **K-mer-based methods (e.g., Merqury)** for **comparing assemblies to raw reads** (especially useful when no reference genome is available).  
-- **Dot plots and synteny analysis** to visualize structural correctness.  
+- **Reference-Based and Reference-Free Evaluation**: It can assess assemblies against a reference genome (identifying misassemblies, inversions, and duplications) or work in **reference-free mode**, making it useful for de novo assemblies without a known genome sequence.  
+
+- **Structural Error Detection and Gene Feature Analysis**: QUAST integrates gene annotation tools like **BUSCO and GeneMark**, highlights misassemblies based on alignment breaks, and detects **gaps, relocations, and translocations**, making it particularly useful for validating scaffolding approaches and hybrid assemblies.
+
+
+**3. Merqury: K-mer based assembly evaluation**  
+
+- **Assembly Accuracy Check**: Merqury compares k-mers from sequencing reads to the assembled genome, identifying mismatches, missing k-mers, and sequencing errors without requiring a reference genome.  
+- **Haplotype Purity and Phasing**: It calculates **QV (quality value)** scores and provides **completeness metrics for haplotypes**, helping assess whether an assembly accurately represents both parental haplotypes or contains chimeric sequences.  
+- **Consensus and Read Support Validation**: By analyzing k-mer spectra, Merqury detects **underrepresented or overrepresented regions**, highlighting assembly errors, collapsed repeats, or sequencing biases that may impact downstream analyses.
+
+![kmer spectra](https://github.com/user-attachments/assets/5f6d4756-c5c8-4e5d-a6a0-35d409a0fa16)
 
 
 ## **Bionano and Hi-C Reads in Genome Assembly**  
@@ -132,6 +139,10 @@ In this workshop, we will use HiFiasm for PacBio HiFi assemblies, Flye for ONT a
 **Bionano Optical Genome Mapping (OGM)** provides ultra-long, label-based maps of DNA molecules, helping to scaffold contigs, detect misassemblies, and resolve large structural variations. It improves genome continuity by linking fragmented sequences, especially in repeat-rich or complex genomes.  
 
 **Hi-C sequencing** captures chromatin interactions, allowing scaffolding of contigs into chromosome-scale assemblies based on physical proximity in the nucleus. It helps in ordering and orienting scaffolds, identifying misassemblies, and resolving haplotypes, making it essential for generating **chromosome-level genome assemblies**.
+
+![Bionano and HiC for assembly improvement](https://github.com/user-attachments/assets/7f983713-7ea7-4522-8540-349955a9f12e)
+
+[ref](https://doi.org/10.1038/ng.3802)
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 

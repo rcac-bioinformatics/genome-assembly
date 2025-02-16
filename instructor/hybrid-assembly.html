@@ -241,12 +241,22 @@
 <div class="accordion accordion-flush" id="accordionFlushcurrent">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-headingcurrent">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
         Hybrid Long Read Assembly (optional)
         </span>
-      
+      </button>
     </div><!--/div.accordion-header-->
+
+    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
+      <div class="accordion-body">
+        <ul><li><a href="#flye-for-hybrid-assembly">Flye for Hybrid Assembly</a></li>
+<li><a href="#evaluating-assembly-quality">Evaluating Assembly Quality</a></li>
+<li><a href="#scaffolding-with-bionano">Scaffolding with Bionano</a></li>
+<li><a href="#hybrid-assembly-summary">Hybrid Assembly Summary</a></li>
+        </ul></div><!--/div.accordion-body-->
+    </div><!--/div.accordion-collapse-->
 
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
@@ -327,7 +337,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Hybrid Long Read Assembly (optional)</h1>
-        <p>Last updated on 2025-02-15 |
+        <p>Last updated on 2025-02-16 |
 
         <a href="https://example.com/FIXME-template-source/edit/main/episodes/hybrid-assembly.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -348,7 +358,14 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>to do</li>
+<ul><li>What is hybrid assembly, and how does it combine different
+sequencing technologies?</li>
+<li>How can you perform hybrid assembly using both types of long-read
+data?</li>
+<li>What are the key steps in hybrid assembly, including polishing and
+scaffolding?</li>
+<li>How do you evaluate the quality of a hybrid assembly using
+bioinformatics tools?</li>
 </ul></div>
 </div>
 </div>
@@ -356,15 +373,21 @@
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>to do</li>
+<ul><li>Understand the concept of hybrid assembly and its advantages in
+genome sequencing.</li>
+<li>Learn how to perform hybrid assembly using long-read sequencing data
+from PacBio and ONT platforms.</li>
+<li>Explore the key steps involved in hybrid assembly, including
+polishing and scaffolding.</li>
+<li>Evaluate the quality of a hybrid assembly using bioinformatics tools
+such as QUAST and Compleasm.</li>
 </ul></div>
 </div>
 </div>
 </div>
 </div>
-<div class="section level3">
-<h3 id="flye-for-hybrid-assembly">Flye for Hybrid Assembly<a class="anchor" aria-label="anchor" href="#flye-for-hybrid-assembly"></a></h3>
-<p>For hybrid assembly using <code>flye</code>, first, run the pipeline
+<section><h2 class="section-heading" id="flye-for-hybrid-assembly">Flye for Hybrid Assembly<a class="anchor" aria-label="anchor" href="#flye-for-hybrid-assembly"></a></h2>
+<hr class="half-width"><p>For hybrid assembly using <code>flye</code>, first, run the pipeline
 with all your reads in the –pacbio-raw mode (you can specify multiple
 files, no need to merge all you reads into one). Also add –iterations 0
 to stop the pipeline before polishing. Once the assembly finishes, run
@@ -393,25 +416,144 @@ that should do the job:</p>
 <span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>   <span class="at">--genome-size</span> 135m <span class="dt">\</span></span>
 <span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span></code></pre>
 </div>
+</section><section><h2 class="section-heading" id="evaluating-assembly-quality">Evaluating Assembly Quality<a class="anchor" aria-label="anchor" href="#evaluating-assembly-quality"></a></h2>
+<hr class="half-width"><p>For quick evaluation, we will run <code>quast</code> and
+<code>compleasm</code> on the hybrid assembly output.</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="ex">ml</span> quast</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="ex">ml</span> compleasm</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="va">fasta</span><span class="op">=</span><span class="st">"hybrid_flye_out/assembly.fasta"</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="ex">quast.py</span> <span class="dt">\</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>  <span class="at">--fast</span> <span class="dt">\</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>  <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>  <span class="at">-o</span> quast_basic <span class="dt">\</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>    <span class="va">${fasta}</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="ex">compleasm</span> <span class="dt">\</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>compleasm run <span class="dt">\</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>   <span class="at">-a</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>   <span class="at">-o</span> compleasm_out <span class="dt">\</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>   <span class="at">-l</span> brassicales_odb10  <span class="dt">\</span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>   <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span></code></pre>
 </div>
-<div class="section level3">
-<h3 id="evaluating-assembly-quality">Evaluating Assembly Quality<a class="anchor" aria-label="anchor" href="#evaluating-assembly-quality"></a></h3>
+</section><section><h2 class="section-heading" id="scaffolding-with-bionano">Scaffolding with Bionano<a class="anchor" aria-label="anchor" href="#scaffolding-with-bionano"></a></h2>
+<hr class="half-width"><p>To scaffold the assembly using Bionano data, we will use the
+<code>bionano solve</code>. We can run the following script to scaffold
+the assembly:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">$PATH</span>:/apps/biocontainers/exported-wrappers/bionano/3.8.0</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="va">fasta</span><span class="op">=</span><span class="st">"hybrid_flye_out/assembly.fasta"</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="ex">run_hybridscaffold.sh</span> <span class="dt">\</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  <span class="at">-c</span> /opt/Solve3.7_10192021_74_1/HybridScaffold/1.0/hybridScaffold_DLE1_config.xml<span class="dt">\</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  <span class="at">-b</span> workshop_assembly/col-0_bionano/Evry.OpticalMap.Col-0.cmap <span class="dt">\</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>  <span class="at">-n</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>  <span class="at">-u</span> CTTAAG <span class="dt">\</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>  <span class="at">-z</span> results_bionano_hybrid_scaffolding.zip <span class="dt">\</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>  <span class="at">-w</span> log.txt <span class="dt">\</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>  <span class="at">-B</span> 2 <span class="dt">\</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>  <span class="at">-N</span> 2 <span class="dt">\</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>  <span class="at">-g</span> <span class="dt">\</span></span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>  <span class="at">-f</span> <span class="dt">\</span></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>  <span class="at">-r</span> /opt/Solve3.7_10192021_74_1/RefAligner/1.0/sse/RefAligner <span class="dt">\</span></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>  <span class="at">-p</span> /opt/Solve3.7_10192021_74_1/Pipeline/1.0 <span class="dt">\</span></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>  <span class="at">-o</span> bionano_hybrid_scaffolding</span></code></pre>
 </div>
-<div class="section level3">
-<h3 id="common-issues-and-troubleshooting">Common Issues and Troubleshooting<a class="anchor" aria-label="anchor" href="#common-issues-and-troubleshooting"></a></h3>
+<p>Once this completes, you can generate the final scaffold-level
+assembly by merging placed and unplaced contigs in the
+<code>bionano_hybrid_scaffolding/hybrid_scaffolds</code> directory.</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="bu">cd</span> bionano_hybrid_scaffolding/hybrid_scaffolds</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">cat</span> <span class="pp">*</span>HYBRID_SCAFFOLD.fasta <span class="pp">*</span>_HYBRID_SCAFFOLD_NOT_SCAFFOLDED.fasta <span class="dt">\</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>   <span class="op">&gt;</span> ../../assembly_scaffolds.fasta</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="bu">cd</span> ../..</span></code></pre>
 </div>
-<div class="section level3">
-<h3 id="further-reading-and-additional-resources">Further Reading and Additional Resources<a class="anchor" aria-label="anchor" href="#further-reading-and-additional-resources"></a></h3>
-<div id="keypoints1" class="callout keypoints">
+<p>You can evaluate the final assembly using <code>quast</code> and
+<code>compleasm</code> as before.</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="va">fasta</span><span class="op">=</span><span class="st">"assembly_scaffolds.fasta"</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">quast.py</span> <span class="dt">\</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="at">--fast</span> <span class="dt">\</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="at">-o</span> quast_scaffolds <span class="dt">\</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>    <span class="va">${fasta}</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="ex">compleasm</span> run <span class="dt">\</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>   <span class="at">-a</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>   <span class="at">-o</span> compleasm_scaffolds_out <span class="dt">\</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>   <span class="at">-l</span> brassicales_odb10  <span class="dt">\</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>   <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span></code></pre>
+</div>
+</section><section><h2 class="section-heading" id="hybrid-assembly-summary">Hybrid Assembly Summary<a class="anchor" aria-label="anchor" href="#hybrid-assembly-summary"></a></h2>
+<hr class="half-width"><p>In this section you have learned how to perform a hybrid assembly
+using Flye, polish the assembly, scaffold it using Bionano, and evaluate
+the final assembly quality. This workflow combines the advantages of ONT
+and PacBio sequencing, improves structural accuracy with Bionano
+scaffolding, and ensures a high-quality genome assembly. The steps
+involved are:</p>
+<ol style="list-style-type: decimal"><li>
+<strong>Run Hybrid Assembly with Flye</strong>
+<ul><li>Use <strong>Flye</strong> in <code>--pacbio-raw</code> mode to
+assemble both PacBio and ONT reads.<br></li>
+<li>Set <code>--iterations 0</code> to stop before polishing.</li>
+</ul></li>
+<li>
+<strong>Polishing the Assembly</strong>
+<ul><li>Polish the assembly using <strong>either PacBio or ONT
+reads</strong> by resuming Flye with
+<code>--resume-from polishing</code>.</li>
+</ul></li>
+<li>
+<strong>Evaluate Assembly Quality</strong>
+<ul><li>Run <strong>QUAST</strong> for basic assembly metrics (contig count,
+N50, genome size, misassemblies).<br></li>
+<li>Use <strong>Compleasm</strong> to assess genome completeness based
+on conserved single-copy genes.</li>
+</ul></li>
+<li>
+<strong>Scaffold Assembly with Bionano Optical Mapping</strong>
+<ul><li>Use <strong>Bionano Solve</strong> to integrate optical maps and
+scaffold the assembly.<br></li>
+<li>Run <code>run_hybridscaffold.sh</code> with the reference
+<code>.cmap</code> optical map file.</li>
+</ul></li>
+<li>
+<strong>Generate Final Scaffold-Level Assembly</strong>
+<ul><li>Merge placed and unplaced contigs from the Bionano scaffolding
+output to create the final genome assembly.</li>
+</ul></li>
+<li>
+<strong>Final Evaluation of Scaffolds</strong>
+<ul><li>Re-run <strong>QUAST and Compleasm</strong> to validate improvements
+and ensure genome completeness after scaffolding.</li>
+</ul></li>
+</ol><div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
 <div class="callout-inner">
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
-<ul><li>point 1</li>
-<li>point 2</li>
-<li>point 3</li>
+<ul><li>Hybrid assembly with Flye combines ONT and PacBio reads to leverage
+long-read continuity and high-accuracy sequencing, with separate
+polishing steps to refine base-level errors.<br></li>
+<li>Assembly quality assessment using QUAST and Compleasm provides
+critical insights into contiguity, completeness, and potential
+misassemblies, ensuring reliability before scaffolding.<br></li>
+<li>Bionano Optical Genome Mapping (OGM) improves hybrid assemblies by
+scaffolding contigs, resolving misassemblies, and enhancing genome
+continuity, leading to chromosome-scale assemblies.</li>
+<li>Final scaffolding validation and quality assessment ensure the
+integrity of the genome assembly, with QUAST and Compleasm used to
+confirm improvements after Bionano integration.</li>
 </ul></div>
 </div>
 </div>
@@ -419,11 +561,7 @@ that should do the job:</p>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</div>
-
-
-
-      </div> <!-- / div.lesson-content -->
+</section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="../instructor/oxford-nanopore-assembly.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
         <a class="chapter-link float-end" href="../instructor/scaffolding-using-ogm.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
@@ -481,7 +619,7 @@ any links that you are not going to use.
   "url": "https://FIXME-template-source.github.io/NA/instructor/hybrid-assembly.html",
   "identifier": "https://FIXME-template-source.github.io/NA/instructor/hybrid-assembly.html",
   "dateCreated": "2025-02-05",
-  "dateModified": "2025-02-15",
+  "dateModified": "2025-02-16",
   "datePublished": "2025-02-16"
 }
 

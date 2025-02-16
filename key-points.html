@@ -403,31 +403,25 @@ assembly, post-processing, and evaluation - choice depends on data type
 and research goals.</li>
 </ul></section><section id="assembly-strategies"><h2 class="section-heading"><a href="assembly-strategies.html">Assembly Strategies</a></h2>
 <hr class="half-width">
-<p>Here are four <strong>key take-home messages</strong> for this
-section:</p>
 <ul>
-<li>
-<strong>Genome assembly strategy depends on read type, genome
-complexity, and computational resources</strong>, with PacBio HiFi, ONT,
-and hybrid approaches offering different advantages in accuracy, cost,
-and contiguity.<br>
+<li>Genome assembly strategy depends on read type, genome complexity,
+and computational resources, with PacBio HiFi, ONT, and hybrid
+approaches offering different advantages in accuracy, cost, and
+contiguity.<br>
 </li>
-<li>
-<strong>Assembly evaluation is critical for assessing completeness
-and accuracy</strong>, using tools like <strong>BUSCO for gene
-completeness, QUAST for structural integrity, and Merqury for
-k-mer-based validation</strong>.<br>
+<li>Assembly evaluation is critical for assessing completeness and
+accuracy, using tools like <strong>BUSCO for gene completeness, QUAST
+for structural integrity, and Merqury for k-mer-based
+validation</strong>.<br>
 </li>
-<li>
-<strong>Scaffolding methods like Bionano OGM and Hi-C improve genome
-organization</strong>, resolving large structural variations and
-ordering contigs into chromosome-level assemblies.<br>
+<li>Scaffolding methods like Bionano OGM and Hi-C improve genome
+organization, resolving large structural variations and ordering contigs
+into chromosome-level assemblies.<br>
 </li>
-<li>
-<strong>A well-assembled genome is essential for downstream
-applications such as annotation, comparative genomics, and structural
-variation analysis</strong>, with missing or misassembled regions
-potentially leading to incorrect biological conclusions.</li>
+<li>A well-assembled genome is essential for downstream applications
+such as annotation, comparative genomics, and structural variation
+analysis, with missing or misassembled regions potentially leading to
+incorrect biological conclusions.</li>
 </ul></section><section id="data-quality-control"><h2 class="section-heading"><a href="data-quality-control.html">Data Quality Control</a></h2>
 <hr class="half-width">
 <ul>
@@ -477,9 +471,20 @@ Racon, Nanopolish, and Medaka can be used for further refinement.</li>
 </ul></section><section id="hybrid-assembly"><h2 class="section-heading"><a href="hybrid-assembly.html">Hybrid Long Read Assembly (optional)</a></h2>
 <hr class="half-width">
 <ul>
-<li>point 1</li>
-<li>point 2</li>
-<li>point 3</li>
+<li>Hybrid assembly with Flye combines ONT and PacBio reads to leverage
+long-read continuity and high-accuracy sequencing, with separate
+polishing steps to refine base-level errors.<br>
+</li>
+<li>Assembly quality assessment using QUAST and Compleasm provides
+critical insights into contiguity, completeness, and potential
+misassemblies, ensuring reliability before scaffolding.<br>
+</li>
+<li>Bionano Optical Genome Mapping (OGM) improves hybrid assemblies by
+scaffolding contigs, resolving misassemblies, and enhancing genome
+continuity, leading to chromosome-scale assemblies.</li>
+<li>Final scaffolding validation and quality assessment ensure the
+integrity of the genome assembly, with QUAST and Compleasm used to
+confirm improvements after Bionano integration.</li>
 </ul></section><section id="scaffolding-using-ogm"><h2 class="section-heading"><a href="scaffolding-using-ogm.html">Scaffolding using Optical Genome Mapping</a></h2>
 <hr class="half-width">
 <ul>

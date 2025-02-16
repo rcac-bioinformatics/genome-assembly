@@ -51,11 +51,11 @@ episodes:
 
 
 #
-learners:
- - setup.md
+#learners:
+# - setup.md
 #
-instructors:
-- instructor-notes.md
+#instructors:
+#- instructor-notes.md
 #
 profiles:
 - learner-profiles.md

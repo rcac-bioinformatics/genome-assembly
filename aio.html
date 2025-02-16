@@ -634,7 +634,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-assembly-strategies"><p>Content from <a href="assembly-strategies.html">Assembly Strategies</a></p>
 <hr>
-<p>Last updated on 2025-02-15 |
+<p>Last updated on 2025-02-16 |
 
         <a href="https://example.com/FIXME-template-source/edit/main/episodes/assembly-strategies.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -948,30 +948,50 @@ complete, fragmented, and missing BUSCO genes, as well as the percentage
 of genome completeness. The output helps identify areas for improvement
 and guide further optimization steps in the assembly process.</p></li>
 </ul>
-<figure><img src="https://github.com/user-attachments/assets/d6cecf91-96a1-49a4-a91b-1f54c8a13013" alt="BUSCO genes" class="figure mx-auto d-block"><div class="figcaption">BUSCO genes</div>
-</figure><p><strong>2. QUAST (Quality Assessment Tool for Genome
+<figure><img width="1030" alt="BUSCO genes" src="https://github.com/user-attachments/assets/e4c7951f-f4f1-4395-974c-abd6716d8cd1" class="figure mx-auto d-block"></figure><p><strong>2. QUAST (Quality Assessment Tool for Genome
 Assemblies)</strong></p>
 <ul>
-<li>Provides summary statistics such as <strong>N50, L50, number of
-contigs, GC content, genome size estimates, and
-misassemblies</strong>.<br>
-</li>
-<li>Can compare multiple assemblies to assess improvement with different
-strategies.<br>
-</li>
-<li>Example QUAST command and output interpretation.</li>
+<li><p><strong>Comprehensive Assembly Statistics</strong>: QUAST
+provides detailed metrics beyond N50 and L50, including <strong>total
+number of contigs, GC content, genome size estimation, and misassembly
+rates</strong>, allowing in-depth evaluation of genome continuity and
+structure.</p></li>
+<li><p><strong>Reference-Based and Reference-Free Evaluation</strong>:
+It can assess assemblies against a reference genome (identifying
+misassemblies, inversions, and duplications) or work in
+<strong>reference-free mode</strong>, making it useful for de novo
+assemblies without a known genome sequence.</p></li>
+<li><p><strong>Structural Error Detection and Gene Feature
+Analysis</strong>: QUAST integrates gene annotation tools like
+<strong>BUSCO and GeneMark</strong>, highlights misassemblies based on
+alignment breaks, and detects <strong>gaps, relocations, and
+translocations</strong>, making it particularly useful for validating
+scaffolding approaches and hybrid assemblies.</p></li>
 </ul>
-<p><strong>3. Additional Considerations for Evaluation</strong></p>
+<p><strong>3. Merqury: K-mer based assembly evaluation</strong></p>
 <ul>
 <li>
-<strong>K-mer-based methods (e.g., Merqury)</strong> for
-<strong>comparing assemblies to raw reads</strong> (especially useful
-when no reference genome is available).<br>
+<strong>Assembly Accuracy Check</strong>: Merqury compares k-mers
+from sequencing reads to the assembled genome, identifying mismatches,
+missing k-mers, and sequencing errors without requiring a reference
+genome.<br>
 </li>
 <li>
-<strong>Dot plots and synteny analysis</strong> to visualize
-structural correctness.</li>
-</ul></section><section><h2 class="section-heading" id="bionano-and-hi-c-reads-in-genome-assembly">
+<strong>Haplotype Purity and Phasing</strong>: It calculates
+<strong>QV (quality value)</strong> scores and provides
+<strong>completeness metrics for haplotypes</strong>, helping assess
+whether an assembly accurately represents both parental haplotypes or
+contains chimeric sequences.<br>
+</li>
+<li>
+<strong>Consensus and Read Support Validation</strong>: By analyzing
+k-mer spectra, Merqury detects <strong>underrepresented or
+overrepresented regions</strong>, highlighting assembly errors,
+collapsed repeats, or sequencing biases that may impact downstream
+analyses.</li>
+</ul>
+<figure><img src="https://github.com/user-attachments/assets/5f6d4756-c5c8-4e5d-a6a0-35d409a0fa16" alt="kmer spectra" class="figure mx-auto d-block"><div class="figcaption">kmer spectra</div>
+</figure></section><section><h2 class="section-heading" id="bionano-and-hi-c-reads-in-genome-assembly">
 <strong>Bionano and Hi-C Reads in Genome Assembly</strong><a class="anchor" aria-label="anchor" href="#bionano-and-hi-c-reads-in-genome-assembly"></a>
 </h2>
 <hr class="half-width">
@@ -986,6 +1006,8 @@ on physical proximity in the nucleus. It helps in ordering and orienting
 scaffolds, identifying misassemblies, and resolving haplotypes, making
 it essential for generating <strong>chromosome-level genome
 assemblies</strong>.</p>
+<figure><img src="https://github.com/user-attachments/assets/7f983713-7ea7-4522-8540-349955a9f12e" alt="Bionano and HiC for assembly improvement" class="figure mx-auto d-block"><div class="figcaption">Bionano and HiC for assembly improvement</div>
+</figure><p><a href="https://doi.org/10.1038/ng.3802" class="external-link">ref</a></p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -1341,7 +1363,7 @@ Create a slurm script to run NanoPlot on the HiFi reads.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>The stdout from the NanoPlot run will look like this:</p>
 <pre><code>2025-02-13 12:13:19,155 NanoPlot 1.44.1 started with arguments Namespace(threads=16, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_output', no_static=False, prefix='col_0_pacbio', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['9994.q20.CCS.fastq.gz'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_output/col_0_pacbio')
@@ -1439,7 +1461,7 @@ Create a slurm script to run NanoPlot on the basecalled ONT reads.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
   <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <p>The stdout from the NanoPlot run will look like this:</p>
 <pre><code>2025-02-13 12:15:51,066 NanoPlot 1.44.1 started with arguments Namespace(threads=8, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_output', no_static=False, prefix='col_0_ont', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['basecalled_2025-02-12.fastq'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_output/col_0_ont')
@@ -1688,7 +1710,7 @@ frequency distribution plots.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>A: High error rates in ONT reads can lead to k-mer counting errors,
 causing the analysis to fail. K-mer analyses reads rely on accuracy to
@@ -2199,7 +2221,7 @@ see how it affects the assembly quality.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-1" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-1">
+<div id="nav-tabpanel-1-1" class="tab-pane show active" aria-labelledby="nav-tab-1-1" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2217,7 +2239,7 @@ see how it affects the assembly quality.</p>
 <span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>  9994.q20.CCS-filtered.fastq</span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-1-2" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-2">
+<div id="nav-tabpanel-1-2" class="tab-pane" aria-labelledby="nav-tab-1-2" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2235,7 +2257,7 @@ see how it affects the assembly quality.</p>
 <span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>  9994.q20.CCS-filtered.fastq</span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-1-3" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-3">
+<div id="nav-tabpanel-1-3" class="tab-pane" aria-labelledby="nav-tab-1-3" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2253,7 +2275,7 @@ see how it affects the assembly quality.</p>
 <span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>  9994.q20.CCS-filtered.fastq</span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-1-4" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-4">
+<div id="nav-tabpanel-1-4" class="tab-pane" aria-labelledby="nav-tab-1-4" role="tabpanel">
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -3701,7 +3723,7 @@ any links that you are not going to use.
  -->
 </div></section><section id="aio-assembly-evaluation"><p>Content from <a href="assembly-evaluation.html">Assembly Evaluation</a></p>
 <hr>
-<p>Last updated on 2025-02-14 |
+<p>Last updated on 2025-02-16 |
 
         <a href="https://example.com/FIXME-template-source/edit/main/episodes/assembly-evaluation.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3732,14 +3754,15 @@ any links that you are not going to use.
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="introduction-to-topic">Introduction to Topic<a class="anchor" aria-label="anchor" href="#introduction-to-topic"></a>
+<section><h2 class="section-heading" id="evaluating-assembly-quality">Evaluating Assembly Quality<a class="anchor" aria-label="anchor" href="#evaluating-assembly-quality"></a>
+</h2>
+<hr class="half-width"></section><section><h2 class="section-heading" id="quast-for-quality-metrics">Quast for quality metrics<a class="anchor" aria-label="anchor" href="#quast-for-quality-metrics"></a>
+</h2>
+<hr class="half-width"></section><section><h2 class="section-heading" id="compleasm-for-genome-completeness-gene-space">Compleasm for genome completeness (gene-space)<a class="anchor" aria-label="anchor" href="#compleasm-for-genome-completeness-gene-space"></a>
+</h2>
+<hr class="half-width"></section><section><h2 class="section-heading" id="merqury-for-evaluating-genome-assembly">Merqury for evaluating genome assembly<a class="anchor" aria-label="anchor" href="#merqury-for-evaluating-genome-assembly"></a>
 </h2>
 <hr class="half-width">
-<ul>
-<li>depth and coverage</li>
-<li>assemblers</li>
-<li>evaluation</li>
-</ul>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -3867,8 +3890,8 @@ any links that you are not going to use.
   "url": "https://FIXME-template-source.github.io/NA/aio.html",
   "identifier": "https://FIXME-template-source.github.io/NA/aio.html",
   "dateCreated": "2025-02-05",
-  "dateModified": "2025-02-15",
-  "datePublished": "2025-02-15"
+  "dateModified": "2025-02-16",
+  "datePublished": "2025-02-16"
 }
 
   </script><script>

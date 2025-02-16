@@ -29,6 +29,8 @@ exercises: 2
 ## Merqury for evaluating genome assembly
 
 
+## Assembly graph visualization using Bandage
+
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 

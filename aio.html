@@ -325,18 +325,6 @@
 </div>
 <!--/div.accordion-flush-->
 
-<div class="accordion accordion-flush" id="accordionFlush10">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading10">
-        <a href="assembly-visualization.html">Assembly Visualization</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
                 </div>
               </div>
             </div>
@@ -1015,24 +1003,31 @@ assemblies</strong>.</p>
 <div class="callout-inner">
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
+<p>Here are four <strong>key take-home messages</strong> for this
+section:</p>
 <ul>
 <li>
-<strong>Genome assembly</strong> reconstructs complete genome
-sequences from fragmented DNA reads.</li>
+<strong>Genome assembly strategy depends on read type, genome
+complexity, and computational resources</strong>, with PacBio HiFi, ONT,
+and hybrid approaches offering different advantages in accuracy, cost,
+and contiguity.<br>
+</li>
 <li>
-<strong>De novo</strong> assembly builds genomes without a
-reference, while <strong>reference-guided</strong> assembly uses
-existing genomes.</li>
+<strong>Assembly evaluation is critical for assessing completeness
+and accuracy</strong>, using tools like <strong>BUSCO for gene
+completeness, QUAST for structural integrity, and Merqury for
+k-mer-based validation</strong>.<br>
+</li>
 <li>
-<strong>Sequencing technologies</strong> like Illumina, PacBio HiFi,
-and Oxford Nanopore offer different read lengths and error rates.</li>
+<strong>Scaffolding methods like Bionano OGM and Hi-C improve genome
+organization</strong>, resolving large structural variations and
+ordering contigs into chromosome-level assemblies.<br>
+</li>
 <li>
-<strong>Challenges</strong> include repetitive elements,
-heterozygosity, and error correction.</li>
-<li>
-<strong>Tools</strong> many programs are available for data QC,
-assembly, post-processing, and evaluation - choice depends on data type
-and research goals.</li>
+<strong>A well-assembled genome is essential for downstream
+applications such as annotation, comparative genomics, and structural
+variation analysis</strong>, with missing or misassembled regions
+potentially leading to incorrect biological conclusions.</li>
 </ul>
 </div>
 </div>
@@ -1043,7 +1038,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-data-quality-control"><p>Content from <a href="data-quality-control.html">Data Quality Control</a></p>
 <hr>
-<p>Last updated on 2025-02-14 |
+<p>Last updated on 2025-02-16 |
 
         <a href="https://example.com/FIXME-template-source/edit/main/episodes/data-quality-control.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1086,9 +1081,9 @@ NanoPlot.</li>
 </div>
 </div>
 </div>
-<div class="section level3">
-<h3 id="data-quality-check-and-filtering">Data Quality Check and Filtering<a class="anchor" aria-label="anchor" href="#data-quality-check-and-filtering"></a>
-</h3>
+<section><h2 class="section-heading" id="data-quality-check-and-filtering">Data Quality Check and Filtering<a class="anchor" aria-label="anchor" href="#data-quality-check-and-filtering"></a>
+</h2>
+<hr class="half-width">
 <ul>
 <li>
 <strong>What is data quality checking and filtering?</strong>
@@ -1132,9 +1127,9 @@ confirm improvements - hands-on.<br>
 </li>
 </ul>
 <figure><img src="https://github.com/user-attachments/assets/21f98d7a-21b0-4e4d-aa48-b1b8edbb9dfc" alt="Overview of steps" class="figure mx-auto d-block"><div class="figcaption">Overview of steps</div>
-</figure><div class="section level4">
-<h4 id="pacbio-hifi-reads-from-subreads">PacBio HiFi reads from Subreads<a class="anchor" aria-label="anchor" href="#pacbio-hifi-reads-from-subreads"></a>
-</h4>
+</figure></section><section><h2 class="section-heading" id="pacbio-hifi-reads-from-subreads">PacBio HiFi reads from Subreads<a class="anchor" aria-label="anchor" href="#pacbio-hifi-reads-from-subreads"></a>
+</h2>
+<hr class="half-width">
 <p><strong>PacBio HiFi</strong> reads can be generated using <a href="https://ccs.how/" class="external-link">Circular Consensus Sequencing</a> (CCS) program
 from <strong>PacBio</strong></p>
 <ul>
@@ -1209,11 +1204,9 @@ project).</li>
 analysis.</li>
 <li>Data has been filtered to include only HiFi reads with a Q-score of
 20 or higher.</li>
-</ul>
-</div>
-<div class="section level4">
-<h4 id="ont-reads-from-minion-sequencing">ONT Reads from MinION Sequencing<a class="anchor" aria-label="anchor" href="#ont-reads-from-minion-sequencing"></a>
-</h4>
+</ul></section><section><h2 class="section-heading" id="ont-reads-from-minion-sequencing">ONT Reads from MinION Sequencing<a class="anchor" aria-label="anchor" href="#ont-reads-from-minion-sequencing"></a>
+</h2>
+<hr class="half-width">
 <p><strong>Oxford Nanopore Technologies (ONT)</strong> sequencing
 generates long reads by passing DNA through a biological nanopore</p>
 <ul>
@@ -1320,12 +1313,9 @@ using R10.4/Q20+ chemistry from MinION cell</li>
 <li>The data is publicly available on the European Nucleotide Archive
 (ENA), and the <code>pass_fast5</code> reads were used for basecalling
 (with commands above).</li>
-</ul>
-</div>
-</div>
-<div class="section level3">
-<h3 id="a--nanoplot-for-quality-assessment">A. NanoPlot for Quality Assessment<a class="anchor" aria-label="anchor" href="#a--nanoplot-for-quality-assessment"></a>
-</h3>
+</ul></section><section><h2 class="section-heading" id="a--nanoplot-for-quality-assessment">A. NanoPlot for Quality Assessment<a class="anchor" aria-label="anchor" href="#a--nanoplot-for-quality-assessment"></a>
+</h2>
+<hr class="half-width">
 <p><a href="https://github.com/wdecoster/NanoPlot" class="external-link">NanoPlot</a> <a href="https://doi.org/10.1093/bioinformatics/bty149" class="external-link">ref</a> is a
 visualization tool designed for quality assessment of long-read
 sequencing data. It generates a variety of plots, including read length
@@ -1336,9 +1326,7 @@ both single-variable and density-based visualizations, NanoPlot helps
 users quickly assess sequencing run quality and detect potential issues.
 The tool also allows downsampling, length and quality filtering, and
 barcode-specific analysis for multiplexed experiments.</p>
-<div class="section level4">
-<h4 id="quality-assessment-of-pacbio-hifi-reads">1. Quality Assessment of PacBio HiFi Reads<a class="anchor" aria-label="anchor" href="#quality-assessment-of-pacbio-hifi-reads"></a>
-</h4>
+<p><strong>1. Quality Assessment of PacBio HiFi Reads</strong></p>
 <p>Assessing the quality of ONT reads using <code>NanoPlot</code>.
 Create a slurm script to run NanoPlot on the HiFi reads.</p>
 <div class="codewrapper sourceCode" id="cb3">
@@ -1363,7 +1351,7 @@ Create a slurm script to run NanoPlot on the HiFi reads.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>The stdout from the NanoPlot run will look like this:</p>
 <pre><code>2025-02-13 12:13:19,155 NanoPlot 1.44.1 started with arguments Namespace(threads=16, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_output', no_static=False, prefix='col_0_pacbio', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['9994.q20.CCS.fastq.gz'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_output/col_0_pacbio')
@@ -1433,10 +1421,7 @@ quality reads of desired length and coverage.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section level4">
-<h4 id="quality-assessment-of-ont-reads">2. Quality Assessment of ONT Reads<a class="anchor" aria-label="anchor" href="#quality-assessment-of-ont-reads"></a>
-</h4>
+<p><strong>2. Quality Assessment of ONT Reads</strong></p>
 <p>Assessing the quality of ONT reads using <code>NanoPlot</code>.
 Create a slurm script to run NanoPlot on the basecalled ONT reads.</p>
 <div class="codewrapper sourceCode" id="cb5">
@@ -1461,7 +1446,7 @@ Create a slurm script to run NanoPlot on the basecalled ONT reads.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
   <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
 <p>The stdout from the NanoPlot run will look like this:</p>
 <pre><code>2025-02-13 12:15:51,066 NanoPlot 1.44.1 started with arguments Namespace(threads=8, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_output', no_static=False, prefix='col_0_ont', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['basecalled_2025-02-12.fastq'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_output/col_0_ont')
@@ -1529,10 +1514,9 @@ quality reads of desired length and coverage.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section level4">
-<h4 id="b--filtering-sequencing-reads">B. Filtering Sequencing Reads<a class="anchor" aria-label="anchor" href="#b--filtering-sequencing-reads"></a>
-</h4>
+</section><section><h2 class="section-heading" id="b--filtering-sequencing-reads">B. Filtering Sequencing Reads<a class="anchor" aria-label="anchor" href="#b--filtering-sequencing-reads"></a>
+</h2>
+<hr class="half-width">
 <p><a href="https://github.com/rrwick/Filtlong" class="external-link"><code>Filtlong</code></a> is a
 tool designed to filter long-read sequencing data by selecting a
 smaller, higher-quality subset of reads based on length and identity. It
@@ -1594,10 +1578,9 @@ filtered dataset (1000 bp).</li>
 </div>
 </div>
 </div>
-</div>
-<div class="section level4">
-<h4 id="c--evaluating-data-quality-after-filtering">C. Evaluating Data Quality After Filtering<a class="anchor" aria-label="anchor" href="#c--evaluating-data-quality-after-filtering"></a>
-</h4>
+</section><section><h2 class="section-heading" id="c--evaluating-data-quality-after-filtering">C. Evaluating Data Quality After Filtering<a class="anchor" aria-label="anchor" href="#c--evaluating-data-quality-after-filtering"></a>
+</h2>
+<hr class="half-width">
 <p>We will re-run <code>NanoPlot</code> on the filtered HiFi and ONT
 reads to assess the quality of the filtered datasets.</p>
 <p><strong>1. For PacBio HiFi Reads:</strong></p>
@@ -1640,10 +1623,9 @@ reads to assess the quality of the filtered datasets.</p>
 quality of the filtered HiFi and ONT reads. Do you observe any
 improvements in read quality after filtering? We will use these filtered
 reads for downstream genome assembly.</p>
-</div>
-<div class="section level4">
-<h4 id="d--k-mer-based-quality-checks-optional">D. K-mer Based Quality Checks (Optional)<a class="anchor" aria-label="anchor" href="#d--k-mer-based-quality-checks-optional"></a>
-</h4>
+</section><section><h2 class="section-heading" id="d--k-mer-based-quality-checks-optional">D. K-mer Based Quality Checks (Optional)<a class="anchor" aria-label="anchor" href="#d--k-mer-based-quality-checks-optional"></a>
+</h2>
+<hr class="half-width">
 <p><a href="https://github.com/tbenavi1/genomescope2.0" class="external-link">GenomeScope</a>
 is a k-mer-based tool used to profile genomes without requiring a
 reference, providing estimates of genome size, heterozygosity, and
@@ -1710,7 +1692,7 @@ frequency distribution plots.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>A: High error rates in ONT reads can lead to k-mer counting errors,
 causing the analysis to fail. K-mer analyses reads rely on accuracy to
@@ -1770,10 +1752,9 @@ content.</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</div>
-</div></section><section id="aio-pacbio-hifi-assembly"><p>Content from <a href="pacbio-hifi-assembly.html">PacBio HiFi Assembly using HiFiasm</a></p>
+</section></section><section id="aio-pacbio-hifi-assembly"><p>Content from <a href="pacbio-hifi-assembly.html">PacBio HiFi Assembly using HiFiasm</a></p>
 <hr>
-<p>Last updated on 2025-02-14 |
+<p>Last updated on 2025-02-16 |
 
         <a href="https://example.com/FIXME-template-source/edit/main/episodes/pacbio-hifi-assembly.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1818,9 +1799,9 @@ completeness.</li>
 </div>
 </div>
 </div>
-<div class="section level3">
-<h3 id="introduction-to-hifiasm">Introduction to HiFiasm<a class="anchor" aria-label="anchor" href="#introduction-to-hifiasm"></a>
-</h3>
+<section><h2 class="section-heading" id="introduction-to-hifiasm">Introduction to HiFiasm<a class="anchor" aria-label="anchor" href="#introduction-to-hifiasm"></a>
+</h2>
+<hr class="half-width">
 <p><a href="https://www.nature.com/articles/s41592-020-01056-5" class="external-link">HiFiasm</a> is
 a specialized de novo assembler designed for PacBio HiFi reads,
 providing high-quality, haplotype-resolved genome assemblies. Unlike
@@ -1856,10 +1837,9 @@ it more efficient and user-friendly.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section level3">
-<h3 id="installation-and-setup">Installation and Setup<a class="anchor" aria-label="anchor" href="#installation-and-setup"></a>
-</h3>
+</section><section><h2 class="section-heading" id="installation-and-setup">Installation and Setup<a class="anchor" aria-label="anchor" href="#installation-and-setup"></a>
+</h2>
+<hr class="half-width">
 <p>HiFiasm is available as module on RCAC clusters. You can load the
 module using the following command:</p>
 <div class="codewrapper sourceCode" id="cb1">
@@ -1880,10 +1860,9 @@ following command:</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">apptainer</span> pull docker://quay.io/biocontainers/hifiasm:0.24.0--h5ca1c30_0</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">apptainer</span> exec hifiasm_0.24.0--h5ca1c30_0.sif hifiasm <span class="at">--version</span></span></code></pre>
 </div>
-</div>
-<div class="section level3">
-<h3 id="overview-of-hifiasm-read-assembly">Overview of HiFiASM Read Assembly<a class="anchor" aria-label="anchor" href="#overview-of-hifiasm-read-assembly"></a>
-</h3>
+</section><section><h2 class="section-heading" id="overview-of-hifiasm-read-assembly">Overview of HiFiASM Read Assembly<a class="anchor" aria-label="anchor" href="#overview-of-hifiasm-read-assembly"></a>
+</h2>
+<hr class="half-width">
 <p>HiFiasm can assemble high-quality, contiguous genome sequences from
 PacBio High-Fidelity (HiFi) reads. HiFi reads are long and highly
 accurate (99%+), making them ideal for assembling complex genomes,
@@ -1908,11 +1887,9 @@ scaffolding</li>
 of HiFi reads to generate contigs with minimal fragmentation and greater
 haplotype resolution compared to traditional assemblers.</p>
 <figure><img src="https://github.com/user-attachments/assets/1ab2a17c-ac29-42c7-a890-5c86577e2f19" alt="HiFiasm assembler" class="figure mx-auto d-block"><div class="figcaption">HiFiasm assembler</div>
-</figure>
-</div>
-<div class="section level3">
-<h3 id="hifiasm-basic-workflow">HiFiasm: basic workflow<a class="anchor" aria-label="anchor" href="#hifiasm-basic-workflow"></a>
-</h3>
+</figure></section><section><h2 class="section-heading" id="hifiasm-basic-workflow">HiFiasm: basic workflow<a class="anchor" aria-label="anchor" href="#hifiasm-basic-workflow"></a>
+</h2>
+<hr class="half-width">
 <p>To run HiFiasm, you need to provide the input HiFi reads in FASTA or
 FASTQ format. The basic command structure is as follows:</p>
 <div class="codewrapper sourceCode" id="cb3">
@@ -1947,10 +1924,9 @@ prefix.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section level3">
-<h3 id="understanding-hifiasm-output">Understanding HiFiasm Output<a class="anchor" aria-label="anchor" href="#understanding-hifiasm-output"></a>
-</h3>
+</section><section><h2 class="section-heading" id="understanding-hifiasm-output">Understanding HiFiasm Output<a class="anchor" aria-label="anchor" href="#understanding-hifiasm-output"></a>
+</h2>
+<hr class="half-width">
 <p>The run generates several output files. Here are all the files and
 their descriptions:</p>
 <table class="table">
@@ -2155,10 +2131,9 @@ gap-free and doesn’t contain unresolved regions.<br>
 </div>
 </div>
 </div>
-</div>
-<div class="section level3">
-<h3 id="handling-haplotype-resolved-contigs">Handling haplotype-resolved contigs<a class="anchor" aria-label="anchor" href="#handling-haplotype-resolved-contigs"></a>
-</h3>
+</section><section><h2 class="section-heading" id="handling-haplotype-resolved-contigs">Handling haplotype-resolved contigs<a class="anchor" aria-label="anchor" href="#handling-haplotype-resolved-contigs"></a>
+</h2>
+<hr class="half-width">
 <p>HiFiasm generates haplotype-resolved contigs. With the default
 options above, you saw that it generated <code>hap1.p_ctg</code>,
 <code>hap2.p_ctg</code> and <code>.p_ctg</code> GFA files, which
@@ -2369,10 +2344,9 @@ size to evaluate the contiguity and completeness of the assemblies.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section level3">
-<h3 id="improving-assembly-quality">Improving Assembly Quality<a class="anchor" aria-label="anchor" href="#improving-assembly-quality"></a>
-</h3>
+</section><section><h2 class="section-heading" id="improving-assembly-quality">Improving Assembly Quality<a class="anchor" aria-label="anchor" href="#improving-assembly-quality"></a>
+</h2>
+<hr class="half-width">
 <p>After the first round of assembly, you will have the files
 <code>*.ec.bin</code>, <code>*.ovlp.source.bin</code>, and
 <code>*.ovlp.reverse.bin</code>. Save these files and try various
@@ -2383,19 +2357,18 @@ command and run the assembler again. Third, move results to a new folder
 and compare the results of the first folder. You can re-run the assembly
 quickly and generate statistics for each of these folders and compare
 them to see if the changes improved the assembly.</p>
-</div>
-<div class="section level3">
-<h3 id="alternative-assembler-flye-for-hifi">Alternative Assembler: Flye for HiFi<a class="anchor" aria-label="anchor" href="#alternative-assembler-flye-for-hifi"></a>
-</h3>
+</section><section><h2 class="section-heading" id="alternative-assembler-flye-for-hifi">Alternative Assembler: Flye for HiFi<a class="anchor" aria-label="anchor" href="#alternative-assembler-flye-for-hifi"></a>
+</h2>
+<hr class="half-width">
 <p>Flye is another popular assembler specialized for ONT reads, offering
 a different approach to haplotype-resolved assembly. The latest version
 can also use HiFi reads to generate great quality assemblies. We will
 explore Flye in a separate episode to compare its performance with
 HiFiasm. But in this optional section, you can try running Flye with
 HiFi reads to see how it performs compared to HiFiasm.</p>
-<div class="section level4">
-<h4 id="running-flye-with-hifi-reads">Running Flye with HiFi Reads<a class="anchor" aria-label="anchor" href="#running-flye-with-hifi-reads"></a>
-</h4>
+<div class="section level3">
+<h3 id="running-flye-with-hifi-reads">Running Flye with HiFi Reads<a class="anchor" aria-label="anchor" href="#running-flye-with-hifi-reads"></a>
+</h3>
 <p>To run Flye with HiFi reads, you can use the following command
 structure:</p>
 <div class="codewrapper sourceCode" id="cb13">
@@ -2498,9 +2471,9 @@ Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
 </div>
-</div></section><section id="aio-oxford-nanopore-assembly"><p>Content from <a href="oxford-nanopore-assembly.html">Oxford Nanopore Assembly using Flye</a></p>
+</section></section><section id="aio-oxford-nanopore-assembly"><p>Content from <a href="oxford-nanopore-assembly.html">Oxford Nanopore Assembly using Flye</a></p>
 <hr>
-<p>Last updated on 2025-02-15 |
+<p>Last updated on 2025-02-16 |
 
         <a href="https://example.com/FIXME-template-source/edit/main/episodes/oxford-nanopore-assembly.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2537,9 +2510,9 @@ any links that you are not going to use.
 </div>
 </div>
 </div>
-<div class="section level3">
-<h3 id="introduction-to-ont-reads-and-flye-assembler">Introduction to ONT reads and Flye Assembler<a class="anchor" aria-label="anchor" href="#introduction-to-ont-reads-and-flye-assembler"></a>
-</h3>
+<section><h2 class="section-heading" id="introduction-to-ont-reads-and-flye-assembler">Introduction to ONT reads and Flye Assembler<a class="anchor" aria-label="anchor" href="#introduction-to-ont-reads-and-flye-assembler"></a>
+</h2>
+<hr class="half-width">
 <p>Oxford Nanopore Technologies (ONT) has revolutionized sequencing by
 providing long-read data, enabling the resolution of complex genomic
 structures that were previously intractable with short-read
@@ -2561,11 +2534,9 @@ contiguity. Flye can leverage these ultra-long reads to generate even
 more accurate and contiguous assemblies, making it a powerful tool for a
 wide range of genomic analyses.</p>
 <figure><img src="https://github.com/user-attachments/assets/7a2559a7-df81-4e52-9962-1f2e41bfd6e7" alt="ONT for T2T assemblies" class="figure mx-auto d-block"><div class="figcaption">ONT for T2T assemblies</div>
-</figure>
-</div>
-<div class="section level3">
-<h3 id="installation-and-setup">Installation and Setup<a class="anchor" aria-label="anchor" href="#installation-and-setup"></a>
-</h3>
+</figure></section><section><h2 class="section-heading" id="installation-and-setup">Installation and Setup<a class="anchor" aria-label="anchor" href="#installation-and-setup"></a>
+</h2>
+<hr class="half-width">
 <p>Flye is available as module on RCAC clusters. You can load the module
 using the following command:</p>
 <div class="codewrapper sourceCode" id="cb1">
@@ -2586,10 +2557,9 @@ following command:</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">apptainer</span> pull docker://quay.io/biocontainers/flye:2.9.5--py311h2de2dd3_2</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">apptainer</span> exec hflye_2.9.5--py311h2de2dd3_2.sif flye <span class="at">--version</span></span></code></pre>
 </div>
-</div>
-<div class="section level3">
-<h3 id="overview-of-flye-assembler">Overview of Flye Assembler<a class="anchor" aria-label="anchor" href="#overview-of-flye-assembler"></a>
-</h3>
+</section><section><h2 class="section-heading" id="overview-of-flye-assembler">Overview of Flye Assembler<a class="anchor" aria-label="anchor" href="#overview-of-flye-assembler"></a>
+</h2>
+<hr class="half-width">
 <p>Flye is a <em>de novo</em> assembler designed for high-error,
 long-read sequencing data from Oxford Nanopore Technologies (ONT) and
 PacBio. It is optimized to handle the inherent noise in single-molecule
@@ -2629,11 +2599,9 @@ traditional long-read assemblers. Its ability to handle highly
 repetitive regions, coupled with its fast runtime and efficient memory
 usage, makes it a powerful choice for ONT genome assembly.</p>
 <figure><img src="https://github.com/user-attachments/assets/2fef9e07-675d-4ee4-8b11-73e11afe9673" alt="Flye assembly overview" class="figure mx-auto d-block"><div class="figcaption">Flye assembly overview</div>
-</figure>
-</div>
-<div class="section level3">
-<h3 id="flye-basic-workflow">Flye: basic workflow<a class="anchor" aria-label="anchor" href="#flye-basic-workflow"></a>
-</h3>
+</figure></section><section><h2 class="section-heading" id="flye-basic-workflow">Flye: basic workflow<a class="anchor" aria-label="anchor" href="#flye-basic-workflow"></a>
+</h2>
+<hr class="half-width">
 <p>To run <code>flye</code>, you need to provide the input long reads in
 FASTA or FASTQ format, specifying the long read type, provide estimated
 genome size, output directory and the threads to use. The basic command
@@ -2676,10 +2644,9 @@ The output will be stored in the directory provided.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section level3">
-<h3 id="understanding-flye-output">Understanding Flye Output<a class="anchor" aria-label="anchor" href="#understanding-flye-output"></a>
-</h3>
+</section><section><h2 class="section-heading" id="understanding-flye-output">Understanding Flye Output<a class="anchor" aria-label="anchor" href="#understanding-flye-output"></a>
+</h2>
+<hr class="half-width">
 <p>The output of Flye includes several files and directories that
 provide information about the assembly process and results. Key
 components of the Flye output include:</p>
@@ -2779,10 +2746,9 @@ contiguity and completeness based on these statistics.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section level3">
-<h3 id="other-important-parameters">Other important parameters<a class="anchor" aria-label="anchor" href="#other-important-parameters"></a>
-</h3>
+</section><section><h2 class="section-heading" id="other-important-parameters">Other important parameters<a class="anchor" aria-label="anchor" href="#other-important-parameters"></a>
+</h2>
+<hr class="half-width">
 <p><code>flye</code> provides several <a href="https://github.com/mikolmogorov/Flye/blob/flye/docs/USAGE.md" class="external-link">additional
 parameters</a> that can be used to customize the assembly process and
 improve results. Some key parameters include:</p>
@@ -2814,10 +2780,9 @@ about the assembler.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section level3">
-<h3 id="improving-assembly-quality-with-polishing-optional">Improving Assembly Quality with Polishing (Optional)<a class="anchor" aria-label="anchor" href="#improving-assembly-quality-with-polishing-optional"></a>
-</h3>
+</section><section><h2 class="section-heading" id="improving-assembly-quality-with-polishing-optional">Improving Assembly Quality with Polishing (Optional)<a class="anchor" aria-label="anchor" href="#improving-assembly-quality-with-polishing-optional"></a>
+</h2>
+<hr class="half-width">
 <p>After generating the initial assembly, it is often beneficial to
 polish the assembly to improve base-level accuracy. Polishing involves
 aligning the raw reads back to the assembly and correcting errors to
@@ -2851,10 +2816,9 @@ strengths and limitations, so it is recommended to try different
 polishing strategies to achieve the best results for your specific
 dataset. <code>Medaka</code> is a popular choice for polishing ONT
 assemblies due to its accuracy and efficiency.</p>
-</div>
-<div class="section level3">
-<h3 id="hifiasm-for-ont-data-optional">HiFiasm for ONT Data (Optional)<a class="anchor" aria-label="anchor" href="#hifiasm-for-ont-data-optional"></a>
-</h3>
+</section><section><h2 class="section-heading" id="hifiasm-for-ont-data-optional">HiFiasm for ONT Data (Optional)<a class="anchor" aria-label="anchor" href="#hifiasm-for-ont-data-optional"></a>
+</h2>
+<hr class="half-width">
 <p>Since HiFiasm also supports ONT reads for assembly, we can test it
 out to access the quality of the assembly. The basic command structure
 is as follows:</p>
@@ -2944,7 +2908,7 @@ Racon, Nanopolish, and Medaka can be used for further refinement.</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</div></section><section id="aio-hybrid-assembly"><p>Content from <a href="hybrid-assembly.html">Hybrid Long Read Assembly (optional)</a></p>
+</section></section><section id="aio-hybrid-assembly"><p>Content from <a href="hybrid-assembly.html">Hybrid Long Read Assembly (optional)</a></p>
 <hr>
 <p>Last updated on 2025-02-15 |
 
@@ -3042,7 +3006,7 @@ any links that you are not going to use.
  -->
 </div></section><section id="aio-scaffolding-using-ogm"><p>Content from <a href="scaffolding-using-ogm.html">Scaffolding using Optical Genome Mapping</a></p>
 <hr>
-<p>Last updated on 2025-02-15 |
+<p>Last updated on 2025-02-16 |
 
         <a href="https://example.com/FIXME-template-source/edit/main/episodes/scaffolding-using-ogm.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -3087,9 +3051,9 @@ and interpret the results.</li>
 </div>
 </div>
 </div>
-<div class="section level3">
-<h3 id="introduction-to-bionano-optical-genome-mapping-ogm">Introduction to Bionano optical genome mapping (OGM)<a class="anchor" aria-label="anchor" href="#introduction-to-bionano-optical-genome-mapping-ogm"></a>
-</h3>
+<section><h2 class="section-heading" id="introduction-to-bionano-optical-genome-mapping-ogm">Introduction to Bionano optical genome mapping (OGM)<a class="anchor" aria-label="anchor" href="#introduction-to-bionano-optical-genome-mapping-ogm"></a>
+</h2>
+<hr class="half-width">
 <p>Bionano optical mapping is a high-resolution genome analysis
 technique that generates long-range structural information by labeling
 and imaging ultra-long DNA molecules. It provides genome-wide maps that
@@ -3104,11 +3068,9 @@ traditional sequencing methods. Bionano hybrid scaffolding has become a
 standard for enhancing genome assemblies, enabling researchers to
 achieve high-quality, chromosome-level assemblies efficiently.</p>
 <figure><img src="https://github.com/user-attachments/assets/41c7c42b-c5e0-4d0d-b899-a479e62ffaee" alt="Overview of Bionano OGM" class="figure mx-auto d-block"><div class="figcaption">Overview of Bionano OGM</div>
-</figure>
-</div>
-<div class="section level3">
-<h3 id="bionano-solve-hybrid-scaffolding">Bionano Solve Hybrid Scaffolding<a class="anchor" aria-label="anchor" href="#bionano-solve-hybrid-scaffolding"></a>
-</h3>
+</figure></section><section><h2 class="section-heading" id="bionano-solve-hybrid-scaffolding">Bionano Solve Hybrid Scaffolding<a class="anchor" aria-label="anchor" href="#bionano-solve-hybrid-scaffolding"></a>
+</h2>
+<hr class="half-width">
 <p>Bionano Solve improves genome assembly by integrating optical genome
 mapping data with sequence assemblies, generating ultra-long hybrid
 scaffolds that enhance contiguity and accuracy. The pipeline identifies
@@ -3148,10 +3110,9 @@ assemblies.</li>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">wget</span> ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR522/ERR5229977/Col-0_2021-09-30.cmap</span></code></pre>
 </div>
-</div>
-<div class="section level3">
-<h3 id="installation-and-setup">Installation and Setup<a class="anchor" aria-label="anchor" href="#installation-and-setup"></a>
-</h3>
+</section><section><h2 class="section-heading" id="installation-and-setup">Installation and Setup<a class="anchor" aria-label="anchor" href="#installation-and-setup"></a>
+</h2>
+<hr class="half-width">
 <p>Bionano Solve is available on Bionano.com and can be installed on
 Linux-based systems. The software requires a valid license and access to
 Bionano data files for processing.</p>
@@ -3163,10 +3124,9 @@ PATH using the command below:</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">$PATH</span>:/apps/biocontainers/exported-wrappers/bionano/3.8.0</span></code></pre>
 </div>
-</div>
-<div class="section level3">
-<h3 id="running-bionano-solve">Running Bionano Solve<a class="anchor" aria-label="anchor" href="#running-bionano-solve"></a>
-</h3>
+</section><section><h2 class="section-heading" id="running-bionano-solve">Running Bionano Solve<a class="anchor" aria-label="anchor" href="#running-bionano-solve"></a>
+</h2>
+<hr class="half-width">
 <p>To scaffold a genome using Bionano Solve, you need to provide the
 following input files:</p>
 <div class="codewrapper sourceCode" id="cb3">
@@ -3288,9 +3248,9 @@ stored.</td>
 </div>
 </div>
 </div>
-<div class="section level4">
-<h4 id="scffolding-hifiasm-assembly-with-bionano-solve">Scffolding HiFiasm assembly with Bionano Solve<a class="anchor" aria-label="anchor" href="#scffolding-hifiasm-assembly-with-bionano-solve"></a>
-</h4>
+<div class="section level3">
+<h3 id="scffolding-hifiasm-assembly-with-bionano-solve">Scffolding HiFiasm assembly with Bionano Solve<a class="anchor" aria-label="anchor" href="#scffolding-hifiasm-assembly-with-bionano-solve"></a>
+</h3>
 <p>For HiFiasm assembly, you need to provide the HiFiasm assembly FASTA
 file as input to the Bionano Solve pipeline. The command structure
 remains the same, with the only change being the input sequence
@@ -3315,9 +3275,9 @@ file.</p>
 <span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a>  <span class="at">-o</span> bionano_hifiasm_scaffolding</span></code></pre>
 </div>
 </div>
-<div class="section level4">
-<h4 id="scffolding-flye-assembly-with-bionano-solve">Scffolding Flye assembly with Bionano Solve<a class="anchor" aria-label="anchor" href="#scffolding-flye-assembly-with-bionano-solve"></a>
-</h4>
+<div class="section level3">
+<h3 id="scffolding-flye-assembly-with-bionano-solve">Scffolding Flye assembly with Bionano Solve<a class="anchor" aria-label="anchor" href="#scffolding-flye-assembly-with-bionano-solve"></a>
+</h3>
 <p>For Flye assembly, the process is similar to HiFiasm, but you need to
 provide the Flye assembly FASTA file instead of the HiFiasm assembly.
 The command structure remains the same, with the only change being the
@@ -3342,10 +3302,9 @@ input sequence file.</p>
 <span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>  <span class="at">-o</span> bionano_flye_scaffolding</span></code></pre>
 </div>
 </div>
-</div>
-<div class="section level3">
-<h3 id="understanding-hybrid-scaffolding-output">Understanding Hybrid Scaffolding Output<a class="anchor" aria-label="anchor" href="#understanding-hybrid-scaffolding-output"></a>
-</h3>
+</section><section><h2 class="section-heading" id="understanding-hybrid-scaffolding-output">Understanding Hybrid Scaffolding Output<a class="anchor" aria-label="anchor" href="#understanding-hybrid-scaffolding-output"></a>
+</h2>
+<hr class="half-width">
 <p>The output of the Bionano Solve pipeline includes scaffolded genome
 assemblies in AGP and FASTA formats, along with alignment and conflict
 resolution information. The hybrid scaffolds provide a more accurate
@@ -3420,10 +3379,9 @@ sharing.</td>
 <code>HYBRID_SCAFFOLD_NOT_SCAFFOLDED.fasta</code> represent the final
 scaffolded genome and unplaced contigs, respectively. You will need to
 merge these files to obtain your final scaffolded genome assembly.</p>
-</div>
-<div class="section level3">
-<h3 id="quality-assessment-of-hybrid-scaffolds">Quality Assessment of Hybrid Scaffolds<a class="anchor" aria-label="anchor" href="#quality-assessment-of-hybrid-scaffolds"></a>
-</h3>
+</section><section><h2 class="section-heading" id="quality-assessment-of-hybrid-scaffolds">Quality Assessment of Hybrid Scaffolds<a class="anchor" aria-label="anchor" href="#quality-assessment-of-hybrid-scaffolds"></a>
+</h2>
+<hr class="half-width">
 <p>The hybird scaffolds report file will be in the
 <code>hybrid_scaffolds</code> directory and will provide a summary of
 the scaffolding process, including alignment statistics, conflict
@@ -3721,7 +3679,7 @@ of the assembly.</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</div></section><section id="aio-assembly-evaluation"><p>Content from <a href="assembly-evaluation.html">Assembly Evaluation</a></p>
+</section></section><section id="aio-assembly-evaluation"><p>Content from <a href="assembly-evaluation.html">Assembly Evaluation</a></p>
 <hr>
 <p>Last updated on 2025-02-16 |
 
@@ -3762,67 +3720,9 @@ any links that you are not going to use.
 </h2>
 <hr class="half-width"></section><section><h2 class="section-heading" id="merqury-for-evaluating-genome-assembly">Merqury for evaluating genome assembly<a class="anchor" aria-label="anchor" href="#merqury-for-evaluating-genome-assembly"></a>
 </h2>
-<hr class="half-width">
-<div id="keypoints1" class="callout keypoints">
-<div class="callout-square">
-<i class="callout-icon" data-feather="key"></i>
-</div>
-<div class="callout-inner">
-<h3 class="callout-title">Key Points</h3>
-<div class="callout-content">
-<ul>
-<li>point 1</li>
-<li>point 2</li>
-<li>point 3</li>
-</ul>
-</div>
-</div>
-</div>
-<!--
-Place links that you need to refer to multiple times across pages here. Delete
-any links that you are not going to use.
- -->
-</section></section><section id="aio-assembly-visualization"><p>Content from <a href="assembly-visualization.html">Assembly Visualization</a></p>
-<hr>
-<p>Last updated on 2025-02-14 |
-
-        <a href="https://example.com/FIXME-template-source/edit/main/episodes/assembly-visualization.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
-        </div>
-<div class="overview card">
-<h2 class="card-header">Overview</h2>
-<div class="row g-0">
-<div class="col-md-4">
-<div class="card-body">
-<div class="inner">
-<h3 class="card-title">Questions</h3>
-<ul>
-<li>to do</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="col-md-8">
-<div class="card-body">
-<div class="inner bordered">
-<h3 class="card-title">Objectives</h3>
-<ul>
-<li>to do</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<section><h2 class="section-heading" id="introduction-to-topic">Introduction to Topic<a class="anchor" aria-label="anchor" href="#introduction-to-topic"></a>
+<hr class="half-width"></section><section><h2 class="section-heading" id="assembly-graph-visualization-using-bandage">Assembly graph visualization using Bandage<a class="anchor" aria-label="anchor" href="#assembly-graph-visualization-using-bandage"></a>
 </h2>
 <hr class="half-width">
-<ul>
-<li>depth and coverage</li>
-<li>assemblers</li>
-<li>evaluation</li>
-</ul>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>

@@ -107,11 +107,11 @@
   Genome Assembly: Hands-on Training
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 33%" class="percentage">
-    33%
+<aside class="col-md-12 lesson-progress"><div style="width: 38%" class="percentage">
+    38%
   </div>
   <div class="progress rcac">
-    <div class="progress-bar rcac" role="progressbar" style="width: 33%" aria-valuenow="33" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar rcac" role="progressbar" style="width: 38%" aria-valuenow="38" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -222,12 +222,26 @@
 <div class="accordion accordion-flush" id="accordionFlushcurrent">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-headingcurrent">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
         PacBio HiFi Assembly using HiFiasm
         </span>
-      
+      </button>
     </div><!--/div.accordion-header-->
+
+    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
+      <div class="accordion-body">
+        <ul><li><a href="#introduction-to-hifiasm">Introduction to HiFiasm</a></li>
+<li><a href="#installation-and-setup">Installation and Setup</a></li>
+<li><a href="#overview-of-hifiasm-read-assembly">Overview of HiFiASM Read Assembly</a></li>
+<li><a href="#hifiasm-basic-workflow">HiFiasm: basic workflow</a></li>
+<li><a href="#understanding-hifiasm-output">Understanding HiFiasm Output</a></li>
+<li><a href="#handling-haplotype-resolved-contigs">Handling haplotype-resolved contigs</a></li>
+<li><a href="#improving-assembly-quality">Improving Assembly Quality</a></li>
+<li><a href="#alternative-assembler-flye-for-hifi">Alternative Assembler: Flye for HiFi</a></li>
+        </ul></div><!--/div.accordion-body-->
+    </div><!--/div.accordion-collapse-->
 
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
@@ -263,15 +277,6 @@
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
         <a href="assembly-evaluation.html">Assembly Evaluation</a>
-    </div><!--/div.accordion-header-->
-
-  </div><!--/div.accordion-item-->
-</div><!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush10">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading10">
-        <a href="assembly-visualization.html">Assembly Visualization</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -335,7 +340,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>PacBio HiFi Assembly using HiFiasm</h1>
-        <p>Last updated on 2025-02-14 |
+        <p>Last updated on 2025-02-16 |
 
         <a href="https://example.com/FIXME-template-source/edit/main/episodes/pacbio-hifi-assembly.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -382,9 +387,8 @@ completeness.</li>
 </div>
 </div>
 </div>
-<div class="section level3">
-<h3 id="introduction-to-hifiasm">Introduction to HiFiasm<a class="anchor" aria-label="anchor" href="#introduction-to-hifiasm"></a></h3>
-<p><a href="https://www.nature.com/articles/s41592-020-01056-5" class="external-link">HiFiasm</a> is
+<section><h2 class="section-heading" id="introduction-to-hifiasm">Introduction to HiFiasm<a class="anchor" aria-label="anchor" href="#introduction-to-hifiasm"></a></h2>
+<hr class="half-width"><p><a href="https://www.nature.com/articles/s41592-020-01056-5" class="external-link">HiFiasm</a> is
 a specialized de novo assembler designed for PacBio HiFi reads,
 providing high-quality, haplotype-resolved genome assemblies. Unlike
 traditional assemblers that collapse heterozygous regions into a
@@ -419,10 +423,8 @@ it more efficient and user-friendly.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section level3">
-<h3 id="installation-and-setup">Installation and Setup<a class="anchor" aria-label="anchor" href="#installation-and-setup"></a></h3>
-<p>HiFiasm is available as module on RCAC clusters. You can load the
+</section><section><h2 class="section-heading" id="installation-and-setup">Installation and Setup<a class="anchor" aria-label="anchor" href="#installation-and-setup"></a></h2>
+<hr class="half-width"><p>HiFiasm is available as module on RCAC clusters. You can load the
 module using the following command:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -442,10 +444,8 @@ following command:</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">apptainer</span> pull docker://quay.io/biocontainers/hifiasm:0.24.0--h5ca1c30_0</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">apptainer</span> exec hifiasm_0.24.0--h5ca1c30_0.sif hifiasm <span class="at">--version</span></span></code></pre>
 </div>
-</div>
-<div class="section level3">
-<h3 id="overview-of-hifiasm-read-assembly">Overview of HiFiASM Read Assembly<a class="anchor" aria-label="anchor" href="#overview-of-hifiasm-read-assembly"></a></h3>
-<p>HiFiasm can assemble high-quality, contiguous genome sequences from
+</section><section><h2 class="section-heading" id="overview-of-hifiasm-read-assembly">Overview of HiFiASM Read Assembly<a class="anchor" aria-label="anchor" href="#overview-of-hifiasm-read-assembly"></a></h2>
+<hr class="half-width"><p>HiFiasm can assemble high-quality, contiguous genome sequences from
 PacBio High-Fidelity (HiFi) reads. HiFi reads are long and highly
 accurate (99%+), making them ideal for assembling complex genomes,
 resolving repetitive regions, and distinguishing haplotypes in diploid
@@ -467,10 +467,8 @@ scaffolding</li>
 of HiFi reads to generate contigs with minimal fragmentation and greater
 haplotype resolution compared to traditional assemblers.</p>
 <figure><img src="https://github.com/user-attachments/assets/1ab2a17c-ac29-42c7-a890-5c86577e2f19" alt="HiFiasm assembler" class="figure mx-auto d-block"><div class="figcaption">HiFiasm assembler</div>
-</figure></div>
-<div class="section level3">
-<h3 id="hifiasm-basic-workflow">HiFiasm: basic workflow<a class="anchor" aria-label="anchor" href="#hifiasm-basic-workflow"></a></h3>
-<p>To run HiFiasm, you need to provide the input HiFi reads in FASTA or
+</figure></section><section><h2 class="section-heading" id="hifiasm-basic-workflow">HiFiasm: basic workflow<a class="anchor" aria-label="anchor" href="#hifiasm-basic-workflow"></a></h2>
+<hr class="half-width"><p>To run HiFiasm, you need to provide the input HiFi reads in FASTA or
 FASTQ format. The basic command structure is as follows:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -502,10 +500,8 @@ prefix.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section level3">
-<h3 id="understanding-hifiasm-output">Understanding HiFiasm Output<a class="anchor" aria-label="anchor" href="#understanding-hifiasm-output"></a></h3>
-<p>The run generates several output files. Here are all the files and
+</section><section><h2 class="section-heading" id="understanding-hifiasm-output">Understanding HiFiasm Output<a class="anchor" aria-label="anchor" href="#understanding-hifiasm-output"></a></h2>
+<hr class="half-width"><p>The run generates several output files. Here are all the files and
 their descriptions:</p>
 <table class="table"><colgroup><col width="38%"><col width="61%"></colgroup><thead><tr class="header"><th align="left">filename</th>
 <th>description</th>
@@ -631,10 +627,8 @@ gap-free and doesn’t contain unresolved regions.<br></li>
 </ul></div>
 </div>
 </div>
-</div>
-<div class="section level3">
-<h3 id="handling-haplotype-resolved-contigs">Handling haplotype-resolved contigs<a class="anchor" aria-label="anchor" href="#handling-haplotype-resolved-contigs"></a></h3>
-<p>HiFiasm generates haplotype-resolved contigs. With the default
+</section><section><h2 class="section-heading" id="handling-haplotype-resolved-contigs">Handling haplotype-resolved contigs<a class="anchor" aria-label="anchor" href="#handling-haplotype-resolved-contigs"></a></h2>
+<hr class="half-width"><p>HiFiasm generates haplotype-resolved contigs. With the default
 options above, you saw that it generated <code>hap1.p_ctg</code>,
 <code>hap2.p_ctg</code> and <code>.p_ctg</code> GFA files, which
 corresponds to haplotype 1, haplotype 2, and primary contigs,
@@ -840,10 +834,8 @@ size to evaluate the contiguity and completeness of the assemblies.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section level3">
-<h3 id="improving-assembly-quality">Improving Assembly Quality<a class="anchor" aria-label="anchor" href="#improving-assembly-quality"></a></h3>
-<p>After the first round of assembly, you will have the files
+</section><section><h2 class="section-heading" id="improving-assembly-quality">Improving Assembly Quality<a class="anchor" aria-label="anchor" href="#improving-assembly-quality"></a></h2>
+<hr class="half-width"><p>After the first round of assembly, you will have the files
 <code>*.ec.bin</code>, <code>*.ovlp.source.bin</code>, and
 <code>*.ovlp.reverse.bin</code>. Save these files and try various
 options to see if you can improve the assembly. First, make a folder to
@@ -853,17 +845,15 @@ command and run the assembler again. Third, move results to a new folder
 and compare the results of the first folder. You can re-run the assembly
 quickly and generate statistics for each of these folders and compare
 them to see if the changes improved the assembly.</p>
-</div>
-<div class="section level3">
-<h3 id="alternative-assembler-flye-for-hifi">Alternative Assembler: Flye for HiFi<a class="anchor" aria-label="anchor" href="#alternative-assembler-flye-for-hifi"></a></h3>
-<p>Flye is another popular assembler specialized for ONT reads, offering
+</section><section><h2 class="section-heading" id="alternative-assembler-flye-for-hifi">Alternative Assembler: Flye for HiFi<a class="anchor" aria-label="anchor" href="#alternative-assembler-flye-for-hifi"></a></h2>
+<hr class="half-width"><p>Flye is another popular assembler specialized for ONT reads, offering
 a different approach to haplotype-resolved assembly. The latest version
 can also use HiFi reads to generate great quality assemblies. We will
 explore Flye in a separate episode to compare its performance with
 HiFiasm. But in this optional section, you can try running Flye with
 HiFi reads to see how it performs compared to HiFiasm.</p>
-<div class="section level4">
-<h4 id="running-flye-with-hifi-reads">Running Flye with HiFi Reads<a class="anchor" aria-label="anchor" href="#running-flye-with-hifi-reads"></a></h4>
+<div class="section level3">
+<h3 id="running-flye-with-hifi-reads">Running Flye with HiFi Reads<a class="anchor" aria-label="anchor" href="#running-flye-with-hifi-reads"></a></h3>
 <p>To run Flye with HiFi reads, you can use the following command
 structure:</p>
 <div class="codewrapper sourceCode" id="cb13">
@@ -962,11 +952,7 @@ Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
 </div>
-</div>
-
-
-
-      </div> <!-- / div.lesson-content -->
+</section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="data-quality-control.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
         <a class="chapter-link float-end" href="oxford-nanopore-assembly.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
@@ -1024,7 +1010,7 @@ any links that you are not going to use.
   "url": "https://FIXME-template-source.github.io/NA/pacbio-hifi-assembly.html",
   "identifier": "https://FIXME-template-source.github.io/NA/pacbio-hifi-assembly.html",
   "dateCreated": "2025-02-05",
-  "dateModified": "2025-02-14",
+  "dateModified": "2025-02-16",
   "datePublished": "2025-02-16"
 }
 

@@ -107,11 +107,11 @@
   Genome Assembly: Hands-on Training
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 22%" class="percentage">
-    22%
+<aside class="col-md-12 lesson-progress"><div style="width: 25%" class="percentage">
+    25%
   </div>
   <div class="progress rcac">
-    <div class="progress-bar rcac" role="progressbar" style="width: 22%" aria-valuenow="22" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar rcac" role="progressbar" style="width: 25%" aria-valuenow="25" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -213,12 +213,25 @@
 <div class="accordion accordion-flush" id="accordionFlushcurrent">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-headingcurrent">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
         Data Quality Control
         </span>
-      
+      </button>
     </div><!--/div.accordion-header-->
+
+    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
+      <div class="accordion-body">
+        <ul><li><a href="#data-quality-check-and-filtering">Data Quality Check and Filtering</a></li>
+<li><a href="#pacbio-hifi-reads-from-subreads">PacBio HiFi reads from Subreads</a></li>
+<li><a href="#ont-reads-from-minion-sequencing">ONT Reads from MinION Sequencing</a></li>
+<li><a href="#a.-nanoplot-for-quality-assessment">A. NanoPlot for Quality Assessment</a></li>
+<li><a href="#b.-filtering-sequencing-reads">B. Filtering Sequencing Reads</a></li>
+<li><a href="#c.-evaluating-data-quality-after-filtering">C. Evaluating Data Quality After Filtering</a></li>
+<li><a href="#d.-k-mer-based-quality-checks-optional">D. K-mer Based Quality Checks (Optional)</a></li>
+        </ul></div><!--/div.accordion-body-->
+    </div><!--/div.accordion-collapse-->
 
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
@@ -263,15 +276,6 @@
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
         <a href="assembly-evaluation.html">Assembly Evaluation</a>
-    </div><!--/div.accordion-header-->
-
-  </div><!--/div.accordion-item-->
-</div><!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush10">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading10">
-        <a href="assembly-visualization.html">Assembly Visualization</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -334,7 +338,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Data Quality Control</h1>
-        <p>Last updated on 2025-02-14 |
+        <p>Last updated on 2025-02-16 |
 
         <a href="https://example.com/FIXME-template-source/edit/main/episodes/data-quality-control.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -381,9 +385,8 @@ NanoPlot.</li>
 </div>
 </div>
 </div>
-<div class="section level3">
-<h3 id="data-quality-check-and-filtering">Data Quality Check and Filtering<a class="anchor" aria-label="anchor" href="#data-quality-check-and-filtering"></a></h3>
-<ul><li>
+<section><h2 class="section-heading" id="data-quality-check-and-filtering">Data Quality Check and Filtering<a class="anchor" aria-label="anchor" href="#data-quality-check-and-filtering"></a></h2>
+<hr class="half-width"><ul><li>
 <strong>What is data quality checking and filtering?</strong>
 <ul><li>Assessing the quality of raw sequencing data before genome
 assembly.</li>
@@ -415,9 +418,8 @@ confirm improvements - hands-on.<br></li>
 <li>K-mer analysis to ensure data quality (optional hands-on).</li>
 </ul></li>
 </ul><figure><img src="https://github.com/user-attachments/assets/21f98d7a-21b0-4e4d-aa48-b1b8edbb9dfc" alt="Overview of steps" class="figure mx-auto d-block"><div class="figcaption">Overview of steps</div>
-</figure><div class="section level4">
-<h4 id="pacbio-hifi-reads-from-subreads">PacBio HiFi reads from Subreads<a class="anchor" aria-label="anchor" href="#pacbio-hifi-reads-from-subreads"></a></h4>
-<p><strong>PacBio HiFi</strong> reads can be generated using <a href="https://ccs.how/" class="external-link">Circular Consensus Sequencing</a> (CCS) program
+</figure></section><section><h2 class="section-heading" id="pacbio-hifi-reads-from-subreads">PacBio HiFi reads from Subreads<a class="anchor" aria-label="anchor" href="#pacbio-hifi-reads-from-subreads"></a></h2>
+<hr class="half-width"><p><strong>PacBio HiFi</strong> reads can be generated using <a href="https://ccs.how/" class="external-link">Circular Consensus Sequencing</a> (CCS) program
 from <strong>PacBio</strong></p>
 <ul><li>PacBio circular consensus sequencing (CCS) generates HiFi reads by
 sequencing the same DNA molecule multiple times<br></li>
@@ -470,10 +472,8 @@ project).</li>
 analysis.</li>
 <li>Data has been filtered to include only HiFi reads with a Q-score of
 20 or higher.</li>
-</ul></div>
-<div class="section level4">
-<h4 id="ont-reads-from-minion-sequencing">ONT Reads from MinION Sequencing<a class="anchor" aria-label="anchor" href="#ont-reads-from-minion-sequencing"></a></h4>
-<p><strong>Oxford Nanopore Technologies (ONT)</strong> sequencing
+</ul></section><section><h2 class="section-heading" id="ont-reads-from-minion-sequencing">ONT Reads from MinION Sequencing<a class="anchor" aria-label="anchor" href="#ont-reads-from-minion-sequencing"></a></h2>
+<hr class="half-width"><p><strong>Oxford Nanopore Technologies (ONT)</strong> sequencing
 generates long reads by passing DNA through a biological nanopore</p>
 <ul><li>ONT reads are generated in real-time as the DNA strand moves through
 the nanopore.</li>
@@ -555,11 +555,8 @@ using R10.4/Q20+ chemistry from MinION cell</li>
 <li>The data is publicly available on the European Nucleotide Archive
 (ENA), and the <code>pass_fast5</code> reads were used for basecalling
 (with commands above).</li>
-</ul></div>
-</div>
-<div class="section level3">
-<h3 id="a--nanoplot-for-quality-assessment">A. NanoPlot for Quality Assessment<a class="anchor" aria-label="anchor" href="#a--nanoplot-for-quality-assessment"></a></h3>
-<p><a href="https://github.com/wdecoster/NanoPlot" class="external-link">NanoPlot</a> <a href="https://doi.org/10.1093/bioinformatics/bty149" class="external-link">ref</a> is a
+</ul></section><section><h2 class="section-heading" id="a--nanoplot-for-quality-assessment">A. NanoPlot for Quality Assessment<a class="anchor" aria-label="anchor" href="#a--nanoplot-for-quality-assessment"></a></h2>
+<hr class="half-width"><p><a href="https://github.com/wdecoster/NanoPlot" class="external-link">NanoPlot</a> <a href="https://doi.org/10.1093/bioinformatics/bty149" class="external-link">ref</a> is a
 visualization tool designed for quality assessment of long-read
 sequencing data. It generates a variety of plots, including read length
 histograms, cumulative yield plots, violin plots of read length and
@@ -569,8 +566,7 @@ both single-variable and density-based visualizations, NanoPlot helps
 users quickly assess sequencing run quality and detect potential issues.
 The tool also allows downsampling, length and quality filtering, and
 barcode-specific analysis for multiplexed experiments.</p>
-<div class="section level4">
-<h4 id="quality-assessment-of-pacbio-hifi-reads">1. Quality Assessment of PacBio HiFi Reads<a class="anchor" aria-label="anchor" href="#quality-assessment-of-pacbio-hifi-reads"></a></h4>
+<p><strong>1. Quality Assessment of PacBio HiFi Reads</strong></p>
 <p>Assessing the quality of ONT reads using <code>NanoPlot</code>.
 Create a slurm script to run NanoPlot on the HiFi reads.</p>
 <div class="codewrapper sourceCode" id="cb3">
@@ -595,7 +591,7 @@ Create a slurm script to run NanoPlot on the HiFi reads.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>The stdout from the NanoPlot run will look like this:</p>
 <pre><code>2025-02-13 12:13:19,155 NanoPlot 1.44.1 started with arguments Namespace(threads=16, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_output', no_static=False, prefix='col_0_pacbio', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['9994.q20.CCS.fastq.gz'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_output/col_0_pacbio')
@@ -663,9 +659,7 @@ quality reads of desired length and coverage.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section level4">
-<h4 id="quality-assessment-of-ont-reads">2. Quality Assessment of ONT Reads<a class="anchor" aria-label="anchor" href="#quality-assessment-of-ont-reads"></a></h4>
+<p><strong>2. Quality Assessment of ONT Reads</strong></p>
 <p>Assessing the quality of ONT reads using <code>NanoPlot</code>.
 Create a slurm script to run NanoPlot on the basecalled ONT reads.</p>
 <div class="codewrapper sourceCode" id="cb5">
@@ -690,7 +684,7 @@ Create a slurm script to run NanoPlot on the basecalled ONT reads.</p>
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
   <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
 <p>The stdout from the NanoPlot run will look like this:</p>
 <pre><code>2025-02-13 12:15:51,066 NanoPlot 1.44.1 started with arguments Namespace(threads=8, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_output', no_static=False, prefix='col_0_ont', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['basecalled_2025-02-12.fastq'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_output/col_0_ont')
@@ -756,10 +750,8 @@ quality reads of desired length and coverage.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section level4">
-<h4 id="b--filtering-sequencing-reads">B. Filtering Sequencing Reads<a class="anchor" aria-label="anchor" href="#b--filtering-sequencing-reads"></a></h4>
-<p><a href="https://github.com/rrwick/Filtlong" class="external-link"><code>Filtlong</code></a> is a
+</section><section><h2 class="section-heading" id="b--filtering-sequencing-reads">B. Filtering Sequencing Reads<a class="anchor" aria-label="anchor" href="#b--filtering-sequencing-reads"></a></h2>
+<hr class="half-width"><p><a href="https://github.com/rrwick/Filtlong" class="external-link"><code>Filtlong</code></a> is a
 tool designed to filter long-read sequencing data by selecting a
 smaller, higher-quality subset of reads based on length and identity. It
 prioritizes longer reads with higher sequence identity while discarding
@@ -818,10 +810,8 @@ filtered dataset (1000 bp).</li>
 </ul></div>
 </div>
 </div>
-</div>
-<div class="section level4">
-<h4 id="c--evaluating-data-quality-after-filtering">C. Evaluating Data Quality After Filtering<a class="anchor" aria-label="anchor" href="#c--evaluating-data-quality-after-filtering"></a></h4>
-<p>We will re-run <code>NanoPlot</code> on the filtered HiFi and ONT
+</section><section><h2 class="section-heading" id="c--evaluating-data-quality-after-filtering">C. Evaluating Data Quality After Filtering<a class="anchor" aria-label="anchor" href="#c--evaluating-data-quality-after-filtering"></a></h2>
+<hr class="half-width"><p>We will re-run <code>NanoPlot</code> on the filtered HiFi and ONT
 reads to assess the quality of the filtered datasets.</p>
 <p><strong>1. For PacBio HiFi Reads:</strong></p>
 <div class="codewrapper sourceCode" id="cb9">
@@ -863,10 +853,8 @@ reads to assess the quality of the filtered datasets.</p>
 quality of the filtered HiFi and ONT reads. Do you observe any
 improvements in read quality after filtering? We will use these filtered
 reads for downstream genome assembly.</p>
-</div>
-<div class="section level4">
-<h4 id="d--k-mer-based-quality-checks-optional">D. K-mer Based Quality Checks (Optional)<a class="anchor" aria-label="anchor" href="#d--k-mer-based-quality-checks-optional"></a></h4>
-<p><a href="https://github.com/tbenavi1/genomescope2.0" class="external-link">GenomeScope</a>
+</section><section><h2 class="section-heading" id="d--k-mer-based-quality-checks-optional">D. K-mer Based Quality Checks (Optional)<a class="anchor" aria-label="anchor" href="#d--k-mer-based-quality-checks-optional"></a></h2>
+<hr class="half-width"><p><a href="https://github.com/tbenavi1/genomescope2.0" class="external-link">GenomeScope</a>
 is a k-mer-based tool used to profile genomes without requiring a
 reference, providing estimates of genome size, heterozygosity, and
 repeat content. It uses k-mer frequency distributions from raw
@@ -930,7 +918,7 @@ frequency distribution plots.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>A: High error rates in ONT reads can lead to k-mer counting errors,
 causing the analysis to fail. K-mer analyses reads rely on accuracy to
@@ -986,12 +974,7 @@ content.</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</div>
-</div>
-
-
-
-      </div> <!-- / div.lesson-content -->
+</section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="../instructor/assembly-strategies.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
         <a class="chapter-link float-end" href="../instructor/pacbio-hifi-assembly.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
@@ -1049,7 +1032,7 @@ any links that you are not going to use.
   "url": "https://FIXME-template-source.github.io/NA/instructor/data-quality-control.html",
   "identifier": "https://FIXME-template-source.github.io/NA/instructor/data-quality-control.html",
   "dateCreated": "2025-02-05",
-  "dateModified": "2025-02-14",
+  "dateModified": "2025-02-16",
   "datePublished": "2025-02-16"
 }
 

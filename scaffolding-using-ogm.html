@@ -107,11 +107,11 @@
   Genome Assembly: Hands-on Training
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 67%" class="percentage">
-    67%
+<aside class="col-md-12 lesson-progress"><div style="width: 75%" class="percentage">
+    75%
   </div>
   <div class="progress rcac">
-    <div class="progress-bar rcac" role="progressbar" style="width: 67%" aria-valuenow="67" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar rcac" role="progressbar" style="width: 75%" aria-valuenow="75" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -249,12 +249,24 @@
 <div class="accordion accordion-flush" id="accordionFlushcurrent">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-headingcurrent">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
         Scaffolding using Optical Genome Mapping
         </span>
-      
+      </button>
     </div><!--/div.accordion-header-->
+
+    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
+      <div class="accordion-body">
+        <ul><li><a href="#introduction-to-bionano-optical-genome-mapping-ogm">Introduction to Bionano optical genome mapping (OGM)</a></li>
+<li><a href="#bionano-solve-hybrid-scaffolding">Bionano Solve Hybrid Scaffolding</a></li>
+<li><a href="#installation-and-setup">Installation and Setup</a></li>
+<li><a href="#running-bionano-solve">Running Bionano Solve</a></li>
+<li><a href="#understanding-hybrid-scaffolding-output">Understanding Hybrid Scaffolding Output</a></li>
+<li><a href="#quality-assessment-of-hybrid-scaffolds">Quality Assessment of Hybrid Scaffolds</a></li>
+        </ul></div><!--/div.accordion-body-->
+    </div><!--/div.accordion-collapse-->
 
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
@@ -263,15 +275,6 @@
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
         <a href="assembly-evaluation.html">Assembly Evaluation</a>
-    </div><!--/div.accordion-header-->
-
-  </div><!--/div.accordion-item-->
-</div><!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush10">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading10">
-        <a href="assembly-visualization.html">Assembly Visualization</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -335,7 +338,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Scaffolding using Optical Genome Mapping</h1>
-        <p>Last updated on 2025-02-15 |
+        <p>Last updated on 2025-02-16 |
 
         <a href="https://example.com/FIXME-template-source/edit/main/episodes/scaffolding-using-ogm.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -382,9 +385,8 @@ and interpret the results.</li>
 </div>
 </div>
 </div>
-<div class="section level3">
-<h3 id="introduction-to-bionano-optical-genome-mapping-ogm">Introduction to Bionano optical genome mapping (OGM)<a class="anchor" aria-label="anchor" href="#introduction-to-bionano-optical-genome-mapping-ogm"></a></h3>
-<p>Bionano optical mapping is a high-resolution genome analysis
+<section><h2 class="section-heading" id="introduction-to-bionano-optical-genome-mapping-ogm">Introduction to Bionano optical genome mapping (OGM)<a class="anchor" aria-label="anchor" href="#introduction-to-bionano-optical-genome-mapping-ogm"></a></h2>
+<hr class="half-width"><p>Bionano optical mapping is a high-resolution genome analysis
 technique that generates long-range structural information by labeling
 and imaging ultra-long DNA molecules. It provides genome-wide maps that
 can be used to scaffold contigs from sequencing-based assemblies,
@@ -398,10 +400,8 @@ traditional sequencing methods. Bionano hybrid scaffolding has become a
 standard for enhancing genome assemblies, enabling researchers to
 achieve high-quality, chromosome-level assemblies efficiently.</p>
 <figure><img src="https://github.com/user-attachments/assets/41c7c42b-c5e0-4d0d-b899-a479e62ffaee" alt="Overview of Bionano OGM" class="figure mx-auto d-block"><div class="figcaption">Overview of Bionano OGM</div>
-</figure></div>
-<div class="section level3">
-<h3 id="bionano-solve-hybrid-scaffolding">Bionano Solve Hybrid Scaffolding<a class="anchor" aria-label="anchor" href="#bionano-solve-hybrid-scaffolding"></a></h3>
-<p>Bionano Solve improves genome assembly by integrating optical genome
+</figure></section><section><h2 class="section-heading" id="bionano-solve-hybrid-scaffolding">Bionano Solve Hybrid Scaffolding<a class="anchor" aria-label="anchor" href="#bionano-solve-hybrid-scaffolding"></a></h2>
+<hr class="half-width"><p>Bionano Solve improves genome assembly by integrating optical genome
 mapping data with sequence assemblies, generating ultra-long hybrid
 scaffolds that enhance contiguity and accuracy. The pipeline identifies
 and resolves assembly conflicts, orders and orients sequence contigs,
@@ -433,10 +433,8 @@ assemblies.</li>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">wget</span> ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR522/ERR5229977/Col-0_2021-09-30.cmap</span></code></pre>
 </div>
-</div>
-<div class="section level3">
-<h3 id="installation-and-setup">Installation and Setup<a class="anchor" aria-label="anchor" href="#installation-and-setup"></a></h3>
-<p>Bionano Solve is available on Bionano.com and can be installed on
+</section><section><h2 class="section-heading" id="installation-and-setup">Installation and Setup<a class="anchor" aria-label="anchor" href="#installation-and-setup"></a></h2>
+<hr class="half-width"><p>Bionano Solve is available on Bionano.com and can be installed on
 Linux-based systems. The software requires a valid license and access to
 Bionano data files for processing.</p>
 <p>Custom container with just the hybrid scaffolding tools can be used
@@ -447,10 +445,8 @@ PATH using the command below:</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">$PATH</span>:/apps/biocontainers/exported-wrappers/bionano/3.8.0</span></code></pre>
 </div>
-</div>
-<div class="section level3">
-<h3 id="running-bionano-solve">Running Bionano Solve<a class="anchor" aria-label="anchor" href="#running-bionano-solve"></a></h3>
-<p>To scaffold a genome using Bionano Solve, you need to provide the
+</section><section><h2 class="section-heading" id="running-bionano-solve">Running Bionano Solve<a class="anchor" aria-label="anchor" href="#running-bionano-solve"></a></h2>
+<hr class="half-width"><p>To scaffold a genome using Bionano Solve, you need to provide the
 following input files:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -534,8 +530,8 @@ stored.</td>
 </tr></tbody></table></div>
 </div>
 </div>
-<div class="section level4">
-<h4 id="scffolding-hifiasm-assembly-with-bionano-solve">Scffolding HiFiasm assembly with Bionano Solve<a class="anchor" aria-label="anchor" href="#scffolding-hifiasm-assembly-with-bionano-solve"></a></h4>
+<div class="section level3">
+<h3 id="scffolding-hifiasm-assembly-with-bionano-solve">Scffolding HiFiasm assembly with Bionano Solve<a class="anchor" aria-label="anchor" href="#scffolding-hifiasm-assembly-with-bionano-solve"></a></h3>
 <p>For HiFiasm assembly, you need to provide the HiFiasm assembly FASTA
 file as input to the Bionano Solve pipeline. The command structure
 remains the same, with the only change being the input sequence
@@ -560,8 +556,8 @@ file.</p>
 <span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a>  <span class="at">-o</span> bionano_hifiasm_scaffolding</span></code></pre>
 </div>
 </div>
-<div class="section level4">
-<h4 id="scffolding-flye-assembly-with-bionano-solve">Scffolding Flye assembly with Bionano Solve<a class="anchor" aria-label="anchor" href="#scffolding-flye-assembly-with-bionano-solve"></a></h4>
+<div class="section level3">
+<h3 id="scffolding-flye-assembly-with-bionano-solve">Scffolding Flye assembly with Bionano Solve<a class="anchor" aria-label="anchor" href="#scffolding-flye-assembly-with-bionano-solve"></a></h3>
 <p>For Flye assembly, the process is similar to HiFiasm, but you need to
 provide the Flye assembly FASTA file instead of the HiFiasm assembly.
 The command structure remains the same, with the only change being the
@@ -586,10 +582,8 @@ input sequence file.</p>
 <span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>  <span class="at">-o</span> bionano_flye_scaffolding</span></code></pre>
 </div>
 </div>
-</div>
-<div class="section level3">
-<h3 id="understanding-hybrid-scaffolding-output">Understanding Hybrid Scaffolding Output<a class="anchor" aria-label="anchor" href="#understanding-hybrid-scaffolding-output"></a></h3>
-<p>The output of the Bionano Solve pipeline includes scaffolded genome
+</section><section><h2 class="section-heading" id="understanding-hybrid-scaffolding-output">Understanding Hybrid Scaffolding Output<a class="anchor" aria-label="anchor" href="#understanding-hybrid-scaffolding-output"></a></h2>
+<hr class="half-width"><p>The output of the Bionano Solve pipeline includes scaffolded genome
 assemblies in AGP and FASTA formats, along with alignment and conflict
 resolution information. The hybrid scaffolds provide a more accurate
 representation of the genome structure, with improved contiguity and
@@ -633,10 +627,8 @@ sharing.</td>
 <code>HYBRID_SCAFFOLD_NOT_SCAFFOLDED.fasta</code> represent the final
 scaffolded genome and unplaced contigs, respectively. You will need to
 merge these files to obtain your final scaffolded genome assembly.</p>
-</div>
-<div class="section level3">
-<h3 id="quality-assessment-of-hybrid-scaffolds">Quality Assessment of Hybrid Scaffolds<a class="anchor" aria-label="anchor" href="#quality-assessment-of-hybrid-scaffolds"></a></h3>
-<p>The hybird scaffolds report file will be in the
+</section><section><h2 class="section-heading" id="quality-assessment-of-hybrid-scaffolds">Quality Assessment of Hybrid Scaffolds<a class="anchor" aria-label="anchor" href="#quality-assessment-of-hybrid-scaffolds"></a></h2>
+<hr class="half-width"><p>The hybird scaffolds report file will be in the
 <code>hybrid_scaffolds</code> directory and will provide a summary of
 the scaffolding process, including alignment statistics, conflict
 resolution, and scaffold N50 values. This report is essential for
@@ -828,11 +820,7 @@ of the assembly.</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</div>
-
-
-
-      </div> <!-- / div.lesson-content -->
+</section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="hybrid-assembly.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
         <a class="chapter-link float-end" href="assembly-evaluation.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
@@ -890,7 +878,7 @@ any links that you are not going to use.
   "url": "https://FIXME-template-source.github.io/NA/scaffolding-using-ogm.html",
   "identifier": "https://FIXME-template-source.github.io/NA/scaffolding-using-ogm.html",
   "dateCreated": "2025-02-05",
-  "dateModified": "2025-02-15",
+  "dateModified": "2025-02-16",
   "datePublished": "2025-02-16"
 }
 

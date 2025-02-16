@@ -357,7 +357,13 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>to do</li>
+<ul><li>Why is evaluating genome assembly quality important?</li>
+<li>What tools can be used to assess assembly completeness, accuracy,
+and structural integrity?</li>
+<li>How do you interpret key metrics from assembly evaluation
+tools?</li>
+<li>What are the main steps in evaluating a genome assembly using
+bioinformatics tools?</li>
 </ul></div>
 </div>
 </div>
@@ -365,27 +371,258 @@
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>to do</li>
+<ul><li>Understand the importance of evaluating genome assembly
+quality.</li>
+<li>Learn about tools for assessing assembly completeness, accuracy, and
+structural integrity.</li>
+<li>Interpret key metrics from assembly evaluation tools to guide
+further analysis.</li>
+<li>Evaluate a genome assembly using bioinformatics tools such as QUAST,
+Compleasm, Merqury, and Bandage.</li>
 </ul></div>
 </div>
 </div>
 </div>
 </div>
 <section><h2 class="section-heading" id="evaluating-assembly-quality">Evaluating Assembly Quality<a class="anchor" aria-label="anchor" href="#evaluating-assembly-quality"></a></h2>
-<hr class="half-width"></section><section><h2 class="section-heading" id="quast-for-quality-metrics">Quast for quality metrics<a class="anchor" aria-label="anchor" href="#quast-for-quality-metrics"></a></h2>
-<hr class="half-width"></section><section><h2 class="section-heading" id="compleasm-for-genome-completeness-gene-space">Compleasm for genome completeness (gene-space)<a class="anchor" aria-label="anchor" href="#compleasm-for-genome-completeness-gene-space"></a></h2>
-<hr class="half-width"></section><section><h2 class="section-heading" id="merqury-for-evaluating-genome-assembly">Merqury for evaluating genome assembly<a class="anchor" aria-label="anchor" href="#merqury-for-evaluating-genome-assembly"></a></h2>
-<hr class="half-width"></section><section><h2 class="section-heading" id="assembly-graph-visualization-using-bandage">Assembly graph visualization using Bandage<a class="anchor" aria-label="anchor" href="#assembly-graph-visualization-using-bandage"></a></h2>
-<hr class="half-width"><div id="keypoints1" class="callout keypoints">
+<hr class="half-width"><p>Assessing genome assembly quality is essential to ensure
+completeness, accuracy, and structural integrity before downstream
+analyses. Different tools provide complementary
+insights—<strong>QUAST</strong> evaluates assembly contiguity,
+<strong>Compleasm</strong> assesses gene-space completeness,
+<strong>Merqury</strong> validates k-mer consistency, and
+<strong>Bandage</strong> visualizes assembly graphs for structural
+assessment. Together, these methods help identify errors, improve genome
+reconstruction, and ensure high-quality results.</p>
+<p><strong>Why is Assembly Evaluation Important?</strong></p>
+<ul><li>
+<strong>Detects misassemblies and structural errors</strong>:
+Identifies fragmented, misjoined, or incorrectly placed contigs that can
+impact genome interpretation.<br></li>
+<li>
+<strong>Measures completeness and accuracy</strong>: Ensures that
+essential genes and expected genome regions are properly assembled and
+not missing or duplicated.<br></li>
+<li>
+<strong>Validates sequencing data quality</strong>: Confirms whether
+sequencing errors, biases, or artifacts affect the final assembly.<br></li>
+<li>
+<strong>Guides further refinement</strong>: Helps decide whether
+additional polishing, scaffolding, or reassembly is needed for better
+genome reconstruction.</li>
+</ul></section><section><h2 class="section-heading" id="quast-for-quality-metrics">Quast for quality metrics<a class="anchor" aria-label="anchor" href="#quast-for-quality-metrics"></a></h2>
+<hr class="half-width"><p>You can run <code>quast</code> to evaluate the quality of your genome
+assembly. It is also useful for comparing multiple assemblies to
+identify the best one based on key metrics such as contig count, N50,
+and misassemblies.</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="ex">ml</span> compleasm</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> quast_evaluation</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co"># ln -s ../assembly1.fasta all_assemblies/assembly1.fasta</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co"># ln -s ../assembly2.fasta all_assemblies/assembly2.fasta</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co"># ln -s ../assembly3.fasta all_assemblies/assembly3.fasta</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co"># link any other assemblies you want to compare</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co"># ln -s ../pacbio/9994.q20.CCS-filtered-60x.fastq</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co"># donwload the reference genome</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="fu">wget</span> https://ftp.ensemblgenomes.ebi.ac.uk/pub/plants/release-60/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="fu">gunzip</span> Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="ex">quast.py</span> <span class="dt">\</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>   <span class="at">--output-dir</span> quast_complete_stats <span class="dt">\</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>   <span class="at">--no-read-stats</span> <span class="dt">\</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>   <span class="at">-r</span>  Arabidopsis_thaliana.TAIR10.dna.toplevel.fa <span class="dt">\</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>   <span class="at">--eukaryote</span> <span class="dt">\</span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>   <span class="at">--pacbio</span> 9994.q20.CCS_ge20Kb.fasta <span class="dt">\</span></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>   assembly1.fasta assembly2.fasta assembly3.fasta</span></code></pre>
+</div>
+<p>This will generate a detailed report in the
+<code>quast_complete_stats</code> directory, including key metrics for
+each assembly and a summary of their quality. You can use this
+information to compare different assemblies and select the best one for
+downstream analysis.</p>
+</section><section><h2 class="section-heading" id="compleasm-for-genome-completeness-gene-space">Compleasm for genome completeness (gene-space)<a class="anchor" aria-label="anchor" href="#compleasm-for-genome-completeness-gene-space"></a></h2>
+<hr class="half-width"><p>Similarly, you can use <code>compleasm</code> to assess the
+completeness of your genome assembly in terms of gene-space
+representation. This tool compares the assembly against a set of
+conserved genes to estimate the level of completeness and identify
+missing or fragmented genes.</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="ex">ml</span> compleasm</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> compleasm_evaluation</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co"># ln -s ../assembly1.fasta all_assemblies/assembly1.fasta</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co"># ln -s ../assembly2.fasta all_assemblies/assembly2.fasta</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co"># ln -s ../assembly3.fasta all_assemblies/assembly3.fasta</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co"># link any other assemblies you want to compare</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co"># ln -s ../quast_evaluation/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa # reference</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> <span class="pp">*</span>.fasta<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>  <span class="ex">compleasm</span> run <span class="dt">\</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>    <span class="at">-a</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>    <span class="at">-o</span> <span class="va">${fasta</span><span class="op">%</span>.<span class="pp">*</span><span class="va">}</span>_out <span class="dt">\</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>    <span class="at">-l</span> brassicales_odb10  <span class="dt">\</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>    <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+</div>
+<p>This will generate a detailed report for each assembly in the
+directory, highlighting the completeness of conserved genes and
+potential gaps in the genome reconstruction. The assessment result by
+compleasm is saved in the file <code>summary.txt</code> in the
+<code>compleasm_evaluation/assemblyN_out</code> (specified in output
+<code>-o</code> option) folder. These BUSCO genes are categorized into
+the following classes:</p>
+<ul><li>
+<code>S</code> (Single Copy Complete Genes): The BUSCO genes that
+can be entirely aligned in the assembly, with only one copy
+present.</li>
+<li>
+<code>D</code> (Duplicated Complete Genes): The BUSCO genes that can
+be completely aligned in the assembly, with more than one copy
+present.</li>
+<li>
+<code>F</code> (Fragmented Genes, subclass 1): The BUSCO genes which
+only a portion of the gene is present in the assembly, and the rest of
+the gene cannot be aligned.</li>
+<li>
+<code>I</code> (Fragmented Genes, subclass 2): The BUSCO genes in
+which a section of the gene aligns to one position in the assembly,
+while the remaining part aligns to another position.</li>
+<li>
+<code>M</code> (Missing Genes): The BUSCO genes with no alignment
+present in the assembly.</li>
+</ul></section><section><h2 class="section-heading" id="merqury-for-evaluating-genome-assembly">Merqury for evaluating genome assembly<a class="anchor" aria-label="anchor" href="#merqury-for-evaluating-genome-assembly"></a></h2>
+<hr class="half-width"><p>Merqury is a tool for reference-free assembly evaluation based on
+efficient k-mer set operations. It provides insights into various
+aspects of genome assembly, offering a comprehensive view of genome
+quality without relying on a reference sequence. Specifically, Merqury
+can generate the following plots and metrics:</p>
+<ul><li>
+<strong>Copy Number Spectrum (Spectra-cn Plot):</strong>
+<ul><li>A <strong>k-mer-based analysis</strong> that detects heterozygosity
+levels and genome repeats by identifying peaks in k-mer coverage.<br></li>
+<li>Helps estimate genome size, detect missing regions, and distinguish
+between homozygous and heterozygous k-mers in an assembly.</li>
+</ul></li>
+<li>
+<strong>Assembly Spectrum (Spectra-asm Plot):</strong>
+<ul><li>Compares k-mers between different assemblies or between an assembly
+and raw sequencing reads.<br></li>
+<li>Useful for detecting missing sequences, shared regions, and
+assembly-specific k-mers that may indicate errors or haplotype-specific
+variations.</li>
+</ul></li>
+<li>
+<strong>K-mer Completeness:</strong>
+<ul><li>Measures how many <strong>reliable k-mers</strong> (those likely to
+be real and not sequencing errors) are present in both the sequencing
+reads and the assembly.<br></li>
+<li>Helps identify missing regions, misassemblies, and sequencing biases
+affecting genome reconstruction.</li>
+</ul></li>
+<li>
+<strong>Consensus Quality (QV) Estimation:</strong>
+<ul><li>Uses <strong>k-mer agreement between the assembly and the read
+set</strong> to estimate base-level accuracy.<br></li>
+<li>Higher QV scores indicate a more accurate consensus sequence, but
+results depend on read quality and coverage depth.</li>
+</ul></li>
+<li>
+<strong>Misassembly Detection with K-mer Positioning:</strong>
+<ul><li>Identifies <strong>unexpected k-mers</strong> or <strong>false
+duplications</strong> in assemblies, reporting their positions in
+<code>.bed</code> and <code>.tdf</code> files for visualization in
+genome browsers.<br></li>
+<li>Helps pinpoint structural errors such as collapsed repeats, chimeric
+joins, or large insertions/deletions.</li>
+</ul></li>
+</ul><p>This <strong>k-mer-based approach</strong> in Merqury provides
+<strong>reference-free genome quality evaluation</strong>, making it
+highly effective for <strong>de novo assemblies and structural
+validation</strong>.</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="ex">ml</span> merqury</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="ex">ml</span> meryl</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> merqury_evaluation</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co"># ln -s ../assembly1.fasta all_assemblies/assembly1.fasta</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co"># ln -s ../assembly2.fasta all_assemblies/assembly2.fasta</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co"># ln -s ../assembly3.fasta all_assemblies/assembly3.fasta</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co"># link any other assemblies you want to compare</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co"># ln -s ../quast_evaluation/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa # reference</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co"># ln -s ../pacbio/9994.q20.CCS-filtered-60x.fastq # pacbio reads</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="ex">meryl</span> <span class="dt">\</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>   count k=21 <span class="dt">\</span></span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>   threads=<span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>   memory=8g <span class="dt">\</span></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>   output 9994.q20.CCS-filtered.meryl<span class="dt">\</span></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>   9994.q20.CCS-filtered.fastq</span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="ex">merqury</span> <span class="dt">\</span></span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>   <span class="at">-a</span> assembly1.fasta <span class="dt">\</span></span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a>   <span class="at">-r</span> 9994.q20.CCS-filtered.meryl <span class="dt">\</span></span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a>   <span class="at">-o</span> merqury_evaluation/assembly1</span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a><span class="ex">merqury.sh</span> <span class="dt">\</span></span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a>   9994.q20.CCS-filtered.meryl </span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a>   <span class="ex">assembly1.fasta</span> assembly2.fasta assembly3.fasta</span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a>   <span class="ex">merqury_evaluation_output</span></span></code></pre>
+</div>
+<p>This will generate numberous files with
+<code>merqury_evaluation_output</code> prefix, including k-mer spectra,
+completeness metrics, and consensus quality estimates for each assembly.
+You can use these results to evaluate the accuracy, completeness, and
+structural integrity of your genome assemblies.</p>
+</section><section><h2 class="section-heading" id="assembly-graph-visualization-using-bandage">Assembly graph visualization using Bandage<a class="anchor" aria-label="anchor" href="#assembly-graph-visualization-using-bandage"></a></h2>
+<hr class="half-width"><p>Bandage is a tool for visualizing assembly graphs, which represent
+the connections between contigs or scaffolds in a genome assembly. By
+visualizing the graph structure, you can identify complex regions,
+repetitive elements, and potential misassemblies that may affect the
+genome reconstruction.</p>
+<p>To visualize the assembly graph using Bandage:</p>
+<ol style="list-style-type: decimal"><li>Open a web browser and navigate to <a href="">desktop.negishi.rcac.purdue.edu</a>.</li>
+<li>Log in with your Purdue Career Account username and password, but
+append “,push” to your password.</li>
+<li>Lauch the terminal and run the following command:</li>
+</ol><div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="ex">ml</span> bandage</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="ex">Bandage</span></span></code></pre>
+</div>
+<ol start="4" style="list-style-type: decimal"><li>In the Bandage interface, navigate to your assembly folder (hifiasm
+or flye), and load your assembly graph (e.g.,
+<code>assembly1.fasta</code>) .</li>
+<li>Explore the graph structure, identify complex regions, and visualize
+connections between contigs or scaffolds.</li>
+</ol><figure><img src="https://github.com/user-attachments/assets/172513cc-d43b-401d-afbe-239d415d12bb" alt="Bandage interface" class="figure mx-auto d-block"><div class="figcaption">Bandage interface</div>
+</figure><div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
 <div class="callout-inner">
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
-<ul><li>point 1</li>
-<li>point 2</li>
-<li>point 3</li>
+<ul><li>
+<strong>QUAST</strong> evaluates assembly contiguity and quality
+metrics.</li>
+<li>
+<strong>Compleasm</strong> assesses gene-space completeness in
+genome assemblies.</li>
+<li>
+<strong>Merqury</strong> provides reference-free evaluation based on
+k-mer analysis.</li>
+<li>
+<strong>Bandage</strong> visualizes assembly graphs for structural
+assessment.</li>
 </ul></div>
 </div>
 </div>

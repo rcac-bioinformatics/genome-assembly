@@ -131,8 +131,7 @@ In this workshop, we will use HiFiasm for PacBio HiFi assemblies, Flye for ONT a
 - **Haplotype Purity and Phasing**: It calculates **QV (quality value)** scores and provides **completeness metrics for haplotypes**, helping assess whether an assembly accurately represents both parental haplotypes or contains chimeric sequences.  
 - **Consensus and Read Support Validation**: By analyzing k-mer spectra, Merqury detects **underrepresented or overrepresented regions**, highlighting assembly errors, collapsed repeats, or sequencing biases that may impact downstream analyses.
 
-![kmer spectra](https://github.com/user-attachments/assets/5f6d4756-c5c8-4e5d-a6a0-35d409a0fa16)
-
+![kmer spectra](https://github.com/user-attachments/assets/042f0ad9-e06e-4aa0-8faf-51f0d42e2983)
 
 ## Bionano and Hi-C Reads in Genome Assembly  
 

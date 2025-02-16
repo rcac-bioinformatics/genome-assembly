@@ -56,7 +56,7 @@ Genome assembly involves choosing the right approach based on sequencing technol
 | **Genome size suitability** | Suitable for large and small genomes | Best for large genomes | Best for complex genomes     |
 | **Downstream applications** | Reference-quality genome assembly, annotation | Structural variation analysis, de novo assembly | Genome correction, variant calling, scaffolding |
 
-## **Contig vs. Scaffold vs. Chromosome-Level Assembly**  
+## Contig vs. Scaffold vs. Chromosome-Level Assembly  
 
 Genome assemblies progress through different levels of completeness and organization:  
 
@@ -134,7 +134,7 @@ In this workshop, we will use HiFiasm for PacBio HiFi assemblies, Flye for ONT a
 ![kmer spectra](https://github.com/user-attachments/assets/5f6d4756-c5c8-4e5d-a6a0-35d409a0fa16)
 
 
-## **Bionano and Hi-C Reads in Genome Assembly**  
+## Bionano and Hi-C Reads in Genome Assembly  
 
 **Bionano Optical Genome Mapping (OGM)** provides ultra-long, label-based maps of DNA molecules, helping to scaffold contigs, detect misassemblies, and resolve large structural variations. It improves genome continuity by linking fragmented sequences, especially in repeat-rich or complex genomes.  
 

@@ -17,11 +17,16 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Introduction to Topic
+## Evaluating Assembly Quality
 
-- depth and coverage
-- assemblers
-- evaluation
+
+## Quast for quality metrics
+
+
+## Compleasm for genome completeness (gene-space)
+
+
+## Merqury for evaluating genome assembly
 
 
 

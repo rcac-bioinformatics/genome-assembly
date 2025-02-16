@@ -2,8 +2,6 @@
 site: sandpaper::sandpaper_site
 ---
 
-This is a new lesson built with [The Carpentries Workbench][workbench]. 
+Welcome to the Workshop on Genome Assembly!
 
-
-[workbench]: https://carpentries.github.io/sandpaper-docs
-
+[to do] Anything else to put here for the workshop?

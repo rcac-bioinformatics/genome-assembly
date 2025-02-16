@@ -1,5 +1,5 @@
 ---
-title: 'Assembly Evaluation'
+title: 'Assembly Assessment'
 teaching: 10
 exercises: 2
 ---

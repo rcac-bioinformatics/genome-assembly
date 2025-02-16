@@ -28,6 +28,9 @@ exercises: 2
 
 Genome assembly involves choosing the right approach based on sequencing technology, read type, genome complexity, and research objectives. This chapter introduces key factors influencing assembly strategy selection, from read length and coverage requirements to computational trade-offs. We will explore different methods—PacBio HiFi with HiFiasm, ONT with Flye, and hybrid assemblies—along with scaffolding techniques like Bionano Optical Genome Mapping (OGM) and Hi-C, which help improve genome continuity and organization. Finally, we’ll discuss assembly evaluation tools such as BUSCO and QUAST to assess the completeness and quality of assembled genomes.
 
+
+:::::::::::::::::::::::::::::::::::::::  prereq
+
 ## Factors Influencing the Choice of Strategy
 
 - **Read length**: Affects the ability to resolve repeats; short reads struggle with complex regions, while long reads improve contiguity.  
@@ -36,6 +39,8 @@ Genome assembly involves choosing the right approach based on sequencing technol
 - **Computational resources**: Vary across assembly strategies, with HiFiasm being RAM-intensive, Flye being more lightweight, and hybrid assemblies requiring additional processing for polishing.  
 - **Sequencing budget**: Plays a role, as HiFi sequencing is costlier but highly accurate, ONT is cheaper but requires more data for error correction, and hybrid approaches balance cost and quality.  
 - **Downstream analyses**: Structural variation detection, gene annotation, or chromosome-level assemblies influence the choice of assembler and the need for scaffolding methods like Hi-C or Bionano OGM.
+
+:::::::::::::::::::::::::::::::::::::::
 
 ## Comparative Assembly Strategies
 

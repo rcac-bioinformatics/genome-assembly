@@ -25,7 +25,7 @@ exercises: 2
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-### Introduction to HiFiasm
+## Introduction to HiFiasm
 
 [HiFiasm](https://www.nature.com/articles/s41592-020-01056-5) is a specialized de novo assembler designed for PacBio HiFi reads, providing high-quality, haplotype-resolved genome assemblies. Unlike traditional assemblers that collapse heterozygous regions into a consensus sequence, HiFiasm preserves haplotype information using a phased assembly graph approach. This enables more accurate representation of genetic variations and structural differences.
 
@@ -44,7 +44,7 @@ The latest version of HiFiasm supports assembling ONT reads as well. It has also
 :::::::::::::::::::::::::::::::::::::::
 
 
-### Installation and Setup
+## Installation and Setup
 
 HiFiasm is available as module on RCAC clusters. You can load the module using the following command:
 
@@ -63,7 +63,7 @@ apptainer pull docker://quay.io/biocontainers/hifiasm:0.24.0--h5ca1c30_0
 apptainer exec hifiasm_0.24.0--h5ca1c30_0.sif hifiasm --version
 ```
 
-### Overview of HiFiASM Read Assembly
+## Overview of HiFiASM Read Assembly
 
 HiFiasm can assemble high-quality, contiguous genome sequences from PacBio High-Fidelity (HiFi) reads. HiFi reads are long and highly accurate (99%+), making them ideal for assembling complex genomes, resolving repetitive regions, and distinguishing haplotypes in diploid or polyploid organisms.
 
@@ -81,7 +81,7 @@ HiFiasm is optimized for this process, leveraging the high accuracy of HiFi read
 ![HiFiasm assembler](https://github.com/user-attachments/assets/1ab2a17c-ac29-42c7-a890-5c86577e2f19)
 
 
-### HiFiasm: basic workflow
+## HiFiasm: basic workflow
 
 To run HiFiasm, you need to provide the input HiFi reads in FASTA or FASTQ format. The basic command structure is as follows:
 
@@ -107,7 +107,7 @@ The input can either be fastq or fasta, compressed or uncompressed. The output w
 
 :::
 
-### Understanding HiFiasm Output
+## Understanding HiFiasm Output
 
 
 The run generates several output files. Here are all the files and their descriptions:
@@ -193,7 +193,7 @@ quast.py \
 
 
 
-### Handling haplotype-resolved contigs
+## Handling haplotype-resolved contigs
 
 HiFiasm generates haplotype-resolved contigs. With the default options above, you saw that it generated `hap1.p_ctg`, `hap2.p_ctg` and `.p_ctg` GFA files, which corresponds to haplotype 1, haplotype 2, and primary contigs, respectively.
 Although HiFiasm separates the haplotypes, it is unable to phase (assign the actual regions of hap1 and hap2 to their respective haplotypes consistently across the genome) them without additional data.
@@ -354,7 +354,7 @@ Examining the results from QUAST and Compleasm, compare the assembly statistics 
 
 
 
-### Improving Assembly Quality  
+## Improving Assembly Quality  
 
 After the first round of assembly, you will have the files `*.ec.bin`, `*.ovlp.source.bin`, and `*.ovlp.reverse.bin`. Save these files and try various options to see if you can improve the assembly.
 First, make a folder to move the .gfa, .fasta, and .bed files. 
@@ -365,11 +365,11 @@ You can re-run the assembly quickly and generate statistics for each of these fo
 
 
 
-### Alternative Assembler: Flye for HiFi   
+## Alternative Assembler: Flye for HiFi   
 
 Flye is another popular assembler specialized for ONT reads, offering a different approach to haplotype-resolved assembly. The latest version can also use HiFi reads to generate great quality assemblies. We will explore Flye in a separate episode to compare its performance with HiFiasm. But in this optional section, you can try running Flye with HiFi reads to see how it performs compared to HiFiasm.
 
-#### Running Flye with HiFi Reads
+### Running Flye with HiFi Reads
 
 To run Flye with HiFi reads, you can use the following command structure:
 

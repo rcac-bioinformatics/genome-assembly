@@ -25,7 +25,7 @@ exercises: 2
 
 
 
-### Data Quality Check and Filtering  
+## Data Quality Check and Filtering  
 
 - **What is data quality checking and filtering?**
   - Assessing the quality of raw sequencing data before genome assembly.
@@ -53,7 +53,7 @@ exercises: 2
 
 
 
-#### PacBio HiFi reads from Subreads
+## PacBio HiFi reads from Subreads
 
 **PacBio HiFi** reads can be generated using [Circular Consensus Sequencing](https://ccs.how/) (CCS) program from **PacBio**
 
@@ -104,7 +104,7 @@ samtools fastq \
 - Data has been filtered to include only HiFi reads with a Q-score of 20 or higher.
 
 
-#### ONT Reads from MinION Sequencing
+## ONT Reads from MinION Sequencing
 
 **Oxford Nanopore Technologies (ONT)** sequencing generates long reads by passing DNA through a biological nanopore
 
@@ -174,11 +174,11 @@ dorado basecaller \
 - Data is for _Arabidopsis thaliana_ ecotype Col-0, sequenced using R10.4/Q20+ chemistry from MinION cell
 - The data is publicly available on the European Nucleotide Archive (ENA), and the `pass_fast5` reads were used for basecalling (with commands above).
 
-### A. NanoPlot for Quality Assessment
+## A. NanoPlot for Quality Assessment
 
 [NanoPlot](https://github.com/wdecoster/NanoPlot) [ref](https://doi.org/10.1093/bioinformatics/bty149) is a visualization tool designed for quality assessment of long-read sequencing data. It generates a variety of plots, including read length histograms, cumulative yield plots, violin plots of read length and quality over time, and bivariate plots that compare read lengths, quality scores, reference identity, and mapping quality. By providing both single-variable and density-based visualizations, NanoPlot helps users quickly assess sequencing run quality and detect potential issues. The tool also allows downsampling, length and quality filtering, and barcode-specific analysis for multiplexed experiments.
 
-#### 1. Quality Assessment of PacBio HiFi Reads  
+**1. Quality Assessment of PacBio HiFi Reads**  
 
 Assessing the quality of ONT reads using `NanoPlot`. Create a slurm script to run NanoPlot on the HiFi reads.
 
@@ -250,7 +250,7 @@ Examine the `col_0_pacbioNanoPlot-report.html` file
 Our genome (_A. thaliana_) has a genome size of ~135 Mb. Our target coverage is ~40x. Currently we have ~18Gb of HiFi reads (~138X depth of coverage). We need to filter the reads to ensure we have good quality reads of desired length and coverage.
 :::
 
-#### 2. Quality Assessment of ONT Reads  
+**2. Quality Assessment of ONT Reads**  
 
 Assessing the quality of ONT reads using `NanoPlot`. Create a slurm script to run NanoPlot on the basecalled ONT reads.
 
@@ -323,7 +323,7 @@ Our genome (_A. thaliana_) has a genome size of ~135 Mb. Our target coverage is 
 
 
 
-#### B. Filtering Sequencing Reads
+## B. Filtering Sequencing Reads
 
 
 [`Filtlong`](https://github.com/rrwick/Filtlong) is a tool designed to filter long-read sequencing data by selecting a smaller, higher-quality subset of reads based on length and identity. It prioritizes longer reads with higher sequence identity while discarding shorter or lower-quality reads, ensuring that the retained data contributes to more accurate genome assemblies. This filtering step is crucial for improving assembly contiguity, reducing errors, and optimizing computational efficiency by removing excess low-quality data.
@@ -370,7 +370,7 @@ filtlong \
 :::
 
 
-#### C. Evaluating Data Quality After Filtering  
+## C. Evaluating Data Quality After Filtering  
 
 
 We will re-run `NanoPlot` on the filtered HiFi and ONT reads to assess the quality of the filtered datasets.
@@ -413,7 +413,7 @@ Now, examine the `col_0_pacbio_filteredNanoPlot-report.html` and `col_0_ont_filt
 We will use these filtered reads for downstream genome assembly.
 
 
-#### D. K-mer Based Quality Checks (Optional) 
+## D. K-mer Based Quality Checks (Optional) 
 
 [GenomeScope](https://github.com/tbenavi1/genomescope2.0) is a k-mer-based tool used to profile genomes without requiring a reference, providing estimates of genome size, heterozygosity, and repeat content. It uses k-mer frequency distributions from raw sequencing reads to model genome characteristics, making it especially useful for detecting sequencing artifacts and assessing data quality before assembly. In this optional section, we will use GenomeScope to evaluate the quality of our Oxford Nanopore and PacBio reads by identifying potential errors, biases, and coverage issues, helping to refine filtering strategies and improve downstream assembly results [ref](https://www.nature.com/articles/s41467-020-14998-3).
 

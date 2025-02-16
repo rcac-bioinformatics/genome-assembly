@@ -24,7 +24,7 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-### Introduction to Bionano optical genome mapping (OGM)
+## Introduction to Bionano optical genome mapping (OGM)
 
 Bionano optical mapping is a high-resolution genome analysis technique that generates long-range structural information by labeling and imaging ultra-long DNA molecules. It provides genome-wide maps that can be used to scaffold contigs from sequencing-based assemblies, significantly improving contiguity and structural accuracy. By integrating Bionano maps with assemblies from PacBio HiFi and Oxford Nanopore Technologies (ONT), misassemblies can be corrected, chimeric contigs resolved, and scaffold N50s increased by orders of magnitude. This approach is particularly valuable for complex genomes, where repetitive sequences and structural variations pose challenges for traditional sequencing methods. Bionano hybrid scaffolding has become a standard for enhancing genome assemblies, enabling researchers to achieve high-quality, chromosome-level assemblies efficiently.
 
@@ -32,7 +32,7 @@ Bionano optical mapping is a high-resolution genome analysis technique that gene
 ![Overview of Bionano OGM](https://github.com/user-attachments/assets/41c7c42b-c5e0-4d0d-b899-a479e62ffaee)
 
 
-### Bionano Solve Hybrid Scaffolding
+## Bionano Solve Hybrid Scaffolding
 
 Bionano Solve improves genome assembly by integrating optical genome mapping data with sequence assemblies, generating ultra-long hybrid scaffolds that enhance contiguity and accuracy. The pipeline identifies and resolves assembly conflicts, orders and orients sequence contigs, and estimates gap sizes between adjacent sequences.
 
@@ -66,7 +66,7 @@ wget ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR522/ERR5229977/Col-0_2021-09-30.cmap
 
 
 
-### Installation and Setup  
+## Installation and Setup  
 
 
 Bionano Solve is available on Bionano.com and can be installed on Linux-based systems. The software requires a valid license and access to Bionano data files for processing. 
@@ -77,7 +77,7 @@ Custom container with just the hybrid scaffolding tools can be used to run the B
 export PATH=$PATH:/apps/biocontainers/exported-wrappers/bionano/3.8.0
 ```
 
-### Running Bionano Solve
+## Running Bionano Solve
 
 To scaffold a genome using Bionano Solve, you need to provide the following input files:
 
@@ -123,7 +123,7 @@ run_hybridscaffold.sh
 :::
 
 
-#### Scffolding HiFiasm assembly with Bionano Solve
+### Scffolding HiFiasm assembly with Bionano Solve
 
 For HiFiasm assembly, you need to provide the HiFiasm assembly FASTA file as input to the Bionano Solve pipeline. The command structure remains the same, with the only change being the input sequence file.
 
@@ -147,7 +147,7 @@ run_hybridscaffold.sh \
 
 
 
-#### Scffolding Flye assembly with Bionano Solve
+### Scffolding Flye assembly with Bionano Solve
 
 
 For Flye assembly, the process is similar to HiFiasm, but you need to provide the Flye assembly FASTA file instead of the HiFiasm assembly. The command structure remains the same, with the only change being the input sequence file.
@@ -170,7 +170,7 @@ run_hybridscaffold.sh \
   -o bionano_flye_scaffolding
 ```
 
-### Understanding Hybrid Scaffolding Output
+## Understanding Hybrid Scaffolding Output
 
 The output of the Bionano Solve pipeline includes scaffolded genome assemblies in AGP and FASTA formats, along with alignment and conflict resolution information. The hybrid scaffolds provide a more accurate representation of the genome structure, with improved contiguity and reduced misassemblies. The output files can be visualized using genome browsers or alignment viewers to assess the quality and completeness of the assembly.
 
@@ -192,7 +192,7 @@ Within `hybrid_scaffolds`, the files ending with `HYBRID_SCAFFOLD.fasta` and `HY
 You will need to merge these files to obtain your final scaffolded genome assembly.
 
 
-### Quality Assessment of Hybrid Scaffolds
+## Quality Assessment of Hybrid Scaffolds
 
 
 The hybird scaffolds report file will be in the `hybrid_scaffolds` directory and will provide a summary of the scaffolding process, including alignment statistics, conflict resolution, and scaffold N50 values. This report is essential for evaluating the quality and completeness of the hybrid scaffolds and identifying any potential issues that need further investigation.

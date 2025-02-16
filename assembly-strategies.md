@@ -147,11 +147,12 @@ In this workshop, we will use HiFiasm for PacBio HiFi assemblies, Flye for ONT a
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- **Genome assembly** reconstructs complete genome sequences from fragmented DNA reads.
-- **De novo** assembly builds genomes without a reference, while **reference-guided** assembly uses existing genomes.
-- **Sequencing technologies** like Illumina, PacBio HiFi, and Oxford Nanopore offer different read lengths and error rates.
-- **Challenges** include repetitive elements, heterozygosity, and error correction.
-- **Tools** many programs are available for data QC, assembly, post-processing, and evaluation - choice depends on data type and research goals.
+Here are four **key take-home messages** for this section:  
+
+- **Genome assembly strategy depends on read type, genome complexity, and computational resources**, with PacBio HiFi, ONT, and hybrid approaches offering different advantages in accuracy, cost, and contiguity.  
+- **Assembly evaluation is critical for assessing completeness and accuracy**, using tools like **BUSCO for gene completeness, QUAST for structural integrity, and Merqury for k-mer-based validation**.  
+- **Scaffolding methods like Bionano OGM and Hi-C improve genome organization**, resolving large structural variations and ordering contigs into chromosome-level assemblies.  
+- **A well-assembled genome is essential for downstream applications such as annotation, comparative genomics, and structural variation analysis**, with missing or misassembled regions potentially leading to incorrect biological conclusions.
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::

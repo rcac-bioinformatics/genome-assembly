@@ -147,12 +147,10 @@ In this workshop, we will use HiFiasm for PacBio HiFi assemblies, Flye for ONT a
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-Here are four **key take-home messages** for this section:  
-
-- **Genome assembly strategy depends on read type, genome complexity, and computational resources**, with PacBio HiFi, ONT, and hybrid approaches offering different advantages in accuracy, cost, and contiguity.  
-- **Assembly evaluation is critical for assessing completeness and accuracy**, using tools like **BUSCO for gene completeness, QUAST for structural integrity, and Merqury for k-mer-based validation**.  
-- **Scaffolding methods like Bionano OGM and Hi-C improve genome organization**, resolving large structural variations and ordering contigs into chromosome-level assemblies.  
-- **A well-assembled genome is essential for downstream applications such as annotation, comparative genomics, and structural variation analysis**, with missing or misassembled regions potentially leading to incorrect biological conclusions.
+- Genome assembly strategy depends on read type, genome complexity, and computational resources, with PacBio HiFi, ONT, and hybrid approaches offering different advantages in accuracy, cost, and contiguity.  
+- Assembly evaluation is critical for assessing completeness and accuracy, using tools like **BUSCO for gene completeness, QUAST for structural integrity, and Merqury for k-mer-based validation**.  
+- Scaffolding methods like Bionano OGM and Hi-C improve genome organization, resolving large structural variations and ordering contigs into chromosome-level assemblies.  
+- A well-assembled genome is essential for downstream applications such as annotation, comparative genomics, and structural variation analysis, with missing or misassembled regions potentially leading to incorrect biological conclusions.
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::

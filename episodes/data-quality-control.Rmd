@@ -189,13 +189,12 @@ ml nanoplot
 NanoPlot \
    --threads ${SLURM_CPUS_ON_NODE} \
    --verbose \
-   --outdir nanoplot_pacbio_output \
-   --prefix col_0_pacbio \
-   --readtype 1D \
+   --outdir nanoplot_pacbio_pre \
+   --prefix At_PacBio_ \
    --plots kde \
    --N50 \
    --dpi 300 \
-   --fastq 9994.q20.CCS.fastq.gz
+   --fastq At_pacbio-hifi.fastq.gz
 ```
 
 
@@ -204,7 +203,7 @@ NanoPlot \
 The stdout from the NanoPlot run will look like this:
 
 ```
-2025-02-13 12:13:19,155 NanoPlot 1.44.1 started with arguments Namespace(threads=16, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_output', no_static=False, prefix='col_0_pacbio', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['9994.q20.CCS.fastq.gz'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_output/col_0_pacbio')
+2025-02-13 12:13:19,155 NanoPlot 1.44.1 started with arguments Namespace(threads=16, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_output', no_static=False, prefix='At_PacBio_', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['9994.q20.CCS.fastq.gz'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_output/At_PacBio_')
 2025-02-13 12:13:19,156 Python version is: 3.9.21 | packaged by conda-forge | (main, Dec  5 2024, 13:51:40)  [GCC 13.3.0]
 2025-02-13 12:13:19,186 Nanoget: Starting to collect statistics from plain fastq file.
 2025-02-13 12:13:19,187 Nanoget: Decompressing gzipped fastq 9994.q20.CCS.fastq.gz
@@ -216,15 +215,15 @@ The stdout from the NanoPlot run will look like this:
 2025-02-13 12:29:10,557 NanoPlot:  Valid colormap Greens.
 2025-02-13 12:29:10,582 NanoPlot:  Creating length plots for Read length.
 2025-02-13 12:29:10,583 NanoPlot: Using 837586 reads with read length N50 of 22587bp and maximum of 57055bp.
-2025-02-13 12:29:11,933 Saved nanoplot_pacbio_output/col_0_pacbioWeightedHistogramReadlength  as png (or png for --legacy)
-2025-02-13 12:29:12,443 Saved nanoplot_pacbio_output/col_0_pacbioWeightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
-2025-02-13 12:29:12,899 Saved nanoplot_pacbio_output/col_0_pacbioNon_weightedHistogramReadlength  as png (or png for --legacy)
-2025-02-13 12:29:13,371 Saved nanoplot_pacbio_output/col_0_pacbioNon_weightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:29:11,933 Saved nanoplot_pacbio_output/At_PacBio_WeightedHistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:29:12,443 Saved nanoplot_pacbio_output/At_PacBio_WeightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:29:12,899 Saved nanoplot_pacbio_output/At_PacBio_Non_weightedHistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:29:13,371 Saved nanoplot_pacbio_output/At_PacBio_Non_weightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
 2025-02-13 12:29:13,372 NanoPlot: Creating yield by minimal length plot for Read length.
-2025-02-13 12:29:14,465 Saved nanoplot_pacbio_output/col_0_pacbioYield_By_Length  as png (or png for --legacy)
+2025-02-13 12:29:14,465 Saved nanoplot_pacbio_output/At_PacBio_Yield_By_Length  as png (or png for --legacy)
 2025-02-13 12:29:14,466 Created length plots
 2025-02-13 12:29:14,474 NanoPlot: Creating Read lengths vs Average read quality plots using 837586 reads.
-2025-02-13 12:29:15,012 Saved nanoplot_pacbio_output/col_0_pacbioLengthvsQualityScatterPlot_kde  as png (or png for --legacy)
+2025-02-13 12:29:15,012 Saved nanoplot_pacbio_output/At_PacBio_LengthvsQualityScatterPlot_kde  as png (or png for --legacy)
 2025-02-13 12:29:15,013 Created LengthvsQual plot
 2025-02-13 12:29:15,013 Writing html report.
 2025-02-13 12:29:15,029 Finished!
@@ -234,7 +233,7 @@ The stdout from the NanoPlot run will look like this:
 
 **Evaluate the quality of HiFi reads:**
 
-Examine the `col_0_pacbioNanoPlot-report.html` file
+Examine the `At_PacBio_NanoPlot-report.html` file
 
 - **Read length distribution**: Histogram of read lengths, showing the distribution of read lengths in the dataset.
 - **Read length vs. Quality**: Scatter plot showing the relationship between read length and quality score.
@@ -261,13 +260,13 @@ ml nanoplot
 NanoPlot \
    --threads ${SLURM_CPUS_ON_NODE} \
    --verbose \
-   --outdir nanoplot_ont_output \
-   --prefix col_0_ont \
+   --outdir nanoplot_ont_pre \
+   --prefix At_ONT_ \
    --readtype 1D \
    --plots kde \
    --N50 \
    --dpi 300 \
-   --fastq dorado_output_dir/basecalled_2025-02-12.fastq
+   --fastq At_ont-reads.fastq.gz
 ```
 
 :::::::::::::::::::::::::::::::::::::::::: spoiler
@@ -275,7 +274,7 @@ NanoPlot \
 The stdout from the NanoPlot run will look like this:
 
 ```
-2025-02-13 12:15:51,066 NanoPlot 1.44.1 started with arguments Namespace(threads=8, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_output', no_static=False, prefix='col_0_ont', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['basecalled_2025-02-12.fastq'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_output/col_0_ont')
+2025-02-13 12:15:51,066 NanoPlot 1.44.1 started with arguments Namespace(threads=8, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_output', no_static=False, prefix='At_ONT_', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['basecalled_2025-02-12.fastq'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_output/At_ONT_')
 2025-02-13 12:15:51,067 Python version is: 3.9.21 | packaged by conda-forge | (main, Dec  5 2024, 13:51:40)  [GCC 13.3.0]
 2025-02-13 12:15:51,096 Nanoget: Starting to collect statistics from plain fastq file.
 2025-02-13 12:25:11,429 Reduced DataFrame memory usage from 8.842315673828125Mb to 8.842315673828125Mb
@@ -286,15 +285,15 @@ The stdout from the NanoPlot run will look like this:
 2025-02-13 12:25:11,707 NanoPlot:  Valid colormap Greens.
 2025-02-13 12:25:11,725 NanoPlot:  Creating length plots for Read length.
 2025-02-13 12:25:11,725 NanoPlot: Using 579482 reads with read length N50 of 36292bp and maximum of 298974bp.
-2025-02-13 12:25:13,096 Saved nanoplot_pacbio_output/col_0_ontWeightedHistogramReadlength  as png (or png for --legacy)
-2025-02-13 12:25:13,571 Saved nanoplot_pacbio_output/col_0_ontWeightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
-2025-02-13 12:25:14,971 Saved nanoplot_pacbio_output/col_0_ontNon_weightedHistogramReadlength  as png (or png for --legacy)
-2025-02-13 12:25:15,440 Saved nanoplot_pacbio_output/col_0_ontNon_weightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:25:13,096 Saved nanoplot_pacbio_output/At_ONT_WeightedHistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:25:13,571 Saved nanoplot_pacbio_output/At_ONT_WeightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:25:14,971 Saved nanoplot_pacbio_output/At_ONT_Non_weightedHistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:25:15,440 Saved nanoplot_pacbio_output/At_ONT_Non_weightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
 2025-02-13 12:25:15,441 NanoPlot: Creating yield by minimal length plot for Read length.
-2025-02-13 12:25:16,485 Saved nanoplot_pacbio_output/col_0_ontYield_By_Length  as png (or png for --legacy)
+2025-02-13 12:25:16,485 Saved nanoplot_pacbio_output/At_ONT_Yield_By_Length  as png (or png for --legacy)
 2025-02-13 12:25:16,486 Created length plots
 2025-02-13 12:25:16,495 NanoPlot: Creating Read lengths vs Average read quality plots using 579482 reads.
-2025-02-13 12:25:17,029 Saved nanoplot_pacbio_output/col_0_ontLengthvsQualityScatterPlot_kde  as png (or png for --legacy)
+2025-02-13 12:25:17,029 Saved nanoplot_pacbio_output/At_ONT_LengthvsQualityScatterPlot_kde  as png (or png for --legacy)
 2025-02-13 12:25:17,030 Created LengthvsQual plot
 2025-02-13 12:25:17,030 Writing html report.
 2025-02-13 12:25:17,047 Finished!
@@ -303,7 +302,7 @@ The stdout from the NanoPlot run will look like this:
 
 **Evaluate the quality of ONT reads:**
 
-Examine the `col_0_ontNanoPlot-report.html` file. 
+Examine the `At_ONT_NanoPlot-report.html` file. 
 
 - **Read length distribution**: Histogram of read lengths, showing the distribution of read lengths in the dataset.
 - **Read length vs. Quality**: Scatter plot showing the relationship between read length and quality score.
@@ -341,7 +340,7 @@ filtlong \
    --target_bases 5400000000 \
    --keep_percent 90 \
    --min_length 1000 \
-     9994.q20.CCS.fastq.gz > 9994.q20.CCS-filtered.fastq
+     At_pacbio-hifi.fastq.gz > At_pacbio-hifi-filtered.fastq
 ```
 
 **2. Filtering ONT Reads**
@@ -356,7 +355,7 @@ filtlong \
    --target_bases 5400000000 \
    --keep_percent 90 \
    --min_length 1000 \
-     basecalled_2025-02-12.fastq > basecalled_2025-02-12-filtered.fastq
+     At_ont-reads.fastq.gz > At_ont-reads-filtered.fastq
 ```
 
 ::: callout
@@ -384,12 +383,13 @@ ml nanoplot
 NanoPlot \
    --threads ${SLURM_CPUS_ON_NODE} \
    --verbose \
-   --outdir nanoplot_pacbio_output_filtered \
-   --prefix col_0_pacbio_filtered \
+   --outdir nanoplot_pacbio_post \
+   --prefix At_PacBio_post_ \
    --plots kde \
    --N50 \
    --dpi 300 \
-   --fastq 9994.q20.CCS-filtered.fastq
+   --fastq At_pacbio-hifi-filtered.fastq
+
 ```
 
 **2. For ONT Reads:**
@@ -401,15 +401,16 @@ ml nanoplot
 NanoPlot \
    --threads ${SLURM_CPUS_ON_NODE} \
    --verbose \
-   --outdir nanoplot_ont_output_filtered \
-   --prefix col_0_ont_filtered \
+   --outdir nanoplot_ont_post \
+   --prefix At_ONT_post_ \
+   --readtype 1D \
    --plots kde \
    --N50 \
    --dpi 300 \
-   --fastq basecalled_2025-02-12-filtered.fastq
+   --fastq At_ont-reads-filtered.fastq
 ```
 
-Now, examine the `col_0_pacbio_filteredNanoPlot-report.html` and `col_0_ont_filteredNanoPlot-report.html` files to assess the quality of the filtered HiFi and ONT reads. Do you observe any improvements in read quality after filtering?
+Now, examine the `At_PacBio_post_NanoPlot-report.html` and `At_ONT_post_NanoPlot-report.html` files to assess the quality of the filtered HiFi and ONT reads. Do you observe any improvements in read quality after filtering?
 We will use these filtered reads for downstream genome assembly.
 
 
@@ -426,7 +427,7 @@ ml --force purge
 ml biocontainers
 ml kmc
 mkdir tmp
-ls 9994.q20.CCS-filtered.fastq > FILES
+ls At_pacbio-hifi-filtered.fastq > FILES
 kmc -k21 -t10 -m64 -ci1 -cs10000 @FILES reads tmp/
 kmc_tools transform reads histogram reads-pacbio.histo -cx10000
 ```
@@ -438,7 +439,7 @@ ml --force purge
 ml biocontainers
 ml kmc
 mkdir tmp
-ls basecalled_2025-02-12-filtered.fastq > FILES
+ls At_ont-reads-filtered.fastq > FILES
 kmc -k21 -t10 -m64 -ci1 -cs10000 @FILES reads tmp/
 kmc_tools transform reads histogram reads-ont.histo -cx10000
 ```

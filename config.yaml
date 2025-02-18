@@ -31,7 +31,7 @@ life_cycle: 'stable'
 license: 'CC-BY 4.0'
 
 # Link to the source repository for this lesson
-source: 'https://example.com/FIXME-template-source'
+source: 'https://rcac-bioinformatics.github.io/genome-assembly'
 
 # Default branch of your lesson
 branch: 'main'
@@ -61,4 +61,4 @@ profiles:
 - learner-profiles.md
 
 
-disable_sidebar_numbering: true
+disable_sidebar_numbering: false

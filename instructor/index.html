@@ -187,12 +187,19 @@
                   <div class="accordion accordion-flush" id="accordionFlushcurrent">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-headingcurrent">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
         Summary and Schedule
         </span>
-      
+      </button>
     </div><!--/div.accordion-header-->
+
+    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
+      <div class="accordion-body">
+        <ul><li><a href="#welcome-to-the-genome-assembly-workshop">Welcome to the Genome Assembly Workshop</a></li>
+        </ul></div><!--/div.accordion-body-->
+    </div><!--/div.accordion-collapse-->
 
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
@@ -200,7 +207,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="introduction.html">Introduction to Genome assembly</a>
+        <a href="introduction.html">1. Introduction to Genome assembly</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -209,7 +216,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="assembly-strategies.html">Assembly Strategies</a>
+        <a href="assembly-strategies.html">2. Assembly Strategies</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -218,7 +225,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="data-quality-control.html">Data Quality Control</a>
+        <a href="data-quality-control.html">3. Data Quality Control</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -227,7 +234,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="pacbio-hifi-assembly.html">PacBio HiFi Assembly using HiFiasm</a>
+        <a href="pacbio-hifi-assembly.html">4. PacBio HiFi Assembly using HiFiasm</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -236,7 +243,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="oxford-nanopore-assembly.html">Oxford Nanopore Assembly using Flye</a>
+        <a href="oxford-nanopore-assembly.html">5. Oxford Nanopore Assembly using Flye</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -245,7 +252,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="hybrid-assembly.html">Hybrid Long Read Assembly (optional)</a>
+        <a href="hybrid-assembly.html">6. Hybrid Long Read Assembly (optional)</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -254,7 +261,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="scaffolding-using-ogm.html">Scaffolding using Optical Genome Mapping</a>
+        <a href="scaffolding-using-ogm.html">7. Scaffolding using Optical Genome Mapping</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -263,7 +270,7 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="assembly-evaluation.html">Assembly Assessment</a>
+        <a href="assembly-evaluation.html">8. Assembly Assessment</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -319,16 +326,22 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><h1 class="schedule-heading">Summary and Schedule</h1>
       
-
-<p>Welcome to the Workshop on Genome Assembly!</p>
-<p>[to do] Anything else to put here for the workshop?</p>
+<section><h2 class="section-heading" id="welcome-to-the-genome-assembly-workshop">Welcome to the Genome Assembly Workshop<a class="anchor" aria-label="anchor" href="#welcome-to-the-genome-assembly-workshop"></a></h2>
+<hr class="half-width"><p>This workshop provides a hands-on introduction to <strong>long-read
+genome assembly</strong> using <strong>HiFiasm and Flye</strong>,
+optimized for the <strong>RCAC cluster</strong>. You’ll learn best
+practices for <strong>assembly, polishing, and scaffolding with Bionano
+optical maps</strong>, along with strategies for <strong>quality
+assessment and troubleshooting</strong>.</p>
+<p>Designed for researchers and bioinformaticians, this workshop will
+equip you with the skills to build <strong>high-quality, reproducible
+genome assemblies</strong> on <strong>RCAC HPC resources</strong>.</p>
+<p>Let’s get started!</p>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-
-
-      <section id="schedule"><table class="table table schedule table-striped" role="presentation"><tbody><tr><td></td><td><a href="#setup">Setup Instructions</a></td><td> Download files required for the lesson</td>
+</section><section id="schedule"><table class="table table schedule table-striped" role="presentation"><tbody><tr><td></td><td><a href="#setup">Setup Instructions</a></td><td> Download files required for the lesson</td>
           </tr><tr><td>
 <span class="visually-hidden">Duration: </span>00h 00m
 </td>
@@ -450,25 +463,60 @@ any links that you are not going to use.
       The actual schedule may vary slightly depending on the topics and exercises chosen by the instructor.
       </p>
       </section><section id="setup"><section><h2 class="section-heading" id="instructors">Instructors<a class="anchor" aria-label="anchor" href="#instructors"></a></h2>
-<hr class="half-width"><ol style="list-style-type: decimal"><li>
-<strong>Arun Seetharaman, Ph.D.</strong> :</li>
-</ol><p>Arun is a lead bioinformatics scientist at Purdue University’s Rosen
-Center for Advanced Computing. With extensive expertise in comparative
-genomics, genome assembly, annotation, single-cell genomics, NGS data
-analysis, metagenomics, proteomics, and metabolomics. Arun supports a
-diverse range of bioinformatics projects across various organisms,
-including human model systems.</p>
-<ol start="2" style="list-style-type: decimal"><li><strong>Charles Christoffer, Ph.D.</strong></li>
-</ol><p>Charles is a Senior Computational Scientist at Purdue University’s
-Rosen Center for Advanced Computing. He has a Ph.D. in Bioinformatics
-and has extensive experience in protein structure prediction.</p>
-</section><section><h2 class="section-heading" id="workshop-description">Workshop Description<a class="anchor" aria-label="anchor" href="#workshop-description"></a></h2>
-<hr class="half-width"><p>This workshop is designed to introduce learners to the basics of
-genome assembly. The workshop will cover the following topics:</p>
-<ol style="list-style-type: decimal"><li>Assembly techniques</li>
-<li>Long read data QC</li>
-<li>Assembly with long reads (hifiasm, and Flye)</li>
-<li>Assembly quality assessment</li>
+<hr class="half-width"><ol style="list-style-type: decimal"><li><p><strong>Arun Seetharaman, Ph.D.</strong>: Arun is a lead
+bioinformatics scientist at Purdue University’s Rosen Center for
+Advanced Computing. With extensive expertise in comparative genomics,
+genome assembly, annotation, single-cell genomics, NGS data analysis,
+metagenomics, proteomics, and metabolomics. Arun supports a diverse
+range of bioinformatics projects across various organisms, including
+human model systems.</p></li>
+<li><p><strong>Charles Christoffer, Ph.D.</strong>: Charles is a Senior
+Computational Scientist at Purdue University’s Rosen Center for Advanced
+Computing. He has a Ph.D. in Bioinformatics and has extensive experience
+in protein structure prediction.</p></li>
+</ol></section><section><h2 class="section-heading" id="schedule">Schedule<a class="anchor" aria-label="anchor" href="#schedule"></a></h2>
+<hr class="half-width"><table class="table"><colgroup><col width="23%"><col width="76%"></colgroup><thead><tr class="header"><th align="left"><strong>Time</strong></th>
+<th><strong>Session</strong></th>
+</tr></thead><tbody><tr class="odd"><td align="left"><strong>8:30 AM</strong></td>
+<td>Arrival &amp; Setup</td>
+</tr><tr class="even"><td align="left"><strong>9:00 AM</strong></td>
+<td>
+<strong>Introduction &amp; UNIX/HPC refresher</strong> – Cluster
+setup and essential UNIX commands for assembly workflows</td>
+</tr><tr class="odd"><td align="left"><strong>10:30 AM</strong></td>
+<td><strong>Break</strong></td>
+</tr><tr class="even"><td align="left"><strong>10:40 AM</strong></td>
+<td>
+<strong>Introduction to Genome Assembly</strong> – Overview of
+long-read assembly strategies, challenges, and tools</td>
+</tr><tr class="odd"><td align="left"><strong>11:00 AM</strong></td>
+<td>
+<strong>Genome Assembly with HiFiasm/Flye</strong> – Running HiFiasm
+on <strong>RCAC clusters</strong>, parameter selection, and best
+practices</td>
+</tr><tr class="even"><td align="left"><strong>12:00 PM</strong></td>
+<td><strong>Lunch Break</strong></td>
+</tr><tr class="odd"><td align="left"><strong>1:00 PM</strong></td>
+<td>
+<strong>Hybrid Assembly (ONT + PacBio) and scaffolding</strong> –
+Combining long-read technologies for improved assembly accuracy, and
+scaffolding with <strong>Bionano optical maps</strong>
+</td>
+</tr><tr class="even"><td align="left"><strong>2:50 PM</strong></td>
+<td><strong>Break</strong></td>
+</tr><tr class="odd"><td align="left"><strong>3:10 PM</strong></td>
+<td>
+<strong>Assembly Evaluation &amp; Visualization</strong> – QC
+metrics, polishing</td>
+</tr><tr class="even"><td align="left"><strong>4:30 PM</strong></td>
+<td>
+<strong>Wrap-Up &amp; Discussion</strong> – Troubleshooting,
+Q&amp;A, and next steps</td>
+</tr></tbody></table></section><section><h2 class="section-heading" id="what-is-not-covered">What is not covered<a class="anchor" aria-label="anchor" href="#what-is-not-covered"></a></h2>
+<hr class="half-width"><ol style="list-style-type: decimal"><li>Short read assembly</li>
+<li>Hi-C scaffolding</li>
+<li>Annotation</li>
+<li>Comparative analyses</li>
 </ol></section><section><h2 class="section-heading" id="pre-requisites">Pre-requisites<a class="anchor" aria-label="anchor" href="#pre-requisites"></a></h2>
 <hr class="half-width"><ol style="list-style-type: decimal"><li>Basic knowledge of genomics</li>
 <li>Basic knowledge of command line interface</li>
@@ -478,12 +526,6 @@ genome assembly. The workshop will cover the following topics:</p>
 </section><section><h2 class="section-heading" id="software-setup">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a></h2>
 <hr class="half-width"><p>[to do] instructions for terminal setup/ssh keys should be added
 here.</p>
-</section><section><h2 class="section-heading" id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-<hr class="half-width"><p>[to do] Include the folder structure and the files that should be
-present in each folder corresponding to each episode.</p>
-</section><section><h2 class="section-heading" id="any-other-setup">Any other setup<a class="anchor" aria-label="anchor" href="#any-other-setup"></a></h2>
-<hr class="half-width"><p>[to do] Any other setup that is required for the workshop should be
-added here.</p>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
@@ -503,12 +545,12 @@ any links that you are not going to use.
         <p>This lesson is subject to the <a href="CODE_OF_CONDUCT.html">Code of Conduct</a></p>
         <p>
 
-        <a href="https://example.com/FIXME-template-source/edit/main/index.md" class="external-link">Edit on GitHub</a>
+        <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/index.md" class="external-link">Edit on GitHub</a>
 
 	
-        | <a href="https://example.com/FIXME-template-source/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
-        | <a href="https://example.com/FIXME-template-source/" class="external-link">Source</a></p>
-				<p><a href="https://example.com/FIXME-template-source/blob/main/CITATION.cff" class="external-link">Cite</a> | <a href="mailto:rcac-help@purdue.edu">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
+        | <a href="https://rcac-bioinformatics.github.io/genome-assembly/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
+        | <a href="https://rcac-bioinformatics.github.io/genome-assembly/" class="external-link">Source</a></p>
+				<p><a href="https://rcac-bioinformatics.github.io/genome-assembly/blob/main/CITATION.cff" class="external-link">Cite</a> | <a href="mailto:rcac-help@purdue.edu">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
 			</div>
 			<div class="col-md-6">
 
@@ -527,15 +569,15 @@ any links that you are not going to use.
     {
   "@context": "https://schema.org",
   "@type": "TrainingMaterial",
-  "@id": "https://FIXME-template-source.github.io/NA/instructor/index.html",
+  "@id": "https://genome-assembly.github.io/NA/instructor/index.html",
   "inLanguage": "en",
   "dct:conformsTo": "https://bioschemas.org/profiles/TrainingMaterial/1.0-RELEASE",
   "description": "A Carpentries Lesson teaching foundational data and coding skills to researchers worldwide",
   "keywords": "gene-assembly, pacbio, oxford-nanopore, hifasm, flye, medaka, busco, quast",
   "name": "Genome Assembly: Hands-on Training",
   "creativeWorkStatus": "active",
-  "url": "https://FIXME-template-source.github.io/NA/instructor/index.html",
-  "identifier": "https://FIXME-template-source.github.io/NA/instructor/index.html",
+  "url": "https://genome-assembly.github.io/NA/instructor/index.html",
+  "identifier": "https://genome-assembly.github.io/NA/instructor/index.html",
   "dateCreated": "2025-02-05",
   "dateModified": "2025-02-18",
   "datePublished": "2025-02-18"

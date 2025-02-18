@@ -196,7 +196,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="introduction.html">Introduction to Genome assembly</a>
+        <a href="introduction.html">1. Introduction to Genome assembly</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -205,7 +205,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="assembly-strategies.html">Assembly Strategies</a>
+        <a href="assembly-strategies.html">2. Assembly Strategies</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -217,7 +217,7 @@
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
-        Data Quality Control
+        3. Data Quality Control
         </span>
       </button>
     </div><!--/div.accordion-header-->
@@ -240,7 +240,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="pacbio-hifi-assembly.html">PacBio HiFi Assembly using HiFiasm</a>
+        <a href="pacbio-hifi-assembly.html">4. PacBio HiFi Assembly using HiFiasm</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -249,7 +249,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="oxford-nanopore-assembly.html">Oxford Nanopore Assembly using Flye</a>
+        <a href="oxford-nanopore-assembly.html">5. Oxford Nanopore Assembly using Flye</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -258,7 +258,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="hybrid-assembly.html">Hybrid Long Read Assembly (optional)</a>
+        <a href="hybrid-assembly.html">6. Hybrid Long Read Assembly (optional)</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -267,7 +267,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="scaffolding-using-ogm.html">Scaffolding using Optical Genome Mapping</a>
+        <a href="scaffolding-using-ogm.html">7. Scaffolding using Optical Genome Mapping</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -276,7 +276,7 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="assembly-evaluation.html">Assembly Assessment</a>
+        <a href="assembly-evaluation.html">8. Assembly Assessment</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -340,9 +340,9 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Data Quality Control</h1>
-        <p>Last updated on 2025-02-16 |
+        <p>Last updated on 2025-02-18 |
 
-        <a href="https://example.com/FIXME-template-source/edit/main/episodes/data-quality-control.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/data-quality-control.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
 
 
@@ -578,23 +578,22 @@ Create a slurm script to run NanoPlot on the HiFi reads.</p>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="ex">NanoPlot</span> <span class="dt">\</span></span>
 <span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
 <span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>   <span class="at">--verbose</span> <span class="dt">\</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>   <span class="at">--outdir</span> nanoplot_pacbio_output <span class="dt">\</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>   <span class="at">--prefix</span> col_0_pacbio <span class="dt">\</span></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>   <span class="at">--readtype</span> 1D <span class="dt">\</span></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>   <span class="at">--plots</span> kde <span class="dt">\</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>   <span class="at">--N50</span> <span class="dt">\</span></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>   <span class="at">--dpi</span> 300 <span class="dt">\</span></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>   <span class="at">--fastq</span> 9994.q20.CCS.fastq.gz</span></code></pre>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>   <span class="at">--outdir</span> nanoplot_pacbio_pre <span class="dt">\</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>   <span class="at">--prefix</span> At_PacBio_ <span class="dt">\</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>   <span class="at">--plots</span> kde <span class="dt">\</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>   <span class="at">--N50</span> <span class="dt">\</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>   <span class="at">--dpi</span> 300 <span class="dt">\</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>   <span class="at">--fastq</span> At_pacbio-hifi.fastq.gz</span></code></pre>
 </div>
 <div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>The stdout from the NanoPlot run will look like this:</p>
-<pre><code>2025-02-13 12:13:19,155 NanoPlot 1.44.1 started with arguments Namespace(threads=16, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_output', no_static=False, prefix='col_0_pacbio', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['9994.q20.CCS.fastq.gz'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_output/col_0_pacbio')
+<pre><code>2025-02-13 12:13:19,155 NanoPlot 1.44.1 started with arguments Namespace(threads=16, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_output', no_static=False, prefix='At_PacBio_', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['9994.q20.CCS.fastq.gz'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_output/At_PacBio_')
 2025-02-13 12:13:19,156 Python version is: 3.9.21 | packaged by conda-forge | (main, Dec  5 2024, 13:51:40)  [GCC 13.3.0]
 2025-02-13 12:13:19,186 Nanoget: Starting to collect statistics from plain fastq file.
 2025-02-13 12:13:19,187 Nanoget: Decompressing gzipped fastq 9994.q20.CCS.fastq.gz
@@ -606,15 +605,15 @@ Create a slurm script to run NanoPlot on the HiFi reads.</p>
 2025-02-13 12:29:10,557 NanoPlot:  Valid colormap Greens.
 2025-02-13 12:29:10,582 NanoPlot:  Creating length plots for Read length.
 2025-02-13 12:29:10,583 NanoPlot: Using 837586 reads with read length N50 of 22587bp and maximum of 57055bp.
-2025-02-13 12:29:11,933 Saved nanoplot_pacbio_output/col_0_pacbioWeightedHistogramReadlength  as png (or png for --legacy)
-2025-02-13 12:29:12,443 Saved nanoplot_pacbio_output/col_0_pacbioWeightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
-2025-02-13 12:29:12,899 Saved nanoplot_pacbio_output/col_0_pacbioNon_weightedHistogramReadlength  as png (or png for --legacy)
-2025-02-13 12:29:13,371 Saved nanoplot_pacbio_output/col_0_pacbioNon_weightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:29:11,933 Saved nanoplot_pacbio_output/At_PacBio_WeightedHistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:29:12,443 Saved nanoplot_pacbio_output/At_PacBio_WeightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:29:12,899 Saved nanoplot_pacbio_output/At_PacBio_Non_weightedHistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:29:13,371 Saved nanoplot_pacbio_output/At_PacBio_Non_weightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
 2025-02-13 12:29:13,372 NanoPlot: Creating yield by minimal length plot for Read length.
-2025-02-13 12:29:14,465 Saved nanoplot_pacbio_output/col_0_pacbioYield_By_Length  as png (or png for --legacy)
+2025-02-13 12:29:14,465 Saved nanoplot_pacbio_output/At_PacBio_Yield_By_Length  as png (or png for --legacy)
 2025-02-13 12:29:14,466 Created length plots
 2025-02-13 12:29:14,474 NanoPlot: Creating Read lengths vs Average read quality plots using 837586 reads.
-2025-02-13 12:29:15,012 Saved nanoplot_pacbio_output/col_0_pacbioLengthvsQualityScatterPlot_kde  as png (or png for --legacy)
+2025-02-13 12:29:15,012 Saved nanoplot_pacbio_output/At_PacBio_LengthvsQualityScatterPlot_kde  as png (or png for --legacy)
 2025-02-13 12:29:15,013 Created LengthvsQual plot
 2025-02-13 12:29:15,013 Writing html report.
 2025-02-13 12:29:15,029 Finished!
@@ -624,7 +623,7 @@ Create a slurm script to run NanoPlot on the HiFi reads.</p>
 </div>
 </div>
 <p><strong>Evaluate the quality of HiFi reads:</strong></p>
-<p>Examine the <code>col_0_pacbioNanoPlot-report.html</code> file</p>
+<p>Examine the <code>At_PacBio_NanoPlot-report.html</code> file</p>
 <ul><li>
 <strong>Read length distribution</strong>: Histogram of read
 lengths, showing the distribution of read lengths in the dataset.</li>
@@ -671,23 +670,23 @@ Create a slurm script to run NanoPlot on the basecalled ONT reads.</p>
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="ex">NanoPlot</span> <span class="dt">\</span></span>
 <span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
 <span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>   <span class="at">--verbose</span> <span class="dt">\</span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>   <span class="at">--outdir</span> nanoplot_ont_output <span class="dt">\</span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>   <span class="at">--prefix</span> col_0_ont <span class="dt">\</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>   <span class="at">--outdir</span> nanoplot_ont_pre <span class="dt">\</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>   <span class="at">--prefix</span> At_ONT_ <span class="dt">\</span></span>
 <span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>   <span class="at">--readtype</span> 1D <span class="dt">\</span></span>
 <span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>   <span class="at">--plots</span> kde <span class="dt">\</span></span>
 <span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>   <span class="at">--N50</span> <span class="dt">\</span></span>
 <span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>   <span class="at">--dpi</span> 300 <span class="dt">\</span></span>
-<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>   <span class="at">--fastq</span> dorado_output_dir/basecalled_2025-02-12.fastq</span></code></pre>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>   <span class="at">--fastq</span> At_ont-reads.fastq.gz</span></code></pre>
 </div>
 <div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
   <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <p>The stdout from the NanoPlot run will look like this:</p>
-<pre><code>2025-02-13 12:15:51,066 NanoPlot 1.44.1 started with arguments Namespace(threads=8, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_output', no_static=False, prefix='col_0_ont', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['basecalled_2025-02-12.fastq'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_output/col_0_ont')
+<pre><code>2025-02-13 12:15:51,066 NanoPlot 1.44.1 started with arguments Namespace(threads=8, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_output', no_static=False, prefix='At_ONT_', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['basecalled_2025-02-12.fastq'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_output/At_ONT_')
 2025-02-13 12:15:51,067 Python version is: 3.9.21 | packaged by conda-forge | (main, Dec  5 2024, 13:51:40)  [GCC 13.3.0]
 2025-02-13 12:15:51,096 Nanoget: Starting to collect statistics from plain fastq file.
 2025-02-13 12:25:11,429 Reduced DataFrame memory usage from 8.842315673828125Mb to 8.842315673828125Mb
@@ -698,15 +697,15 @@ Create a slurm script to run NanoPlot on the basecalled ONT reads.</p>
 2025-02-13 12:25:11,707 NanoPlot:  Valid colormap Greens.
 2025-02-13 12:25:11,725 NanoPlot:  Creating length plots for Read length.
 2025-02-13 12:25:11,725 NanoPlot: Using 579482 reads with read length N50 of 36292bp and maximum of 298974bp.
-2025-02-13 12:25:13,096 Saved nanoplot_pacbio_output/col_0_ontWeightedHistogramReadlength  as png (or png for --legacy)
-2025-02-13 12:25:13,571 Saved nanoplot_pacbio_output/col_0_ontWeightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
-2025-02-13 12:25:14,971 Saved nanoplot_pacbio_output/col_0_ontNon_weightedHistogramReadlength  as png (or png for --legacy)
-2025-02-13 12:25:15,440 Saved nanoplot_pacbio_output/col_0_ontNon_weightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:25:13,096 Saved nanoplot_pacbio_output/At_ONT_WeightedHistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:25:13,571 Saved nanoplot_pacbio_output/At_ONT_WeightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:25:14,971 Saved nanoplot_pacbio_output/At_ONT_Non_weightedHistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:25:15,440 Saved nanoplot_pacbio_output/At_ONT_Non_weightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
 2025-02-13 12:25:15,441 NanoPlot: Creating yield by minimal length plot for Read length.
-2025-02-13 12:25:16,485 Saved nanoplot_pacbio_output/col_0_ontYield_By_Length  as png (or png for --legacy)
+2025-02-13 12:25:16,485 Saved nanoplot_pacbio_output/At_ONT_Yield_By_Length  as png (or png for --legacy)
 2025-02-13 12:25:16,486 Created length plots
 2025-02-13 12:25:16,495 NanoPlot: Creating Read lengths vs Average read quality plots using 579482 reads.
-2025-02-13 12:25:17,029 Saved nanoplot_pacbio_output/col_0_ontLengthvsQualityScatterPlot_kde  as png (or png for --legacy)
+2025-02-13 12:25:17,029 Saved nanoplot_pacbio_output/At_ONT_LengthvsQualityScatterPlot_kde  as png (or png for --legacy)
 2025-02-13 12:25:17,030 Created LengthvsQual plot
 2025-02-13 12:25:17,030 Writing html report.
 2025-02-13 12:25:17,047 Finished!</code></pre>
@@ -715,7 +714,7 @@ Create a slurm script to run NanoPlot on the basecalled ONT reads.</p>
 </div>
 </div>
 <p><strong>Evaluate the quality of ONT reads:</strong></p>
-<p>Examine the <code>col_0_ontNanoPlot-report.html</code> file.</p>
+<p>Examine the <code>At_ONT_NanoPlot-report.html</code> file.</p>
 <ul><li>
 <strong>Read length distribution</strong>: Histogram of read
 lengths, showing the distribution of read lengths in the dataset.</li>
@@ -773,7 +772,7 @@ only high-quality reads.</p>
 <span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>   <span class="at">--target_bases</span> 5400000000 <span class="dt">\</span></span>
 <span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>   <span class="at">--keep_percent</span> 90 <span class="dt">\</span></span>
 <span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>   <span class="at">--min_length</span> 1000 <span class="dt">\</span></span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>     9994.q20.CCS.fastq.gz <span class="op">&gt;</span> 9994.q20.CCS-filtered.fastq</span></code></pre>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>     At_pacbio-hifi.fastq.gz <span class="op">&gt;</span> At_pacbio-hifi-filtered.fastq</span></code></pre>
 </div>
 <p><strong>2. Filtering ONT Reads</strong></p>
 <p>Filter the ONT reads using <code>Filtlong</code> to retain only
@@ -788,7 +787,7 @@ high-quality reads.</p>
 <span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>   <span class="at">--target_bases</span> 5400000000 <span class="dt">\</span></span>
 <span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>   <span class="at">--keep_percent</span> 90 <span class="dt">\</span></span>
 <span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>   <span class="at">--min_length</span> 1000 <span class="dt">\</span></span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>     basecalled_2025-02-12.fastq <span class="op">&gt;</span> basecalled_2025-02-12-filtered.fastq</span></code></pre>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>     At_ont-reads.fastq.gz <span class="op">&gt;</span> At_ont-reads-filtered.fastq</span></code></pre>
 </div>
 <div id="callout3" class="callout">
 <div class="callout-square">
@@ -823,12 +822,12 @@ reads to assess the quality of the filtered datasets.</p>
 <span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="ex">NanoPlot</span> <span class="dt">\</span></span>
 <span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
 <span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>   <span class="at">--verbose</span> <span class="dt">\</span></span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>   <span class="at">--outdir</span> nanoplot_pacbio_output_filtered <span class="dt">\</span></span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>   <span class="at">--prefix</span> col_0_pacbio_filtered <span class="dt">\</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>   <span class="at">--outdir</span> nanoplot_pacbio_post <span class="dt">\</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>   <span class="at">--prefix</span> At_PacBio_post_ <span class="dt">\</span></span>
 <span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>   <span class="at">--plots</span> kde <span class="dt">\</span></span>
 <span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>   <span class="at">--N50</span> <span class="dt">\</span></span>
 <span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a>   <span class="at">--dpi</span> 300 <span class="dt">\</span></span>
-<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>   <span class="at">--fastq</span> 9994.q20.CCS-filtered.fastq</span></code></pre>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>   <span class="at">--fastq</span> At_pacbio-hifi-filtered.fastq</span></code></pre>
 </div>
 <p><strong>2. For ONT Reads:</strong></p>
 <div class="codewrapper sourceCode" id="cb10">
@@ -840,16 +839,16 @@ reads to assess the quality of the filtered datasets.</p>
 <span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="ex">NanoPlot</span> <span class="dt">\</span></span>
 <span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
 <span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>   <span class="at">--verbose</span> <span class="dt">\</span></span>
-<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>   <span class="at">--outdir</span> nanoplot_ont_output_filtered <span class="dt">\</span></span>
-<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>   <span class="at">--prefix</span> col_0_ont_filtered <span class="dt">\</span></span>
-<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>   <span class="at">--plots</span> kde <span class="dt">\</span></span>
-<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>   <span class="at">--N50</span> <span class="dt">\</span></span>
-<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a>   <span class="at">--dpi</span> 300 <span class="dt">\</span></span>
-<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a>   <span class="at">--fastq</span> basecalled_2025-02-12-filtered.fastq</span></code></pre>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>   <span class="at">--outdir</span> nanoplot_ont_post <span class="dt">\</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>   <span class="at">--prefix</span> At_ONT_post_ <span class="dt">\</span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>   <span class="at">--readtype</span> 1D <span class="dt">\</span></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>   <span class="at">--plots</span> kde <span class="dt">\</span></span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a>   <span class="at">--N50</span> <span class="dt">\</span></span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a>   <span class="at">--dpi</span> 300 <span class="dt">\</span></span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a>   <span class="at">--fastq</span> At_ont-reads-filtered.fastq</span></code></pre>
 </div>
-<p>Now, examine the
-<code>col_0_pacbio_filteredNanoPlot-report.html</code> and
-<code>col_0_ont_filteredNanoPlot-report.html</code> files to assess the
+<p>Now, examine the <code>At_PacBio_post_NanoPlot-report.html</code> and
+<code>At_ONT_post_NanoPlot-report.html</code> files to assess the
 quality of the filtered HiFi and ONT reads. Do you observe any
 improvements in read quality after filtering? We will use these filtered
 reads for downstream genome assembly.</p>
@@ -872,7 +871,7 @@ refine filtering strategies and improve downstream assembly results <a href="htt
 <span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="ex">ml</span> kmc</span>
 <span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="fu">mkdir</span> tmp</span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="fu">ls</span> 9994.q20.CCS-filtered.fastq <span class="op">&gt;</span> FILES</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="fu">ls</span> At_pacbio-hifi-filtered.fastq <span class="op">&gt;</span> FILES</span>
 <span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="ex">kmc</span> <span class="at">-k21</span> <span class="at">-t10</span> <span class="at">-m64</span> <span class="at">-ci1</span> <span class="at">-cs10000</span> @FILES reads tmp/</span>
 <span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="ex">kmc_tools</span> transform reads histogram reads-pacbio.histo <span class="at">-cx10000</span></span></code></pre>
 </div>
@@ -884,7 +883,7 @@ refine filtering strategies and improve downstream assembly results <a href="htt
 <span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="ex">ml</span> kmc</span>
 <span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="fu">mkdir</span> tmp</span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="fu">ls</span> basecalled_2025-02-12-filtered.fastq <span class="op">&gt;</span> FILES</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="fu">ls</span> At_ont-reads-filtered.fastq <span class="op">&gt;</span> FILES</span>
 <span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="ex">kmc</span> <span class="at">-k21</span> <span class="at">-t10</span> <span class="at">-m64</span> <span class="at">-ci1</span> <span class="at">-cs10000</span> @FILES reads tmp/</span>
 <span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="ex">kmc_tools</span> transform reads histogram reads-ont.histo <span class="at">-cx10000</span></span></code></pre>
 </div>
@@ -918,7 +917,7 @@ frequency distribution plots.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>A: High error rates in ONT reads can lead to k-mer counting errors,
 causing the analysis to fail. K-mer analyses reads rely on accuracy to
@@ -998,12 +997,12 @@ any links that you are not going to use.
         <p>This lesson is subject to the <a href="CODE_OF_CONDUCT.html">Code of Conduct</a></p>
         <p>
 
-        <a href="https://example.com/FIXME-template-source/edit/main/episodes/data-quality-control.Rmd" class="external-link">Edit on GitHub</a>
+        <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/data-quality-control.Rmd" class="external-link">Edit on GitHub</a>
 
 	
-        | <a href="https://example.com/FIXME-template-source/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
-        | <a href="https://example.com/FIXME-template-source/" class="external-link">Source</a></p>
-				<p><a href="https://example.com/FIXME-template-source/blob/main/CITATION.cff" class="external-link">Cite</a> | <a href="mailto:rcac-help@purdue.edu">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
+        | <a href="https://rcac-bioinformatics.github.io/genome-assembly/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
+        | <a href="https://rcac-bioinformatics.github.io/genome-assembly/" class="external-link">Source</a></p>
+				<p><a href="https://rcac-bioinformatics.github.io/genome-assembly/blob/main/CITATION.cff" class="external-link">Cite</a> | <a href="mailto:rcac-help@purdue.edu">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
 			</div>
 			<div class="col-md-6">
 
@@ -1022,17 +1021,17 @@ any links that you are not going to use.
     {
   "@context": "https://schema.org",
   "@type": "TrainingMaterial",
-  "@id": "https://FIXME-template-source.github.io/NA/data-quality-control.html",
+  "@id": "https://genome-assembly.github.io/NA/data-quality-control.html",
   "inLanguage": "en",
   "dct:conformsTo": "https://bioschemas.org/profiles/TrainingMaterial/1.0-RELEASE",
   "description": "A Carpentries Lesson teaching foundational data and coding skills to researchers worldwide",
   "keywords": "gene-assembly, pacbio, oxford-nanopore, hifasm, flye, medaka, busco, quast",
   "name": "Data Quality Control",
   "creativeWorkStatus": "active",
-  "url": "https://FIXME-template-source.github.io/NA/data-quality-control.html",
-  "identifier": "https://FIXME-template-source.github.io/NA/data-quality-control.html",
+  "url": "https://genome-assembly.github.io/NA/data-quality-control.html",
+  "identifier": "https://genome-assembly.github.io/NA/data-quality-control.html",
   "dateCreated": "2025-02-05",
-  "dateModified": "2025-02-16",
+  "dateModified": "2025-02-18",
   "datePublished": "2025-02-18"
 }
 

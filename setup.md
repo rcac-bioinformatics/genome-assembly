@@ -4,7 +4,7 @@ title: Setup
 
 ## Instructors
 
-1. **Arun Seetharaman, Ph.D.**: Arun is a lead bioinformatics scientist at Purdue University’s Rosen Center for Advanced Computing. With extensive expertise in comparative genomics, genome assembly, annotation, single-cell genomics,  NGS data analysis, metagenomics, proteomics, and metabolomics. Arun supports a diverse range of bioinformatics projects across various organisms, including human model systems.
+1. **Arun Seetharam, Ph.D.**: Arun is a lead bioinformatics scientist at Purdue University’s Rosen Center for Advanced Computing. With extensive expertise in comparative genomics, genome assembly, annotation, single-cell genomics,  NGS data analysis, metagenomics, proteomics, and metabolomics. Arun supports a diverse range of bioinformatics projects across various organisms, including human model systems.
 
 2. **Charles Christoffer, Ph.D.**: Charles is a Senior Computational Scientist at Purdue University’s Rosen Center for Advanced Computing. He has a Ph.D. in Computer Science in the area of structural bioinformatics and has extensive experience in protein structure prediction. 
 

@@ -91,8 +91,8 @@ ml biocontainers
 ml hifiasm
 hifiasm \
     -t ${SLURM_CPUS_ON_NODE} \
-    -o Athaliana_hifiasm_default.asm \
-    9994.q20.CCS-filtered.fastq
+    -o hifiasm_default/At_hifiasm_default.asm\
+    At_pacbio-hifi-filtered.fastq
 ```
 
 ::: callout
@@ -114,23 +114,23 @@ The run generates several output files. Here are all the files and their descrip
 
 | filename                                                | description |
 |:-------|-------------|
-| `Athaliana_hifiasm_default.asm.ec.bin`                  | error-corrected reads stored in binary format |
-| `Athaliana_hifiasm_default.asm.ovlp.source.bin`         | source overlap data between reads in binary format |
-| `Athaliana_hifiasm_default.asm.ovlp.reverse.bin`        | reverse overlap data between reads in binary format |
-| `Athaliana_hifiasm_default.asm.bp.r_utg.noseq.gfa`      | assembly graph of raw unitigs (without sequence) |
-| `Athaliana_hifiasm_default.asm.bp.r_utg.gfa`            | assembly graph of raw unitigs (with sequence) |
-| `Athaliana_hifiasm_default.asm.bp.r_utg.lowQ.bed`       | low-quality regions in raw unitigs |
-| `Athaliana_hifiasm_default.asm.bp.p_utg.noseq.gfa`      | assembly graph of purged unitigs (without sequence) |
-| `Athaliana_hifiasm_default.asm.bp.p_utg.gfa`            | assembly graph of purged unitigs (with sequence) |
-| `Athaliana_hifiasm_default.asm.bp.p_utg.lowQ.bed`       | low-quality regions in purged unitigs |
-| `Athaliana_hifiasm_default.asm.bp.p_ctg.noseq.gfa`      | assembly graph of primary contigs (without sequence) |
-| `Athaliana_hifiasm_default.asm.bp.p_ctg.gfa`            | assembly graph of primary contigs (with sequence) |
-| `Athaliana_hifiasm_default.asm.bp.p_ctg.lowQ.bed`       | low-quality regions in primary contigs |
-| `Athaliana_hifiasm_default.asm.bp.hap1.p_ctg.noseq.gfa` | haplotype 1 primary contigs (without sequence) |
-| `Athaliana_hifiasm_default.asm.bp.hap1.p_ctg.gfa`       | haplotype 1 primary contigs (with sequence) |
-| `Athaliana_hifiasm_default.asm.bp.hap2.p_ctg.noseq.gfa` | haplotype 2 primary contigs (without sequence) |
-| `Athaliana_hifiasm_default.asm.bp.hap2.p_ctg.gfa`       | haplotype 2 primary contigs (with sequence) |
-| `Athaliana_hifiasm_default.asm.bp.hap1.p_ctg.lowQ.bed`  | low-quality regions in haplotype 1 primary contigs |
+| `At_hifiasm_default.asm.ec.bin`                  | error-corrected reads stored in binary format |
+| `At_hifiasm_default.asm.ovlp.source.bin`         | source overlap data between reads in binary format |
+| `At_hifiasm_default.asm.ovlp.reverse.bin`        | reverse overlap data between reads in binary format |
+| `At_hifiasm_default.asm.bp.r_utg.noseq.gfa`      | assembly graph of raw unitigs (without sequence) |
+| `At_hifiasm_default.asm.bp.r_utg.gfa`            | assembly graph of raw unitigs (with sequence) |
+| `At_hifiasm_default.asm.bp.r_utg.lowQ.bed`       | low-quality regions in raw unitigs |
+| `At_hifiasm_default.asm.bp.p_utg.noseq.gfa`      | assembly graph of purged unitigs (without sequence) |
+| `At_hifiasm_default.asm.bp.p_utg.gfa`            | assembly graph of purged unitigs (with sequence) |
+| `At_hifiasm_default.asm.bp.p_utg.lowQ.bed`       | low-quality regions in purged unitigs |
+| `At_hifiasm_default.asm.bp.p_ctg.noseq.gfa`      | assembly graph of primary contigs (without sequence) |
+| `At_hifiasm_default.asm.bp.p_ctg.gfa`            | assembly graph of primary contigs (with sequence) |
+| `At_hifiasm_default.asm.bp.p_ctg.lowQ.bed`       | low-quality regions in primary contigs |
+| `At_hifiasm_default.asm.bp.hap1.p_ctg.noseq.gfa` | haplotype 1 primary contigs (without sequence) |
+| `At_hifiasm_default.asm.bp.hap1.p_ctg.gfa`       | haplotype 1 primary contigs (with sequence) |
+| `At_hifiasm_default.asm.bp.hap2.p_ctg.noseq.gfa` | haplotype 2 primary contigs (without sequence) |
+| `At_hifiasm_default.asm.bp.hap2.p_ctg.gfa`       | haplotype 2 primary contigs (with sequence) |
+| `At_hifiasm_default.asm.bp.hap1.p_ctg.lowQ.bed`  | low-quality regions in haplotype 1 primary contigs |
 
 
 :::::::::::::::::::::::::::::::::::::::  prereq
@@ -222,14 +222,12 @@ ml --force purge
 ml biocontainers
 ml hifiasm
 # purge level 0
-mkdir -p hifiasm_purge_level_0
-cd hifiasm_purge_level_0
-ln -s ../9994.q20.CCS-filtered.fastq
+mkdir -p hifiasm_purge-0
 hifiasm \
-  -o Athaliana_hifiasm_purge_level_0.asm \
+  -o hifiasm_purge-0/At_hifiasm_purge-0.asm \
   -l 0 \
   -t ${SLURM_CPUS_ON_NODE} \
-  9994.q20.CCS-filtered.fastq
+  At_pacbio-hifi-filtered.fastq
 ```
 
 ### purge `l=1`
@@ -239,14 +237,12 @@ ml --force purge
 ml biocontainers
 ml hifiasm
 # purge level 1
-mkdir -p hifiasm_purge_level_1
-cd hifiasm_purge_level_1
-ln -s ../9994.q20.CCS-filtered.fastq
+mkdir -p hifiasm_purge-1
 hifiasm \
-  -o Athaliana_hifiasm_purge_level_1.asm \
+  -o hifiasm_purge-1/At_hifiasm_purge-1.asm \
   -l 1 \
   -t ${SLURM_CPUS_ON_NODE} \
-  9994.q20.CCS-filtered.fastq
+  At_pacbio-hifi-filtered.fastq
 ```
 
 ### purge `l=2`
@@ -256,14 +252,12 @@ ml --force purge
 ml biocontainers
 ml hifiasm
 # purge level 2
-mkdir -p hifiasm_purge_level_2
-cd hifiasm_purge_level_2
-ln -s ../9994.q20.CCS-filtered.fastq
+mkdir -p hifiasm_purge-2
 hifiasm \
-  -o Athaliana_hifiasm_purge_level_2.asm \
+  -o hifiasm_purge-2/At_hifiasm_purge-2.asm \
   -l 2 \
   -t ${SLURM_CPUS_ON_NODE} \
-  9994.q20.CCS-filtered.fastq
+  At_pacbio-hifi-filtered.fastq
 ```
 
 ### purge `l=3`
@@ -273,14 +267,12 @@ ml --force purge
 ml biocontainers
 ml hifiasm
 # purge level 3
-mkdir -p hifiasm_purge_level_3
-cd hifiasm_purge_level_3
-ln -s ../9994.q20.CCS-filtered.fastq
+mkdir -p hifiasm_purge-3
 hifiasm \
-  -o Athaliana_hifiasm_purge_level_3.asm \
+  -o hifiasm_purge-3/At_hifiasm_purge-0.asm \
   -l 3 \
   -t ${SLURM_CPUS_ON_NODE} \
-  9994.q20.CCS-filtered.fastq
+  At_pacbio-hifi-filtered.fastq
 ```
 
 :::
@@ -301,7 +293,7 @@ Each of these will run in about ~15 minutes with 32 cores. You can either run th
 Convert GFA files to FASTA format
 
 ```bash
-for dir in hifiasm_purge_level_{0..3}; do 
+for dir in hifiasm_purge-{0..3}; do 
     cd ${dir}
     for ctg in *_ctg.gfa; do
         awk '/^S/{print ">"$2"\n"$3}' ${ctg} > ${ctg%.gfa}.fasta
@@ -334,7 +326,7 @@ ml --force purge
 ml biocontainers
 ml compleasm
 mkdir -p compleasm_stats
-for fasta in hifiasm_purge_level_{0..3}/*_p_ctg.fasta; do
+for fasta in hifiasm_purge-{0..3}/*_p_ctg.fasta; do
     ln -s ${fasta} compleasm_stats/
 done
 cd compleasm_stats
@@ -378,9 +370,9 @@ ml --force purge
 ml biocontainers
 ml flye
 flye \
-  --pacbio-hifi 9994.q20.CCS-filtered-60x.fastq \
+  --pacbio-hifi At_pacbio-hifi-filtered.fastq \
   --genome-size 135m \
-  --out-dir flye_pcb \
+  --out-dir flye_default \
   --threads ${SLURM_CPUS_ON_NODE}
 ```
 
@@ -416,11 +408,11 @@ quast.py \
     --fast \
     --threads ${SLURM_CPUS_ON_NODE} \
     -o quast_flye_stats \
-    flye_pcb/assembly.fasta
+    flye_default/assembly.fasta
 ml compleasm
 compleasm run \
-  -a flye_pcb/assembly.fasta \
-  -o flye_pcb \
+  -a flye_default/assembly.fasta \
+  -o flye_default \
   -l brassicales_odb10 \
   -t ${SLURM_CPUS_ON_NODE}
 ```

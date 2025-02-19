@@ -42,8 +42,19 @@ title: Setup
 
 ## Data Sets
 
-[to do] Data depot path with workshop data should be added here.
+To copy only data:
 
+```bash
+rsync -avP /depot/workshop/data/genome-assembly/genome-assembly-data $RCAC_SCRATCH
+```
+
+The worked out folder is available at `/depot/workshop/data/genome-assembly/genome-assembly-data` on the training cluster. You can copy the data to your scratch space using the following command:
+
+```bash
+rsync -avP /depot/workshop/data/genome-assembly/genome-assembly-data $RCAC_SCRATCH
+```
+
+Only use this if you are unable to finish the exercises in the workshop.
 
 
 ## Software Setup

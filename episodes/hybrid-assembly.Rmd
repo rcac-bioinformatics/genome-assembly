@@ -32,21 +32,24 @@ Here is an example of a script that should do the job:
 ml --force purge
 ml biocontainers
 ml flye
-PBREADS="9994.q20.CCS-filtered-60x.fastq"
-ONTREADS="basecalled_2025-02-12-filtered_60x.fastq"
-
+# reads
+PBREADS="At_pacbio-hifi-filtered.fastq"
+ONTREADS="At_ont-reads-filtered.fastq"
+# round 1
 flye \
     --pacbio-raw $PBREADS $ONTREADS \
     --iterations 0 \
     --out-dir hybrid_flye_out \
     --genome-size 135m \
     --threads ${SLURM_CPUS_ON_NODE}
+# round 2
 flye \
    --pacbio-raw $PBREADS \
    --resume-from polishing \
    --out-dir hybrid_flye_out  \
    --genome-size 135m \
    --threads ${SLURM_CPUS_ON_NODE}
+
 ```
 
 

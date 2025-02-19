@@ -525,8 +525,81 @@ Q&amp;A, and next steps</td>
 </ol></section><section><h2 class="section-heading" id="data-sets">Data Sets<a class="anchor" aria-label="anchor" href="#data-sets"></a></h2>
 <hr class="half-width"><p>[to do] Data depot path with workshop data should be added here.</p>
 </section><section><h2 class="section-heading" id="software-setup">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a></h2>
-<hr class="half-width"><p>[to do] instructions for terminal setup/ssh keys should be added
-here.</p>
+<hr class="half-width"><div id="details" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="details" class="callout-inner">
+<h3 class="callout-title">Details</h3>
+<div class="callout-content">
+<p>Setup for different systems can be presented in dropdown menus via a
+<code>solution</code> tag. They will join to this discussion block, so
+you can give a general overview of the software used in this lesson here
+and fill out the individual operating systems (and potentially add more,
+e.g. online setup) in the solutions blocks.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">
+  Windows
+  </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<p>Open a terminal and run:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-b</span> 4096 <span class="at">-t</span> rsa</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="bu">type</span> .ssh<span class="dt">\i</span>d_rsa.pub <span class="kw">|</span> <span class="fu">ssh</span> trainXX@negishi.rcac.purdue.edu <span class="st">"mkdir -p ~/.ssh; cat &gt;&gt; ~/.ssh/authorized_keys"</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2">
+  MacOS
+  </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div class="accordion-body">
+<p>Open Terminal and run</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-b</span> 4096 <span class="at">-t</span> rsa</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">cat</span> .ssh<span class="dt">\i</span>d_rsa.pub <span class="kw">|</span> <span class="fu">ssh</span> trainXX@negishi.rcac.purdue.edu <span class="st">"mkdir -p ~/.ssh; cat &gt;&gt; ~/.ssh/authorized_keys"</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3">
+  Linux
+  </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div class="accordion-body">
+<p>Open a terminal and run:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">SH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-b</span> 4096 <span class="at">-t</span> rsa</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">cat</span> .ssh<span class="dt">\i</span>d_rsa.pub <span class="kw">|</span> <span class="fu">ssh</span> trainXX@negishi.rcac.purdue.edu <span class="st">"mkdir -p ~/.ssh; cat &gt;&gt; ~/.ssh/authorized_keys"</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.

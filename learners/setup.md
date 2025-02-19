@@ -48,5 +48,55 @@ title: Setup
 
 ## Software Setup
 
-[to do] instructions for terminal setup/ssh keys should be added here.
+
+::::::::::::::::::::::::::::::::::::::: discussion
+
+### Details
+
+Setup for different systems can be presented in dropdown menus via a `solution`
+tag. They will join to this discussion block, so you can give a general overview
+of the software used in this lesson here and fill out the individual operating
+systems (and potentially add more, e.g. online setup) in the solutions blocks.
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::: solution
+
+### Windows
+
+Open a terminal and run:
+
+```sh
+ssh-keygen -b 4096 -t rsa
+type .ssh\id_rsa.pub | ssh trainXX@negishi.rcac.purdue.edu "mkdir -p ~/.ssh; cat >> ~/.ssh/authorized_keys"
+```
+
+:::::::::::::::::::::::::
+
+:::::::::::::::: solution
+
+### MacOS
+
+Open Terminal and run
+```sh
+ssh-keygen -b 4096 -t rsa
+cat .ssh\id_rsa.pub | ssh trainXX@negishi.rcac.purdue.edu "mkdir -p ~/.ssh; cat >> ~/.ssh/authorized_keys"
+```
+
+:::::::::::::::::::::::::
+
+
+:::::::::::::::: solution
+
+### Linux
+
+Open a terminal and run:
+```sh
+ssh-keygen -b 4096 -t rsa
+cat .ssh\id_rsa.pub | ssh trainXX@negishi.rcac.purdue.edu "mkdir -p ~/.ssh; cat >> ~/.ssh/authorized_keys"
+```
+
+:::::::::::::::::::::::::
+
+
 

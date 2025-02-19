@@ -341,7 +341,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>PacBio HiFi Assembly using HiFiasm</h1>
-        <p>Last updated on 2025-02-16 |
+        <p>Last updated on 2025-02-19 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/pacbio-hifi-assembly.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -479,8 +479,8 @@ FASTQ format. The basic command structure is as follows:</p>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="ex">ml</span> hifiasm</span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="ex">hifiasm</span> <span class="dt">\</span></span>
 <span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>    <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>    <span class="at">-o</span> Athaliana_hifiasm_default.asm <span class="dt">\</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>    9994.q20.CCS-filtered.fastq</span></code></pre>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>    <span class="at">-o</span> hifiasm_default/At_hifiasm_default.asm<span class="dt">\</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>    At_pacbio-hifi-filtered.fastq</span></code></pre>
 </div>
 <div id="callout1" class="callout">
 <div class="callout-square">
@@ -506,39 +506,39 @@ prefix.</p>
 their descriptions:</p>
 <table class="table"><colgroup><col width="38%"><col width="61%"></colgroup><thead><tr class="header"><th align="left">filename</th>
 <th>description</th>
-</tr></thead><tbody><tr class="odd"><td align="left"><code>Athaliana_hifiasm_default.asm.ec.bin</code></td>
+</tr></thead><tbody><tr class="odd"><td align="left"><code>At_hifiasm_default.asm.ec.bin</code></td>
 <td>error-corrected reads stored in binary format</td>
-</tr><tr class="even"><td align="left"><code>Athaliana_hifiasm_default.asm.ovlp.source.bin</code></td>
+</tr><tr class="even"><td align="left"><code>At_hifiasm_default.asm.ovlp.source.bin</code></td>
 <td>source overlap data between reads in binary format</td>
-</tr><tr class="odd"><td align="left"><code>Athaliana_hifiasm_default.asm.ovlp.reverse.bin</code></td>
+</tr><tr class="odd"><td align="left"><code>At_hifiasm_default.asm.ovlp.reverse.bin</code></td>
 <td>reverse overlap data between reads in binary format</td>
-</tr><tr class="even"><td align="left"><code>Athaliana_hifiasm_default.asm.bp.r_utg.noseq.gfa</code></td>
+</tr><tr class="even"><td align="left"><code>At_hifiasm_default.asm.bp.r_utg.noseq.gfa</code></td>
 <td>assembly graph of raw unitigs (without sequence)</td>
-</tr><tr class="odd"><td align="left"><code>Athaliana_hifiasm_default.asm.bp.r_utg.gfa</code></td>
+</tr><tr class="odd"><td align="left"><code>At_hifiasm_default.asm.bp.r_utg.gfa</code></td>
 <td>assembly graph of raw unitigs (with sequence)</td>
-</tr><tr class="even"><td align="left"><code>Athaliana_hifiasm_default.asm.bp.r_utg.lowQ.bed</code></td>
+</tr><tr class="even"><td align="left"><code>At_hifiasm_default.asm.bp.r_utg.lowQ.bed</code></td>
 <td>low-quality regions in raw unitigs</td>
-</tr><tr class="odd"><td align="left"><code>Athaliana_hifiasm_default.asm.bp.p_utg.noseq.gfa</code></td>
+</tr><tr class="odd"><td align="left"><code>At_hifiasm_default.asm.bp.p_utg.noseq.gfa</code></td>
 <td>assembly graph of purged unitigs (without sequence)</td>
-</tr><tr class="even"><td align="left"><code>Athaliana_hifiasm_default.asm.bp.p_utg.gfa</code></td>
+</tr><tr class="even"><td align="left"><code>At_hifiasm_default.asm.bp.p_utg.gfa</code></td>
 <td>assembly graph of purged unitigs (with sequence)</td>
-</tr><tr class="odd"><td align="left"><code>Athaliana_hifiasm_default.asm.bp.p_utg.lowQ.bed</code></td>
+</tr><tr class="odd"><td align="left"><code>At_hifiasm_default.asm.bp.p_utg.lowQ.bed</code></td>
 <td>low-quality regions in purged unitigs</td>
-</tr><tr class="even"><td align="left"><code>Athaliana_hifiasm_default.asm.bp.p_ctg.noseq.gfa</code></td>
+</tr><tr class="even"><td align="left"><code>At_hifiasm_default.asm.bp.p_ctg.noseq.gfa</code></td>
 <td>assembly graph of primary contigs (without sequence)</td>
-</tr><tr class="odd"><td align="left"><code>Athaliana_hifiasm_default.asm.bp.p_ctg.gfa</code></td>
+</tr><tr class="odd"><td align="left"><code>At_hifiasm_default.asm.bp.p_ctg.gfa</code></td>
 <td>assembly graph of primary contigs (with sequence)</td>
-</tr><tr class="even"><td align="left"><code>Athaliana_hifiasm_default.asm.bp.p_ctg.lowQ.bed</code></td>
+</tr><tr class="even"><td align="left"><code>At_hifiasm_default.asm.bp.p_ctg.lowQ.bed</code></td>
 <td>low-quality regions in primary contigs</td>
-</tr><tr class="odd"><td align="left"><code>Athaliana_hifiasm_default.asm.bp.hap1.p_ctg.noseq.gfa</code></td>
+</tr><tr class="odd"><td align="left"><code>At_hifiasm_default.asm.bp.hap1.p_ctg.noseq.gfa</code></td>
 <td>haplotype 1 primary contigs (without sequence)</td>
-</tr><tr class="even"><td align="left"><code>Athaliana_hifiasm_default.asm.bp.hap1.p_ctg.gfa</code></td>
+</tr><tr class="even"><td align="left"><code>At_hifiasm_default.asm.bp.hap1.p_ctg.gfa</code></td>
 <td>haplotype 1 primary contigs (with sequence)</td>
-</tr><tr class="odd"><td align="left"><code>Athaliana_hifiasm_default.asm.bp.hap2.p_ctg.noseq.gfa</code></td>
+</tr><tr class="odd"><td align="left"><code>At_hifiasm_default.asm.bp.hap2.p_ctg.noseq.gfa</code></td>
 <td>haplotype 2 primary contigs (without sequence)</td>
-</tr><tr class="even"><td align="left"><code>Athaliana_hifiasm_default.asm.bp.hap2.p_ctg.gfa</code></td>
+</tr><tr class="even"><td align="left"><code>At_hifiasm_default.asm.bp.hap2.p_ctg.gfa</code></td>
 <td>haplotype 2 primary contigs (with sequence)</td>
-</tr><tr class="odd"><td align="left"><code>Athaliana_hifiasm_default.asm.bp.hap1.p_ctg.lowQ.bed</code></td>
+</tr><tr class="odd"><td align="left"><code>At_hifiasm_default.asm.bp.hap1.p_ctg.lowQ.bed</code></td>
 <td>low-quality regions in haplotype 1 primary contigs</td>
 </tr></tbody></table><div id="where-are-the-assemblycontig-sequences" class="callout prereq">
 <div class="callout-square">
@@ -695,14 +695,12 @@ see how it affects the assembly quality.</p>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="ex">ml</span> hifiasm</span>
 <span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co"># purge level 0</span></span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> hifiasm_purge_level_0</span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="bu">cd</span> hifiasm_purge_level_0</span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> ../9994.q20.CCS-filtered.fastq</span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="ex">hifiasm</span> <span class="dt">\</span></span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>  <span class="at">-o</span> Athaliana_hifiasm_purge_level_0.asm <span class="dt">\</span></span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>  <span class="at">-l</span> 0 <span class="dt">\</span></span>
-<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>  <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
-<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>  9994.q20.CCS-filtered.fastq</span></code></pre>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> hifiasm_purge-0</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="ex">hifiasm</span> <span class="dt">\</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>  <span class="at">-o</span> hifiasm_purge-0/At_hifiasm_purge-0.asm <span class="dt">\</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>  <span class="at">-l</span> 0 <span class="dt">\</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>  <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>  At_pacbio-hifi-filtered.fastq</span></code></pre>
 </div>
 </div>
 <div id="nav-tabpanel-1-2" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-2">
@@ -713,14 +711,12 @@ see how it affects the assembly quality.</p>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="ex">ml</span> hifiasm</span>
 <span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co"># purge level 1</span></span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> hifiasm_purge_level_1</span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="bu">cd</span> hifiasm_purge_level_1</span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> ../9994.q20.CCS-filtered.fastq</span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="ex">hifiasm</span> <span class="dt">\</span></span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>  <span class="at">-o</span> Athaliana_hifiasm_purge_level_1.asm <span class="dt">\</span></span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>  <span class="at">-l</span> 1 <span class="dt">\</span></span>
-<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>  <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
-<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>  9994.q20.CCS-filtered.fastq</span></code></pre>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> hifiasm_purge-1</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="ex">hifiasm</span> <span class="dt">\</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>  <span class="at">-o</span> hifiasm_purge-1/At_hifiasm_purge-1.asm <span class="dt">\</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>  <span class="at">-l</span> 1 <span class="dt">\</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>  <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>  At_pacbio-hifi-filtered.fastq</span></code></pre>
 </div>
 </div>
 <div id="nav-tabpanel-1-3" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-3">
@@ -731,14 +727,12 @@ see how it affects the assembly quality.</p>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="ex">ml</span> hifiasm</span>
 <span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co"># purge level 2</span></span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> hifiasm_purge_level_2</span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="bu">cd</span> hifiasm_purge_level_2</span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> ../9994.q20.CCS-filtered.fastq</span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="ex">hifiasm</span> <span class="dt">\</span></span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>  <span class="at">-o</span> Athaliana_hifiasm_purge_level_2.asm <span class="dt">\</span></span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>  <span class="at">-l</span> 2 <span class="dt">\</span></span>
-<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>  <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
-<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>  9994.q20.CCS-filtered.fastq</span></code></pre>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> hifiasm_purge-2</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="ex">hifiasm</span> <span class="dt">\</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>  <span class="at">-o</span> hifiasm_purge-2/At_hifiasm_purge-2.asm <span class="dt">\</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>  <span class="at">-l</span> 2 <span class="dt">\</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>  <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>  At_pacbio-hifi-filtered.fastq</span></code></pre>
 </div>
 </div>
 <div id="nav-tabpanel-1-4" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-4">
@@ -749,14 +743,12 @@ see how it affects the assembly quality.</p>
 <span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="ex">ml</span> hifiasm</span>
 <span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co"># purge level 3</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> hifiasm_purge_level_3</span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="bu">cd</span> hifiasm_purge_level_3</span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> ../9994.q20.CCS-filtered.fastq</span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="ex">hifiasm</span> <span class="dt">\</span></span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>  <span class="at">-o</span> Athaliana_hifiasm_purge_level_3.asm <span class="dt">\</span></span>
-<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>  <span class="at">-l</span> 3 <span class="dt">\</span></span>
-<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a>  <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
-<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>  9994.q20.CCS-filtered.fastq</span></code></pre>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> hifiasm_purge-3</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="ex">hifiasm</span> <span class="dt">\</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>  <span class="at">-o</span> hifiasm_purge-3/At_hifiasm_purge-0.asm <span class="dt">\</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>  <span class="at">-l</span> 3 <span class="dt">\</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>  <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>  At_pacbio-hifi-filtered.fastq</span></code></pre>
 </div>
 </div>
 </div>
@@ -785,7 +777,7 @@ them faster.</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="cf">for</span> dir <span class="kw">in</span> hifiasm_purge_level_<span class="dt">{</span><span class="dv">0</span><span class="dt">..</span><span class="dv">3</span><span class="dt">}</span><span class="kw">;</span> <span class="cf">do</span> </span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="cf">for</span> dir <span class="kw">in</span> hifiasm_purge-<span class="dt">{</span><span class="dv">0</span><span class="dt">..</span><span class="dv">3</span><span class="dt">}</span><span class="kw">;</span> <span class="cf">do</span> </span>
 <span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>    <span class="bu">cd</span> <span class="va">${dir}</span></span>
 <span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>    <span class="cf">for</span> ctg <span class="kw">in</span> <span class="pp">*</span>_ctg.gfa<span class="kw">;</span> <span class="cf">do</span></span>
 <span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>        <span class="fu">awk</span> <span class="st">'/^S/{print "&gt;"$2"\n"$3}'</span> <span class="va">${ctg}</span> <span class="op">&gt;</span> <span class="va">${ctg</span><span class="op">%</span>.gfa<span class="va">}</span>.fasta</span>
@@ -816,7 +808,7 @@ them faster.</p>
 <span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="ex">ml</span> compleasm</span>
 <span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> compleasm_stats</span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> hifiasm_purge_level_{0..3}/<span class="pp">*</span>_p_ctg.fasta<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> hifiasm_purge-{0..3}/<span class="pp">*</span>_p_ctg.fasta<span class="kw">;</span> <span class="cf">do</span></span>
 <span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>    <span class="fu">ln</span> <span class="at">-s</span> <span class="va">${fasta}</span> compleasm_stats/</span>
 <span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="cf">done</span></span>
 <span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="bu">cd</span> compleasm_stats</span>
@@ -864,9 +856,9 @@ structure:</p>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="ex">ml</span> flye</span>
 <span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="ex">flye</span> <span class="dt">\</span></span>
-<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>  <span class="at">--pacbio-hifi</span> 9994.q20.CCS-filtered-60x.fastq <span class="dt">\</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>  <span class="at">--pacbio-hifi</span> At_pacbio-hifi-filtered.fastq <span class="dt">\</span></span>
 <span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>  <span class="at">--genome-size</span> 135m <span class="dt">\</span></span>
-<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>  <span class="at">--out-dir</span> flye_pcb <span class="dt">\</span></span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>  <span class="at">--out-dir</span> flye_default <span class="dt">\</span></span>
 <span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>  <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span></code></pre>
 </div>
 <div id="options-used" class="callout">
@@ -912,11 +904,11 @@ assembly graph, contigs, and other relevant files.</p>
 <span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>    <span class="at">--fast</span> <span class="dt">\</span></span>
 <span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>    <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
 <span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>    <span class="at">-o</span> quast_flye_stats <span class="dt">\</span></span>
-<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>    flye_pcb/assembly.fasta</span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>    flye_default/assembly.fasta</span>
 <span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a><span class="ex">ml</span> compleasm</span>
 <span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a><span class="ex">compleasm</span> run <span class="dt">\</span></span>
-<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a>  <span class="at">-a</span> flye_pcb/assembly.fasta <span class="dt">\</span></span>
-<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a>  <span class="at">-o</span> flye_pcb <span class="dt">\</span></span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a>  <span class="at">-a</span> flye_default/assembly.fasta <span class="dt">\</span></span>
+<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a>  <span class="at">-o</span> flye_default <span class="dt">\</span></span>
 <span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a>  <span class="at">-l</span> brassicales_odb10 <span class="dt">\</span></span>
 <span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a>  <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span></code></pre>
 </div>
@@ -1011,7 +1003,7 @@ any links that you are not going to use.
   "url": "https://genome-assembly.github.io/NA/pacbio-hifi-assembly.html",
   "identifier": "https://genome-assembly.github.io/NA/pacbio-hifi-assembly.html",
   "dateCreated": "2025-02-05",
-  "dateModified": "2025-02-16",
+  "dateModified": "2025-02-19",
   "datePublished": "2025-02-19"
 }
 

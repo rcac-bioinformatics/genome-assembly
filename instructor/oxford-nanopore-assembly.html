@@ -341,7 +341,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Oxford Nanopore Assembly using Flye</h1>
-        <p>Last updated on 2025-02-16 |
+        <p>Last updated on 2025-02-19 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/oxford-nanopore-assembly.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -470,10 +470,10 @@ structure is as follows:</p>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="ex">ml</span> flye</span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="ex">flye</span> <span class="dt">\</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  <span class="at">--nano-raw</span> 9994.q20.CCS-filtered-60x.fastq <span class="dt">\</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  <span class="at">--nano-raw</span> At_ont-reads-filtered.fastq <span class="dt">\</span></span>
 <span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  <span class="at">--genome-size</span> 135m <span class="dt">\</span></span>
 <span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>  <span class="at">--out-dir</span> flye_ont <span class="dt">\</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>  <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span></code></pre>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>  <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span></code></pre>
 </div>
 <div id="options-used" class="callout">
 <div class="callout-square">
@@ -552,7 +552,7 @@ variant calling, or comparative genomics studies.</p>
 <span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>    <span class="at">--fast</span> <span class="dt">\</span></span>
 <span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>    <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
 <span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>    <span class="at">-o</span> quast_basic_stats <span class="dt">\</span></span>
-<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>    assembly.fasta</span></code></pre>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>    flye_ont/assembly.fasta</span></code></pre>
 </div>
 <div id="which-of-these-assemblies-look-better" class="callout prereq">
 <div class="callout-square">
@@ -619,11 +619,12 @@ reads:</p>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="ex">ml</span> flye</span>
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="ex">flye</span> <span class="dt">\</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="at">--polish-target</span> SEQ_TO_POLISH <span class="dt">\</span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>  <span class="at">--pacbio-raw</span> READS <span class="dt">\ </span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>  <span class="ex">--iterations</span> NUM_ITER <span class="dt">\</span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>  <span class="at">--out-dir</span> OUTPUTDIR <span class="dt">\</span></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>  <span class="at">--threads</span> THREADS</span></code></pre>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="at">--polish-target</span> flye_ont/assembly.fasta <span class="dt">\</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>  <span class="at">--pacbio-raw</span> At_pacbio-hifi-filtered.fastq <span class="dt">\</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>  <span class="at">--genome-size</span> 135m <span class="dt">\</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>  <span class="at">--iterations</span> 1 <span class="dt">\</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>  <span class="at">--out-dir</span> flye_ont_polished <span class="dt">\</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>  <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span></code></pre>
 </div>
 <p>*You can also provide Bam file as input instead of reads</p>
 <p>There are many other polishing tools available, such as
@@ -647,7 +648,7 @@ is as follows:</p>
 <span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>    <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
 <span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>    <span class="at">-o</span> athaliana_ont.asm <span class="dt">\</span></span>
 <span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>    <span class="at">--ont</span> <span class="dt">\</span></span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>    basecalled_2025-02-12-filtered_60x.fastq</span></code></pre>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>    At_ont-reads-filtered.fastq</span></code></pre>
 </div>
 <div id="post-processing" class="callout">
 <div class="callout-square">
@@ -779,7 +780,7 @@ any links that you are not going to use.
   "url": "https://genome-assembly.github.io/NA/instructor/oxford-nanopore-assembly.html",
   "identifier": "https://genome-assembly.github.io/NA/instructor/oxford-nanopore-assembly.html",
   "dateCreated": "2025-02-05",
-  "dateModified": "2025-02-16",
+  "dateModified": "2025-02-19",
   "datePublished": "2025-02-19"
 }
 

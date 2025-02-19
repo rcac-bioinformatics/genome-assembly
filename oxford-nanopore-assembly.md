@@ -86,10 +86,10 @@ ml --force purge
 ml biocontainers
 ml flye
 flye \
-  --nano-raw 9994.q20.CCS-filtered-60x.fastq \
+  --nano-raw At_ont-reads-filtered.fastq \
   --genome-size 135m \
   --out-dir flye_ont \
-  --threads ${SLURM_CPUS_ON_NODE} \
+  --threads ${SLURM_CPUS_ON_NODE}
 ```
 
 ::: callout
@@ -147,7 +147,7 @@ quast.py \
     --fast \
     --threads ${SLURM_CPUS_ON_NODE} \
     -o quast_basic_stats \
-    assembly.fasta
+    flye_ont/assembly.fasta
 ```
 
 
@@ -197,11 +197,13 @@ ml --force purge
 ml biocontainers
 ml flye
 flye \
-  --polish-target SEQ_TO_POLISH \
-  --pacbio-raw READS \ 
-  --iterations NUM_ITER \
-  --out-dir OUTPUTDIR \
-  --threads THREADS
+  --polish-target flye_ont/assembly.fasta \
+  --pacbio-raw At_pacbio-hifi-filtered.fastq \
+  --genome-size 135m \
+  --iterations 1 \
+  --out-dir flye_ont_polished \
+  --threads ${SLURM_CPUS_ON_NODE}
+
 ```
 *You can also provide Bam file as input instead of reads
 
@@ -221,7 +223,7 @@ hifiasm \
     -t ${SLURM_CPUS_ON_NODE} \
     -o athaliana_ont.asm \
     --ont \
-    basecalled_2025-02-12-filtered_60x.fastq
+    At_ont-reads-filtered.fastq
 ```
 
 ::: callout

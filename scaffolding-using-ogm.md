@@ -61,7 +61,8 @@ To download:
 
 
 ```bash
-wget ftp://ftp.sra.ebi.ac.uk/vol1/run/ERR522/ERR5229977/Col-0_2021-09-30.cmap
+wget ftp://ftp.sra.ebi.ac.uk/vol1/analysis/ERZ227/ERZ2272299/Evry.OpticalMap.Col-0.cmap.gz
+gunzip Evry.OpticalMap.Col-0.cmap.gz
 ```
 
 

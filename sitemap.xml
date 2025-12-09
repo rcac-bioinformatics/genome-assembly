@@ -22,6 +22,9 @@
     <loc>https://genome-assembly.github.io/NA/assembly-visualization.html</loc>
   </url>
   <url>
+    <loc>https://genome-assembly.github.io/NA/citation.html</loc>
+  </url>
+  <url>
     <loc>https://genome-assembly.github.io/NA/data-quality-control.html</loc>
   </url>
   <url>
@@ -53,6 +56,9 @@
   </url>
   <url>
     <loc>https://genome-assembly.github.io/NA/instructor/assembly-visualization.html</loc>
+  </url>
+  <url>
+    <loc>https://genome-assembly.github.io/NA/instructor/citation.html</loc>
   </url>
   <url>
     <loc>https://genome-assembly.github.io/NA/instructor/data-quality-control.html</loc>

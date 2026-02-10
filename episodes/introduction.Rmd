@@ -33,7 +33,7 @@ Genome assembly is the process of reconstructing a complete genome sequence by a
 * It enables deeper understanding of genes, their function, and evolutionary history.
 * Vital for studying complex traits, species diversity, and disease mechanisms.
 
-![Genome Assembly](https://github.com/user-attachments/assets/8f1b2924-4af4-46f5-a925-b927b0fdfc81)
+![Genome Assembly](https://github.com/user-attachments/assets/8f1b2924-4af4-46f5-a925-b927b0fdfc81){alt="Diagram showing the genome assembly process from fragmented DNA reads to a continuous sequence"}
 
 
 ## Importance of Genome Assembly
@@ -45,7 +45,7 @@ Genome assembly is the process of reconstructing a complete genome sequence by a
 
 - Examples of major genome sequencing projects (Human Genome Project, Vertebrate Genome Project).
 
-![Number of genomes in NCBI](https://github.com/user-attachments/assets/bd5e664b-cf76-4c33-a2ad-250040444a0b)
+![Number of genomes in NCBI](https://github.com/user-attachments/assets/bd5e664b-cf76-4c33-a2ad-250040444a0b){alt="Chart showing the growth of genome sequences deposited in NCBI over time"}
 
 
 ## De Novo vs. Reference-Guided Assembly
@@ -74,7 +74,7 @@ Genome assembly is the process of reconstructing a complete genome sequence by a
 6. Quality Assessment: Evaluating assembly completeness and accuracy.
 7. Downstream Analysis: Annotating genes, identifying variants, and studying genome structure.
 
-![Steps Overview](https://github.com/user-attachments/assets/ac4f82b2-1488-4ba8-b2c7-b1976a393f82)
+![Steps Overview](https://github.com/user-attachments/assets/ac4f82b2-1488-4ba8-b2c7-b1976a393f82){alt="Flowchart of the basic steps in genome assembly from sequencing through quality assessment"}
 
 
 Reference: [doi:10.1016/j.xpro.2022.101506](https://doi.org/10.1016/j.xpro.2022.101506)
@@ -101,7 +101,7 @@ Reference: [doi:10.1016/j.xpro.2022.101506](https://doi.org/10.1016/j.xpro.2022.
 - A single DNA strand is passed through a biological nanopore embedded in a membrane. As nucleotides move through the pore, they cause characteristic disruptions in an electrical current, which are interpreted by machine-learning algorithms to determine the sequence.
 
 
-![Sequencing Instruments](https://github.com/user-attachments/assets/62914627-e17d-4fd6-aceb-ae5dc48626d8)
+![Sequencing Instruments](https://github.com/user-attachments/assets/62914627-e17d-4fd6-aceb-ae5dc48626d8){alt="Photos of Illumina, PacBio, and Oxford Nanopore sequencing instruments"}
 
 
 
@@ -115,7 +115,7 @@ Reference: [doi:10.1016/j.xpro.2022.101506](https://doi.org/10.1016/j.xpro.2022.
 - **Error Correction**: Addressing sequencing errors and distinguishing true variants from artifacts.
 - **Structural Variants**: Large-scale rearrangements, duplications, deletions, and inversions that disrupt contiguity.
 
-![Challenges in Genome Assembly](https://github.com/user-attachments/assets/f1ec5463-6a81-466e-b4ce-a0a4d8344005)
+![Challenges in Genome Assembly](https://github.com/user-attachments/assets/f1ec5463-6a81-466e-b4ce-a0a4d8344005){alt="Diagram illustrating challenges in genome assembly including repetitive elements, heterozygosity, and structural variants"}
 
 ## Main programs used for Genome Assembly
 

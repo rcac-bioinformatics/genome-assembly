@@ -421,7 +421,7 @@ and ONT reads - hands-on.<br></li>
 confirm improvements - hands-on.<br></li>
 <li>K-mer analysis to ensure data quality (optional hands-on).</li>
 </ul></li>
-</ul><figure><img src="https://github.com/user-attachments/assets/21f98d7a-21b0-4e4d-aa48-b1b8edbb9dfc" alt="Overview of steps" class="figure mx-auto d-block"><div class="figcaption">Overview of steps</div>
+</ul><figure><img src="https://github.com/user-attachments/assets/21f98d7a-21b0-4e4d-aa48-b1b8edbb9dfc" alt="Flowchart showing data quality control steps: NanoPlot assessment, Filtlong filtering, and post-filtering evaluation" class="figure mx-auto d-block"><div class="figcaption">Overview of steps</div>
 </figure></section><section><h2 class="section-heading" id="pacbio-hifi-reads-from-subreads">PacBio HiFi reads from Subreads<a class="anchor" aria-label="anchor" href="#pacbio-hifi-reads-from-subreads"></a></h2>
 <hr class="half-width"><p><strong>PacBio HiFi</strong> reads can be generated using <a href="https://ccs.how/" class="external-link">Circular Consensus Sequencing</a> (CCS) program
 from <strong>PacBio</strong></p>
@@ -434,7 +434,7 @@ accuracy<br></li>
 <li>Iteratively polish the consensus using all subreads to refine
 accuracy</li>
 </ul></li>
-</ul><figure><img src="https://github.com/user-attachments/assets/566db0d0-93e8-40a3-82ce-89ec79c7a8b4" alt="PacBio CCS overview" class="figure mx-auto d-block"><div class="figcaption">PacBio CCS overview</div>
+</ul><figure><img src="https://github.com/user-attachments/assets/566db0d0-93e8-40a3-82ce-89ec79c7a8b4" alt="Diagram showing PacBio circular consensus sequencing generating HiFi reads from multiple passes" class="figure mx-auto d-block"><div class="figcaption">PacBio CCS overview</div>
 </figure><p><strong>What does CCS do?</strong></p>
 <ol style="list-style-type: decimal"><li>Filter low-quality subreads based on length and signal-to-noise
 ratio<br></li>
@@ -484,7 +484,7 @@ the nanopore.</li>
 <li>Dorado is Oxford Nanopore Technologies’ basecaller that converts raw
 electrical signals from nanopores into nucleotide sequences using
 machine learning.</li>
-</ul><figure><img src="https://github.com/user-attachments/assets/624b4209-5f34-4d03-ad12-de95ae85ad75" alt="Overview of ONT read generation" class="figure mx-auto d-block"><div class="figcaption">Overview of ONT read generation</div>
+</ul><figure><img src="https://github.com/user-attachments/assets/624b4209-5f34-4d03-ad12-de95ae85ad75" alt="Diagram showing Oxford Nanopore read generation from signal detection through Dorado basecalling" class="figure mx-auto d-block"><div class="figcaption">Overview of ONT read generation</div>
 </figure><p><strong>Key steps in <code>dorado</code> base calling</strong></p>
 <ol style="list-style-type: decimal"><li>
 <strong>Signal detection</strong>
@@ -971,7 +971,7 @@ command-line version of GenomeScope2:</p>
 <span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="co"># For ONT reads:</span></span>
 <span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="ex">genomescope2</span> <span class="at">-i</span> reads-ont.histo <span class="at">-o</span> genomescope_ont <span class="at">-k</span> 21 <span class="at">-p</span> 2 <span class="at">--name_prefix</span> <span class="st">"Oxford_Nanopore"</span></span></code></pre>
 </div>
-<p>Alternatively, you can use the <a href="http://genomescope.org/genomescope2.0/" class="external-link">GenomeScope web
+<p>Alternatively, you can use the <a href="https://genomescope.org/genomescope2.0/" class="external-link">GenomeScope web
 interface</a> to upload the <code>.histo</code> files and generate plots
 interactively (note: the web server may occasionally be
 unavailable).</p>

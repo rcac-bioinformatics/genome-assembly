@@ -29,7 +29,7 @@ exercises: 20
 Bionano optical mapping is a high-resolution genome analysis technique that generates long-range structural information by labeling and imaging ultra-long DNA molecules. It provides genome-wide maps that can be used to scaffold contigs from sequencing-based assemblies, significantly improving contiguity and structural accuracy. By integrating Bionano maps with assemblies from PacBio HiFi and Oxford Nanopore Technologies (ONT), misassemblies can be corrected, chimeric contigs resolved, and scaffold N50s increased by orders of magnitude. This approach is particularly valuable for complex genomes, where repetitive sequences and structural variations pose challenges for traditional sequencing methods. Bionano hybrid scaffolding has become a standard for enhancing genome assemblies, enabling researchers to achieve high-quality, chromosome-level assemblies efficiently.
 
 
-![Overview of Bionano OGM](https://github.com/user-attachments/assets/41c7c42b-c5e0-4d0d-b899-a479e62ffaee)
+![Overview of Bionano OGM](https://github.com/user-attachments/assets/41c7c42b-c5e0-4d0d-b899-a479e62ffaee){alt="Diagram showing the Bionano optical genome mapping process from DNA labeling to genome-wide maps"}
 
 
 ## Bionano Solve Hybrid Scaffolding
@@ -45,7 +45,7 @@ The scaffolding workflow involves:
 5. Output Generation – Producing final AGP and FASTA files with corrected genome structures.
 
 
-![Scaffolding using Bionano](https://github.com/user-attachments/assets/e568386e-348d-4b18-82ca-e304369f0fed)
+![Scaffolding using Bionano](https://github.com/user-attachments/assets/e568386e-348d-4b18-82ca-e304369f0fed){alt="Workflow diagram of Bionano Solve hybrid scaffolding pipeline showing in silico map generation, conflict resolution, and scaffold assembly"}
 
 
 

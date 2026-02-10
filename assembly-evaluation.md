@@ -200,7 +200,7 @@ Bandage requires assembly **graph** files (`.gfa` format), not FASTA files. HiFi
 
 :::
 
-![Bandage interface](https://github.com/user-attachments/assets/172513cc-d43b-401d-afbe-239d415d12bb)
+![Bandage interface](https://github.com/user-attachments/assets/172513cc-d43b-401d-afbe-239d415d12bb){alt="Screenshot of the Bandage application showing an assembly graph visualization with connected contigs"}
 
 
 

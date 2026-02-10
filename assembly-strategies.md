@@ -71,7 +71,7 @@ Genome assemblies progress through different levels of completeness and organiza
 
 Higher levels of assembly provide better genome context, but require additional scaffolding methods beyond de novo assembly.
 
-![Assembly levels](https://github.com/user-attachments/assets/4b7406b6-747a-4a34-b816-e1de2cf444a9)
+![Assembly levels](https://github.com/user-attachments/assets/4b7406b6-747a-4a34-b816-e1de2cf444a9){alt="Diagram comparing contig-level, scaffold-level, and chromosome-level genome assemblies"}
 
 ## Workflow for Various Assemblies
 
@@ -85,7 +85,7 @@ In this workshop, we will use HiFiasm for PacBio HiFi assemblies, Flye for ONT a
 - **HiFiasm**: A specialized assembler for HiFi data, leveraging read accuracy and length to resolve complex regions and produce high-quality contigs.
 - **Workflow**: Run HiFiasm with HiFi reads, adjust parameters based on genome size and complexity, and evaluate the assembly using Compleasm and QUAST.
 
-![PacBio Assembly](https://github.com/user-attachments/assets/1f87d81a-707b-44ff-a8e1-49648f61de95)
+![PacBio Assembly](https://github.com/user-attachments/assets/1f87d81a-707b-44ff-a8e1-49648f61de95){alt="Workflow diagram for PacBio HiFi assembly using HiFiasm"}
 
 
 ### ONT Assembly with Flye
@@ -94,7 +94,7 @@ In this workshop, we will use HiFiasm for PacBio HiFi assemblies, Flye for ONT a
 - **Flye**: A de novo assembler optimized for long reads, capable of resolving complex repeats and generating high-quality assemblies.
 - **Workflow**: Run Flye with ONT reads, adjust parameters based on genome size and complexity, and polish the assembly using Medaka for basecalling and consensus polishing.
 
-![ONT assembly](https://github.com/user-attachments/assets/9864ae7d-a893-4aec-ad4a-ea57170c8c27)
+![ONT assembly](https://github.com/user-attachments/assets/9864ae7d-a893-4aec-ad4a-ea57170c8c27){alt="Workflow diagram for ONT assembly using Flye with Medaka polishing"}
 
 
 ### Hybrid (ONT + PacBio) Assembly with Flye
@@ -102,7 +102,7 @@ In this workshop, we will use HiFiasm for PacBio HiFi assemblies, Flye for ONT a
 - **Hybrid assembly**: Combines the strengths of both technologies for improved accuracy and contiguity.
 - **Workflow**: Run Flye with both ONT and PacBio reads, adjust parameters for hybrid mode, and polish the assembly using ONT or PacBio reads for error correction and consensus polishing.
 
-![Hybrid assembly](https://github.com/user-attachments/assets/9b51523d-2358-4ad3-b6b3-bfe5d0189e4d)
+![Hybrid assembly](https://github.com/user-attachments/assets/9b51523d-2358-4ad3-b6b3-bfe5d0189e4d){alt="Workflow diagram for hybrid assembly combining ONT and PacBio HiFi reads using Flye"}
 
 
 ## Assembly Evaluation 
@@ -136,7 +136,7 @@ In this workshop, we will use HiFiasm for PacBio HiFi assemblies, Flye for ONT a
 - **Haplotype Purity and Phasing**: It calculates **QV (quality value)** scores and provides **completeness metrics for haplotypes**, helping assess whether an assembly accurately represents both parental haplotypes or contains chimeric sequences.  
 - **Consensus and Read Support Validation**: By analyzing k-mer spectra, Merqury detects **underrepresented or overrepresented regions**, highlighting assembly errors, collapsed repeats, or sequencing biases that may impact downstream analyses.
 
-![kmer spectra](https://github.com/user-attachments/assets/042f0ad9-e06e-4aa0-8faf-51f0d42e2983)
+![kmer spectra](https://github.com/user-attachments/assets/042f0ad9-e06e-4aa0-8faf-51f0d42e2983){alt="Example k-mer spectra plot from Merqury showing copy number distribution"}
 
 ## Bionano and Hi-C Reads in Genome Assembly  
 
@@ -144,7 +144,7 @@ In this workshop, we will use HiFiasm for PacBio HiFi assemblies, Flye for ONT a
 
 **Hi-C sequencing** captures chromatin interactions, allowing scaffolding of contigs into chromosome-scale assemblies based on physical proximity in the nucleus. It helps in ordering and orienting scaffolds, identifying misassemblies, and resolving haplotypes, making it essential for generating **chromosome-level genome assemblies**.
 
-![Bionano and HiC for assembly improvement](https://github.com/user-attachments/assets/7f983713-7ea7-4522-8540-349955a9f12e)
+![Bionano and HiC for assembly improvement](https://github.com/user-attachments/assets/7f983713-7ea7-4522-8540-349955a9f12e){alt="Diagram showing how Bionano OGM and Hi-C data improve genome assembly scaffolding"}
 
 [ref](https://doi.org/10.1038/ng.3802)
 

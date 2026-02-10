@@ -47,7 +47,7 @@ exercises: 30
   - K-mer analysis to ensure data quality (optional hands-on). 
 
 
-![Overview of steps](https://github.com/user-attachments/assets/21f98d7a-21b0-4e4d-aa48-b1b8edbb9dfc)
+![Overview of steps](https://github.com/user-attachments/assets/21f98d7a-21b0-4e4d-aa48-b1b8edbb9dfc){alt="Flowchart showing data quality control steps: NanoPlot assessment, Filtlong filtering, and post-filtering evaluation"}
 
 
 
@@ -63,7 +63,7 @@ exercises: 30
   - Generate a draft consensus from multiple subreads  
   - Iteratively polish the consensus using all subreads to refine accuracy  
 
-![PacBio CCS overview](https://github.com/user-attachments/assets/566db0d0-93e8-40a3-82ce-89ec79c7a8b4)
+![PacBio CCS overview](https://github.com/user-attachments/assets/566db0d0-93e8-40a3-82ce-89ec79c7a8b4){alt="Diagram showing PacBio circular consensus sequencing generating HiFi reads from multiple passes"}
 
 **What does CCS do?**
 
@@ -112,7 +112,7 @@ samtools fastq \
    - Dorado is Oxford Nanopore Technologies’ basecaller that converts raw electrical signals from nanopores into nucleotide sequences using machine learning.  
 
 
-![Overview of ONT read generation](https://github.com/user-attachments/assets/624b4209-5f34-4d03-ad12-de95ae85ad75)
+![Overview of ONT read generation](https://github.com/user-attachments/assets/624b4209-5f34-4d03-ad12-de95ae85ad75){alt="Diagram showing Oxford Nanopore read generation from signal detection through Dorado basecalling"}
 
 
 **Key steps in `dorado` base calling**
@@ -499,7 +499,7 @@ genomescope2 -i reads-pacbio.histo -o genomescope_pacbio -k 21 -p 2 --name_prefi
 genomescope2 -i reads-ont.histo -o genomescope_ont -k 21 -p 2 --name_prefix "Oxford_Nanopore"
 ```
 
-Alternatively, you can use the [GenomeScope web interface](http://genomescope.org/genomescope2.0/) to upload the `.histo` files and generate plots interactively (note: the web server may occasionally be unavailable).
+Alternatively, you can use the [GenomeScope web interface](https://genomescope.org/genomescope2.0/) to upload the `.histo` files and generate plots interactively (note: the web server may occasionally be unavailable).
 
 
 

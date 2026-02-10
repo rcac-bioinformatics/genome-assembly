@@ -78,7 +78,7 @@ The assembly workflow typically involves:
 
 HiFiasm is optimized for this process, leveraging the high accuracy of HiFi reads to generate contigs with minimal fragmentation and greater haplotype resolution compared to traditional assemblers.
 
-![HiFiasm assembler](https://github.com/user-attachments/assets/1ab2a17c-ac29-42c7-a890-5c86577e2f19)
+![HiFiasm assembler](https://github.com/user-attachments/assets/1ab2a17c-ac29-42c7-a890-5c86577e2f19){alt="Overview of the HiFiasm assembly workflow from read overlaps through graph construction to contig generation"}
 
 
 ## HiFiasm: basic workflow

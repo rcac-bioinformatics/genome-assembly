@@ -52,7 +52,6 @@ jobs:
     if: ${{ needs.test-pr.outputs.is_valid == 'true' }}
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      RENV_PATHS_ROOT: ~/.local/share/renv/
       CHIVE: ${{ github.workspace }}/site/chive
       PR: ${{ github.workspace }}/site/pr
       MD: ${{ github.workspace }}/site/built
@@ -80,15 +79,9 @@ jobs:
         with:
           cache-version: ${{ secrets.CACHE_VERSION }}
 
-      - name: "Setup Package Cache"
-        uses: carpentries/actions/setup-lesson-deps@main
-        with:
-          cache-version: ${{ secrets.CACHE_VERSION }}
-
       - name: "Validate and Build Markdown"
         id: build-site
         run: |
-          sandpaper::package_cache_trigger(TRUE)
           sandpaper::validate_lesson(path = '${{ github.workspace }}')
           sandpaper:::build_markdown(path = '${{ github.workspace }}', quiet = FALSE)
         shell: Rscript {0}

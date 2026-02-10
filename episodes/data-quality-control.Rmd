@@ -1,7 +1,7 @@
 ---
 title: 'Data Quality Control'
-teaching: 10
-exercises: 2
+teaching: 30
+exercises: 30
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
@@ -174,13 +174,48 @@ dorado basecaller \
 - Data is for _Arabidopsis thaliana_ ecotype Col-0, sequenced using R10.4/Q20+ chemistry from MinION cell
 - The data is publicly available on the European Nucleotide Archive (ENA), and the `pass_fast5` reads were used for basecalling (with commands above).
 
+## SLURM Job Script Template
+
+Throughout this workshop, you will need to submit jobs to the cluster using SLURM. Here is a template SLURM script that you can adapt for each step:
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=genome-assembly
+#SBATCH --account=workshop
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=32
+#SBATCH --time=4:00:00
+#SBATCH --mem=64G
+#SBATCH --output=%x_%j.out
+#SBATCH --error=%x_%j.err
+
+# Load modules
+ml --force purge
+ml biocontainers
+
+# Your commands go here
+```
+
+::: callout
+
+## Submitting and monitoring jobs
+
+- Save the script as `job_script.sh` and submit with `sbatch job_script.sh`
+- Monitor with `squeue -u $USER`
+- Check output in the `.out` and `.err` files
+- Adjust `--cpus-per-task`, `--time`, and `--mem` based on the tool requirements (see the Resource Requirements table in the Assembly Strategies episode)
+
+:::
+
+
 ## A. NanoPlot for Quality Assessment
 
 [NanoPlot](https://github.com/wdecoster/NanoPlot) [ref](https://doi.org/10.1093/bioinformatics/bty149) is a visualization tool designed for quality assessment of long-read sequencing data. It generates a variety of plots, including read length histograms, cumulative yield plots, violin plots of read length and quality over time, and bivariate plots that compare read lengths, quality scores, reference identity, and mapping quality. By providing both single-variable and density-based visualizations, NanoPlot helps users quickly assess sequencing run quality and detect potential issues. The tool also allows downsampling, length and quality filtering, and barcode-specific analysis for multiplexed experiments.
 
 **1. Quality Assessment of PacBio HiFi Reads**  
 
-Assessing the quality of ONT reads using `NanoPlot`. Create a slurm script to run NanoPlot on the HiFi reads.
+Assessing the quality of PacBio HiFi reads using `NanoPlot`. Create a SLURM script to run NanoPlot on the HiFi reads.
 
 ```bash
 ml --force purge
@@ -203,10 +238,10 @@ NanoPlot \
 The stdout from the NanoPlot run will look like this:
 
 ```
-2025-02-13 12:13:19,155 NanoPlot 1.44.1 started with arguments Namespace(threads=16, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_output', no_static=False, prefix='At_PacBio_', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['9994.q20.CCS.fastq.gz'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_output/At_PacBio_')
+2025-02-13 12:13:19,155 NanoPlot 1.44.1 started with arguments Namespace(threads=16, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_pre', no_static=False, prefix='At_PacBio_', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['At_pacbio-hifi.fastq.gz'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_pre/At_PacBio_')
 2025-02-13 12:13:19,156 Python version is: 3.9.21 | packaged by conda-forge | (main, Dec  5 2024, 13:51:40)  [GCC 13.3.0]
 2025-02-13 12:13:19,186 Nanoget: Starting to collect statistics from plain fastq file.
-2025-02-13 12:13:19,187 Nanoget: Decompressing gzipped fastq 9994.q20.CCS.fastq.gz
+2025-02-13 12:13:19,187 Nanoget: Decompressing gzipped fastq At_pacbio-hifi.fastq.gz
 2025-02-13 12:29:10,170 Reduced DataFrame memory usage from 12.780670166015625Mb to 12.780670166015625Mb
 2025-02-13 12:29:10,194 Nanoget: Gathered all metrics of 837586 reads
 2025-02-13 12:29:10,538 Calculated statistics
@@ -215,15 +250,15 @@ The stdout from the NanoPlot run will look like this:
 2025-02-13 12:29:10,557 NanoPlot:  Valid colormap Greens.
 2025-02-13 12:29:10,582 NanoPlot:  Creating length plots for Read length.
 2025-02-13 12:29:10,583 NanoPlot: Using 837586 reads with read length N50 of 22587bp and maximum of 57055bp.
-2025-02-13 12:29:11,933 Saved nanoplot_pacbio_output/At_PacBio_WeightedHistogramReadlength  as png (or png for --legacy)
-2025-02-13 12:29:12,443 Saved nanoplot_pacbio_output/At_PacBio_WeightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
-2025-02-13 12:29:12,899 Saved nanoplot_pacbio_output/At_PacBio_Non_weightedHistogramReadlength  as png (or png for --legacy)
-2025-02-13 12:29:13,371 Saved nanoplot_pacbio_output/At_PacBio_Non_weightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:29:11,933 Saved nanoplot_pacbio_pre/At_PacBio_WeightedHistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:29:12,443 Saved nanoplot_pacbio_pre/At_PacBio_WeightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:29:12,899 Saved nanoplot_pacbio_pre/At_PacBio_Non_weightedHistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:29:13,371 Saved nanoplot_pacbio_pre/At_PacBio_Non_weightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
 2025-02-13 12:29:13,372 NanoPlot: Creating yield by minimal length plot for Read length.
-2025-02-13 12:29:14,465 Saved nanoplot_pacbio_output/At_PacBio_Yield_By_Length  as png (or png for --legacy)
+2025-02-13 12:29:14,465 Saved nanoplot_pacbio_pre/At_PacBio_Yield_By_Length  as png (or png for --legacy)
 2025-02-13 12:29:14,466 Created length plots
 2025-02-13 12:29:14,474 NanoPlot: Creating Read lengths vs Average read quality plots using 837586 reads.
-2025-02-13 12:29:15,012 Saved nanoplot_pacbio_output/At_PacBio_LengthvsQualityScatterPlot_kde  as png (or png for --legacy)
+2025-02-13 12:29:15,012 Saved nanoplot_pacbio_pre/At_PacBio_LengthvsQualityScatterPlot_kde  as png (or png for --legacy)
 2025-02-13 12:29:15,013 Created LengthvsQual plot
 2025-02-13 12:29:15,013 Writing html report.
 2025-02-13 12:29:15,029 Finished!
@@ -262,7 +297,6 @@ NanoPlot \
    --verbose \
    --outdir nanoplot_ont_pre \
    --prefix At_ONT_ \
-   --readtype 1D \
    --plots kde \
    --N50 \
    --dpi 300 \
@@ -274,7 +308,7 @@ NanoPlot \
 The stdout from the NanoPlot run will look like this:
 
 ```
-2025-02-13 12:15:51,066 NanoPlot 1.44.1 started with arguments Namespace(threads=8, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_output', no_static=False, prefix='At_ONT_', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['basecalled_2025-02-12.fastq'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_output/At_ONT_')
+2025-02-13 12:15:51,066 NanoPlot 1.44.1 started with arguments Namespace(threads=8, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_ont_pre', no_static=False, prefix='At_ONT_', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['At_ont-reads.fastq.gz'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_ont_pre/At_ONT_')
 2025-02-13 12:15:51,067 Python version is: 3.9.21 | packaged by conda-forge | (main, Dec  5 2024, 13:51:40)  [GCC 13.3.0]
 2025-02-13 12:15:51,096 Nanoget: Starting to collect statistics from plain fastq file.
 2025-02-13 12:25:11,429 Reduced DataFrame memory usage from 8.842315673828125Mb to 8.842315673828125Mb
@@ -285,15 +319,15 @@ The stdout from the NanoPlot run will look like this:
 2025-02-13 12:25:11,707 NanoPlot:  Valid colormap Greens.
 2025-02-13 12:25:11,725 NanoPlot:  Creating length plots for Read length.
 2025-02-13 12:25:11,725 NanoPlot: Using 579482 reads with read length N50 of 36292bp and maximum of 298974bp.
-2025-02-13 12:25:13,096 Saved nanoplot_pacbio_output/At_ONT_WeightedHistogramReadlength  as png (or png for --legacy)
-2025-02-13 12:25:13,571 Saved nanoplot_pacbio_output/At_ONT_WeightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
-2025-02-13 12:25:14,971 Saved nanoplot_pacbio_output/At_ONT_Non_weightedHistogramReadlength  as png (or png for --legacy)
-2025-02-13 12:25:15,440 Saved nanoplot_pacbio_output/At_ONT_Non_weightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:25:13,096 Saved nanoplot_ont_pre/At_ONT_WeightedHistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:25:13,571 Saved nanoplot_ont_pre/At_ONT_WeightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:25:14,971 Saved nanoplot_ont_pre/At_ONT_Non_weightedHistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:25:15,440 Saved nanoplot_ont_pre/At_ONT_Non_weightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
 2025-02-13 12:25:15,441 NanoPlot: Creating yield by minimal length plot for Read length.
-2025-02-13 12:25:16,485 Saved nanoplot_pacbio_output/At_ONT_Yield_By_Length  as png (or png for --legacy)
+2025-02-13 12:25:16,485 Saved nanoplot_ont_pre/At_ONT_Yield_By_Length  as png (or png for --legacy)
 2025-02-13 12:25:16,486 Created length plots
 2025-02-13 12:25:16,495 NanoPlot: Creating Read lengths vs Average read quality plots using 579482 reads.
-2025-02-13 12:25:17,029 Saved nanoplot_pacbio_output/At_ONT_LengthvsQualityScatterPlot_kde  as png (or png for --legacy)
+2025-02-13 12:25:17,029 Saved nanoplot_ont_pre/At_ONT_LengthvsQualityScatterPlot_kde  as png (or png for --legacy)
 2025-02-13 12:25:17,030 Created LengthvsQual plot
 2025-02-13 12:25:17,030 Writing html report.
 2025-02-13 12:25:17,047 Finished!
@@ -327,6 +361,14 @@ Our genome (_A. thaliana_) has a genome size of ~135 Mb. Our target coverage is 
 
 [`Filtlong`](https://github.com/rrwick/Filtlong) is a tool designed to filter long-read sequencing data by selecting a smaller, higher-quality subset of reads based on length and identity. It prioritizes longer reads with higher sequence identity while discarding shorter or lower-quality reads, ensuring that the retained data contributes to more accurate genome assemblies. This filtering step is crucial for improving assembly contiguity, reducing errors, and optimizing computational efficiency by removing excess low-quality data.
 
+
+::: callout
+
+## Note on Filtlong and HiFi reads
+
+Filtlong was originally designed for filtering error-prone long reads (ONT, PacBio CLR) where quality variation is significant. For PacBio HiFi reads, which already have very high accuracy (~Q20+), Filtlong's quality-based filtering provides less benefit. We use it here primarily for **length filtering and downsampling** to target coverage. For HiFi-specific filtering, you could alternatively use tools like `bamtools` on the original BAM files or simply subsample by read length.
+
+:::
 
 **1. Filtering PacBio HiFi Reads**
 
@@ -403,7 +445,6 @@ NanoPlot \
    --verbose \
    --outdir nanoplot_ont_post \
    --prefix At_ONT_post_ \
-   --readtype 1D \
    --plots kde \
    --N50 \
    --dpi 300 \
@@ -426,10 +467,10 @@ We will use these filtered reads for downstream genome assembly.
 ml --force purge
 ml biocontainers
 ml kmc
-mkdir tmp
-ls At_pacbio-hifi-filtered.fastq > FILES
-kmc -k21 -t10 -m64 -ci1 -cs10000 @FILES reads tmp/
-kmc_tools transform reads histogram reads-pacbio.histo -cx10000
+mkdir -p tmp_pacbio
+ls At_pacbio-hifi-filtered.fastq > FILES_pacbio
+kmc -k21 -t10 -m64 -ci1 -cs10000 @FILES_pacbio reads_pacbio tmp_pacbio/
+kmc_tools transform reads_pacbio histogram reads-pacbio.histo -cx10000
 ```
 
 **2. For ONT Reads:**
@@ -438,19 +479,27 @@ kmc_tools transform reads histogram reads-pacbio.histo -cx10000
 ml --force purge
 ml biocontainers
 ml kmc
-mkdir tmp
-ls At_ont-reads-filtered.fastq > FILES
-kmc -k21 -t10 -m64 -ci1 -cs10000 @FILES reads tmp/
-kmc_tools transform reads histogram reads-ont.histo -cx10000
+mkdir -p tmp_ont
+ls At_ont-reads-filtered.fastq > FILES_ont
+kmc -k21 -t10 -m64 -ci1 -cs10000 @FILES_ont reads_ont tmp_ont/
+kmc_tools transform reads_ont histogram reads-ont.histo -cx10000
 ```
 
 Now you can visualize the k-mer frequency distributions using GenomeScope to assess the quality of the HiFi and ONT reads. This analysis can help identify potential issues and guide further filtering or processing steps to improve data quality.
 
-To visualize the k-mer frequency distributions:
+To visualize the k-mer frequency distributions, you can use the command-line version of GenomeScope2:
 
-1. Visit the [GenomeScope website](http://genomescope.org/genomescope2.0/) and upload the `reads-pacbio.histo` OR `reads-ont.histo` files (drag and drop).
-2. If you uploaded the `reads-pacbio.histo` file, enter description with `PacBio HiFi`. If you uploaded the `reads-ont.histo` file, enter description with `Oxford Nanopore`.
-3. Click on the `Submit` button to generate the k-mer frequency distribution plots.
+```bash
+ml --force purge
+ml biocontainers
+ml genomescope2
+# For PacBio HiFi reads:
+genomescope2 -i reads-pacbio.histo -o genomescope_pacbio -k 21 -p 2 --name_prefix "PacBio_HiFi"
+# For ONT reads:
+genomescope2 -i reads-ont.histo -o genomescope_ont -k 21 -p 2 --name_prefix "Oxford_Nanopore"
+```
+
+Alternatively, you can use the [GenomeScope web interface](http://genomescope.org/genomescope2.0/) to upload the `.histo` files and generate plots interactively (note: the web server may occasionally be unavailable).
 
 
 

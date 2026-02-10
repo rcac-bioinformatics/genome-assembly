@@ -1,7 +1,7 @@
 ---
 title: 'Hybrid Long Read Assembly (optional)'
-teaching: 10
-exercises: 2
+teaching: 15
+exercises: 30
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
@@ -52,6 +52,18 @@ flye \
 
 ```
 
+::: callout
+
+## While you wait
+
+The hybrid Flye assembly involves two rounds and may take 45-60 minutes total. While you wait, you can:
+
+- Review your previous HiFiasm and Flye assemblies and compare their statistics
+- Think about what advantages combining both data types might provide
+- Discuss with your neighbor: when would a hybrid assembly approach be preferred over single-technology assembly?
+
+:::
+
 
 ## Evaluating Assembly Quality
 
@@ -68,7 +80,6 @@ quast.py \
   --threads ${SLURM_CPUS_ON_NODE} \
   -o quast_basic \
     ${fasta}
-compleasm \
 compleasm run \
    -a ${fasta} \
    -o compleasm_out \
@@ -88,7 +99,7 @@ export PATH=$PATH:/apps/biocontainers/exported-wrappers/bionano/3.8.0
 fasta="hybrid_flye_out/assembly.fasta"
 run_hybridscaffold.sh \
   -c /opt/Solve3.7_10192021_74_1/HybridScaffold/1.0/hybridScaffold_DLE1_config.xml\
-  -b workshop_assembly/col-0_bionano/Evry.OpticalMap.Col-0.cmap \
+  -b Evry.OpticalMap.Col-0.cmap \
   -n ${fasta} \
   -u CTTAAG \
   -z results_bionano_hybrid_scaffolding.zip \

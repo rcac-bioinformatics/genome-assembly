@@ -5,8 +5,6 @@ on:
     branches:
       - main
       - master
-  schedule:
-    - cron: '0 0 * * 2'
   workflow_dispatch:
     inputs:
       name:
@@ -31,7 +29,6 @@ jobs:
       pages: write
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      RENV_PATHS_ROOT: ~/.local/share/renv/
     steps:
 
       - name: "Checkout Lesson"
@@ -51,14 +48,8 @@ jobs:
         with:
           cache-version: ${{ secrets.CACHE_VERSION }}
 
-      - name: "Setup Package Cache"
-        uses: carpentries/actions/setup-lesson-deps@main
-        with:
-          cache-version: ${{ secrets.CACHE_VERSION }}
-
       - name: "Deploy Site"
         run: |
           reset <- "${{ github.event.inputs.reset }}" == "true"
-          sandpaper::package_cache_trigger(TRUE)
           sandpaper:::ci_deploy(reset = reset)
         shell: Rscript {0}

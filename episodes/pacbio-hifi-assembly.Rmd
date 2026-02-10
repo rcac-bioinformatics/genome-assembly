@@ -1,7 +1,7 @@
 ---
 title: 'PacBio HiFi Assembly using HiFiasm'
-teaching: 10
-exercises: 2
+teaching: 20
+exercises: 40
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
@@ -105,6 +105,30 @@ In this command:
 
 The input can either be fastq or fasta, compressed or uncompressed. The output will be stored in the same directory with the specified prefix.
 
+For plant genomes, you can also specify the telomere motif to help hifiasm identify chromosome ends:
+
+```bash
+hifiasm \
+    -t ${SLURM_CPUS_ON_NODE} \
+    --telo-m CCCTAAA \
+    -o hifiasm_default/At_hifiasm_default.asm \
+    At_pacbio-hifi-filtered.fastq
+```
+
+The `--telo-m CCCTAAA` flag tells hifiasm to look for the canonical plant telomere repeat, which helps identify complete chromosome arms in the assembly.
+
+:::
+
+::: callout
+
+## While you wait
+
+HiFiasm will take approximately 15-30 minutes with 32 threads on the _A. thaliana_ dataset. While you wait, you can:
+
+- Review the HiFiasm output file descriptions in the table below
+- Read about [haplotype resolution in HiFiasm](https://hifiasm.readthedocs.io/)
+- Discuss with your neighbor: what assembly metrics would indicate a good vs. poor assembly?
+
 :::
 
 ## Understanding HiFiasm Output
@@ -151,7 +175,7 @@ done
 :::::::::::::::::::::::::::::::::::::::
 
 
-Let's take a look at the sats of this assembly:
+Let's take a look at the stats of this assembly:
 
 ```bash
 ml --force purge
@@ -269,7 +293,7 @@ ml hifiasm
 # purge level 3
 mkdir -p hifiasm_purge-3
 hifiasm \
-  -o hifiasm_purge-3/At_hifiasm_purge-0.asm \
+  -o hifiasm_purge-3/At_hifiasm_purge-3.asm \
   -l 3 \
   -t ${SLURM_CPUS_ON_NODE} \
   At_pacbio-hifi-filtered.fastq
@@ -305,9 +329,12 @@ done
 Run QUAST to compare the assemblies
 
 ```bash
+ml --force purge
+ml biocontainers
+ml quast
 mkdir -p quast_stats
-for fasta in hifiasm_purge_level_{0..3}/*_p_ctg.fasta; do
-    ln -s ${fasta} quast_stats/
+for fasta in hifiasm_purge-{0..3}/*_p_ctg.fasta; do
+    ln -s ../${fasta} quast_stats/
 done
 cd quast_stats
 quast.py \

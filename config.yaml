@@ -21,7 +21,7 @@ title: 'Genome Assembly: Hands-on Training'
 created: '2025-02-05'
 
 # Comma-separated list of keywords for the lesson
-keywords: 'gene-assembly, pacbio, oxford-nanopore, hifasm, flye, medaka, busco, quast'
+keywords: 'genome-assembly, pacbio, oxford-nanopore, hifiasm, flye, medaka, busco, quast'
 
 # Life cycle stage of the lesson
 # possible values: pre-alpha, alpha, beta, stable

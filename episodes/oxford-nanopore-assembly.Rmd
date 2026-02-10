@@ -1,7 +1,7 @@
 ---
 title: 'Oxford Nanopore Assembly using Flye'
-teaching: 10
-exercises: 2
+teaching: 20
+exercises: 40
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
@@ -49,11 +49,11 @@ ml flye
 flye --version
 ```
 
-You can also use the Singularity container for HiFiasm, which provides a consistent environment across different systems. The container can be pulled from the BioContainers registry using the following command:
+You can also use the Singularity container for Flye, which provides a consistent environment across different systems. The container can be pulled from the BioContainers registry using the following command:
 
 ```bash
 apptainer pull docker://quay.io/biocontainers/flye:2.9.5--py311h2de2dd3_2
-apptainer exec hflye_2.9.5--py311h2de2dd3_2.sif flye --version
+apptainer exec flye_2.9.5--py311h2de2dd3_2.sif flye --version
 ```
 
 ## Overview of Flye Assembler  
@@ -86,7 +86,7 @@ ml --force purge
 ml biocontainers
 ml flye
 flye \
-  --nano-raw At_ont-reads-filtered.fastq \
+  --nano-hq At_ont-reads-filtered.fastq \
   --genome-size 135m \
   --out-dir flye_ont \
   --threads ${SLURM_CPUS_ON_NODE}
@@ -97,13 +97,40 @@ flye \
 ## Options used
 
 
-- `--nano-raw` specifies the input ONT long reads in FASTQ format
+- `--nano-hq` specifies high-quality ONT reads (Dorado HAC/SUP basecalled, R10.4+ chemistry, typically Q20+)
 - `--genome-size` provides an estimate of the genome size to guide assembly
 - `--out-dir` specifies the output directory for Flye results
 - `--threads` specifies the number of CPU threads to use for assembly
 
 
 The input can either be fastq or fasta, compressed or uncompressed. The output will be stored in the directory provided.
+
+:::
+
+::: callout
+
+## Choosing the right Flye input type
+
+Flye provides several input options depending on your read type and quality:
+
+- `--nano-hq`: For Dorado HAC/SUP basecalled reads with R10.4+ chemistry (Q20+). **This is what we use for our data.**
+- `--nano-raw`: For older, lower-quality ONT reads (R9, fast basecalling, <Q10)
+- `--pacbio-hifi`: For PacBio HiFi/CCS reads
+- `--pacbio-raw`: For PacBio CLR (continuous long reads)
+
+Using the wrong input type can significantly affect assembly quality. Since our ONT data was basecalled with Dorado HAC on R10.4.1 chemistry, `--nano-hq` is the correct choice.
+
+:::
+
+::: callout
+
+## While you wait
+
+Flye will take approximately 30-60 minutes with 32 threads on the _A. thaliana_ dataset. While you wait, you can:
+
+- Review the Flye output file descriptions in the table below
+- Compare the Flye assembly graph approach to the HiFiasm approach from the previous episode
+- Read about [Flye's repeat graph algorithm](https://github.com/mikolmogorov/Flye/blob/flye/docs/USAGE.md)
 
 :::
 
@@ -190,24 +217,29 @@ After generating the initial assembly, it is often beneficial to polish the asse
 
 Flye provides built-in polishing capabilities. By default, Flye performs one round of polishing to refine the assembly. However, you can customize the polishing process by running polishing separately after the initial assembly.
 
-An example command to polish assembly with accurate PacBio HiFi reads:
+A recommended approach for polishing ONT assemblies is to use `Medaka`, which uses neural networks trained on ONT data to correct errors:
 
 ```bash
 ml --force purge
 ml biocontainers
-ml flye
-flye \
-  --polish-target flye_ont/assembly.fasta \
-  --pacbio-raw At_pacbio-hifi-filtered.fastq \
-  --genome-size 135m \
-  --iterations 1 \
-  --out-dir flye_ont_polished \
-  --threads ${SLURM_CPUS_ON_NODE}
-
+ml medaka
+medaka_polish \
+   -i At_ont-reads-filtered.fastq \
+   -d flye_ont/assembly.fasta \
+   -o medaka_polished \
+   -t ${SLURM_CPUS_ON_NODE} \
+   -m r1041_e82_400bps_hac_v5.0.0
 ```
-*You can also provide Bam file as input instead of reads
 
-There are many other polishing tools available, such as `Racon`, `Nanoploish`, and `medaka`, which can be used to further refine the ONT assembly. Each tool has its strengths and limitations, so it is recommended to try different polishing strategies to achieve the best results for your specific dataset. `Medaka` is a popular choice for polishing ONT assemblies due to its accuracy and efficiency.
+::: callout
+
+## Medaka model selection
+
+The `-m` flag specifies the Medaka model, which should match your basecalling chemistry and model. For our data (R10.4.1, Dorado HAC), we use `r1041_e82_400bps_hac_v5.0.0`. You can list available models with `medaka --list_models`. Using the wrong model will produce suboptimal results.
+
+:::
+
+There are other polishing tools available, such as `Racon` and `Nanopolish`, which can be used to further refine the ONT assembly. Each tool has its strengths and limitations, so it is recommended to try different polishing strategies to achieve the best results for your specific dataset. `Medaka` is the current recommended choice for polishing ONT assemblies due to its accuracy and efficiency. For the latest basecalling and polishing, ONT's `Dorado` toolkit is also emerging as an integrated solution.
 
 
 ## HiFiasm for ONT Data (Optional)
@@ -238,7 +270,7 @@ for ctg in *_ctg.gfa; do
 done
 ```
 
-Get teh basic stats using `quast`:
+Get the basic stats using `quast`:
 
 ```bash
 ml --force purge
@@ -256,7 +288,7 @@ and run `compleasm` to get the assembly completeness:
 ```bash
 ml --force purge
 ml biocontainers
-ml completeasm
+ml compleasm
 for fasta in *_ctg.fasta; do
     compleasm run \
        -a ${fasta} \

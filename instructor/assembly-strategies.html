@@ -109,11 +109,11 @@
   Genome Assembly: Hands-on Training
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 12%" class="percentage">
-    12%
+<aside class="col-md-12 lesson-progress"><div style="width: 8%" class="percentage">
+    8%
   </div>
   <div class="progress rcac">
-    <div class="progress-bar rcac" role="progressbar" style="width: 12%" aria-valuenow="12" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar rcac" role="progressbar" style="width: 8%" aria-valuenow="8" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -222,6 +222,8 @@
 <li><a href="#workflow-for-various-assemblies">Workflow for Various Assemblies</a></li>
 <li><a href="#assembly-evaluation">Assembly Evaluation</a></li>
 <li><a href="#bionano-and-hi-c-reads-in-genome-assembly">Bionano and Hi-C Reads in Genome Assembly</a></li>
+<li><a href="#resource-requirements">Resource Requirements</a></li>
+<li><a href="#emerging-assemblers-and-approaches">Emerging Assemblers and Approaches</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -340,13 +342,13 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Assembly Strategies</h1>
-        <p>Last updated on 2025-11-11 |
+        <p>Last updated on 2026-02-10 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/assembly-strategies.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
 
 
-        <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
+        <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 20 minutes</p>
 
         <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
@@ -442,27 +444,27 @@ Bionano OGM.</li>
 <hr class="half-width"><table class="table"><colgroup><col width="25%"><col width="21%"><col width="24%"><col width="28%"></colgroup><thead><tr class="header"><th>Factor</th>
 <th>PacBio HiFi</th>
 <th>ONT</th>
-<th>Hybrid (ONT + Illumina)</th>
+<th>Hybrid (ONT + PacBio HiFi)</th>
 </tr></thead><tbody><tr class="odd"><td><strong>Read length</strong></td>
 <td>~15-20kb</td>
 <td>10-100kb+</td>
-<td>Mix of short &amp; long</td>
+<td>Mix of ultra-long &amp; accurate</td>
 </tr><tr class="even"><td><strong>Read accuracy</strong></td>
 <td>High (~99%)</td>
-<td>Moderate (~90%)</td>
+<td>Variable: ~90% (R9/fast) to ~99% (R10.4/HAC/SUP)</td>
 <td>High (after polishing)</td>
 </tr><tr class="odd"><td><strong>Coverage needed</strong></td>
 <td>20-30x</td>
 <td>50-100x</td>
-<td>ONT: 50x + Illumina: 30x</td>
+<td>ONT: 50x + HiFi: 20-30x</td>
 </tr><tr class="even"><td><strong>Cost per Gb</strong></td>
 <td>Expensive</td>
 <td>Lower</td>
 <td>Medium</td>
 </tr><tr class="odd"><td><strong>Error profile</strong></td>
 <td>Random errors, low indels</td>
-<td>Higher error rate, systematic errors</td>
-<td>ONT errors corrected by Illumina</td>
+<td>Systematic errors in homopolymers; greatly reduced with R10.4+</td>
+<td>ONT errors corrected by HiFi reads</td>
 </tr><tr class="even"><td><strong>Computational requirements</strong></td>
 <td>High RAM required</td>
 <td>Moderate RAM required</td>
@@ -481,8 +483,8 @@ Bionano OGM.</li>
 <td>Sometimes needed</td>
 </tr><tr class="even"><td><strong>Polishing required</strong></td>
 <td>Not required</td>
-<td>Required (Racon + Medaka)</td>
-<td>Required (Pilon)</td>
+<td>Required (Medaka)</td>
+<td>Polish with HiFi reads</td>
 </tr><tr class="odd"><td><strong>Structural variant detection</strong></td>
 <td>Good</td>
 <td>Excellent</td>
@@ -521,8 +523,8 @@ additional scaffolding methods beyond de novo assembly.</p>
 <figure><img src="https://github.com/user-attachments/assets/4b7406b6-747a-4a34-b816-e1de2cf444a9" alt="Assembly levels" class="figure mx-auto d-block"><div class="figcaption">Assembly levels</div>
 </figure></section><section><h2 class="section-heading" id="workflow-for-various-assemblies">Workflow for Various Assemblies<a class="anchor" aria-label="anchor" href="#workflow-for-various-assemblies"></a></h2>
 <hr class="half-width"><p>In this workshop, we will use HiFiasm for PacBio HiFi assemblies,
-Flye for ONT assemblies, and Flye in hybrid mode for ONT + Illumina
-assemblies, followed by quality assessment using BUSCO and QUAST to
+Flye for ONT assemblies, and Flye in hybrid mode for ONT + PacBio HiFi
+assemblies, followed by quality assessment using Compleasm and QUAST to
 evaluate completeness and accuracy.</p>
 <div class="section level3">
 <h3 id="pacbio-hifi-assembly-with-hifiasm">PacBio HiFi Assembly with HiFiasm<a class="anchor" aria-label="anchor" href="#pacbio-hifi-assembly-with-hifiasm"></a></h3>
@@ -640,6 +642,86 @@ it essential for generating <strong>chromosome-level genome
 assemblies</strong>.</p>
 <figure><img src="https://github.com/user-attachments/assets/7f983713-7ea7-4522-8540-349955a9f12e" alt="Bionano and HiC for assembly improvement" class="figure mx-auto d-block"><div class="figcaption">Bionano and HiC for assembly improvement</div>
 </figure><p><a href="https://doi.org/10.1038/ng.3802" class="external-link">ref</a></p>
+</section><section><h2 class="section-heading" id="resource-requirements">Resource Requirements<a class="anchor" aria-label="anchor" href="#resource-requirements"></a></h2>
+<hr class="half-width"><p>The table below provides approximate resource requirements for the
+main assembly tools used in this workshop, based on the <em>A.
+thaliana</em> (~135 Mb) genome:</p>
+<table class="table"><colgroup><col width="15%"><col width="23%"><col width="13%"><col width="28%"><col width="18%"></colgroup><thead><tr class="header"><th>Tool</th>
+<th>Threads</th>
+<th>RAM</th>
+<th>Wall Time</th>
+<th>Notes</th>
+</tr></thead><tbody><tr class="odd"><td><strong>hifiasm</strong></td>
+<td>32</td>
+<td>~32 GB</td>
+<td>~15-30 min</td>
+<td>Scales well with threads</td>
+</tr><tr class="even"><td><strong>Flye (ONT)</strong></td>
+<td>32</td>
+<td>~16 GB</td>
+<td>~30-60 min</td>
+<td>Use <code>--genome-size</code> for guidance</td>
+</tr><tr class="odd"><td><strong>Flye (HiFi)</strong></td>
+<td>64</td>
+<td>~80-90 GB</td>
+<td>~40 min</td>
+<td>Higher RAM than ONT mode</td>
+</tr><tr class="even"><td><strong>Medaka</strong></td>
+<td>16</td>
+<td>~16 GB</td>
+<td>~30 min</td>
+<td>GPU accelerates significantly</td>
+</tr><tr class="odd"><td><strong>Meryl + Merqury</strong></td>
+<td>16</td>
+<td>~8 GB</td>
+<td>~10 min</td>
+<td>Memory scales with k-mer DB size</td>
+</tr><tr class="even"><td><strong>QUAST</strong></td>
+<td>16</td>
+<td>~8 GB</td>
+<td>~5-10 min</td>
+<td>Reference mode uses more RAM</td>
+</tr><tr class="odd"><td><strong>Compleasm</strong></td>
+<td>16</td>
+<td>~4 GB</td>
+<td>~5 min</td>
+<td>Faster alternative to BUSCO</td>
+</tr><tr class="even"><td><strong>Bionano Solve</strong></td>
+<td>16</td>
+<td>~16 GB</td>
+<td>~30-60 min</td>
+<td>Depends on genome map complexity</td>
+</tr></tbody></table><div id="callout1" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div class="callout-inner">
+<div class="callout-content">
+<p>These are approximate values for the <em>A. thaliana</em> genome
+(~135 Mb). Larger genomes will require proportionally more resources.
+Always check cluster queue limits and request appropriate resources in
+your SLURM job scripts.</p>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="emerging-assemblers-and-approaches">Emerging Assemblers and Approaches<a class="anchor" aria-label="anchor" href="#emerging-assemblers-and-approaches"></a></h2>
+<hr class="half-width"><p>The field of genome assembly is rapidly evolving. Two notable recent
+developments:</p>
+<ul><li><p><strong>Verkko</strong> (v2.2+): Developed by the
+Telomere-to-Telomere (T2T) consortium, Verkko combines HiFi and
+ultra-long ONT reads to produce telomere-to-telomere assemblies. It uses
+a graph-based approach that leverages the accuracy of HiFi reads with
+the spanning capability of ONT reads to resolve complex repeats and
+centromeric regions.</p></li>
+<li><p><strong>hifiasm ONT-only mode</strong> (v0.19.0+): hifiasm now
+supports assembling ONT reads alone using the <code>--ont</code> flag,
+expanding its use beyond PacBio HiFi data. This was validated in a <a href="https://doi.org/10.1038/s41592-024-02279-w" class="external-link">2024 Nature Methods
+publication</a> showing competitive results with dedicated ONT
+assemblers.</p></li>
+</ul><p>These tools represent the current frontier of genome assembly and may
+be worth exploring for projects requiring the highest contiguity and
+completeness.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -707,7 +789,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.18.5" class="external-link">sandpaper (0.18.5)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/aseetharam/varnish/tree/9765d26807833061ac50b41dc951cf45941290f6" class="external-link">varnish (1.0.7)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.18.5" class="external-link">sandpaper (0.18.5)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/aseetharam/varnish/tree/aec0ff169ecf0863c0882e93bd191b19f2e7ff1e" class="external-link">varnish (1.0.7)</a></p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -723,13 +805,13 @@ any links that you are not going to use.
   "inLanguage": "en",
   "dct:conformsTo": "https://bioschemas.org/profiles/LearningResource/1.0-RELEASE",
   "description": "A Carpentries Lesson teaching foundational data and coding skills to researchers worldwide",
-  "keywords": "gene-assembly, pacbio, oxford-nanopore, hifasm, flye, medaka, busco, quast",
+  "keywords": "genome-assembly, pacbio, oxford-nanopore, hifiasm, flye, medaka, busco, quast",
   "name": "Assembly Strategies",
   "creativeWorkStatus": "active",
   "url": "https://genome-assembly.github.io/NA/instructor/assembly-strategies.html",
   "identifier": "https://genome-assembly.github.io/NA/instructor/assembly-strategies.html",
   "dateCreated": "2025-02-05",
-  "dateModified": "2025-11-11",
+  "dateModified": "2026-02-10",
   "datePublished": "2026-02-10"
 }
 

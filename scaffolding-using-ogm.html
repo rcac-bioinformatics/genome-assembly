@@ -340,7 +340,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Scaffolding using Optical Genome Mapping</h1>
-        <p>Last updated on 2025-11-11 |
+        <p>Last updated on 2026-02-10 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/scaffolding-using-ogm.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -455,8 +455,8 @@ following input files:</p>
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">$PATH</span>:/apps/biocontainers/exported-wrappers/bionano/3.8.0</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="ex">run_hybridscaffold.sh</span></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="ex">-c</span> /opt/Solve3.7_10192021_74_1/HybridScaffold/1.0/hybridScaffold_DLE1_config.xml<span class="dt">\</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="ex">run_hybridscaffold.sh</span> <span class="dt">\</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="at">-c</span> /opt/Solve3.7_10192021_74_1/HybridScaffold/1.0/hybridScaffold_DLE1_config.xml <span class="dt">\</span></span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  <span class="at">-b</span> input.cmap <span class="dt">\</span></span>
 <span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  <span class="at">-n</span> genome.fasta <span class="dt">\</span></span>
 <span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  <span class="at">-u</span> CTTAAG <span class="dt">\</span></span>
@@ -535,7 +535,7 @@ stored.</td>
 </div>
 </div>
 <div class="section level3">
-<h3 id="scffolding-hifiasm-assembly-with-bionano-solve">Scffolding HiFiasm assembly with Bionano Solve<a class="anchor" aria-label="anchor" href="#scffolding-hifiasm-assembly-with-bionano-solve"></a></h3>
+<h3 id="scaffolding-hifiasm-assembly-with-bionano-solve">Scaffolding HiFiasm assembly with Bionano Solve<a class="anchor" aria-label="anchor" href="#scaffolding-hifiasm-assembly-with-bionano-solve"></a></h3>
 <p>For HiFiasm assembly, you need to provide the HiFiasm assembly FASTA
 file as input to the Bionano Solve pipeline. The command structure
 remains the same, with the only change being the input sequence
@@ -547,7 +547,7 @@ file.</p>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">run_hybridscaffold.sh</span> <span class="dt">\</span></span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="at">-c</span> /opt/Solve3.7_10192021_74_1/HybridScaffold/1.0/hybridScaffold_DLE1_config.xml<span class="dt">\</span></span>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  <span class="at">-b</span> Evry.OpticalMap.Col-0.cmap <span class="dt">\</span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  <span class="at">-n</span> hifiasm_60x/athaliana_hifi.asm.bp.p_ctg.fasta <span class="dt">\</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  <span class="at">-n</span> hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta <span class="dt">\</span></span>
 <span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  <span class="at">-u</span> CTTAAG <span class="dt">\</span></span>
 <span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>  <span class="at">-z</span> results_bionano_hifiasm_scaffolding.zip <span class="dt">\</span></span>
 <span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>  <span class="at">-w</span> log.txt <span class="dt">\</span></span>
@@ -561,7 +561,7 @@ file.</p>
 </div>
 </div>
 <div class="section level3">
-<h3 id="scffolding-flye-assembly-with-bionano-solve">Scffolding Flye assembly with Bionano Solve<a class="anchor" aria-label="anchor" href="#scffolding-flye-assembly-with-bionano-solve"></a></h3>
+<h3 id="scaffolding-flye-assembly-with-bionano-solve">Scaffolding Flye assembly with Bionano Solve<a class="anchor" aria-label="anchor" href="#scaffolding-flye-assembly-with-bionano-solve"></a></h3>
 <p>For Flye assembly, the process is similar to HiFiasm, but you need to
 provide the Flye assembly FASTA file instead of the HiFiasm assembly.
 The command structure remains the same, with the only change being the
@@ -572,8 +572,8 @@ input sequence file.</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">$PATH</span>:/apps/biocontainers/exported-wrappers/bionano/3.8.0</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">run_hybridscaffold.sh</span> <span class="dt">\</span></span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="at">-c</span> /opt/Solve3.7_10192021_74_1/HybridScaffold/1.0/hybridScaffold_DLE1_config.xml<span class="dt">\</span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="at">-b</span> workshop_assembly/col-0_bionano/Evry.OpticalMap.Col-0.cmap <span class="dt">\</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="at">-n</span> flye_ont_60x/assembly.fasta <span class="dt">\</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="at">-b</span> Evry.OpticalMap.Col-0.cmap <span class="dt">\</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="at">-n</span> flye_ont/assembly.fasta <span class="dt">\</span></span>
 <span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>  <span class="at">-u</span> CTTAAG <span class="dt">\</span></span>
 <span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>  <span class="at">-z</span> results_bionano_flye_scaffolding.zip <span class="dt">\</span></span>
 <span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>  <span class="at">-w</span> log.txt <span class="dt">\</span></span>
@@ -632,7 +632,7 @@ sharing.</td>
 scaffolded genome and unplaced contigs, respectively. You will need to
 merge these files to obtain your final scaffolded genome assembly.</p>
 </section><section><h2 class="section-heading" id="quality-assessment-of-hybrid-scaffolds">Quality Assessment of Hybrid Scaffolds<a class="anchor" aria-label="anchor" href="#quality-assessment-of-hybrid-scaffolds"></a></h2>
-<hr class="half-width"><p>The hybird scaffolds report file will be in the
+<hr class="half-width"><p>The hybrid scaffolds report file will be in the
 <code>hybrid_scaffolds</code> directory and will provide a summary of
 the scaffolding process, including alignment statistics, conflict
 resolution, and scaffold N50 values. This report is essential for
@@ -864,7 +864,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.18.5" class="external-link">sandpaper (0.18.5)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/aseetharam/varnish/tree/9765d26807833061ac50b41dc951cf45941290f6" class="external-link">varnish (1.0.7)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.18.5" class="external-link">sandpaper (0.18.5)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/aseetharam/varnish/tree/aec0ff169ecf0863c0882e93bd191b19f2e7ff1e" class="external-link">varnish (1.0.7)</a></p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -880,13 +880,13 @@ any links that you are not going to use.
   "inLanguage": "en",
   "dct:conformsTo": "https://bioschemas.org/profiles/LearningResource/1.0-RELEASE",
   "description": "A Carpentries Lesson teaching foundational data and coding skills to researchers worldwide",
-  "keywords": "gene-assembly, pacbio, oxford-nanopore, hifasm, flye, medaka, busco, quast",
+  "keywords": "genome-assembly, pacbio, oxford-nanopore, hifiasm, flye, medaka, busco, quast",
   "name": "Scaffolding using Optical Genome Mapping",
   "creativeWorkStatus": "active",
   "url": "https://genome-assembly.github.io/NA/scaffolding-using-ogm.html",
   "identifier": "https://genome-assembly.github.io/NA/scaffolding-using-ogm.html",
   "dateCreated": "2025-02-05",
-  "dateModified": "2025-11-11",
+  "dateModified": "2026-02-10",
   "datePublished": "2026-02-10"
 }
 

@@ -109,11 +109,11 @@
   Genome Assembly: Hands-on Training
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 88%" class="percentage">
-    88%
+<aside class="col-md-12 lesson-progress"><div style="width: 86%" class="percentage">
+    86%
   </div>
   <div class="progress rcac">
-    <div class="progress-bar rcac" role="progressbar" style="width: 88%" aria-valuenow="88" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar rcac" role="progressbar" style="width: 86%" aria-valuenow="86" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -275,6 +275,7 @@
 <li><a href="#compleasm-for-genome-completeness-gene-space">Compleasm for genome completeness (gene-space)</a></li>
 <li><a href="#merqury-for-evaluating-genome-assembly">Merqury for evaluating genome assembly</a></li>
 <li><a href="#assembly-graph-visualization-using-bandage">Assembly graph visualization using Bandage</a></li>
+<li><a href="#unified-assembly-comparison">Unified Assembly Comparison</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -339,7 +340,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Assembly Assessment</h1>
-        <p>Last updated on 2025-11-11 |
+        <p>Last updated on 2026-02-10 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/assembly-evaluation.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -421,24 +422,24 @@ and misassemblies.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="ex">ml</span> compleasm</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="ex">ml</span> quast</span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> quast_evaluation</span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co"># ln -s ../assembly1.fasta all_assemblies/assembly1.fasta</span></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co"># ln -s ../assembly2.fasta all_assemblies/assembly2.fasta</span></span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co"># ln -s ../assembly3.fasta all_assemblies/assembly3.fasta</span></span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co"># link any other assemblies you want to compare</span></span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co"># ln -s ../pacbio/9994.q20.CCS-filtered-60x.fastq</span></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co"># donwload the reference genome</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co"># Link your assemblies to a common directory for comparison</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> all_assemblies</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> ../hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta all_assemblies/hifiasm_assembly.fasta</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> ../flye_ont/assembly.fasta all_assemblies/flye_ont_assembly.fasta</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co"># link any other assemblies you want to compare (e.g., hybrid, scaffolded)</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co"># Download the reference genome</span></span>
 <span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="fu">wget</span> https://ftp.ensemblgenomes.ebi.ac.uk/pub/plants/release-60/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz</span>
 <span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="fu">gunzip</span> Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz</span>
 <span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="ex">quast.py</span> <span class="dt">\</span></span>
 <span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>   <span class="at">--output-dir</span> quast_complete_stats <span class="dt">\</span></span>
 <span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>   <span class="at">--no-read-stats</span> <span class="dt">\</span></span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>   <span class="at">-r</span>  Arabidopsis_thaliana.TAIR10.dna.toplevel.fa <span class="dt">\</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>   <span class="at">-r</span> Arabidopsis_thaliana.TAIR10.dna.toplevel.fa <span class="dt">\</span></span>
 <span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
 <span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>   <span class="at">--eukaryote</span> <span class="dt">\</span></span>
-<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>   <span class="at">--pacbio</span> 9994.q20.CCS_ge20Kb.fasta <span class="dt">\</span></span>
-<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>   assembly1.fasta assembly2.fasta assembly3.fasta</span></code></pre>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>   <span class="at">--pacbio</span> At_pacbio-hifi-filtered.fastq <span class="dt">\</span></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>   all_assemblies/<span class="pp">*</span>.fasta</span></code></pre>
 </div>
 <p>This will generate a detailed report in the
 <code>quast_complete_stats</code> directory, including key metrics for
@@ -458,18 +459,15 @@ missing or fragmented genes.</p>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="ex">ml</span> compleasm</span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> compleasm_evaluation</span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co"># ln -s ../assembly1.fasta all_assemblies/assembly1.fasta</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co"># ln -s ../assembly2.fasta all_assemblies/assembly2.fasta</span></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co"># ln -s ../assembly3.fasta all_assemblies/assembly3.fasta</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co"># link any other assemblies you want to compare</span></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co"># ln -s ../quast_evaluation/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa # reference</span></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> <span class="pp">*</span>.fasta<span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>  <span class="ex">compleasm</span> run <span class="dt">\</span></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>    <span class="at">-a</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>    <span class="at">-o</span> <span class="va">${fasta</span><span class="op">%</span>.<span class="pp">*</span><span class="va">}</span>_out <span class="dt">\</span></span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>    <span class="at">-l</span> brassicales_odb10  <span class="dt">\</span></span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>    <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="bu">cd</span> compleasm_evaluation</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co"># Use the same assemblies linked in the all_assemblies directory</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> ../all_assemblies/<span class="pp">*</span>.fasta<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>  <span class="ex">compleasm</span> run <span class="dt">\</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>    <span class="at">-a</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>    <span class="at">-o</span> <span class="va">${fasta</span><span class="op">%</span>.<span class="pp">*</span><span class="va">}</span>_out <span class="dt">\</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>    <span class="at">-l</span> brassicales_odb10  <span class="dt">\</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>    <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
 </div>
 <p>This will generate a detailed report for each assembly in the
 directory, highlighting the completeness of conserved genes and
@@ -554,32 +552,50 @@ validation</strong>.</p>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="ex">ml</span> merqury</span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="ex">ml</span> meryl</span>
 <span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> merqury_evaluation</span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co"># ln -s ../assembly1.fasta all_assemblies/assembly1.fasta</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co"># ln -s ../assembly2.fasta all_assemblies/assembly2.fasta</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co"># ln -s ../assembly3.fasta all_assemblies/assembly3.fasta</span></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co"># link any other assemblies you want to compare</span></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co"># ln -s ../quast_evaluation/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa # reference</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co"># ln -s ../pacbio/9994.q20.CCS-filtered-60x.fastq # pacbio reads</span></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="ex">meryl</span> <span class="dt">\</span></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>   count k=21 <span class="dt">\</span></span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>   threads=<span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>   memory=8g <span class="dt">\</span></span>
-<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>   output 9994.q20.CCS-filtered.meryl<span class="dt">\</span></span>
-<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>   9994.q20.CCS-filtered.fastq</span>
-<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="ex">merqury</span> <span class="dt">\</span></span>
-<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>   <span class="at">-a</span> assembly1.fasta <span class="dt">\</span></span>
-<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a>   <span class="at">-r</span> 9994.q20.CCS-filtered.meryl <span class="dt">\</span></span>
-<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a>   <span class="at">-o</span> merqury_evaluation/assembly1</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="bu">cd</span> merqury_evaluation</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co"># Step 1: Build a meryl k-mer database from the reads</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="ex">meryl</span> <span class="dt">\</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>   count k=21 <span class="dt">\</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>   threads=<span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>   memory=8g <span class="dt">\</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>   output At_pacbio-hifi-filtered.meryl <span class="dt">\</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>   ../At_pacbio-hifi-filtered.fastq</span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="co"># Step 2: Run merqury to evaluate assemblies</span></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="co"># Syntax: merqury.sh &lt;read-db.meryl&gt; &lt;asm1.fasta&gt; [asm2.fasta] &lt;output_prefix&gt;</span></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co"># For a single assembly:</span></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="ex">merqury.sh</span> <span class="dt">\</span></span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a>   At_pacbio-hifi-filtered.meryl <span class="dt">\</span></span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>   ../hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta <span class="dt">\</span></span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a>   merqury_hifiasm</span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="co"># For comparing multiple assemblies:</span></span>
 <span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a><span class="ex">merqury.sh</span> <span class="dt">\</span></span>
-<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a>   9994.q20.CCS-filtered.meryl </span>
-<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a>   <span class="ex">assembly1.fasta</span> assembly2.fasta assembly3.fasta</span>
-<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a>   <span class="ex">merqury_evaluation_output</span></span></code></pre>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a>   At_pacbio-hifi-filtered.meryl <span class="dt">\</span></span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a>   ../hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta <span class="dt">\</span></span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a>   ../flye_ont/assembly.fasta <span class="dt">\</span></span>
+<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a>   merqury_comparison</span></code></pre>
 </div>
-<p>This will generate numberous files with
-<code>merqury_evaluation_output</code> prefix, including k-mer spectra,
-completeness metrics, and consensus quality estimates for each assembly.
-You can use these results to evaluate the accuracy, completeness, and
-structural integrity of your genome assemblies.</p>
+<div id="merqury-syntax" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="merqury-syntax" class="callout-inner">
+<h3 class="callout-title">Merqury syntax</h3>
+<div class="callout-content">
+<p>Note that <code>merqury.sh</code> uses <strong>positional
+arguments</strong> (not flags):</p>
+<pre><code>merqury.sh &lt;read-db.meryl&gt; &lt;assembly1.fasta&gt; [assembly2.fasta] &lt;output_prefix&gt;</code></pre>
+<p>The output prefix determines the names of all generated files. When
+comparing two assemblies, provide both FASTA files before the output
+prefix.</p>
+</div>
+</div>
+</div>
+<p>This will generate numerous files with the specified output prefix,
+including k-mer spectra plots, completeness metrics, and consensus
+quality (QV) estimates for each assembly. You can use these results to
+evaluate the accuracy, completeness, and structural integrity of your
+genome assemblies.</p>
 </section><section><h2 class="section-heading" id="assembly-graph-visualization-using-bandage">Assembly graph visualization using Bandage<a class="anchor" aria-label="anchor" href="#assembly-graph-visualization-using-bandage"></a></h2>
 <hr class="half-width"><p>Bandage is a tool for visualizing assembly graphs, which represent
 the connections between contigs or scaffolds in a genome assembly. By
@@ -590,22 +606,118 @@ genome reconstruction.</p>
 <ol style="list-style-type: decimal"><li>Open a web browser and navigate to <a href="">desktop.negishi.rcac.purdue.edu</a>.</li>
 <li>Log in with your Purdue Career Account username and password, but
 append “,push” to your password.</li>
-<li>Lauch the terminal and run the following command:</li>
-</ol><div class="codewrapper sourceCode" id="cb4">
+<li>Launch the terminal and run the following command:</li>
+</ol><div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="ex">ml</span> bandage</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="ex">Bandage</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="ex">ml</span> bandage</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="ex">Bandage</span></span></code></pre>
 </div>
-<ol start="4" style="list-style-type: decimal"><li>In the Bandage interface, navigate to your assembly folder (hifiasm
-or flye), and load your assembly graph (e.g.,
-<code>assembly1.fasta</code>) .</li>
+<ol start="4" style="list-style-type: decimal"><li>In the Bandage interface, navigate to your assembly folder and load
+your assembly graph in GFA format (e.g.,
+<code>At_hifiasm_default.asm.bp.p_ctg.gfa</code> for hifiasm, or
+<code>assembly_graph.gfa</code> for Flye).</li>
 <li>Explore the graph structure, identify complex regions, and visualize
 connections between contigs or scaffolds.</li>
-</ol><figure><img src="https://github.com/user-attachments/assets/172513cc-d43b-401d-afbe-239d415d12bb" alt="Bandage interface" class="figure mx-auto d-block"><div class="figcaption">Bandage interface</div>
-</figure><div id="keypoints1" class="callout keypoints">
+</ol><div id="bandage-input-format" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="bandage-input-format" class="callout-inner">
+<h3 class="callout-title">Bandage input format</h3>
+<div class="callout-content">
+<p>Bandage requires assembly <strong>graph</strong> files
+(<code>.gfa</code> format), not FASTA files. HiFiasm outputs
+<code>.gfa</code> files directly, while Flye produces
+<code>assembly_graph.gfa</code> in its output directory.</p>
+</div>
+</div>
+</div>
+<figure><img src="https://github.com/user-attachments/assets/172513cc-d43b-401d-afbe-239d415d12bb" alt="Bandage interface" class="figure mx-auto d-block"><div class="figcaption">Bandage interface</div>
+</figure></section><section><h2 class="section-heading" id="unified-assembly-comparison">Unified Assembly Comparison<a class="anchor" aria-label="anchor" href="#unified-assembly-comparison"></a></h2>
+<hr class="half-width"><p>After running all evaluation tools, compile your results into a
+summary table to compare assemblies side by side:</p>
+<table class="table"><colgroup><col width="9%"><col width="18%"><col width="13%"><col width="18%"><col width="21%"><col width="18%"></colgroup><thead><tr class="header"><th>Metric</th>
+<th>HiFiasm (HiFi)</th>
+<th>Flye (ONT)</th>
+<th>Hybrid (Flye)</th>
+<th>HiFiasm + Bionano</th>
+<th>Flye + Bionano</th>
+</tr></thead><tbody><tr class="odd"><td># Contigs</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr><tr class="even"><td>Total size (Mb)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr><tr class="odd"><td>N50 (Mb)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr><tr class="even"><td>L50</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr><tr class="odd"><td>BUSCO Complete (%)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr><tr class="even"><td>BUSCO Duplicated (%)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr><tr class="odd"><td>Merqury QV</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr><tr class="even"><td>K-mer completeness (%)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr></tbody></table><div id="interpreting-your-results" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="interpreting-your-results" class="callout-inner">
+<h3 class="callout-title">Interpreting your results</h3>
+<div class="callout-content">
+<p>When comparing assemblies, consider these questions:</p>
+<ol style="list-style-type: decimal"><li>Which assembly has the highest N50 and lowest number of
+contigs?</li>
+<li>Which assembly has the best BUSCO completeness?</li>
+<li>How do the Merqury QV scores compare? (Higher QV = fewer base-level
+errors)</li>
+<li>Did Bionano scaffolding improve contiguity (N50) compared to the
+unscaffolded assemblies?</li>
+<li>Is the total assembly size close to the expected genome size (~135
+Mb for <em>A. thaliana</em>)?</li>
+</ol><p>Fill in the table above with your actual results and discuss which
+assembly strategy produced the best outcome for this dataset.</p>
+</div>
+</div>
+</div>
+<div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
@@ -669,7 +781,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.18.5" class="external-link">sandpaper (0.18.5)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/aseetharam/varnish/tree/9765d26807833061ac50b41dc951cf45941290f6" class="external-link">varnish (1.0.7)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.18.5" class="external-link">sandpaper (0.18.5)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/aseetharam/varnish/tree/aec0ff169ecf0863c0882e93bd191b19f2e7ff1e" class="external-link">varnish (1.0.7)</a></p>
 		</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -685,13 +797,13 @@ any links that you are not going to use.
   "inLanguage": "en",
   "dct:conformsTo": "https://bioschemas.org/profiles/LearningResource/1.0-RELEASE",
   "description": "A Carpentries Lesson teaching foundational data and coding skills to researchers worldwide",
-  "keywords": "gene-assembly, pacbio, oxford-nanopore, hifasm, flye, medaka, busco, quast",
+  "keywords": "genome-assembly, pacbio, oxford-nanopore, hifiasm, flye, medaka, busco, quast",
   "name": "Assembly Assessment",
   "creativeWorkStatus": "active",
   "url": "https://genome-assembly.github.io/NA/assembly-evaluation.html",
   "identifier": "https://genome-assembly.github.io/NA/assembly-evaluation.html",
   "dateCreated": "2025-02-05",
-  "dateModified": "2025-11-11",
+  "dateModified": "2026-02-10",
   "datePublished": "2026-02-10"
 }
 

@@ -386,10 +386,10 @@
         
 <section id="aio-introduction"><p>Content from <a href="introduction.html">Introduction to Genome assembly</a></p>
 <hr>
-<p>Last updated on 2025-11-11 |
+<p>Last updated on 2026-02-10 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/introduction.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 30 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -443,7 +443,7 @@ evolutionary history.</li>
 mechanisms.</li>
 </ul>
 <figure><img src="https://github.com/user-attachments/assets/8f1b2924-4af4-46f5-a925-b927b0fdfc81" alt="Genome Assembly" class="figure mx-auto d-block"><div class="figcaption">Genome Assembly</div>
-</figure></section><section><h2 class="section-heading" id="imporance-of-genome-assembly">Imporance of Genome Assembly<a class="anchor" aria-label="anchor" href="#imporance-of-genome-assembly"></a>
+</figure></section><section><h2 class="section-heading" id="importance-of-genome-assembly">Importance of Genome Assembly<a class="anchor" aria-label="anchor" href="#importance-of-genome-assembly"></a>
 </h2>
 <hr class="half-width">
 <ul>
@@ -500,7 +500,7 @@ accuracy.</li>
 studying genome structure.</li>
 </ol>
 <figure><img src="https://github.com/user-attachments/assets/ac4f82b2-1488-4ba8-b2c7-b1976a393f82" alt="Steps Overview" class="figure mx-auto d-block"><div class="figcaption">Steps Overview</div>
-</figure><p>reference: <a href="https://doi.org/10.1016/j.xpro.2022.101506" class="external-link">10.1016/j.xpro.2022.101506</a></p>
+</figure><p>Reference: <a href="https://doi.org/10.1016/j.xpro.2022.101506" class="external-link">doi:10.1016/j.xpro.2022.101506</a></p>
 </section><section><h2 class="section-heading" id="data-types-for-genome-assembly">Data types for Genome Assembly<a class="anchor" aria-label="anchor" href="#data-types-for-genome-assembly"></a>
 </h2>
 <hr class="half-width">
@@ -588,7 +588,7 @@ duplications, deletions, and inversions that disrupt contiguity.</li>
 <li>QUAST: Quality assessment tool for evaluating assemblies.</li>
 <li>Compleasm (BUSCO alternative): Benchmarking tool for assessing
 genome completeness.</li>
-<li>KAT: Kmer-based evaluation of assembly accuracy and
+<li>Merqury: K-mer-based evaluation of assembly accuracy and
 completeness.</li>
 </ul>
 </li>
@@ -628,10 +628,10 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-assembly-strategies"><p>Content from <a href="assembly-strategies.html">Assembly Strategies</a></p>
 <hr>
-<p>Last updated on 2025-11-11 |
+<p>Last updated on 2026-02-10 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/assembly-strategies.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 20 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -746,26 +746,26 @@ Bionano OGM.</li>
 <th>Factor</th>
 <th>PacBio HiFi</th>
 <th>ONT</th>
-<th>Hybrid (ONT + Illumina)</th>
+<th>Hybrid (ONT + PacBio HiFi)</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td><strong>Read length</strong></td>
 <td>~15-20kb</td>
 <td>10-100kb+</td>
-<td>Mix of short &amp; long</td>
+<td>Mix of ultra-long &amp; accurate</td>
 </tr>
 <tr class="even">
 <td><strong>Read accuracy</strong></td>
 <td>High (~99%)</td>
-<td>Moderate (~90%)</td>
+<td>Variable: ~90% (R9/fast) to ~99% (R10.4/HAC/SUP)</td>
 <td>High (after polishing)</td>
 </tr>
 <tr class="odd">
 <td><strong>Coverage needed</strong></td>
 <td>20-30x</td>
 <td>50-100x</td>
-<td>ONT: 50x + Illumina: 30x</td>
+<td>ONT: 50x + HiFi: 20-30x</td>
 </tr>
 <tr class="even">
 <td><strong>Cost per Gb</strong></td>
@@ -776,8 +776,8 @@ Bionano OGM.</li>
 <tr class="odd">
 <td><strong>Error profile</strong></td>
 <td>Random errors, low indels</td>
-<td>Higher error rate, systematic errors</td>
-<td>ONT errors corrected by Illumina</td>
+<td>Systematic errors in homopolymers; greatly reduced with R10.4+</td>
+<td>ONT errors corrected by HiFi reads</td>
 </tr>
 <tr class="even">
 <td><strong>Computational requirements</strong></td>
@@ -806,8 +806,8 @@ Bionano OGM.</li>
 <tr class="even">
 <td><strong>Polishing required</strong></td>
 <td>Not required</td>
-<td>Required (Racon + Medaka)</td>
-<td>Required (Pilon)</td>
+<td>Required (Medaka)</td>
+<td>Polish with HiFi reads</td>
 </tr>
 <tr class="odd">
 <td><strong>Structural variant detection</strong></td>
@@ -864,8 +864,8 @@ additional scaffolding methods beyond de novo assembly.</p>
 </h2>
 <hr class="half-width">
 <p>In this workshop, we will use HiFiasm for PacBio HiFi assemblies,
-Flye for ONT assemblies, and Flye in hybrid mode for ONT + Illumina
-assemblies, followed by quality assessment using BUSCO and QUAST to
+Flye for ONT assemblies, and Flye in hybrid mode for ONT + PacBio HiFi
+assemblies, followed by quality assessment using Compleasm and QUAST to
 evaluate completeness and accuracy.</p>
 <div class="section level3">
 <h3 id="pacbio-hifi-assembly-with-hifiasm">PacBio HiFi Assembly with HiFiasm<a class="anchor" aria-label="anchor" href="#pacbio-hifi-assembly-with-hifiasm"></a>
@@ -1010,6 +1010,121 @@ it essential for generating <strong>chromosome-level genome
 assemblies</strong>.</p>
 <figure><img src="https://github.com/user-attachments/assets/7f983713-7ea7-4522-8540-349955a9f12e" alt="Bionano and HiC for assembly improvement" class="figure mx-auto d-block"><div class="figcaption">Bionano and HiC for assembly improvement</div>
 </figure><p><a href="https://doi.org/10.1038/ng.3802" class="external-link">ref</a></p>
+</section><section><h2 class="section-heading" id="resource-requirements">Resource Requirements<a class="anchor" aria-label="anchor" href="#resource-requirements"></a>
+</h2>
+<hr class="half-width">
+<p>The table below provides approximate resource requirements for the
+main assembly tools used in this workshop, based on the <em>A.
+thaliana</em> (~135 Mb) genome:</p>
+<table class="table">
+<colgroup>
+<col width="15%">
+<col width="23%">
+<col width="13%">
+<col width="28%">
+<col width="18%">
+</colgroup>
+<thead><tr class="header">
+<th>Tool</th>
+<th>Threads</th>
+<th>RAM</th>
+<th>Wall Time</th>
+<th>Notes</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><strong>hifiasm</strong></td>
+<td>32</td>
+<td>~32 GB</td>
+<td>~15-30 min</td>
+<td>Scales well with threads</td>
+</tr>
+<tr class="even">
+<td><strong>Flye (ONT)</strong></td>
+<td>32</td>
+<td>~16 GB</td>
+<td>~30-60 min</td>
+<td>Use <code>--genome-size</code> for guidance</td>
+</tr>
+<tr class="odd">
+<td><strong>Flye (HiFi)</strong></td>
+<td>64</td>
+<td>~80-90 GB</td>
+<td>~40 min</td>
+<td>Higher RAM than ONT mode</td>
+</tr>
+<tr class="even">
+<td><strong>Medaka</strong></td>
+<td>16</td>
+<td>~16 GB</td>
+<td>~30 min</td>
+<td>GPU accelerates significantly</td>
+</tr>
+<tr class="odd">
+<td><strong>Meryl + Merqury</strong></td>
+<td>16</td>
+<td>~8 GB</td>
+<td>~10 min</td>
+<td>Memory scales with k-mer DB size</td>
+</tr>
+<tr class="even">
+<td><strong>QUAST</strong></td>
+<td>16</td>
+<td>~8 GB</td>
+<td>~5-10 min</td>
+<td>Reference mode uses more RAM</td>
+</tr>
+<tr class="odd">
+<td><strong>Compleasm</strong></td>
+<td>16</td>
+<td>~4 GB</td>
+<td>~5 min</td>
+<td>Faster alternative to BUSCO</td>
+</tr>
+<tr class="even">
+<td><strong>Bionano Solve</strong></td>
+<td>16</td>
+<td>~16 GB</td>
+<td>~30-60 min</td>
+<td>Depends on genome map complexity</td>
+</tr>
+</tbody>
+</table>
+<div id="callout1" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div class="callout-inner">
+<div class="callout-content">
+<p>These are approximate values for the <em>A. thaliana</em> genome
+(~135 Mb). Larger genomes will require proportionally more resources.
+Always check cluster queue limits and request appropriate resources in
+your SLURM job scripts.</p>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="emerging-assemblers-and-approaches">Emerging Assemblers and Approaches<a class="anchor" aria-label="anchor" href="#emerging-assemblers-and-approaches"></a>
+</h2>
+<hr class="half-width">
+<p>The field of genome assembly is rapidly evolving. Two notable recent
+developments:</p>
+<ul>
+<li><p><strong>Verkko</strong> (v2.2+): Developed by the
+Telomere-to-Telomere (T2T) consortium, Verkko combines HiFi and
+ultra-long ONT reads to produce telomere-to-telomere assemblies. It uses
+a graph-based approach that leverages the accuracy of HiFi reads with
+the spanning capability of ONT reads to resolve complex repeats and
+centromeric regions.</p></li>
+<li><p><strong>hifiasm ONT-only mode</strong> (v0.19.0+): hifiasm now
+supports assembling ONT reads alone using the <code>--ont</code> flag,
+expanding its use beyond PacBio HiFi data. This was validated in a <a href="https://doi.org/10.1038/s41592-024-02279-w" class="external-link">2024 Nature Methods
+publication</a> showing competitive results with dedicated ONT
+assemblers.</p></li>
+</ul>
+<p>These tools represent the current frontier of genome assembly and may
+be worth exploring for projects requiring the highest contiguity and
+completeness.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -1046,10 +1161,10 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-data-quality-control"><p>Content from <a href="data-quality-control.html">Data Quality Control</a></p>
 <hr>
-<p>Last updated on 2025-11-11 |
+<p>Last updated on 2026-02-10 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/data-quality-control.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 60 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -1322,7 +1437,56 @@ using R10.4/Q20+ chemistry from MinION cell</li>
 <li>The data is publicly available on the European Nucleotide Archive
 (ENA), and the <code>pass_fast5</code> reads were used for basecalling
 (with commands above).</li>
-</ul></section><section><h2 class="section-heading" id="a--nanoplot-for-quality-assessment">A. NanoPlot for Quality Assessment<a class="anchor" aria-label="anchor" href="#a--nanoplot-for-quality-assessment"></a>
+</ul></section><section><h2 class="section-heading" id="slurm-job-script-template">SLURM Job Script Template<a class="anchor" aria-label="anchor" href="#slurm-job-script-template"></a>
+</h2>
+<hr class="half-width">
+<p>Throughout this workshop, you will need to submit jobs to the cluster
+using SLURM. Here is a template SLURM script that you can adapt for each
+step:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co">#SBATCH --job-name=genome-assembly</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co">#SBATCH --account=workshop</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co">#SBATCH --nodes=1</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co">#SBATCH --ntasks=1</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co">#SBATCH --cpus-per-task=32</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co">#SBATCH --time=4:00:00</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co">#SBATCH --mem=64G</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co">#SBATCH --output=%x_%j.out</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co">#SBATCH --error=%x_%j.err</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co"># Load modules</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co"># Your commands go here</span></span></code></pre>
+</div>
+<div id="submitting-and-monitoring-jobs" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="submitting-and-monitoring-jobs" class="callout-inner">
+<h3 class="callout-title">Submitting and monitoring jobs</h3>
+<div class="callout-content">
+<ul>
+<li>Save the script as <code>job_script.sh</code> and submit with
+<code>sbatch job_script.sh</code>
+</li>
+<li>Monitor with <code>squeue -u $USER</code>
+</li>
+<li>Check output in the <code>.out</code> and <code>.err</code>
+files</li>
+<li>Adjust <code>--cpus-per-task</code>, <code>--time</code>, and
+<code>--mem</code> based on the tool requirements (see the Resource
+Requirements table in the Assembly Strategies episode)</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="a--nanoplot-for-quality-assessment">A. NanoPlot for Quality Assessment<a class="anchor" aria-label="anchor" href="#a--nanoplot-for-quality-assessment"></a>
 </h2>
 <hr class="half-width">
 <p><a href="https://github.com/wdecoster/NanoPlot" class="external-link">NanoPlot</a> <a href="https://doi.org/10.1093/bioinformatics/bty149" class="external-link">ref</a> is a
@@ -1336,36 +1500,37 @@ users quickly assess sequencing run quality and detect potential issues.
 The tool also allows downsampling, length and quality filtering, and
 barcode-specific analysis for multiplexed experiments.</p>
 <p><strong>1. Quality Assessment of PacBio HiFi Reads</strong></p>
-<p>Assessing the quality of ONT reads using <code>NanoPlot</code>.
-Create a slurm script to run NanoPlot on the HiFi reads.</p>
-<div class="codewrapper sourceCode" id="cb3">
+<p>Assessing the quality of PacBio HiFi reads using
+<code>NanoPlot</code>. Create a SLURM script to run NanoPlot on the HiFi
+reads.</p>
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="ex">ml</span> nanoplot</span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="ex">NanoPlot</span> <span class="dt">\</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>   <span class="at">--verbose</span> <span class="dt">\</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>   <span class="at">--outdir</span> nanoplot_pacbio_pre <span class="dt">\</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>   <span class="at">--prefix</span> At_PacBio_ <span class="dt">\</span></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>   <span class="at">--plots</span> kde <span class="dt">\</span></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>   <span class="at">--N50</span> <span class="dt">\</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>   <span class="at">--dpi</span> 300 <span class="dt">\</span></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>   <span class="at">--fastq</span> At_pacbio-hifi.fastq.gz</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="ex">ml</span> nanoplot</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="ex">NanoPlot</span> <span class="dt">\</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>   <span class="at">--verbose</span> <span class="dt">\</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>   <span class="at">--outdir</span> nanoplot_pacbio_pre <span class="dt">\</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>   <span class="at">--prefix</span> At_PacBio_ <span class="dt">\</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>   <span class="at">--plots</span> kde <span class="dt">\</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>   <span class="at">--N50</span> <span class="dt">\</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>   <span class="at">--dpi</span> 300 <span class="dt">\</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>   <span class="at">--fastq</span> At_pacbio-hifi.fastq.gz</span></code></pre>
 </div>
 <div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <p>The stdout from the NanoPlot run will look like this:</p>
-<pre><code>2025-02-13 12:13:19,155 NanoPlot 1.44.1 started with arguments Namespace(threads=16, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_output', no_static=False, prefix='At_PacBio_', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['9994.q20.CCS.fastq.gz'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_output/At_PacBio_')
+<pre><code>2025-02-13 12:13:19,155 NanoPlot 1.44.1 started with arguments Namespace(threads=16, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_pre', no_static=False, prefix='At_PacBio_', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['At_pacbio-hifi.fastq.gz'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_pre/At_PacBio_')
 2025-02-13 12:13:19,156 Python version is: 3.9.21 | packaged by conda-forge | (main, Dec  5 2024, 13:51:40)  [GCC 13.3.0]
 2025-02-13 12:13:19,186 Nanoget: Starting to collect statistics from plain fastq file.
-2025-02-13 12:13:19,187 Nanoget: Decompressing gzipped fastq 9994.q20.CCS.fastq.gz
+2025-02-13 12:13:19,187 Nanoget: Decompressing gzipped fastq At_pacbio-hifi.fastq.gz
 2025-02-13 12:29:10,170 Reduced DataFrame memory usage from 12.780670166015625Mb to 12.780670166015625Mb
 2025-02-13 12:29:10,194 Nanoget: Gathered all metrics of 837586 reads
 2025-02-13 12:29:10,538 Calculated statistics
@@ -1374,15 +1539,15 @@ Create a slurm script to run NanoPlot on the HiFi reads.</p>
 2025-02-13 12:29:10,557 NanoPlot:  Valid colormap Greens.
 2025-02-13 12:29:10,582 NanoPlot:  Creating length plots for Read length.
 2025-02-13 12:29:10,583 NanoPlot: Using 837586 reads with read length N50 of 22587bp and maximum of 57055bp.
-2025-02-13 12:29:11,933 Saved nanoplot_pacbio_output/At_PacBio_WeightedHistogramReadlength  as png (or png for --legacy)
-2025-02-13 12:29:12,443 Saved nanoplot_pacbio_output/At_PacBio_WeightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
-2025-02-13 12:29:12,899 Saved nanoplot_pacbio_output/At_PacBio_Non_weightedHistogramReadlength  as png (or png for --legacy)
-2025-02-13 12:29:13,371 Saved nanoplot_pacbio_output/At_PacBio_Non_weightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:29:11,933 Saved nanoplot_pacbio_pre/At_PacBio_WeightedHistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:29:12,443 Saved nanoplot_pacbio_pre/At_PacBio_WeightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:29:12,899 Saved nanoplot_pacbio_pre/At_PacBio_Non_weightedHistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:29:13,371 Saved nanoplot_pacbio_pre/At_PacBio_Non_weightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
 2025-02-13 12:29:13,372 NanoPlot: Creating yield by minimal length plot for Read length.
-2025-02-13 12:29:14,465 Saved nanoplot_pacbio_output/At_PacBio_Yield_By_Length  as png (or png for --legacy)
+2025-02-13 12:29:14,465 Saved nanoplot_pacbio_pre/At_PacBio_Yield_By_Length  as png (or png for --legacy)
 2025-02-13 12:29:14,466 Created length plots
 2025-02-13 12:29:14,474 NanoPlot: Creating Read lengths vs Average read quality plots using 837586 reads.
-2025-02-13 12:29:15,012 Saved nanoplot_pacbio_output/At_PacBio_LengthvsQualityScatterPlot_kde  as png (or png for --legacy)
+2025-02-13 12:29:15,012 Saved nanoplot_pacbio_pre/At_PacBio_LengthvsQualityScatterPlot_kde  as png (or png for --legacy)
 2025-02-13 12:29:15,013 Created LengthvsQual plot
 2025-02-13 12:29:15,013 Writing html report.
 2025-02-13 12:29:15,029 Finished!
@@ -1413,7 +1578,7 @@ length and quality score distributions.</li>
 <strong>Summary statistics</strong>: N50 value, maximum read length,
 and other key metrics.</li>
 </ul>
-<div id="callout1" class="callout">
+<div id="callout2" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -1432,32 +1597,31 @@ quality reads of desired length and coverage.</p>
 <p><strong>2. Quality Assessment of ONT Reads</strong></p>
 <p>Assessing the quality of ONT reads using <code>NanoPlot</code>.
 Create a slurm script to run NanoPlot on the basecalled ONT reads.</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="ex">ml</span> nanoplot</span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="ex">NanoPlot</span> <span class="dt">\</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>   <span class="at">--verbose</span> <span class="dt">\</span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>   <span class="at">--outdir</span> nanoplot_ont_pre <span class="dt">\</span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>   <span class="at">--prefix</span> At_ONT_ <span class="dt">\</span></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>   <span class="at">--readtype</span> 1D <span class="dt">\</span></span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>   <span class="at">--plots</span> kde <span class="dt">\</span></span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>   <span class="at">--N50</span> <span class="dt">\</span></span>
-<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>   <span class="at">--dpi</span> 300 <span class="dt">\</span></span>
-<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>   <span class="at">--fastq</span> At_ont-reads.fastq.gz</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="ex">ml</span> nanoplot</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="ex">NanoPlot</span> <span class="dt">\</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>   <span class="at">--verbose</span> <span class="dt">\</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>   <span class="at">--outdir</span> nanoplot_ont_pre <span class="dt">\</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>   <span class="at">--prefix</span> At_ONT_ <span class="dt">\</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>   <span class="at">--plots</span> kde <span class="dt">\</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>   <span class="at">--N50</span> <span class="dt">\</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>   <span class="at">--dpi</span> 300 <span class="dt">\</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>   <span class="at">--fastq</span> At_ont-reads.fastq.gz</span></code></pre>
 </div>
 <div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
   <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <p>The stdout from the NanoPlot run will look like this:</p>
-<pre><code>2025-02-13 12:15:51,066 NanoPlot 1.44.1 started with arguments Namespace(threads=8, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_output', no_static=False, prefix='At_ONT_', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, readtype='1D', barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['basecalled_2025-02-12.fastq'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_output/At_ONT_')
+<pre><code>2025-02-13 12:15:51,066 NanoPlot 1.44.1 started with arguments Namespace(threads=8, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_ont_pre', no_static=False, prefix='At_ONT_', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['At_ont-reads.fastq.gz'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_ont_pre/At_ONT_')
 2025-02-13 12:15:51,067 Python version is: 3.9.21 | packaged by conda-forge | (main, Dec  5 2024, 13:51:40)  [GCC 13.3.0]
 2025-02-13 12:15:51,096 Nanoget: Starting to collect statistics from plain fastq file.
 2025-02-13 12:25:11,429 Reduced DataFrame memory usage from 8.842315673828125Mb to 8.842315673828125Mb
@@ -1468,15 +1632,15 @@ Create a slurm script to run NanoPlot on the basecalled ONT reads.</p>
 2025-02-13 12:25:11,707 NanoPlot:  Valid colormap Greens.
 2025-02-13 12:25:11,725 NanoPlot:  Creating length plots for Read length.
 2025-02-13 12:25:11,725 NanoPlot: Using 579482 reads with read length N50 of 36292bp and maximum of 298974bp.
-2025-02-13 12:25:13,096 Saved nanoplot_pacbio_output/At_ONT_WeightedHistogramReadlength  as png (or png for --legacy)
-2025-02-13 12:25:13,571 Saved nanoplot_pacbio_output/At_ONT_WeightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
-2025-02-13 12:25:14,971 Saved nanoplot_pacbio_output/At_ONT_Non_weightedHistogramReadlength  as png (or png for --legacy)
-2025-02-13 12:25:15,440 Saved nanoplot_pacbio_output/At_ONT_Non_weightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:25:13,096 Saved nanoplot_ont_pre/At_ONT_WeightedHistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:25:13,571 Saved nanoplot_ont_pre/At_ONT_WeightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:25:14,971 Saved nanoplot_ont_pre/At_ONT_Non_weightedHistogramReadlength  as png (or png for --legacy)
+2025-02-13 12:25:15,440 Saved nanoplot_ont_pre/At_ONT_Non_weightedLogTransformed_HistogramReadlength  as png (or png for --legacy)
 2025-02-13 12:25:15,441 NanoPlot: Creating yield by minimal length plot for Read length.
-2025-02-13 12:25:16,485 Saved nanoplot_pacbio_output/At_ONT_Yield_By_Length  as png (or png for --legacy)
+2025-02-13 12:25:16,485 Saved nanoplot_ont_pre/At_ONT_Yield_By_Length  as png (or png for --legacy)
 2025-02-13 12:25:16,486 Created length plots
 2025-02-13 12:25:16,495 NanoPlot: Creating Read lengths vs Average read quality plots using 579482 reads.
-2025-02-13 12:25:17,029 Saved nanoplot_pacbio_output/At_ONT_LengthvsQualityScatterPlot_kde  as png (or png for --legacy)
+2025-02-13 12:25:17,029 Saved nanoplot_ont_pre/At_ONT_LengthvsQualityScatterPlot_kde  as png (or png for --legacy)
 2025-02-13 12:25:17,030 Created LengthvsQual plot
 2025-02-13 12:25:17,030 Writing html report.
 2025-02-13 12:25:17,047 Finished!</code></pre>
@@ -1506,7 +1670,7 @@ length and quality score distributions.</li>
 <strong>Summary statistics</strong>: N50 value, maximum read length,
 and other key metrics.</li>
 </ul>
-<div id="callout2" class="callout">
+<div id="callout3" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -1534,24 +1698,28 @@ contributes to more accurate genome assemblies. This filtering step is
 crucial for improving assembly contiguity, reducing errors, and
 optimizing computational efficiency by removing excess low-quality
 data.</p>
+<div id="note-on-filtlong-and-hifi-reads" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="note-on-filtlong-and-hifi-reads" class="callout-inner">
+<h3 class="callout-title">Note on Filtlong and HiFi reads</h3>
+<div class="callout-content">
+<p>Filtlong was originally designed for filtering error-prone long reads
+(ONT, PacBio CLR) where quality variation is significant. For PacBio
+HiFi reads, which already have very high accuracy (~Q20+), Filtlong’s
+quality-based filtering provides less benefit. We use it here primarily
+for <strong>length filtering and downsampling</strong> to target
+coverage. For HiFi-specific filtering, you could alternatively use tools
+like <code>bamtools</code> on the original BAM files or simply subsample
+by read length.</p>
+</div>
+</div>
+</div>
 <p><strong>1. Filtering PacBio HiFi Reads</strong></p>
 <p>Filter the PacBio HiFi reads using <code>Filtlong</code> to retain
 only high-quality reads.</p>
-<div class="codewrapper sourceCode" id="cb7">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="ex">ml</span> filtlong</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="ex">filtlong</span> <span class="dt">\</span></span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>   <span class="at">--target_bases</span> 5400000000 <span class="dt">\</span></span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>   <span class="at">--keep_percent</span> 90 <span class="dt">\</span></span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>   <span class="at">--min_length</span> 1000 <span class="dt">\</span></span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>     At_pacbio-hifi.fastq.gz <span class="op">&gt;</span> At_pacbio-hifi-filtered.fastq</span></code></pre>
-</div>
-<p><strong>2. Filtering ONT Reads</strong></p>
-<p>Filter the ONT reads using <code>Filtlong</code> to retain only
-high-quality reads.</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1562,9 +1730,24 @@ high-quality reads.</p>
 <span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>   <span class="at">--target_bases</span> 5400000000 <span class="dt">\</span></span>
 <span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>   <span class="at">--keep_percent</span> 90 <span class="dt">\</span></span>
 <span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>   <span class="at">--min_length</span> 1000 <span class="dt">\</span></span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>     At_ont-reads.fastq.gz <span class="op">&gt;</span> At_ont-reads-filtered.fastq</span></code></pre>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>     At_pacbio-hifi.fastq.gz <span class="op">&gt;</span> At_pacbio-hifi-filtered.fastq</span></code></pre>
 </div>
-<div id="callout3" class="callout">
+<p><strong>2. Filtering ONT Reads</strong></p>
+<p>Filter the ONT reads using <code>Filtlong</code> to retain only
+high-quality reads.</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="ex">ml</span> filtlong</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="ex">filtlong</span> <span class="dt">\</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>   <span class="at">--target_bases</span> 5400000000 <span class="dt">\</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>   <span class="at">--keep_percent</span> 90 <span class="dt">\</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>   <span class="at">--min_length</span> 1000 <span class="dt">\</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>     At_ont-reads.fastq.gz <span class="op">&gt;</span> At_ont-reads-filtered.fastq</span></code></pre>
+</div>
+<div id="callout5" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -1592,23 +1775,6 @@ filtered dataset (1000 bp).</li>
 <p>We will re-run <code>NanoPlot</code> on the filtered HiFi and ONT
 reads to assess the quality of the filtered datasets.</p>
 <p><strong>1. For PacBio HiFi Reads:</strong></p>
-<div class="codewrapper sourceCode" id="cb9">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="ex">ml</span> nanoplot</span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="ex">NanoPlot</span> <span class="dt">\</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>   <span class="at">--verbose</span> <span class="dt">\</span></span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>   <span class="at">--outdir</span> nanoplot_pacbio_post <span class="dt">\</span></span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>   <span class="at">--prefix</span> At_PacBio_post_ <span class="dt">\</span></span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>   <span class="at">--plots</span> kde <span class="dt">\</span></span>
-<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>   <span class="at">--N50</span> <span class="dt">\</span></span>
-<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a>   <span class="at">--dpi</span> 300 <span class="dt">\</span></span>
-<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>   <span class="at">--fastq</span> At_pacbio-hifi-filtered.fastq</span></code></pre>
-</div>
-<p><strong>2. For ONT Reads:</strong></p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1618,13 +1784,29 @@ reads to assess the quality of the filtered datasets.</p>
 <span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="ex">NanoPlot</span> <span class="dt">\</span></span>
 <span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
 <span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>   <span class="at">--verbose</span> <span class="dt">\</span></span>
-<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>   <span class="at">--outdir</span> nanoplot_ont_post <span class="dt">\</span></span>
-<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>   <span class="at">--prefix</span> At_ONT_post_ <span class="dt">\</span></span>
-<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>   <span class="at">--readtype</span> 1D <span class="dt">\</span></span>
-<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>   <span class="at">--plots</span> kde <span class="dt">\</span></span>
-<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a>   <span class="at">--N50</span> <span class="dt">\</span></span>
-<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a>   <span class="at">--dpi</span> 300 <span class="dt">\</span></span>
-<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a>   <span class="at">--fastq</span> At_ont-reads-filtered.fastq</span></code></pre>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>   <span class="at">--outdir</span> nanoplot_pacbio_post <span class="dt">\</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>   <span class="at">--prefix</span> At_PacBio_post_ <span class="dt">\</span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>   <span class="at">--plots</span> kde <span class="dt">\</span></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>   <span class="at">--N50</span> <span class="dt">\</span></span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a>   <span class="at">--dpi</span> 300 <span class="dt">\</span></span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a>   <span class="at">--fastq</span> At_pacbio-hifi-filtered.fastq</span></code></pre>
+</div>
+<p><strong>2. For ONT Reads:</strong></p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="ex">ml</span> nanoplot</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="ex">NanoPlot</span> <span class="dt">\</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>   <span class="at">--verbose</span> <span class="dt">\</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>   <span class="at">--outdir</span> nanoplot_ont_post <span class="dt">\</span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>   <span class="at">--prefix</span> At_ONT_post_ <span class="dt">\</span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>   <span class="at">--plots</span> kde <span class="dt">\</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>   <span class="at">--N50</span> <span class="dt">\</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>   <span class="at">--dpi</span> 300 <span class="dt">\</span></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a>   <span class="at">--fastq</span> At_ont-reads-filtered.fastq</span></code></pre>
 </div>
 <p>Now, examine the <code>At_PacBio_post_NanoPlot-report.html</code> and
 <code>At_ONT_post_NanoPlot-report.html</code> files to assess the
@@ -1645,45 +1827,50 @@ evaluate the quality of our Oxford Nanopore and PacBio reads by
 identifying potential errors, biases, and coverage issues, helping to
 refine filtering strategies and improve downstream assembly results <a href="https://www.nature.com/articles/s41467-020-14998-3" class="external-link">ref</a>.</p>
 <p><strong>1. For PacBio HiFi Reads:</strong></p>
-<div class="codewrapper sourceCode" id="cb11">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="ex">ml</span> kmc</span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="fu">mkdir</span> tmp</span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="fu">ls</span> At_pacbio-hifi-filtered.fastq <span class="op">&gt;</span> FILES</span>
-<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="ex">kmc</span> <span class="at">-k21</span> <span class="at">-t10</span> <span class="at">-m64</span> <span class="at">-ci1</span> <span class="at">-cs10000</span> @FILES reads tmp/</span>
-<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="ex">kmc_tools</span> transform reads histogram reads-pacbio.histo <span class="at">-cx10000</span></span></code></pre>
-</div>
-<p><strong>2. For ONT Reads:</strong></p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
 <span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="ex">ml</span> kmc</span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="fu">mkdir</span> tmp</span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="fu">ls</span> At_ont-reads-filtered.fastq <span class="op">&gt;</span> FILES</span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="ex">kmc</span> <span class="at">-k21</span> <span class="at">-t10</span> <span class="at">-m64</span> <span class="at">-ci1</span> <span class="at">-cs10000</span> @FILES reads tmp/</span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="ex">kmc_tools</span> transform reads histogram reads-ont.histo <span class="at">-cx10000</span></span></code></pre>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> tmp_pacbio</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="fu">ls</span> At_pacbio-hifi-filtered.fastq <span class="op">&gt;</span> FILES_pacbio</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="ex">kmc</span> <span class="at">-k21</span> <span class="at">-t10</span> <span class="at">-m64</span> <span class="at">-ci1</span> <span class="at">-cs10000</span> @FILES_pacbio reads_pacbio tmp_pacbio/</span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="ex">kmc_tools</span> transform reads_pacbio histogram reads-pacbio.histo <span class="at">-cx10000</span></span></code></pre>
+</div>
+<p><strong>2. For ONT Reads:</strong></p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="ex">ml</span> kmc</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> tmp_ont</span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="fu">ls</span> At_ont-reads-filtered.fastq <span class="op">&gt;</span> FILES_ont</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="ex">kmc</span> <span class="at">-k21</span> <span class="at">-t10</span> <span class="at">-m64</span> <span class="at">-ci1</span> <span class="at">-cs10000</span> @FILES_ont reads_ont tmp_ont/</span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="ex">kmc_tools</span> transform reads_ont histogram reads-ont.histo <span class="at">-cx10000</span></span></code></pre>
 </div>
 <p>Now you can visualize the k-mer frequency distributions using
 GenomeScope to assess the quality of the HiFi and ONT reads. This
 analysis can help identify potential issues and guide further filtering
 or processing steps to improve data quality.</p>
-<p>To visualize the k-mer frequency distributions:</p>
-<ol style="list-style-type: decimal">
-<li>Visit the <a href="http://genomescope.org/genomescope2.0/" class="external-link">GenomeScope website</a>
-and upload the <code>reads-pacbio.histo</code> OR
-<code>reads-ont.histo</code> files (drag and drop).</li>
-<li>If you uploaded the <code>reads-pacbio.histo</code> file, enter
-description with <code>PacBio HiFi</code>. If you uploaded the
-<code>reads-ont.histo</code> file, enter description with
-<code>Oxford Nanopore</code>.</li>
-<li>Click on the <code>Submit</code> button to generate the k-mer
-frequency distribution plots.</li>
-</ol>
+<p>To visualize the k-mer frequency distributions, you can use the
+command-line version of GenomeScope2:</p>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="ex">ml</span> genomescope2</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="co"># For PacBio HiFi reads:</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="ex">genomescope2</span> <span class="at">-i</span> reads-pacbio.histo <span class="at">-o</span> genomescope_pacbio <span class="at">-k</span> 21 <span class="at">-p</span> 2 <span class="at">--name_prefix</span> <span class="st">"PacBio_HiFi"</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="co"># For ONT reads:</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="ex">genomescope2</span> <span class="at">-i</span> reads-ont.histo <span class="at">-o</span> genomescope_ont <span class="at">-k</span> 21 <span class="at">-p</span> 2 <span class="at">--name_prefix</span> <span class="st">"Oxford_Nanopore"</span></span></code></pre>
+</div>
+<p>Alternatively, you can use the <a href="http://genomescope.org/genomescope2.0/" class="external-link">GenomeScope web
+interface</a> to upload the <code>.histo</code> files and generate plots
+interactively (note: the web server may occasionally be
+unavailable).</p>
 <div id="challenge1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -1701,7 +1888,7 @@ frequency distribution plots.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>A: High error rates in ONT reads can lead to k-mer counting errors,
 causing the analysis to fail. K-mer analyses reads rely on accuracy to
@@ -1711,7 +1898,7 @@ are recommended for k-mer analysis.</p>
 </div>
 </div>
 </div>
-<div id="callout4" class="callout">
+<div id="callout6" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -1763,10 +1950,10 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-pacbio-hifi-assembly"><p>Content from <a href="pacbio-hifi-assembly.html">PacBio HiFi Assembly using HiFiasm</a></p>
 <hr>
-<p>Last updated on 2025-11-11 |
+<p>Last updated on 2026-02-10 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/pacbio-hifi-assembly.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 60 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -1932,6 +2119,41 @@ FASTQ format. The basic command structure is as follows:</p>
 <p>The input can either be fastq or fasta, compressed or uncompressed.
 The output will be stored in the same directory with the specified
 prefix.</p>
+<p>For plant genomes, you can also specify the telomere motif to help
+hifiasm identify chromosome ends:</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">hifiasm</span> <span class="dt">\</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>    <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>    <span class="at">--telo-m</span> CCCTAAA <span class="dt">\</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>    <span class="at">-o</span> hifiasm_default/At_hifiasm_default.asm <span class="dt">\</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>    At_pacbio-hifi-filtered.fastq</span></code></pre>
+</div>
+<p>The <code>--telo-m CCCTAAA</code> flag tells hifiasm to look for the
+canonical plant telomere repeat, which helps identify complete
+chromosome arms in the assembly.</p>
+</div>
+</div>
+</div>
+<div id="while-you-wait" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="while-you-wait" class="callout-inner">
+<h3 class="callout-title">While you wait</h3>
+<div class="callout-content">
+<p>HiFiasm will take approximately 15-30 minutes with 32 threads on the
+<em>A. thaliana</em> dataset. While you wait, you can:</p>
+<ul>
+<li>Review the HiFiasm output file descriptions in the table below</li>
+<li>Read about <a href="https://hifiasm.readthedocs.io/" class="external-link">haplotype
+resolution in HiFiasm</a>
+</li>
+<li>Discuss with your neighbor: what assembly metrics would indicate a
+good vs. poor assembly?</li>
+</ul>
 </div>
 </div>
 </div>
@@ -2033,28 +2255,28 @@ their descriptions:</p>
 Assembly) format. You can extract the sequences from this file using
 <code>awk</code>. The sequences are represented as lines starting with
 <code>S</code> followed by the contig ID and the sequence.</p>
-<div class="codewrapper sourceCode" id="cb4">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="cf">for</span> ctg <span class="kw">in</span> <span class="pp">*</span>_ctg.gfa<span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>    <span class="fu">awk</span> <span class="st">'/^S/{print "&gt;"$2"\n"$3}'</span> <span class="va">${ctg}</span> <span class="op">&gt;</span> <span class="va">${ctg</span><span class="op">%</span>.gfa<span class="va">}</span>.fasta</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<p>Let’s take a look at the sats of this assembly:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="ex">ml</span> quast</span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="ex">quast.py</span> <span class="dt">\</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>    <span class="at">--fast</span> <span class="dt">\</span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>    <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>    <span class="at">-o</span> quast_basic_stats <span class="dt">\</span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>    <span class="pp">*</span>p_ctg.fasta</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="cf">for</span> ctg <span class="kw">in</span> <span class="pp">*</span>_ctg.gfa<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>    <span class="fu">awk</span> <span class="st">'/^S/{print "&gt;"$2"\n"$3}'</span> <span class="va">${ctg}</span> <span class="op">&gt;</span> <span class="va">${ctg</span><span class="op">%</span>.gfa<span class="va">}</span>.fasta</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<p>Let’s take a look at the stats of this assembly:</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="ex">ml</span> quast</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="ex">quast.py</span> <span class="dt">\</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>    <span class="at">--fast</span> <span class="dt">\</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>    <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>    <span class="at">-o</span> quast_basic_stats <span class="dt">\</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>    <span class="pp">*</span>p_ctg.fasta</span></code></pre>
 </div>
 <div id="quast-metrics" class="callout">
 <div class="callout-square">
@@ -2209,73 +2431,73 @@ see how it affects the assembly quality.</p>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-1" class="tab-pane show active" aria-labelledby="nav-tab-1-1" role="tabpanel">
-<div class="codewrapper sourceCode" id="cb6">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="ex">ml</span> hifiasm</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co"># purge level 0</span></span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> hifiasm_purge-0</span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="ex">hifiasm</span> <span class="dt">\</span></span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>  <span class="at">-o</span> hifiasm_purge-0/At_hifiasm_purge-0.asm <span class="dt">\</span></span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>  <span class="at">-l</span> 0 <span class="dt">\</span></span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>  <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>  At_pacbio-hifi-filtered.fastq</span></code></pre>
-</div>
-</div>
-<div id="nav-tabpanel-1-2" class="tab-pane" aria-labelledby="nav-tab-1-2" role="tabpanel">
+<div id="nav-tabpanel-1-1" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-1">
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="ex">ml</span> hifiasm</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co"># purge level 1</span></span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> hifiasm_purge-1</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co"># purge level 0</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> hifiasm_purge-0</span>
 <span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="ex">hifiasm</span> <span class="dt">\</span></span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>  <span class="at">-o</span> hifiasm_purge-1/At_hifiasm_purge-1.asm <span class="dt">\</span></span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>  <span class="at">-l</span> 1 <span class="dt">\</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>  <span class="at">-o</span> hifiasm_purge-0/At_hifiasm_purge-0.asm <span class="dt">\</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>  <span class="at">-l</span> 0 <span class="dt">\</span></span>
 <span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>  <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
 <span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>  At_pacbio-hifi-filtered.fastq</span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-1-3" class="tab-pane" aria-labelledby="nav-tab-1-3" role="tabpanel">
+<div id="nav-tabpanel-1-2" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-2">
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="ex">ml</span> hifiasm</span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co"># purge level 2</span></span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> hifiasm_purge-2</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co"># purge level 1</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> hifiasm_purge-1</span>
 <span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="ex">hifiasm</span> <span class="dt">\</span></span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>  <span class="at">-o</span> hifiasm_purge-2/At_hifiasm_purge-2.asm <span class="dt">\</span></span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>  <span class="at">-l</span> 2 <span class="dt">\</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>  <span class="at">-o</span> hifiasm_purge-1/At_hifiasm_purge-1.asm <span class="dt">\</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>  <span class="at">-l</span> 1 <span class="dt">\</span></span>
 <span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>  <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
 <span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>  At_pacbio-hifi-filtered.fastq</span></code></pre>
 </div>
 </div>
-<div id="nav-tabpanel-1-4" class="tab-pane" aria-labelledby="nav-tab-1-4" role="tabpanel">
+<div id="nav-tabpanel-1-3" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-3">
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
 <span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="ex">ml</span> hifiasm</span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co"># purge level 3</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> hifiasm_purge-3</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co"># purge level 2</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> hifiasm_purge-2</span>
 <span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="ex">hifiasm</span> <span class="dt">\</span></span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>  <span class="at">-o</span> hifiasm_purge-3/At_hifiasm_purge-0.asm <span class="dt">\</span></span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>  <span class="at">-l</span> 3 <span class="dt">\</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>  <span class="at">-o</span> hifiasm_purge-2/At_hifiasm_purge-2.asm <span class="dt">\</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>  <span class="at">-l</span> 2 <span class="dt">\</span></span>
 <span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>  <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
 <span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>  At_pacbio-hifi-filtered.fastq</span></code></pre>
 </div>
 </div>
+<div id="nav-tabpanel-1-4" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-4">
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="ex">ml</span> hifiasm</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co"># purge level 3</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> hifiasm_purge-3</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="ex">hifiasm</span> <span class="dt">\</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>  <span class="at">-o</span> hifiasm_purge-3/At_hifiasm_purge-3.asm <span class="dt">\</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>  <span class="at">-l</span> 3 <span class="dt">\</span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>  <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>  At_pacbio-hifi-filtered.fastq</span></code></pre>
 </div>
 </div>
-<div id="callout3" class="callout">
+</div>
+</div>
+<div id="callout4" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -2297,51 +2519,54 @@ them faster.</p>
 <h3 class="callout-title">Comparing assemblies</h3>
 <div class="callout-content">
 <p>Convert GFA files to FASTA format</p>
-<div class="codewrapper sourceCode" id="cb10">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="cf">for</span> dir <span class="kw">in</span> hifiasm_purge-<span class="dt">{</span><span class="dv">0</span><span class="dt">..</span><span class="dv">3</span><span class="dt">}</span><span class="kw">;</span> <span class="cf">do</span> </span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>    <span class="bu">cd</span> <span class="va">${dir}</span></span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>    <span class="cf">for</span> ctg <span class="kw">in</span> <span class="pp">*</span>_ctg.gfa<span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>        <span class="fu">awk</span> <span class="st">'/^S/{print "&gt;"$2"\n"$3}'</span> <span class="va">${ctg}</span> <span class="op">&gt;</span> <span class="va">${ctg</span><span class="op">%</span>.gfa<span class="va">}</span>.fasta</span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>    <span class="cf">done</span></span>
-<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>    <span class="bu">cd</span> ..</span>
-<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
-</div>
-<p>Run QUAST to compare the assemblies</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> quast_stats</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> hifiasm_purge_level_{0..3}/<span class="pp">*</span>_p_ctg.fasta<span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>    <span class="fu">ln</span> <span class="at">-s</span> <span class="va">${fasta}</span> quast_stats/</span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="cf">done</span></span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="bu">cd</span> quast_stats</span>
-<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="ex">quast.py</span> <span class="dt">\</span></span>
-<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>    <span class="at">--fast</span> <span class="dt">\</span></span>
-<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>    <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
-<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>    <span class="at">-o</span> quast_purge_level_stats <span class="dt">\</span></span>
-<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>    <span class="pp">*</span>_p_ctg.fasta</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="cf">for</span> dir <span class="kw">in</span> hifiasm_purge-<span class="dt">{</span><span class="dv">0</span><span class="dt">..</span><span class="dv">3</span><span class="dt">}</span><span class="kw">;</span> <span class="cf">do</span> </span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>    <span class="bu">cd</span> <span class="va">${dir}</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>    <span class="cf">for</span> ctg <span class="kw">in</span> <span class="pp">*</span>_ctg.gfa<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>        <span class="fu">awk</span> <span class="st">'/^S/{print "&gt;"$2"\n"$3}'</span> <span class="va">${ctg}</span> <span class="op">&gt;</span> <span class="va">${ctg</span><span class="op">%</span>.gfa<span class="va">}</span>.fasta</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>    <span class="cf">done</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>    <span class="bu">cd</span> ..</span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
 </div>
-<p>Run Compleasm to compare the assemblies</p>
+<p>Run QUAST to compare the assemblies</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
 <span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="ex">ml</span> compleasm</span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> compleasm_stats</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="ex">ml</span> quast</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> quast_stats</span>
 <span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> hifiasm_purge-{0..3}/<span class="pp">*</span>_p_ctg.fasta<span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>    <span class="fu">ln</span> <span class="at">-s</span> <span class="va">${fasta}</span> compleasm_stats/</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>    <span class="fu">ln</span> <span class="at">-s</span> ../<span class="va">${fasta}</span> quast_stats/</span>
 <span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="cf">done</span></span>
-<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="bu">cd</span> compleasm_stats</span>
-<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> <span class="pp">*</span>_p_ctg.fasta<span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a>    <span class="ex">compleasm</span> run <span class="dt">\</span></span>
-<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a>       <span class="at">-a</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
-<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a>       <span class="at">-o</span> <span class="va">${fasta</span><span class="op">%</span>.<span class="pp">*</span><span class="va">}</span> <span class="dt">\</span></span>
-<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a>       <span class="at">-l</span> brassicales_odb10 <span class="dt">\</span></span>
-<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a>       <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span>
-<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="bu">cd</span> quast_stats</span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="ex">quast.py</span> <span class="dt">\</span></span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a>    <span class="at">--fast</span> <span class="dt">\</span></span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a>    <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a>    <span class="at">-o</span> quast_purge_level_stats <span class="dt">\</span></span>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a>    <span class="pp">*</span>_p_ctg.fasta</span></code></pre>
+</div>
+<p>Run Compleasm to compare the assemblies</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="ex">ml</span> compleasm</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> compleasm_stats</span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> hifiasm_purge-{0..3}/<span class="pp">*</span>_p_ctg.fasta<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>    <span class="fu">ln</span> <span class="at">-s</span> <span class="va">${fasta}</span> compleasm_stats/</span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="cf">done</span></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="bu">cd</span> compleasm_stats</span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> <span class="pp">*</span>_p_ctg.fasta<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a>    <span class="ex">compleasm</span> run <span class="dt">\</span></span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a>       <span class="at">-a</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a>       <span class="at">-o</span> <span class="va">${fasta</span><span class="op">%</span>.<span class="pp">*</span><span class="va">}</span> <span class="dt">\</span></span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a>       <span class="at">-l</span> brassicales_odb10 <span class="dt">\</span></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a>       <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
 </div>
 <p>Examining the results from QUAST and Compleasm, compare the assembly
 statistics and assess the impact of different purging levels on the
@@ -2377,17 +2602,17 @@ HiFi reads to see how it performs compared to HiFiasm.</p>
 </h3>
 <p>To run Flye with HiFi reads, you can use the following command
 structure:</p>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="ex">ml</span> flye</span>
-<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="ex">flye</span> <span class="dt">\</span></span>
-<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>  <span class="at">--pacbio-hifi</span> At_pacbio-hifi-filtered.fastq <span class="dt">\</span></span>
-<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>  <span class="at">--genome-size</span> 135m <span class="dt">\</span></span>
-<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>  <span class="at">--out-dir</span> flye_default <span class="dt">\</span></span>
-<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>  <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="ex">ml</span> flye</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="ex">flye</span> <span class="dt">\</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>  <span class="at">--pacbio-hifi</span> At_pacbio-hifi-filtered.fastq <span class="dt">\</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>  <span class="at">--genome-size</span> 135m <span class="dt">\</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>  <span class="at">--out-dir</span> flye_default <span class="dt">\</span></span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>  <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span></code></pre>
 </div>
 <div id="options-used" class="callout">
 <div class="callout-square">
@@ -2426,23 +2651,23 @@ assembly graph, contigs, and other relevant files.</p>
 <h3 class="callout-title">Quality metrics</h3>
 <div class="callout-content">
 <p>Run quality metrics on Flye assembly:</p>
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="ex">ml</span> quast</span>
-<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="ex">quast.py</span> <span class="dt">\</span></span>
-<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>    <span class="at">--fast</span> <span class="dt">\</span></span>
-<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>    <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
-<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>    <span class="at">-o</span> quast_flye_stats <span class="dt">\</span></span>
-<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>    flye_default/assembly.fasta</span>
-<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a><span class="ex">ml</span> compleasm</span>
-<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a><span class="ex">compleasm</span> run <span class="dt">\</span></span>
-<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a>  <span class="at">-a</span> flye_default/assembly.fasta <span class="dt">\</span></span>
-<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a>  <span class="at">-o</span> flye_default <span class="dt">\</span></span>
-<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a>  <span class="at">-l</span> brassicales_odb10 <span class="dt">\</span></span>
-<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a>  <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="ex">ml</span> quast</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="ex">quast.py</span> <span class="dt">\</span></span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>    <span class="at">--fast</span> <span class="dt">\</span></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>    <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>    <span class="at">-o</span> quast_flye_stats <span class="dt">\</span></span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a>    flye_default/assembly.fasta</span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a><span class="ex">ml</span> compleasm</span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="ex">compleasm</span> run <span class="dt">\</span></span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a>  <span class="at">-a</span> flye_default/assembly.fasta <span class="dt">\</span></span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a>  <span class="at">-o</span> flye_default <span class="dt">\</span></span>
+<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a>  <span class="at">-l</span> brassicales_odb10 <span class="dt">\</span></span>
+<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a>  <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span></code></pre>
 </div>
 <p>Which assembler did a better job at assembling the genome? Compare
 the statistics from QUAST and Compleasm for Flye and HiFiasm assemblies
@@ -2481,10 +2706,10 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-oxford-nanopore-assembly"><p>Content from <a href="oxford-nanopore-assembly.html">Oxford Nanopore Assembly using Flye</a></p>
 <hr>
-<p>Last updated on 2025-11-11 |
+<p>Last updated on 2026-02-10 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/oxford-nanopore-assembly.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 60 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -2556,15 +2781,14 @@ using the following command:</p>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="ex">ml</span> flye</span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="ex">flye</span> <span class="at">--version</span></span></code></pre>
 </div>
-<p>You can also use the Singularity container for HiFiasm, which
-provides a consistent environment across different systems. The
-container can be pulled from the BioContainers registry using the
-following command:</p>
+<p>You can also use the Singularity container for Flye, which provides a
+consistent environment across different systems. The container can be
+pulled from the BioContainers registry using the following command:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">apptainer</span> pull docker://quay.io/biocontainers/flye:2.9.5--py311h2de2dd3_2</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">apptainer</span> exec hflye_2.9.5--py311h2de2dd3_2.sif flye <span class="at">--version</span></span></code></pre>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">apptainer</span> exec flye_2.9.5--py311h2de2dd3_2.sif flye <span class="at">--version</span></span></code></pre>
 </div>
 </section><section><h2 class="section-heading" id="overview-of-flye-assembler">Overview of Flye Assembler<a class="anchor" aria-label="anchor" href="#overview-of-flye-assembler"></a>
 </h2>
@@ -2622,7 +2846,7 @@ structure is as follows:</p>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="ex">ml</span> flye</span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="ex">flye</span> <span class="dt">\</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  <span class="at">--nano-raw</span> At_ont-reads-filtered.fastq <span class="dt">\</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  <span class="at">--nano-hq</span> At_ont-reads-filtered.fastq <span class="dt">\</span></span>
 <span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  <span class="at">--genome-size</span> 135m <span class="dt">\</span></span>
 <span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>  <span class="at">--out-dir</span> flye_ont <span class="dt">\</span></span>
 <span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>  <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span></code></pre>
@@ -2637,8 +2861,8 @@ structure is as follows:</p>
 <div class="callout-content">
 <ul>
 <li>
-<code>--nano-raw</code> specifies the input ONT long reads in FASTQ
-format</li>
+<code>--nano-hq</code> specifies high-quality ONT reads (Dorado
+HAC/SUP basecalled, R10.4+ chemistry, typically Q20+)</li>
 <li>
 <code>--genome-size</code> provides an estimate of the genome size
 to guide assembly</li>
@@ -2651,6 +2875,58 @@ for assembly</li>
 </ul>
 <p>The input can either be fastq or fasta, compressed or uncompressed.
 The output will be stored in the directory provided.</p>
+</div>
+</div>
+</div>
+<div id="choosing-the-right-flye-input-type" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="choosing-the-right-flye-input-type" class="callout-inner">
+<h3 class="callout-title">Choosing the right Flye input type</h3>
+<div class="callout-content">
+<p>Flye provides several input options depending on your read type and
+quality:</p>
+<ul>
+<li>
+<code>--nano-hq</code>: For Dorado HAC/SUP basecalled reads with
+R10.4+ chemistry (Q20+). <strong>This is what we use for our
+data.</strong>
+</li>
+<li>
+<code>--nano-raw</code>: For older, lower-quality ONT reads (R9,
+fast basecalling, &lt;Q10)</li>
+<li>
+<code>--pacbio-hifi</code>: For PacBio HiFi/CCS reads</li>
+<li>
+<code>--pacbio-raw</code>: For PacBio CLR (continuous long
+reads)</li>
+</ul>
+<p>Using the wrong input type can significantly affect assembly quality.
+Since our ONT data was basecalled with Dorado HAC on R10.4.1 chemistry,
+<code>--nano-hq</code> is the correct choice.</p>
+</div>
+</div>
+</div>
+<div id="while-you-wait" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="while-you-wait" class="callout-inner">
+<h3 class="callout-title">While you wait</h3>
+<div class="callout-content">
+<p>Flye will take approximately 30-60 minutes with 32 threads on the
+<em>A. thaliana</em> dataset. While you wait, you can:</p>
+<ul>
+<li>Review the Flye output file descriptions in the table below</li>
+<li>Compare the Flye assembly graph approach to the HiFiasm approach
+from the previous episode</li>
+<li>Read about <a href="https://github.com/mikolmogorov/Flye/blob/flye/docs/USAGE.md" class="external-link">Flye’s
+repeat graph algorithm</a>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -2807,30 +3083,47 @@ long-read data like ONT reads.</p>
 performs one round of polishing to refine the assembly. However, you can
 customize the polishing process by running polishing separately after
 the initial assembly.</p>
-<p>An example command to polish assembly with accurate PacBio HiFi
-reads:</p>
+<p>A recommended approach for polishing ONT assemblies is to use
+<code>Medaka</code>, which uses neural networks trained on ONT data to
+correct errors:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="ex">ml</span> flye</span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="ex">flye</span> <span class="dt">\</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="at">--polish-target</span> flye_ont/assembly.fasta <span class="dt">\</span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>  <span class="at">--pacbio-raw</span> At_pacbio-hifi-filtered.fastq <span class="dt">\</span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>  <span class="at">--genome-size</span> 135m <span class="dt">\</span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>  <span class="at">--iterations</span> 1 <span class="dt">\</span></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>  <span class="at">--out-dir</span> flye_ont_polished <span class="dt">\</span></span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>  <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span></code></pre>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="ex">ml</span> medaka</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="ex">medaka_polish</span> <span class="dt">\</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>   <span class="at">-i</span> At_ont-reads-filtered.fastq <span class="dt">\</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>   <span class="at">-d</span> flye_ont/assembly.fasta <span class="dt">\</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>   <span class="at">-o</span> medaka_polished <span class="dt">\</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>   <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>   <span class="at">-m</span> r1041_e82_400bps_hac_v5.0.0</span></code></pre>
 </div>
-<p>*You can also provide Bam file as input instead of reads</p>
-<p>There are many other polishing tools available, such as
-<code>Racon</code>, <code>Nanoploish</code>, and <code>medaka</code>,
-which can be used to further refine the ONT assembly. Each tool has its
-strengths and limitations, so it is recommended to try different
-polishing strategies to achieve the best results for your specific
-dataset. <code>Medaka</code> is a popular choice for polishing ONT
-assemblies due to its accuracy and efficiency.</p>
+<div id="medaka-model-selection" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="medaka-model-selection" class="callout-inner">
+<h3 class="callout-title">Medaka model selection</h3>
+<div class="callout-content">
+<p>The <code>-m</code> flag specifies the Medaka model, which should
+match your basecalling chemistry and model. For our data (R10.4.1,
+Dorado HAC), we use <code>r1041_e82_400bps_hac_v5.0.0</code>. You can
+list available models with <code>medaka --list_models</code>. Using the
+wrong model will produce suboptimal results.</p>
+</div>
+</div>
+</div>
+<p>There are other polishing tools available, such as <code>Racon</code>
+and <code>Nanopolish</code>, which can be used to further refine the ONT
+assembly. Each tool has its strengths and limitations, so it is
+recommended to try different polishing strategies to achieve the best
+results for your specific dataset. <code>Medaka</code> is the current
+recommended choice for polishing ONT assemblies due to its accuracy and
+efficiency. For the latest basecalling and polishing, ONT’s
+<code>Dorado</code> toolkit is also emerging as an integrated
+solution.</p>
 </section><section><h2 class="section-heading" id="hifiasm-for-ont-data-optional">HiFiasm for ONT Data (Optional)<a class="anchor" aria-label="anchor" href="#hifiasm-for-ont-data-optional"></a>
 </h2>
 <hr class="half-width">
@@ -2866,7 +3159,7 @@ GFA to FASTA using the following command:</p>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>    <span class="fu">awk</span> <span class="st">'/^S/{print "&gt;"$2"\n"$3}'</span> <span class="va">${ctg}</span> <span class="op">&gt;</span> <span class="va">${ctg</span><span class="op">%</span>.gfa<span class="va">}</span>.fasta</span>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
 </div>
-<p>Get teh basic stats using <code>quast</code>:</p>
+<p>Get the basic stats using <code>quast</code>:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2885,7 +3178,7 @@ GFA to FASTA using the following command:</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
 <span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="ex">ml</span> completeasm</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="ex">ml</span> compleasm</span>
 <span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> <span class="pp">*</span>_ctg.fasta<span class="kw">;</span> <span class="cf">do</span></span>
 <span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>    <span class="ex">compleasm</span> run <span class="dt">\</span></span>
 <span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>       <span class="at">-a</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
@@ -2926,10 +3219,10 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-hybrid-assembly"><p>Content from <a href="hybrid-assembly.html">Hybrid Long Read Assembly (optional)</a></p>
 <hr>
-<p>Last updated on 2025-11-11 |
+<p>Last updated on 2026-02-10 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/hybrid-assembly.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 45 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -3006,6 +3299,27 @@ that should do the job:</p>
 <span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>   <span class="at">--genome-size</span> 135m <span class="dt">\</span></span>
 <span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span></code></pre>
 </div>
+<div id="while-you-wait" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="while-you-wait" class="callout-inner">
+<h3 class="callout-title">While you wait</h3>
+<div class="callout-content">
+<p>The hybrid Flye assembly involves two rounds and may take 45-60
+minutes total. While you wait, you can:</p>
+<ul>
+<li>Review your previous HiFiasm and Flye assemblies and compare their
+statistics</li>
+<li>Think about what advantages combining both data types might
+provide</li>
+<li>Discuss with your neighbor: when would a hybrid assembly approach be
+preferred over single-technology assembly?</li>
+</ul>
+</div>
+</div>
+</div>
 </section><section><h2 class="section-heading" id="evaluating-assembly-quality">Evaluating Assembly Quality<a class="anchor" aria-label="anchor" href="#evaluating-assembly-quality"></a>
 </h2>
 <hr class="half-width">
@@ -3024,12 +3338,11 @@ that should do the job:</p>
 <span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>  <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
 <span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>  <span class="at">-o</span> quast_basic <span class="dt">\</span></span>
 <span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>    <span class="va">${fasta}</span></span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="ex">compleasm</span> <span class="dt">\</span></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>compleasm run <span class="dt">\</span></span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>   <span class="at">-a</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>   <span class="at">-o</span> compleasm_out <span class="dt">\</span></span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>   <span class="at">-l</span> brassicales_odb10  <span class="dt">\</span></span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>   <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span></code></pre>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="ex">compleasm</span> run <span class="dt">\</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>   <span class="at">-a</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>   <span class="at">-o</span> compleasm_out <span class="dt">\</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>   <span class="at">-l</span> brassicales_odb10  <span class="dt">\</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>   <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span></code></pre>
 </div>
 </section><section><h2 class="section-heading" id="scaffolding-with-bionano">Scaffolding with Bionano<a class="anchor" aria-label="anchor" href="#scaffolding-with-bionano"></a>
 </h2>
@@ -3045,7 +3358,7 @@ the assembly:</p>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="va">fasta</span><span class="op">=</span><span class="st">"hybrid_flye_out/assembly.fasta"</span></span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="ex">run_hybridscaffold.sh</span> <span class="dt">\</span></span>
 <span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  <span class="at">-c</span> /opt/Solve3.7_10192021_74_1/HybridScaffold/1.0/hybridScaffold_DLE1_config.xml<span class="dt">\</span></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  <span class="at">-b</span> workshop_assembly/col-0_bionano/Evry.OpticalMap.Col-0.cmap <span class="dt">\</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  <span class="at">-b</span> Evry.OpticalMap.Col-0.cmap <span class="dt">\</span></span>
 <span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>  <span class="at">-n</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
 <span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>  <span class="at">-u</span> CTTAAG <span class="dt">\</span></span>
 <span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>  <span class="at">-z</span> results_bionano_hybrid_scaffolding.zip <span class="dt">\</span></span>
@@ -3180,10 +3493,10 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-scaffolding-using-ogm"><p>Content from <a href="scaffolding-using-ogm.html">Scaffolding using Optical Genome Mapping</a></p>
 <hr>
-<p>Last updated on 2025-11-11 |
+<p>Last updated on 2026-02-10 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/scaffolding-using-ogm.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 40 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -3309,8 +3622,8 @@ following input files:</p>
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">$PATH</span>:/apps/biocontainers/exported-wrappers/bionano/3.8.0</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="ex">run_hybridscaffold.sh</span></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="ex">-c</span> /opt/Solve3.7_10192021_74_1/HybridScaffold/1.0/hybridScaffold_DLE1_config.xml<span class="dt">\</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="ex">run_hybridscaffold.sh</span> <span class="dt">\</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="at">-c</span> /opt/Solve3.7_10192021_74_1/HybridScaffold/1.0/hybridScaffold_DLE1_config.xml <span class="dt">\</span></span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  <span class="at">-b</span> input.cmap <span class="dt">\</span></span>
 <span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  <span class="at">-n</span> genome.fasta <span class="dt">\</span></span>
 <span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  <span class="at">-u</span> CTTAAG <span class="dt">\</span></span>
@@ -3426,7 +3739,7 @@ stored.</td>
 </div>
 </div>
 <div class="section level3">
-<h3 id="scffolding-hifiasm-assembly-with-bionano-solve">Scffolding HiFiasm assembly with Bionano Solve<a class="anchor" aria-label="anchor" href="#scffolding-hifiasm-assembly-with-bionano-solve"></a>
+<h3 id="scaffolding-hifiasm-assembly-with-bionano-solve">Scaffolding HiFiasm assembly with Bionano Solve<a class="anchor" aria-label="anchor" href="#scaffolding-hifiasm-assembly-with-bionano-solve"></a>
 </h3>
 <p>For HiFiasm assembly, you need to provide the HiFiasm assembly FASTA
 file as input to the Bionano Solve pipeline. The command structure
@@ -3439,7 +3752,7 @@ file.</p>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">run_hybridscaffold.sh</span> <span class="dt">\</span></span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="at">-c</span> /opt/Solve3.7_10192021_74_1/HybridScaffold/1.0/hybridScaffold_DLE1_config.xml<span class="dt">\</span></span>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  <span class="at">-b</span> Evry.OpticalMap.Col-0.cmap <span class="dt">\</span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  <span class="at">-n</span> hifiasm_60x/athaliana_hifi.asm.bp.p_ctg.fasta <span class="dt">\</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  <span class="at">-n</span> hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta <span class="dt">\</span></span>
 <span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  <span class="at">-u</span> CTTAAG <span class="dt">\</span></span>
 <span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>  <span class="at">-z</span> results_bionano_hifiasm_scaffolding.zip <span class="dt">\</span></span>
 <span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>  <span class="at">-w</span> log.txt <span class="dt">\</span></span>
@@ -3453,7 +3766,7 @@ file.</p>
 </div>
 </div>
 <div class="section level3">
-<h3 id="scffolding-flye-assembly-with-bionano-solve">Scffolding Flye assembly with Bionano Solve<a class="anchor" aria-label="anchor" href="#scffolding-flye-assembly-with-bionano-solve"></a>
+<h3 id="scaffolding-flye-assembly-with-bionano-solve">Scaffolding Flye assembly with Bionano Solve<a class="anchor" aria-label="anchor" href="#scaffolding-flye-assembly-with-bionano-solve"></a>
 </h3>
 <p>For Flye assembly, the process is similar to HiFiasm, but you need to
 provide the Flye assembly FASTA file instead of the HiFiasm assembly.
@@ -3465,8 +3778,8 @@ input sequence file.</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="va">$PATH</span>:/apps/biocontainers/exported-wrappers/bionano/3.8.0</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">run_hybridscaffold.sh</span> <span class="dt">\</span></span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="at">-c</span> /opt/Solve3.7_10192021_74_1/HybridScaffold/1.0/hybridScaffold_DLE1_config.xml<span class="dt">\</span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="at">-b</span> workshop_assembly/col-0_bionano/Evry.OpticalMap.Col-0.cmap <span class="dt">\</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="at">-n</span> flye_ont_60x/assembly.fasta <span class="dt">\</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="at">-b</span> Evry.OpticalMap.Col-0.cmap <span class="dt">\</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="at">-n</span> flye_ont/assembly.fasta <span class="dt">\</span></span>
 <span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>  <span class="at">-u</span> CTTAAG <span class="dt">\</span></span>
 <span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>  <span class="at">-z</span> results_bionano_flye_scaffolding.zip <span class="dt">\</span></span>
 <span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>  <span class="at">-w</span> log.txt <span class="dt">\</span></span>
@@ -3559,7 +3872,7 @@ merge these files to obtain your final scaffolded genome assembly.</p>
 </section><section><h2 class="section-heading" id="quality-assessment-of-hybrid-scaffolds">Quality Assessment of Hybrid Scaffolds<a class="anchor" aria-label="anchor" href="#quality-assessment-of-hybrid-scaffolds"></a>
 </h2>
 <hr class="half-width">
-<p>The hybird scaffolds report file will be in the
+<p>The hybrid scaffolds report file will be in the
 <code>hybrid_scaffolds</code> directory and will provide a summary of
 the scaffolding process, including alignment statistics, conflict
 resolution, and scaffold N50 values. This report is essential for
@@ -3860,10 +4173,10 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-assembly-evaluation"><p>Content from <a href="assembly-evaluation.html">Assembly Assessment</a></p>
 <hr>
-<p>Last updated on 2025-11-11 |
+<p>Last updated on 2026-02-10 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/assembly-evaluation.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 50 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -3949,24 +4262,24 @@ and misassemblies.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="ex">ml</span> compleasm</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="ex">ml</span> quast</span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> quast_evaluation</span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co"># ln -s ../assembly1.fasta all_assemblies/assembly1.fasta</span></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co"># ln -s ../assembly2.fasta all_assemblies/assembly2.fasta</span></span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co"># ln -s ../assembly3.fasta all_assemblies/assembly3.fasta</span></span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co"># link any other assemblies you want to compare</span></span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co"># ln -s ../pacbio/9994.q20.CCS-filtered-60x.fastq</span></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co"># donwload the reference genome</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co"># Link your assemblies to a common directory for comparison</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> all_assemblies</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> ../hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta all_assemblies/hifiasm_assembly.fasta</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> ../flye_ont/assembly.fasta all_assemblies/flye_ont_assembly.fasta</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co"># link any other assemblies you want to compare (e.g., hybrid, scaffolded)</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co"># Download the reference genome</span></span>
 <span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="fu">wget</span> https://ftp.ensemblgenomes.ebi.ac.uk/pub/plants/release-60/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz</span>
 <span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="fu">gunzip</span> Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz</span>
 <span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="ex">quast.py</span> <span class="dt">\</span></span>
 <span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>   <span class="at">--output-dir</span> quast_complete_stats <span class="dt">\</span></span>
 <span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>   <span class="at">--no-read-stats</span> <span class="dt">\</span></span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>   <span class="at">-r</span>  Arabidopsis_thaliana.TAIR10.dna.toplevel.fa <span class="dt">\</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>   <span class="at">-r</span> Arabidopsis_thaliana.TAIR10.dna.toplevel.fa <span class="dt">\</span></span>
 <span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
 <span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>   <span class="at">--eukaryote</span> <span class="dt">\</span></span>
-<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>   <span class="at">--pacbio</span> 9994.q20.CCS_ge20Kb.fasta <span class="dt">\</span></span>
-<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>   assembly1.fasta assembly2.fasta assembly3.fasta</span></code></pre>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>   <span class="at">--pacbio</span> At_pacbio-hifi-filtered.fastq <span class="dt">\</span></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>   all_assemblies/<span class="pp">*</span>.fasta</span></code></pre>
 </div>
 <p>This will generate a detailed report in the
 <code>quast_complete_stats</code> directory, including key metrics for
@@ -3988,18 +4301,15 @@ missing or fragmented genes.</p>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="ex">ml</span> compleasm</span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> compleasm_evaluation</span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co"># ln -s ../assembly1.fasta all_assemblies/assembly1.fasta</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co"># ln -s ../assembly2.fasta all_assemblies/assembly2.fasta</span></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co"># ln -s ../assembly3.fasta all_assemblies/assembly3.fasta</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co"># link any other assemblies you want to compare</span></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co"># ln -s ../quast_evaluation/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa # reference</span></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> <span class="pp">*</span>.fasta<span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>  <span class="ex">compleasm</span> run <span class="dt">\</span></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>    <span class="at">-a</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>    <span class="at">-o</span> <span class="va">${fasta</span><span class="op">%</span>.<span class="pp">*</span><span class="va">}</span>_out <span class="dt">\</span></span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>    <span class="at">-l</span> brassicales_odb10  <span class="dt">\</span></span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>    <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="bu">cd</span> compleasm_evaluation</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co"># Use the same assemblies linked in the all_assemblies directory</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> ../all_assemblies/<span class="pp">*</span>.fasta<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>  <span class="ex">compleasm</span> run <span class="dt">\</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>    <span class="at">-a</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>    <span class="at">-o</span> <span class="va">${fasta</span><span class="op">%</span>.<span class="pp">*</span><span class="va">}</span>_out <span class="dt">\</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>    <span class="at">-l</span> brassicales_odb10  <span class="dt">\</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>    <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
 </div>
 <p>This will generate a detailed report for each assembly in the
 directory, highlighting the completeness of conserved genes and
@@ -4104,32 +4414,50 @@ validation</strong>.</p>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="ex">ml</span> merqury</span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="ex">ml</span> meryl</span>
 <span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> merqury_evaluation</span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co"># ln -s ../assembly1.fasta all_assemblies/assembly1.fasta</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co"># ln -s ../assembly2.fasta all_assemblies/assembly2.fasta</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co"># ln -s ../assembly3.fasta all_assemblies/assembly3.fasta</span></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co"># link any other assemblies you want to compare</span></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co"># ln -s ../quast_evaluation/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa # reference</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co"># ln -s ../pacbio/9994.q20.CCS-filtered-60x.fastq # pacbio reads</span></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="ex">meryl</span> <span class="dt">\</span></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>   count k=21 <span class="dt">\</span></span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>   threads=<span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>   memory=8g <span class="dt">\</span></span>
-<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>   output 9994.q20.CCS-filtered.meryl<span class="dt">\</span></span>
-<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>   9994.q20.CCS-filtered.fastq</span>
-<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="ex">merqury</span> <span class="dt">\</span></span>
-<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>   <span class="at">-a</span> assembly1.fasta <span class="dt">\</span></span>
-<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a>   <span class="at">-r</span> 9994.q20.CCS-filtered.meryl <span class="dt">\</span></span>
-<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a>   <span class="at">-o</span> merqury_evaluation/assembly1</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="bu">cd</span> merqury_evaluation</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co"># Step 1: Build a meryl k-mer database from the reads</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="ex">meryl</span> <span class="dt">\</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>   count k=21 <span class="dt">\</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>   threads=<span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>   memory=8g <span class="dt">\</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>   output At_pacbio-hifi-filtered.meryl <span class="dt">\</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>   ../At_pacbio-hifi-filtered.fastq</span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="co"># Step 2: Run merqury to evaluate assemblies</span></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="co"># Syntax: merqury.sh &lt;read-db.meryl&gt; &lt;asm1.fasta&gt; [asm2.fasta] &lt;output_prefix&gt;</span></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co"># For a single assembly:</span></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="ex">merqury.sh</span> <span class="dt">\</span></span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a>   At_pacbio-hifi-filtered.meryl <span class="dt">\</span></span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>   ../hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta <span class="dt">\</span></span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a>   merqury_hifiasm</span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="co"># For comparing multiple assemblies:</span></span>
 <span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a><span class="ex">merqury.sh</span> <span class="dt">\</span></span>
-<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a>   9994.q20.CCS-filtered.meryl </span>
-<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a>   <span class="ex">assembly1.fasta</span> assembly2.fasta assembly3.fasta</span>
-<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a>   <span class="ex">merqury_evaluation_output</span></span></code></pre>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a>   At_pacbio-hifi-filtered.meryl <span class="dt">\</span></span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a>   ../hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta <span class="dt">\</span></span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a>   ../flye_ont/assembly.fasta <span class="dt">\</span></span>
+<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a>   merqury_comparison</span></code></pre>
 </div>
-<p>This will generate numberous files with
-<code>merqury_evaluation_output</code> prefix, including k-mer spectra,
-completeness metrics, and consensus quality estimates for each assembly.
-You can use these results to evaluate the accuracy, completeness, and
-structural integrity of your genome assemblies.</p>
+<div id="merqury-syntax" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="merqury-syntax" class="callout-inner">
+<h3 class="callout-title">Merqury syntax</h3>
+<div class="callout-content">
+<p>Note that <code>merqury.sh</code> uses <strong>positional
+arguments</strong> (not flags):</p>
+<pre><code>merqury.sh &lt;read-db.meryl&gt; &lt;assembly1.fasta&gt; [assembly2.fasta] &lt;output_prefix&gt;</code></pre>
+<p>The output prefix determines the names of all generated files. When
+comparing two assemblies, provide both FASTA files before the output
+prefix.</p>
+</div>
+</div>
+</div>
+<p>This will generate numerous files with the specified output prefix,
+including k-mer spectra plots, completeness metrics, and consensus
+quality (QV) estimates for each assembly. You can use these results to
+evaluate the accuracy, completeness, and structural integrity of your
+genome assemblies.</p>
 </section><section><h2 class="section-heading" id="assembly-graph-visualization-using-bandage">Assembly graph visualization using Bandage<a class="anchor" aria-label="anchor" href="#assembly-graph-visualization-using-bandage"></a>
 </h2>
 <hr class="half-width">
@@ -4143,25 +4471,155 @@ genome reconstruction.</p>
 <li>Open a web browser and navigate to <a href="">desktop.negishi.rcac.purdue.edu</a>.</li>
 <li>Log in with your Purdue Career Account username and password, but
 append “,push” to your password.</li>
-<li>Lauch the terminal and run the following command:</li>
+<li>Launch the terminal and run the following command:</li>
 </ol>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="ex">ml</span> bandage</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="ex">Bandage</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="ex">ml</span> bandage</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="ex">Bandage</span></span></code></pre>
 </div>
 <ol start="4" style="list-style-type: decimal">
-<li>In the Bandage interface, navigate to your assembly folder (hifiasm
-or flye), and load your assembly graph (e.g.,
-<code>assembly1.fasta</code>) .</li>
+<li>In the Bandage interface, navigate to your assembly folder and load
+your assembly graph in GFA format (e.g.,
+<code>At_hifiasm_default.asm.bp.p_ctg.gfa</code> for hifiasm, or
+<code>assembly_graph.gfa</code> for Flye).</li>
 <li>Explore the graph structure, identify complex regions, and visualize
 connections between contigs or scaffolds.</li>
 </ol>
+<div id="bandage-input-format" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="bandage-input-format" class="callout-inner">
+<h3 class="callout-title">Bandage input format</h3>
+<div class="callout-content">
+<p>Bandage requires assembly <strong>graph</strong> files
+(<code>.gfa</code> format), not FASTA files. HiFiasm outputs
+<code>.gfa</code> files directly, while Flye produces
+<code>assembly_graph.gfa</code> in its output directory.</p>
+</div>
+</div>
+</div>
 <figure><img src="https://github.com/user-attachments/assets/172513cc-d43b-401d-afbe-239d415d12bb" alt="Bandage interface" class="figure mx-auto d-block"><div class="figcaption">Bandage interface</div>
-</figure><div id="keypoints1" class="callout keypoints">
+</figure></section><section><h2 class="section-heading" id="unified-assembly-comparison">Unified Assembly Comparison<a class="anchor" aria-label="anchor" href="#unified-assembly-comparison"></a>
+</h2>
+<hr class="half-width">
+<p>After running all evaluation tools, compile your results into a
+summary table to compare assemblies side by side:</p>
+<table class="table">
+<colgroup>
+<col width="9%">
+<col width="18%">
+<col width="13%">
+<col width="18%">
+<col width="21%">
+<col width="18%">
+</colgroup>
+<thead><tr class="header">
+<th>Metric</th>
+<th>HiFiasm (HiFi)</th>
+<th>Flye (ONT)</th>
+<th>Hybrid (Flye)</th>
+<th>HiFiasm + Bionano</th>
+<th>Flye + Bionano</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td># Contigs</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Total size (Mb)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>N50 (Mb)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>L50</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>BUSCO Complete (%)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>BUSCO Duplicated (%)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Merqury QV</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>K-mer completeness (%)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div id="interpreting-your-results" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="interpreting-your-results" class="callout-inner">
+<h3 class="callout-title">Interpreting your results</h3>
+<div class="callout-content">
+<p>When comparing assemblies, consider these questions:</p>
+<ol style="list-style-type: decimal">
+<li>Which assembly has the highest N50 and lowest number of
+contigs?</li>
+<li>Which assembly has the best BUSCO completeness?</li>
+<li>How do the Merqury QV scores compare? (Higher QV = fewer base-level
+errors)</li>
+<li>Did Bionano scaffolding improve contiguity (N50) compared to the
+unscaffolded assemblies?</li>
+<li>Is the total assembly size close to the expected genome size (~135
+Mb for <em>A. thaliana</em>)?</li>
+</ol>
+<p>Fill in the table above with your actual results and discuss which
+assembly strategy produced the best outcome for this dataset.</p>
+</div>
+</div>
+</div>
+<div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
@@ -4216,7 +4674,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
 
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.18.5" class="external-link">sandpaper (0.18.5)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/aseetharam/varnish/tree/9765d26807833061ac50b41dc951cf45941290f6" class="external-link">varnish (1.0.7)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.18.5" class="external-link">sandpaper (0.18.5)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.9" class="external-link">pegboard (0.7.9)</a>, and <a href="https://github.com/aseetharam/varnish/tree/aec0ff169ecf0863c0882e93bd191b19f2e7ff1e" class="external-link">varnish (1.0.7)</a></p>
 		</div>
 		</footer>
 </div> <!-- / div.container -->
@@ -4233,7 +4691,7 @@ any links that you are not going to use.
   "inLanguage": "en",
   "dct:conformsTo": "https://bioschemas.org/profiles/LearningResource/1.0-RELEASE",
   "description": "A Carpentries Lesson teaching foundational data and coding skills to researchers worldwide",
-  "keywords": "gene-assembly, pacbio, oxford-nanopore, hifasm, flye, medaka, busco, quast",
+  "keywords": "genome-assembly, pacbio, oxford-nanopore, hifiasm, flye, medaka, busco, quast",
   "name": "All in One View",
   "creativeWorkStatus": "active",
   "url": "https://genome-assembly.github.io/NA/instructor/aio.html",

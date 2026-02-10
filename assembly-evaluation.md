@@ -1,7 +1,7 @@
 ---
 title: 'Assembly Assessment'
-teaching: 10
-exercises: 2
+teaching: 20
+exercises: 30
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
@@ -44,24 +44,24 @@ You can run `quast` to evaluate the quality of your genome assembly. It is also 
 ```bash
 ml --force purge
 ml biocontainers
-ml compleasm
+ml quast
 mkdir -p quast_evaluation
-# ln -s ../assembly1.fasta all_assemblies/assembly1.fasta
-# ln -s ../assembly2.fasta all_assemblies/assembly2.fasta
-# ln -s ../assembly3.fasta all_assemblies/assembly3.fasta
-# link any other assemblies you want to compare
-# ln -s ../pacbio/9994.q20.CCS-filtered-60x.fastq
-# donwload the reference genome
+# Link your assemblies to a common directory for comparison
+mkdir -p all_assemblies
+ln -s ../hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta all_assemblies/hifiasm_assembly.fasta
+ln -s ../flye_ont/assembly.fasta all_assemblies/flye_ont_assembly.fasta
+# link any other assemblies you want to compare (e.g., hybrid, scaffolded)
+# Download the reference genome
 wget https://ftp.ensemblgenomes.ebi.ac.uk/pub/plants/release-60/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz
 gunzip Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz
 quast.py \
    --output-dir quast_complete_stats \
    --no-read-stats \
-   -r  Arabidopsis_thaliana.TAIR10.dna.toplevel.fa \
+   -r Arabidopsis_thaliana.TAIR10.dna.toplevel.fa \
    --threads ${SLURM_CPUS_ON_NODE} \
    --eukaryote \
-   --pacbio 9994.q20.CCS_ge20Kb.fasta \
-   assembly1.fasta assembly2.fasta assembly3.fasta
+   --pacbio At_pacbio-hifi-filtered.fastq \
+   all_assemblies/*.fasta
 ```
 
 This will generate a detailed report in the `quast_complete_stats` directory, including key metrics for each assembly and a summary of their quality. You can use this information to compare different assemblies and select the best one for downstream analysis.
@@ -77,12 +77,9 @@ ml --force purge
 ml biocontainers
 ml compleasm
 mkdir -p compleasm_evaluation
-# ln -s ../assembly1.fasta all_assemblies/assembly1.fasta
-# ln -s ../assembly2.fasta all_assemblies/assembly2.fasta
-# ln -s ../assembly3.fasta all_assemblies/assembly3.fasta
-# link any other assemblies you want to compare
-# ln -s ../quast_evaluation/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa # reference
-for fasta in *.fasta; do
+cd compleasm_evaluation
+# Use the same assemblies linked in the all_assemblies directory
+for fasta in ../all_assemblies/*.fasta; do
   compleasm run \
     -a ${fasta} \
     -o ${fasta%.*}_out \
@@ -134,29 +131,44 @@ ml biocontainers
 ml merqury
 ml meryl
 mkdir -p merqury_evaluation
-# ln -s ../assembly1.fasta all_assemblies/assembly1.fasta
-# ln -s ../assembly2.fasta all_assemblies/assembly2.fasta
-# ln -s ../assembly3.fasta all_assemblies/assembly3.fasta
-# link any other assemblies you want to compare
-# ln -s ../quast_evaluation/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa # reference
-# ln -s ../pacbio/9994.q20.CCS-filtered-60x.fastq # pacbio reads
+cd merqury_evaluation
+# Step 1: Build a meryl k-mer database from the reads
 meryl \
    count k=21 \
    threads=${SLURM_CPUS_ON_NODE} \
    memory=8g \
-   output 9994.q20.CCS-filtered.meryl\
-   9994.q20.CCS-filtered.fastq
-merqury \
-   -a assembly1.fasta \
-   -r 9994.q20.CCS-filtered.meryl \
-   -o merqury_evaluation/assembly1
+   output At_pacbio-hifi-filtered.meryl \
+   ../At_pacbio-hifi-filtered.fastq
+# Step 2: Run merqury to evaluate assemblies
+# Syntax: merqury.sh <read-db.meryl> <asm1.fasta> [asm2.fasta] <output_prefix>
+# For a single assembly:
 merqury.sh \
-   9994.q20.CCS-filtered.meryl 
-   assembly1.fasta assembly2.fasta assembly3.fasta
-   merqury_evaluation_output
+   At_pacbio-hifi-filtered.meryl \
+   ../hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta \
+   merqury_hifiasm
+# For comparing multiple assemblies:
+merqury.sh \
+   At_pacbio-hifi-filtered.meryl \
+   ../hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta \
+   ../flye_ont/assembly.fasta \
+   merqury_comparison
 ```
 
-This will generate numberous files with `merqury_evaluation_output` prefix, including k-mer spectra, completeness metrics, and consensus quality estimates for each assembly. You can use these results to evaluate the accuracy, completeness, and structural integrity of your genome assemblies.
+::: callout
+
+## Merqury syntax
+
+Note that `merqury.sh` uses **positional arguments** (not flags):
+
+```
+merqury.sh <read-db.meryl> <assembly1.fasta> [assembly2.fasta] <output_prefix>
+```
+
+The output prefix determines the names of all generated files. When comparing two assemblies, provide both FASTA files before the output prefix.
+
+:::
+
+This will generate numerous files with the specified output prefix, including k-mer spectra plots, completeness metrics, and consensus quality (QV) estimates for each assembly. You can use these results to evaluate the accuracy, completeness, and structural integrity of your genome assemblies.
 
 
 ## Assembly graph visualization using Bandage
@@ -168,7 +180,7 @@ To visualize the assembly graph using Bandage:
 
 1. Open a web browser and navigate to [desktop.negishi.rcac.purdue.edu]().
 2. Log in with your Purdue Career Account username and password, but append ",push" to your password.
-3. Lauch the terminal and run the following command:
+3. Launch the terminal and run the following command:
 
 ```bash
 ml --force purge
@@ -177,15 +189,54 @@ ml bandage
 Bandage
 ```
 
-4. In the Bandage interface, navigate to your assembly folder (hifiasm or flye), and load your assembly graph (e.g., `assembly1.fasta`) .
+4. In the Bandage interface, navigate to your assembly folder and load your assembly graph in GFA format (e.g., `At_hifiasm_default.asm.bp.p_ctg.gfa` for hifiasm, or `assembly_graph.gfa` for Flye).
 5. Explore the graph structure, identify complex regions, and visualize connections between contigs or scaffolds.
+
+::: callout
+
+## Bandage input format
+
+Bandage requires assembly **graph** files (`.gfa` format), not FASTA files. HiFiasm outputs `.gfa` files directly, while Flye produces `assembly_graph.gfa` in its output directory.
+
+:::
 
 ![Bandage interface](https://github.com/user-attachments/assets/172513cc-d43b-401d-afbe-239d415d12bb)
 
 
 
 
-::::::::::::::::::::::::::::::::::::: keypoints 
+## Unified Assembly Comparison
+
+After running all evaluation tools, compile your results into a summary table to compare assemblies side by side:
+
+| Metric | HiFiasm (HiFi) | Flye (ONT) | Hybrid (Flye) | HiFiasm + Bionano | Flye + Bionano |
+|--------|----------------|------------|----------------|-------------------|----------------|
+| # Contigs | | | | | |
+| Total size (Mb) | | | | | |
+| N50 (Mb) | | | | | |
+| L50 | | | | | |
+| BUSCO Complete (%) | | | | | |
+| BUSCO Duplicated (%) | | | | | |
+| Merqury QV | | | | | |
+| K-mer completeness (%) | | | | | |
+
+::: callout
+
+## Interpreting your results
+
+When comparing assemblies, consider these questions:
+
+1. Which assembly has the highest N50 and lowest number of contigs?
+2. Which assembly has the best BUSCO completeness?
+3. How do the Merqury QV scores compare? (Higher QV = fewer base-level errors)
+4. Did Bionano scaffolding improve contiguity (N50) compared to the unscaffolded assemblies?
+5. Is the total assembly size close to the expected genome size (~135 Mb for _A. thaliana_)?
+
+Fill in the table above with your actual results and discuss which assembly strategy produced the best outcome for this dataset.
+
+:::
+
+::::::::::::::::::::::::::::::::::::: keypoints
 
 
 - **QUAST** evaluates assembly contiguity and quality metrics.

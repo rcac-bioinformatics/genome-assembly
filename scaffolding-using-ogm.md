@@ -1,7 +1,7 @@
 ---
 title: 'Scaffolding using Optical Genome Mapping'
-teaching: 10
-exercises: 2
+teaching: 20
+exercises: 20
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
@@ -84,8 +84,8 @@ To scaffold a genome using Bionano Solve, you need to provide the following inpu
 
 ```bash
 export PATH=$PATH:/apps/biocontainers/exported-wrappers/bionano/3.8.0
-run_hybridscaffold.sh
-  -c /opt/Solve3.7_10192021_74_1/HybridScaffold/1.0/hybridScaffold_DLE1_config.xml\
+run_hybridscaffold.sh \
+  -c /opt/Solve3.7_10192021_74_1/HybridScaffold/1.0/hybridScaffold_DLE1_config.xml \
   -b input.cmap \
   -n genome.fasta \
   -u CTTAAG \
@@ -124,7 +124,7 @@ run_hybridscaffold.sh
 :::
 
 
-### Scffolding HiFiasm assembly with Bionano Solve
+### Scaffolding HiFiasm assembly with Bionano Solve
 
 For HiFiasm assembly, you need to provide the HiFiasm assembly FASTA file as input to the Bionano Solve pipeline. The command structure remains the same, with the only change being the input sequence file.
 
@@ -133,7 +133,7 @@ export PATH=$PATH:/apps/biocontainers/exported-wrappers/bionano/3.8.0
 run_hybridscaffold.sh \
   -c /opt/Solve3.7_10192021_74_1/HybridScaffold/1.0/hybridScaffold_DLE1_config.xml\
   -b Evry.OpticalMap.Col-0.cmap \
-  -n hifiasm_60x/athaliana_hifi.asm.bp.p_ctg.fasta \
+  -n hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta \
   -u CTTAAG \
   -z results_bionano_hifiasm_scaffolding.zip \
   -w log.txt \
@@ -148,7 +148,7 @@ run_hybridscaffold.sh \
 
 
 
-### Scffolding Flye assembly with Bionano Solve
+### Scaffolding Flye assembly with Bionano Solve
 
 
 For Flye assembly, the process is similar to HiFiasm, but you need to provide the Flye assembly FASTA file instead of the HiFiasm assembly. The command structure remains the same, with the only change being the input sequence file.
@@ -157,8 +157,8 @@ For Flye assembly, the process is similar to HiFiasm, but you need to provide th
 export PATH=$PATH:/apps/biocontainers/exported-wrappers/bionano/3.8.0
 run_hybridscaffold.sh \
   -c /opt/Solve3.7_10192021_74_1/HybridScaffold/1.0/hybridScaffold_DLE1_config.xml\
-  -b workshop_assembly/col-0_bionano/Evry.OpticalMap.Col-0.cmap \
-  -n flye_ont_60x/assembly.fasta \
+  -b Evry.OpticalMap.Col-0.cmap \
+  -n flye_ont/assembly.fasta \
   -u CTTAAG \
   -z results_bionano_flye_scaffolding.zip \
   -w log.txt \
@@ -196,7 +196,7 @@ You will need to merge these files to obtain your final scaffolded genome assemb
 ## Quality Assessment of Hybrid Scaffolds
 
 
-The hybird scaffolds report file will be in the `hybrid_scaffolds` directory and will provide a summary of the scaffolding process, including alignment statistics, conflict resolution, and scaffold N50 values. This report is essential for evaluating the quality and completeness of the hybrid scaffolds and identifying any potential issues that need further investigation.
+The hybrid scaffolds report file will be in the `hybrid_scaffolds` directory and will provide a summary of the scaffolding process, including alignment statistics, conflict resolution, and scaffold N50 values. This report is essential for evaluating the quality and completeness of the hybrid scaffolds and identifying any potential issues that need further investigation.
 
 | **Category**                                  | **PacBio HiFi (hifiasm)**   | **ONT (Flye)**                                   |
 |:--------------------------------------------|-------------:|-------------:|

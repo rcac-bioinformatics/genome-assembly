@@ -1,7 +1,7 @@
 ---
 title: 'Introduction to Genome assembly'
-teaching: 10
-exercises: 2
+teaching: 30
+exercises: 0
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
@@ -36,7 +36,7 @@ Genome assembly is the process of reconstructing a complete genome sequence by a
 ![Genome Assembly](https://github.com/user-attachments/assets/8f1b2924-4af4-46f5-a925-b927b0fdfc81)
 
 
-## Imporance of Genome Assembly
+## Importance of Genome Assembly
 
 - Applications in medicine, agriculture, conservation, and biotechnology:
    * Human genetics: Assembling genomes to identify disease-causing mutations.
@@ -77,7 +77,7 @@ Genome assembly is the process of reconstructing a complete genome sequence by a
 ![Steps Overview](https://github.com/user-attachments/assets/ac4f82b2-1488-4ba8-b2c7-b1976a393f82)
 
 
-reference: [10.1016/j.xpro.2022.101506](https://doi.org/10.1016/j.xpro.2022.101506)
+Reference: [doi:10.1016/j.xpro.2022.101506](https://doi.org/10.1016/j.xpro.2022.101506)
 
 
 ## Data types for Genome Assembly
@@ -131,7 +131,7 @@ reference: [10.1016/j.xpro.2022.101506](https://doi.org/10.1016/j.xpro.2022.1015
 - Evaluation:
    * QUAST: Quality assessment tool for evaluating assemblies.
    * Compleasm (BUSCO alternative): Benchmarking tool for assessing genome completeness.
-   * KAT: Kmer-based evaluation of assembly accuracy and completeness.
+   * Merqury: K-mer-based evaluation of assembly accuracy and completeness.
 
 
 

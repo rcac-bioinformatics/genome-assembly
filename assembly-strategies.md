@@ -1,7 +1,7 @@
 ---
 title: 'Assembly Strategies'
-teaching: 10
-exercises: 2
+teaching: 20
+exercises: 0
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
@@ -44,18 +44,18 @@ Genome assembly involves choosing the right approach based on sequencing technol
 
 ## Comparative Assembly Strategies
 
-| Factor                      | PacBio HiFi             | ONT                        | Hybrid (ONT + Illumina)         |
+| Factor                      | PacBio HiFi             | ONT                        | Hybrid (ONT + PacBio HiFi)      |
 |-----------------------------|-------------------------|----------------------------|---------------------------------|
-| **Read length**             | ~15-20kb                | 10-100kb+                   | Mix of short & long            |
-| **Read accuracy**           | High (~99%)             | Moderate (~90%)            | High (after polishing)         |
-| **Coverage needed**         | 20-30x                  | 50-100x                     | ONT: 50x + Illumina: 30x       |
+| **Read length**             | ~15-20kb                | 10-100kb+                   | Mix of ultra-long & accurate   |
+| **Read accuracy**           | High (~99%)             | Variable: ~90% (R9/fast) to ~99% (R10.4/HAC/SUP) | High (after polishing)         |
+| **Coverage needed**         | 20-30x                  | 50-100x                     | ONT: 50x + HiFi: 20-30x        |
 | **Cost per Gb**             | Expensive               | Lower                       | Medium                         |
-| **Error profile**           | Random errors, low indels | Higher error rate, systematic errors | ONT errors corrected by Illumina |
+| **Error profile**           | Random errors, low indels | Systematic errors in homopolymers; greatly reduced with R10.4+ | ONT errors corrected by HiFi reads |
 | **Computational requirements** | High RAM required  | Moderate RAM required       | Moderate                       |
 | **Best for**                | High-accuracy assemblies | Ultra-long contigs         | Combines advantages of both    |
 | **Repeat resolution**       | Good                     | Very good                  | Very good                      |
 | **Scaffolding needed**      | Rarely needed           | May be needed               | Sometimes needed               |
-| **Polishing required**      | Not required            | Required (Racon + Medaka)   | Required (Pilon)               |
+| **Polishing required**      | Not required            | Required (Medaka)           | Polish with HiFi reads         |
 | **Structural variant detection** | Good             | Excellent                   | Good                           |
 | **Haplotype phasing**       | Excellent               | Good                        | Moderate                       |
 | **Genome size suitability** | Suitable for large and small genomes | Best for large genomes | Best for complex genomes     |
@@ -75,7 +75,7 @@ Higher levels of assembly provide better genome context, but require additional 
 
 ## Workflow for Various Assemblies
 
-In this workshop, we will use HiFiasm for PacBio HiFi assemblies, Flye for ONT assemblies, and Flye in hybrid mode for ONT + Illumina assemblies, followed by quality assessment using BUSCO and QUAST to evaluate completeness and accuracy.
+In this workshop, we will use HiFiasm for PacBio HiFi assemblies, Flye for ONT assemblies, and Flye in hybrid mode for ONT + PacBio HiFi assemblies, followed by quality assessment using Compleasm and QUAST to evaluate completeness and accuracy.
 
 
 ### PacBio HiFi Assembly with HiFiasm
@@ -149,7 +149,39 @@ In this workshop, we will use HiFiasm for PacBio HiFi assemblies, Flye for ONT a
 [ref](https://doi.org/10.1038/ng.3802)
 
 
-::::::::::::::::::::::::::::::::::::: keypoints 
+## Resource Requirements
+
+The table below provides approximate resource requirements for the main assembly tools used in this workshop, based on the _A. thaliana_ (~135 Mb) genome:
+
+| Tool | Threads | RAM | Wall Time | Notes |
+|------|---------|-----|-----------|-------|
+| **hifiasm** | 32 | ~32 GB | ~15-30 min | Scales well with threads |
+| **Flye (ONT)** | 32 | ~16 GB | ~30-60 min | Use `--genome-size` for guidance |
+| **Flye (HiFi)** | 64 | ~80-90 GB | ~40 min | Higher RAM than ONT mode |
+| **Medaka** | 16 | ~16 GB | ~30 min | GPU accelerates significantly |
+| **Meryl + Merqury** | 16 | ~8 GB | ~10 min | Memory scales with k-mer DB size |
+| **QUAST** | 16 | ~8 GB | ~5-10 min | Reference mode uses more RAM |
+| **Compleasm** | 16 | ~4 GB | ~5 min | Faster alternative to BUSCO |
+| **Bionano Solve** | 16 | ~16 GB | ~30-60 min | Depends on genome map complexity |
+
+::: callout
+
+These are approximate values for the _A. thaliana_ genome (~135 Mb). Larger genomes will require proportionally more resources. Always check cluster queue limits and request appropriate resources in your SLURM job scripts.
+
+:::
+
+## Emerging Assemblers and Approaches
+
+The field of genome assembly is rapidly evolving. Two notable recent developments:
+
+- **Verkko** (v2.2+): Developed by the Telomere-to-Telomere (T2T) consortium, Verkko combines HiFi and ultra-long ONT reads to produce telomere-to-telomere assemblies. It uses a graph-based approach that leverages the accuracy of HiFi reads with the spanning capability of ONT reads to resolve complex repeats and centromeric regions.
+
+- **hifiasm ONT-only mode** (v0.19.0+): hifiasm now supports assembling ONT reads alone using the `--ont` flag, expanding its use beyond PacBio HiFi data. This was validated in a [2024 Nature Methods publication](https://doi.org/10.1038/s41592-024-02279-w) showing competitive results with dedicated ONT assemblers.
+
+These tools represent the current frontier of genome assembly and may be worth exploring for projects requiring the highest contiguity and completeness.
+
+
+::::::::::::::::::::::::::::::::::::: keypoints
 
 - Genome assembly strategy depends on read type, genome complexity, and computational resources, with PacBio HiFi, ONT, and hybrid approaches offering different advantages in accuracy, cost, and contiguity.  
 - Assembly evaluation is critical for assessing completeness and accuracy, using tools like **BUSCO for gene completeness, QUAST for structural integrity, and Merqury for k-mer-based validation**.  

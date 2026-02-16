@@ -1,11 +1,5 @@
-# This template CITATION.cff file was generated with cffinit.
-# Visit https://bit.ly/cffinit to replace its contents
-# with information about your lesson.
-# Remember to update this file periodically, 
-# ensuring that the author list and other fields remain accurate.
-
 cff-version: 1.2.0
-title: FIXME
+title: "Genome Assembly: Hands-on Training"
 message: >-
   Please cite this lesson using the information in this file
   when you refer to it in publications, and/or if you
@@ -13,10 +7,31 @@ message: >-
   training material.
 type: dataset
 authors:
-  - given-names: FIXME
-    family-names: FIXME
+  - given-names: Arun
+    family-names: Seetharam
+    email: aseethar@purdue.edu
+    affiliation: >-
+      Rosen Center for Advanced Computing,
+      Purdue University
+    orcid: "https://orcid.org/0000-0002-6789-9298"
+repository-code: "https://github.com/rcac-bioinformatics/genome-assembly"
+url: "https://rcac-bioinformatics.github.io/genome-assembly"
 abstract: >-
-  FIXME Replace this with a short abstract describing the
-  lesson, e.g. its target audience and main intended
-  learning objectives.
+  A hands-on Carpentries-style workshop on long-read genome
+  assembly using PacBio HiFi and Oxford Nanopore data. The
+  lesson covers data quality control, de novo assembly with
+  hifiasm and Flye, hybrid assembly, Bionano optical map
+  scaffolding, and assembly evaluation with QUAST, Compleasm,
+  and Merqury, using Arabidopsis thaliana Col-0 as the model
+  organism.
+keywords:
+  - genome-assembly
+  - pacbio
+  - oxford-nanopore
+  - hifiasm
+  - flye
+  - medaka
+  - busco
+  - quast
+date-released: "2025-02-05"
 license: CC-BY-4.0

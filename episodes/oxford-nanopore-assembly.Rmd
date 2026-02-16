@@ -86,10 +86,10 @@ ml --force purge
 ml biocontainers
 ml flye
 flye \
-  --nano-hq At_ont-reads-filtered.fastq \
+  --nano-hq ../01_data-qc/At_ont-reads-filtered.fastq \
   --genome-size 135m \
   --out-dir flye_ont \
-  --threads ${SLURM_CPUS_ON_NODE}
+  --threads ${SLURM_CPUS_PER_TASK}
 ```
 
 ::: callout
@@ -172,7 +172,7 @@ ml biocontainers
 ml quast
 quast.py \
     --fast \
-    --threads ${SLURM_CPUS_ON_NODE} \
+    --threads ${SLURM_CPUS_PER_TASK} \
     -o quast_basic_stats \
     flye_ont/assembly.fasta
 ```
@@ -224,10 +224,10 @@ ml --force purge
 ml biocontainers
 ml medaka
 medaka_polish \
-   -i At_ont-reads-filtered.fastq \
+   -i ../01_data-qc/At_ont-reads-filtered.fastq \
    -d flye_ont/assembly.fasta \
    -o medaka_polished \
-   -t ${SLURM_CPUS_ON_NODE} \
+   -t ${SLURM_CPUS_PER_TASK} \
    -m r1041_e82_400bps_hac_v5.0.0
 ```
 
@@ -251,11 +251,12 @@ Since HiFiasm also supports ONT reads for assembly, we can test it out to access
 ml --force purge
 ml biocontainers
 ml hifiasm
+mkdir -p hifiasm_ont
 hifiasm \
-    -t ${SLURM_CPUS_ON_NODE} \
-    -o athaliana_ont.asm \
+    -t ${SLURM_CPUS_PER_TASK} \
+    -o hifiasm_ont/At_hifiasm_ont.asm \
     --ont \
-    At_ont-reads-filtered.fastq
+    ../01_data-qc/At_ont-reads-filtered.fastq
 ```
 
 ::: callout
@@ -265,9 +266,11 @@ hifiasm \
 Once the run completes (~30 mins with 32 threads), you can convert GFA to FASTA using the following command:
 
 ```bash
+cd hifiasm_ont
 for ctg in *_ctg.gfa; do
     awk '/^S/{print ">"$2"\n"$3}' ${ctg} > ${ctg%.gfa}.fasta
 done
+cd ..
 ```
 
 Get the basic stats using `quast`:
@@ -278,9 +281,9 @@ ml biocontainers
 ml quast
 quast.py \
     --fast \
-    --threads ${SLURM_CPUS_ON_NODE} \
-    -o quast_basic_stats \
-    *_ctg.fasta
+    --threads ${SLURM_CPUS_PER_TASK} \
+    -o hifiasm_ont/quast_basic_stats \
+    hifiasm_ont/*_ctg.fasta
 ```
 
 and run `compleasm` to get the assembly completeness:
@@ -289,12 +292,12 @@ and run `compleasm` to get the assembly completeness:
 ml --force purge
 ml biocontainers
 ml compleasm
-for fasta in *_ctg.fasta; do
+for fasta in hifiasm_ont/*_ctg.fasta; do
     compleasm run \
        -a ${fasta} \
        -o ${fasta%.*} \
        -l brassicales_odb10 \
-       -t ${SLURM_CPUS_ON_NODE}
+       -t ${SLURM_CPUS_PER_TASK}
 done
 ```
 

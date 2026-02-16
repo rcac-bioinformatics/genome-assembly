@@ -89,7 +89,7 @@ Subreads (in bam format) were converted to ccs fastq as follows:
 ```bash
 ccs \
    --hifi-kinetics \
-   --num-threads $SLURM_CPUS_ON_NODE \
+   --num-threads $SLURM_CPUS_PER_TASK \
    input.subreads.bam \
    output.hifi.bam
 samtools fastq \
@@ -180,15 +180,16 @@ Throughout this workshop, you will need to submit jobs to the cluster using SLUR
 
 ```bash
 #!/bin/bash
-#SBATCH --job-name=genome-assembly
-#SBATCH --account=workshop
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=32
-#SBATCH --time=4:00:00
-#SBATCH --mem=64G
-#SBATCH --output=%x_%j.out
-#SBATCH --error=%x_%j.err
+#SBATCH --cpus-per-task=8
+#SBATCH --account=rcac-rnaseq
+#SBATCH --partition=cpu
+#SBATCH --qos=normal
+#SBATCH --time=08:00:00
+#SBATCH --job-name=genome-assembly
+#SBATCH --output=negishi-%x.%j.out
+#SBATCH --error=negishi-%x.%j.err
 
 # Load modules
 ml --force purge
@@ -222,14 +223,14 @@ ml --force purge
 ml biocontainers
 ml nanoplot
 NanoPlot \
-   --threads ${SLURM_CPUS_ON_NODE} \
+   --threads ${SLURM_CPUS_PER_TASK} \
    --verbose \
    --outdir nanoplot_pacbio_pre \
    --prefix At_PacBio_ \
    --plots kde \
    --N50 \
    --dpi 300 \
-   --fastq At_pacbio-hifi.fastq.gz
+   --fastq ../00_rawdata/At_pacbio-hifi.fastq.gz
 ```
 
 
@@ -293,14 +294,14 @@ ml --force purge
 ml biocontainers
 ml nanoplot
 NanoPlot \
-   --threads ${SLURM_CPUS_ON_NODE} \
+   --threads ${SLURM_CPUS_PER_TASK} \
    --verbose \
    --outdir nanoplot_ont_pre \
    --prefix At_ONT_ \
    --plots kde \
    --N50 \
    --dpi 300 \
-   --fastq At_ont-reads.fastq.gz
+   --fastq ../00_rawdata/At_ont-reads.fastq.gz
 ```
 
 :::::::::::::::::::::::::::::::::::::::::: spoiler
@@ -382,7 +383,7 @@ filtlong \
    --target_bases 5400000000 \
    --keep_percent 90 \
    --min_length 1000 \
-     At_pacbio-hifi.fastq.gz > At_pacbio-hifi-filtered.fastq
+     ../00_rawdata/At_pacbio-hifi.fastq.gz > At_pacbio-hifi-filtered.fastq
 ```
 
 **2. Filtering ONT Reads**
@@ -397,7 +398,7 @@ filtlong \
    --target_bases 5400000000 \
    --keep_percent 90 \
    --min_length 1000 \
-     At_ont-reads.fastq.gz > At_ont-reads-filtered.fastq
+     ../00_rawdata/At_ont-reads.fastq.gz > At_ont-reads-filtered.fastq
 ```
 
 ::: callout
@@ -423,7 +424,7 @@ ml --force purge
 ml biocontainers
 ml nanoplot
 NanoPlot \
-   --threads ${SLURM_CPUS_ON_NODE} \
+   --threads ${SLURM_CPUS_PER_TASK} \
    --verbose \
    --outdir nanoplot_pacbio_post \
    --prefix At_PacBio_post_ \
@@ -441,7 +442,7 @@ ml --force purge
 ml biocontainers
 ml nanoplot
 NanoPlot \
-   --threads ${SLURM_CPUS_ON_NODE} \
+   --threads ${SLURM_CPUS_PER_TASK} \
    --verbose \
    --outdir nanoplot_ont_post \
    --prefix At_ONT_post_ \

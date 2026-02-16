@@ -470,10 +470,10 @@ structure is as follows:</p>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="ex">ml</span> flye</span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="ex">flye</span> <span class="dt">\</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  <span class="at">--nano-hq</span> At_ont-reads-filtered.fastq <span class="dt">\</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  <span class="at">--nano-hq</span> ../01_data-qc/At_ont-reads-filtered.fastq <span class="dt">\</span></span>
 <span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  <span class="at">--genome-size</span> 135m <span class="dt">\</span></span>
 <span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>  <span class="at">--out-dir</span> flye_ont <span class="dt">\</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>  <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span></code></pre>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>  <span class="at">--threads</span> <span class="va">${SLURM_CPUS_PER_TASK}</span></span></code></pre>
 </div>
 <div id="options-used" class="callout">
 <div class="callout-square">
@@ -601,7 +601,7 @@ variant calling, or comparative genomics studies.</p>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="ex">ml</span> quast</span>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="ex">quast.py</span> <span class="dt">\</span></span>
 <span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>    <span class="at">--fast</span> <span class="dt">\</span></span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>    <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>    <span class="at">--threads</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
 <span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>    <span class="at">-o</span> quast_basic_stats <span class="dt">\</span></span>
 <span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>    flye_ont/assembly.fasta</span></code></pre>
 </div>
@@ -673,10 +673,10 @@ correct errors:</p>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="ex">ml</span> medaka</span>
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="ex">medaka_polish</span> <span class="dt">\</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>   <span class="at">-i</span> At_ont-reads-filtered.fastq <span class="dt">\</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>   <span class="at">-i</span> ../01_data-qc/At_ont-reads-filtered.fastq <span class="dt">\</span></span>
 <span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>   <span class="at">-d</span> flye_ont/assembly.fasta <span class="dt">\</span></span>
 <span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>   <span class="at">-o</span> medaka_polished <span class="dt">\</span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>   <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>   <span class="at">-t</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
 <span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>   <span class="at">-m</span> r1041_e82_400bps_hac_v5.0.0</span></code></pre>
 </div>
 <div id="medaka-model-selection" class="callout">
@@ -714,11 +714,12 @@ is as follows:</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="ex">ml</span> hifiasm</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="ex">hifiasm</span> <span class="dt">\</span></span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>    <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>    <span class="at">-o</span> athaliana_ont.asm <span class="dt">\</span></span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>    <span class="at">--ont</span> <span class="dt">\</span></span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>    At_ont-reads-filtered.fastq</span></code></pre>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> hifiasm_ont</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="ex">hifiasm</span> <span class="dt">\</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>    <span class="at">-t</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>    <span class="at">-o</span> hifiasm_ont/At_hifiasm_ont.asm <span class="dt">\</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>    <span class="at">--ont</span> <span class="dt">\</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>    ../01_data-qc/At_ont-reads-filtered.fastq</span></code></pre>
 </div>
 <div id="post-processing" class="callout">
 <div class="callout-square">
@@ -733,9 +734,11 @@ GFA to FASTA using the following command:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="cf">for</span> ctg <span class="kw">in</span> <span class="pp">*</span>_ctg.gfa<span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>    <span class="fu">awk</span> <span class="st">'/^S/{print "&gt;"$2"\n"$3}'</span> <span class="va">${ctg}</span> <span class="op">&gt;</span> <span class="va">${ctg</span><span class="op">%</span>.gfa<span class="va">}</span>.fasta</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="bu">cd</span> hifiasm_ont</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="cf">for</span> ctg <span class="kw">in</span> <span class="pp">*</span>_ctg.gfa<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>    <span class="fu">awk</span> <span class="st">'/^S/{print "&gt;"$2"\n"$3}'</span> <span class="va">${ctg}</span> <span class="op">&gt;</span> <span class="va">${ctg</span><span class="op">%</span>.gfa<span class="va">}</span>.fasta</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="cf">done</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="bu">cd</span> ..</span></code></pre>
 </div>
 <p>Get the basic stats using <code>quast</code>:</p>
 <div class="codewrapper sourceCode" id="cb8">
@@ -746,9 +749,9 @@ GFA to FASTA using the following command:</p>
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="ex">ml</span> quast</span>
 <span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="ex">quast.py</span> <span class="dt">\</span></span>
 <span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>    <span class="at">--fast</span> <span class="dt">\</span></span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>    <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>    <span class="at">-o</span> quast_basic_stats <span class="dt">\</span></span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>    <span class="pp">*</span>_ctg.fasta</span></code></pre>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>    <span class="at">--threads</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>    <span class="at">-o</span> hifiasm_ont/quast_basic_stats <span class="dt">\</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>    hifiasm_ont/<span class="pp">*</span>_ctg.fasta</span></code></pre>
 </div>
 <p>and run <code>compleasm</code> to get the assembly completeness:</p>
 <div class="codewrapper sourceCode" id="cb9">
@@ -757,12 +760,12 @@ GFA to FASTA using the following command:</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
 <span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="ex">ml</span> compleasm</span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> <span class="pp">*</span>_ctg.fasta<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> hifiasm_ont/<span class="pp">*</span>_ctg.fasta<span class="kw">;</span> <span class="cf">do</span></span>
 <span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>    <span class="ex">compleasm</span> run <span class="dt">\</span></span>
 <span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>       <span class="at">-a</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
 <span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>       <span class="at">-o</span> <span class="va">${fasta</span><span class="op">%</span>.<span class="pp">*</span><span class="va">}</span> <span class="dt">\</span></span>
 <span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>       <span class="at">-l</span> brassicales_odb10 <span class="dt">\</span></span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>       <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>       <span class="at">-t</span> <span class="va">${SLURM_CPUS_PER_TASK}</span></span>
 <span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
 </div>
 </div>

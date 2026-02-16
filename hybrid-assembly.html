@@ -400,22 +400,22 @@ that should do the job:</p>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="ex">ml</span> flye</span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co"># reads</span></span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="va">PBREADS</span><span class="op">=</span><span class="st">"At_pacbio-hifi-filtered.fastq"</span></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="va">ONTREADS</span><span class="op">=</span><span class="st">"At_ont-reads-filtered.fastq"</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="va">PBREADS</span><span class="op">=</span><span class="st">"../01_data-qc/At_pacbio-hifi-filtered.fastq"</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="va">ONTREADS</span><span class="op">=</span><span class="st">"../01_data-qc/At_ont-reads-filtered.fastq"</span></span>
 <span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co"># round 1</span></span>
 <span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="ex">flye</span> <span class="dt">\</span></span>
 <span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>    <span class="at">--pacbio-raw</span> <span class="va">$PBREADS</span> <span class="va">$ONTREADS</span> <span class="dt">\</span></span>
 <span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>    <span class="at">--iterations</span> 0 <span class="dt">\</span></span>
 <span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>    <span class="at">--out-dir</span> hybrid_flye_out <span class="dt">\</span></span>
 <span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>    <span class="at">--genome-size</span> 135m <span class="dt">\</span></span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>    <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>    <span class="at">--threads</span> <span class="va">${SLURM_CPUS_PER_TASK}</span></span>
 <span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="co"># round 2</span></span>
 <span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="ex">flye</span> <span class="dt">\</span></span>
 <span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>   <span class="at">--pacbio-raw</span> <span class="va">$PBREADS</span> <span class="dt">\</span></span>
 <span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>   <span class="at">--resume-from</span> polishing <span class="dt">\</span></span>
 <span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>   <span class="at">--out-dir</span> hybrid_flye_out  <span class="dt">\</span></span>
 <span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>   <span class="at">--genome-size</span> 135m <span class="dt">\</span></span>
-<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span></code></pre>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_PER_TASK}</span></span></code></pre>
 </div>
 <div id="while-you-wait" class="callout">
 <div class="callout-square">
@@ -449,14 +449,14 @@ preferred over single-technology assembly?</li>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="va">fasta</span><span class="op">=</span><span class="st">"hybrid_flye_out/assembly.fasta"</span></span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="ex">quast.py</span> <span class="dt">\</span></span>
 <span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>  <span class="at">--fast</span> <span class="dt">\</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>  <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>  <span class="at">--threads</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
 <span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>  <span class="at">-o</span> quast_basic <span class="dt">\</span></span>
 <span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>    <span class="va">${fasta}</span></span>
 <span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="ex">compleasm</span> run <span class="dt">\</span></span>
 <span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>   <span class="at">-a</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
 <span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>   <span class="at">-o</span> compleasm_out <span class="dt">\</span></span>
 <span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>   <span class="at">-l</span> brassicales_odb10  <span class="dt">\</span></span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>   <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span></code></pre>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>   <span class="at">-t</span> <span class="va">${SLURM_CPUS_PER_TASK}</span></span></code></pre>
 </div>
 </section><section><h2 class="section-heading" id="scaffolding-with-bionano">Scaffolding with Bionano<a class="anchor" aria-label="anchor" href="#scaffolding-with-bionano"></a></h2>
 <hr class="half-width"><p>To scaffold the assembly using Bionano data, we will use the
@@ -470,7 +470,7 @@ the assembly:</p>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="va">fasta</span><span class="op">=</span><span class="st">"hybrid_flye_out/assembly.fasta"</span></span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="ex">run_hybridscaffold.sh</span> <span class="dt">\</span></span>
 <span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  <span class="at">-c</span> /opt/Solve3.7_10192021_74_1/HybridScaffold/1.0/hybridScaffold_DLE1_config.xml<span class="dt">\</span></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  <span class="at">-b</span> Evry.OpticalMap.Col-0.cmap <span class="dt">\</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>  <span class="at">-b</span> ../05_scaffolding/Evry.OpticalMap.Col-0.cmap <span class="dt">\</span></span>
 <span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>  <span class="at">-n</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
 <span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>  <span class="at">-u</span> CTTAAG <span class="dt">\</span></span>
 <span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>  <span class="at">-z</span> results_bionano_hybrid_scaffolding.zip <span class="dt">\</span></span>
@@ -502,14 +502,14 @@ assembly by merging placed and unplaced contigs in the
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="va">fasta</span><span class="op">=</span><span class="st">"assembly_scaffolds.fasta"</span></span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">quast.py</span> <span class="dt">\</span></span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="at">--fast</span> <span class="dt">\</span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="at">--threads</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
 <span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="at">-o</span> quast_scaffolds <span class="dt">\</span></span>
 <span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>    <span class="va">${fasta}</span></span>
 <span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="ex">compleasm</span> run <span class="dt">\</span></span>
 <span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>   <span class="at">-a</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
 <span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>   <span class="at">-o</span> compleasm_scaffolds_out <span class="dt">\</span></span>
 <span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>   <span class="at">-l</span> brassicales_odb10  <span class="dt">\</span></span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>   <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span></code></pre>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>   <span class="at">-t</span> <span class="va">${SLURM_CPUS_PER_TASK}</span></span></code></pre>
 </div>
 </section><section><h2 class="section-heading" id="hybrid-assembly-summary">Hybrid Assembly Summary<a class="anchor" aria-label="anchor" href="#hybrid-assembly-summary"></a></h2>
 <hr class="half-width"><p>In this section you have learned how to perform a hybrid assembly

@@ -458,7 +458,7 @@ regions<br></li>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">ccs</span> <span class="dt">\</span></span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>   <span class="at">--hifi-kinetics</span> <span class="dt">\</span></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>   <span class="at">--num-threads</span> <span class="va">$SLURM_CPUS_ON_NODE</span> <span class="dt">\</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>   <span class="at">--num-threads</span> <span class="va">$SLURM_CPUS_PER_TASK</span> <span class="dt">\</span></span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>   input.subreads.bam <span class="dt">\</span></span>
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>   output.hifi.bam</span>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="ex">samtools</span> fastq <span class="dt">\</span></span>
@@ -565,21 +565,22 @@ step:</p>
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co">#SBATCH --job-name=genome-assembly</span></span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co">#SBATCH --account=workshop</span></span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co">#SBATCH --nodes=1</span></span>
-<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co">#SBATCH --ntasks=1</span></span>
-<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co">#SBATCH --cpus-per-task=32</span></span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co">#SBATCH --time=4:00:00</span></span>
-<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co">#SBATCH --mem=64G</span></span>
-<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co">#SBATCH --output=%x_%j.out</span></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co">#SBATCH --error=%x_%j.err</span></span>
-<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co"># Load modules</span></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
-<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
-<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co"># Your commands go here</span></span></code></pre>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co">#SBATCH --nodes=1</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co">#SBATCH --ntasks=1</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co">#SBATCH --cpus-per-task=8</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co">#SBATCH --account=rcac-rnaseq</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co">#SBATCH --partition=cpu</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co">#SBATCH --qos=normal</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co">#SBATCH --time=08:00:00</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co">#SBATCH --job-name=genome-assembly</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a><span class="co">#SBATCH --output=negishi-%x.%j.out</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co">#SBATCH --error=negishi-%x.%j.err</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="co"># Load modules</span></span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="co"># Your commands go here</span></span></code></pre>
 </div>
 <div id="submitting-and-monitoring-jobs" class="callout">
 <div class="callout-square">
@@ -624,21 +625,21 @@ reads.</p>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="ex">ml</span> nanoplot</span>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="ex">NanoPlot</span> <span class="dt">\</span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
 <span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>   <span class="at">--verbose</span> <span class="dt">\</span></span>
 <span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>   <span class="at">--outdir</span> nanoplot_pacbio_pre <span class="dt">\</span></span>
 <span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>   <span class="at">--prefix</span> At_PacBio_ <span class="dt">\</span></span>
 <span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>   <span class="at">--plots</span> kde <span class="dt">\</span></span>
 <span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>   <span class="at">--N50</span> <span class="dt">\</span></span>
 <span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>   <span class="at">--dpi</span> 300 <span class="dt">\</span></span>
-<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>   <span class="at">--fastq</span> At_pacbio-hifi.fastq.gz</span></code></pre>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>   <span class="at">--fastq</span> ../00_rawdata/At_pacbio-hifi.fastq.gz</span></code></pre>
 </div>
 <div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
   <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <p>The stdout from the NanoPlot run will look like this:</p>
 <pre><code>2025-02-13 12:13:19,155 NanoPlot 1.44.1 started with arguments Namespace(threads=16, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_pacbio_pre', no_static=False, prefix='At_PacBio_', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['At_pacbio-hifi.fastq.gz'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_pacbio_pre/At_PacBio_')
@@ -716,21 +717,21 @@ Create a slurm script to run NanoPlot on the basecalled ONT reads.</p>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="ex">ml</span> nanoplot</span>
 <span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="ex">NanoPlot</span> <span class="dt">\</span></span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
 <span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>   <span class="at">--verbose</span> <span class="dt">\</span></span>
 <span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>   <span class="at">--outdir</span> nanoplot_ont_pre <span class="dt">\</span></span>
 <span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>   <span class="at">--prefix</span> At_ONT_ <span class="dt">\</span></span>
 <span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>   <span class="at">--plots</span> kde <span class="dt">\</span></span>
 <span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>   <span class="at">--N50</span> <span class="dt">\</span></span>
 <span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>   <span class="at">--dpi</span> 300 <span class="dt">\</span></span>
-<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>   <span class="at">--fastq</span> At_ont-reads.fastq.gz</span></code></pre>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>   <span class="at">--fastq</span> ../00_rawdata/At_ont-reads.fastq.gz</span></code></pre>
 </div>
 <div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
   <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
 <p>The stdout from the NanoPlot run will look like this:</p>
 <pre><code>2025-02-13 12:15:51,066 NanoPlot 1.44.1 started with arguments Namespace(threads=8, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_ont_pre', no_static=False, prefix='At_ONT_', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['At_ont-reads.fastq.gz'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_ont_pre/At_ONT_')
@@ -838,7 +839,7 @@ only high-quality reads.</p>
 <span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>   <span class="at">--target_bases</span> 5400000000 <span class="dt">\</span></span>
 <span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>   <span class="at">--keep_percent</span> 90 <span class="dt">\</span></span>
 <span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>   <span class="at">--min_length</span> 1000 <span class="dt">\</span></span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>     At_pacbio-hifi.fastq.gz <span class="op">&gt;</span> At_pacbio-hifi-filtered.fastq</span></code></pre>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>     ../00_rawdata/At_pacbio-hifi.fastq.gz <span class="op">&gt;</span> At_pacbio-hifi-filtered.fastq</span></code></pre>
 </div>
 <p><strong>2. Filtering ONT Reads</strong></p>
 <p>Filter the ONT reads using <code>Filtlong</code> to retain only
@@ -853,7 +854,7 @@ high-quality reads.</p>
 <span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>   <span class="at">--target_bases</span> 5400000000 <span class="dt">\</span></span>
 <span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>   <span class="at">--keep_percent</span> 90 <span class="dt">\</span></span>
 <span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>   <span class="at">--min_length</span> 1000 <span class="dt">\</span></span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>     At_ont-reads.fastq.gz <span class="op">&gt;</span> At_ont-reads-filtered.fastq</span></code></pre>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>     ../00_rawdata/At_ont-reads.fastq.gz <span class="op">&gt;</span> At_ont-reads-filtered.fastq</span></code></pre>
 </div>
 <div id="callout5" class="callout">
 <div class="callout-square">
@@ -886,7 +887,7 @@ reads to assess the quality of the filtered datasets.</p>
 <span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="ex">ml</span> nanoplot</span>
 <span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="ex">NanoPlot</span> <span class="dt">\</span></span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
 <span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>   <span class="at">--verbose</span> <span class="dt">\</span></span>
 <span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>   <span class="at">--outdir</span> nanoplot_pacbio_post <span class="dt">\</span></span>
 <span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>   <span class="at">--prefix</span> At_PacBio_post_ <span class="dt">\</span></span>
@@ -903,7 +904,7 @@ reads to assess the quality of the filtered datasets.</p>
 <span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="ex">ml</span> nanoplot</span>
 <span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="ex">NanoPlot</span> <span class="dt">\</span></span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
 <span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>   <span class="at">--verbose</span> <span class="dt">\</span></span>
 <span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>   <span class="at">--outdir</span> nanoplot_ont_post <span class="dt">\</span></span>
 <span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>   <span class="at">--prefix</span> At_ONT_post_ <span class="dt">\</span></span>
@@ -990,7 +991,7 @@ unavailable).</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>A: High error rates in ONT reads can lead to k-mer counting errors,
 causing the analysis to fail. K-mer analyses reads rely on accuracy to

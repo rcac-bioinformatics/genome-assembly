@@ -426,20 +426,23 @@ and misassemblies.</p>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> quast_evaluation</span>
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co"># Link your assemblies to a common directory for comparison</span></span>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> all_assemblies</span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> ../hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta all_assemblies/hifiasm_assembly.fasta</span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> ../flye_ont/assembly.fasta all_assemblies/flye_ont_assembly.fasta</span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co"># link any other assemblies you want to compare (e.g., hybrid, scaffolded)</span></span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co"># Download the reference genome</span></span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="fu">wget</span> https://ftp.ensemblgenomes.ebi.ac.uk/pub/plants/release-60/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz</span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="fu">gunzip</span> Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz</span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="ex">quast.py</span> <span class="dt">\</span></span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>   <span class="at">--output-dir</span> quast_complete_stats <span class="dt">\</span></span>
-<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>   <span class="at">--no-read-stats</span> <span class="dt">\</span></span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>   <span class="at">-r</span> Arabidopsis_thaliana.TAIR10.dna.toplevel.fa <span class="dt">\</span></span>
-<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
-<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>   <span class="at">--eukaryote</span> <span class="dt">\</span></span>
-<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>   <span class="at">--pacbio</span> At_pacbio-hifi-filtered.fastq <span class="dt">\</span></span>
-<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>   all_assemblies/<span class="pp">*</span>.fasta</span></code></pre>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-sf</span> ../02_pacbio-hifi/hifiasm_default/<span class="pp">*</span>p_ctg.fasta all_assemblies/hifiasm_default.fasta</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-sf</span> ../03_ont-assembly/flye_ont/assembly.fasta all_assemblies/flye_ont.fasta</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-sf</span> ../03_ont-assembly/medaka_polished/polished_1.fasta all_assemblies/medaka_polished.fasta</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-sf</span> ../04_hybrid-assembly/hybrid_flye_out/assembly.fasta all_assemblies/hybrid_flye.fasta</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="co"># link any other assemblies you want to compare (e.g., purge variants, scaffolded)</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="co"># Download the reference genome</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-q</span> <span class="at">-O</span> TAIR10_reference.fasta.gz <span class="dt">\</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>   <span class="st">"https://ftp.ensemblgenomes.org/pub/plants/release-57/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz"</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="fu">gunzip</span> TAIR10_reference.fasta.gz</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="ex">quast.py</span> <span class="dt">\</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>   <span class="at">--output-dir</span> quast_complete_stats <span class="dt">\</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>   <span class="at">--no-read-stats</span> <span class="dt">\</span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>   <span class="at">-r</span> TAIR10_reference.fasta <span class="dt">\</span></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>   <span class="at">--eukaryote</span> <span class="dt">\</span></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>   <span class="at">--pacbio</span> ../01_data-qc/At_pacbio-hifi-filtered.fastq <span class="dt">\</span></span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>   all_assemblies/<span class="pp">*</span>.fasta</span></code></pre>
 </div>
 <p>This will generate a detailed report in the
 <code>quast_complete_stats</code> directory, including key metrics for
@@ -466,7 +469,7 @@ missing or fragmented genes.</p>
 <span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>    <span class="at">-a</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
 <span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>    <span class="at">-o</span> <span class="va">${fasta</span><span class="op">%</span>.<span class="pp">*</span><span class="va">}</span>_out <span class="dt">\</span></span>
 <span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>    <span class="at">-l</span> brassicales_odb10  <span class="dt">\</span></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>    <span class="at">-t</span> <span class="va">${SLURM_CPUS_ON_NODE}</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>    <span class="at">-t</span> <span class="va">${SLURM_CPUS_PER_TASK}</span></span>
 <span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
 </div>
 <p>This will generate a detailed report for each assembly in the
@@ -553,25 +556,25 @@ validation</strong>.</p>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="ex">ml</span> meryl</span>
 <span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> merqury_evaluation</span>
 <span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="bu">cd</span> merqury_evaluation</span>
-<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co"># Step 1: Build a meryl k-mer database from the reads</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co"># Step 1: Build a meryl k-mer database from the filtered HiFi reads</span></span>
 <span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="ex">meryl</span> <span class="dt">\</span></span>
 <span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>   count k=21 <span class="dt">\</span></span>
-<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>   threads=<span class="va">${SLURM_CPUS_ON_NODE}</span> <span class="dt">\</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>   threads=<span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
 <span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>   memory=8g <span class="dt">\</span></span>
-<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>   output At_pacbio-hifi-filtered.meryl <span class="dt">\</span></span>
-<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>   ../At_pacbio-hifi-filtered.fastq</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>   output reads.meryl <span class="dt">\</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>   ../../01_data-qc/At_pacbio-hifi-filtered.fastq</span>
 <span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="co"># Step 2: Run merqury to evaluate assemblies</span></span>
 <span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="co"># Syntax: merqury.sh &lt;read-db.meryl&gt; &lt;asm1.fasta&gt; [asm2.fasta] &lt;output_prefix&gt;</span></span>
 <span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co"># For a single assembly:</span></span>
 <span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="ex">merqury.sh</span> <span class="dt">\</span></span>
-<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a>   At_pacbio-hifi-filtered.meryl <span class="dt">\</span></span>
-<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>   ../hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta <span class="dt">\</span></span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a>   reads.meryl <span class="dt">\</span></span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>   ../../02_pacbio-hifi/hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta <span class="dt">\</span></span>
 <span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a>   merqury_hifiasm</span>
 <span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="co"># For comparing multiple assemblies:</span></span>
 <span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a><span class="ex">merqury.sh</span> <span class="dt">\</span></span>
-<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a>   At_pacbio-hifi-filtered.meryl <span class="dt">\</span></span>
-<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a>   ../hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta <span class="dt">\</span></span>
-<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a>   ../flye_ont/assembly.fasta <span class="dt">\</span></span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a>   reads.meryl <span class="dt">\</span></span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a>   ../../02_pacbio-hifi/hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta <span class="dt">\</span></span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a>   ../../03_ont-assembly/flye_ont/assembly.fasta <span class="dt">\</span></span>
 <span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a>   merqury_comparison</span></code></pre>
 </div>
 <div id="merqury-syntax" class="callout">
@@ -617,8 +620,10 @@ append “,push” to your password.</li>
 </div>
 <ol start="4" style="list-style-type: decimal"><li>In the Bandage interface, navigate to your assembly folder and load
 your assembly graph in GFA format (e.g.,
-<code>At_hifiasm_default.asm.bp.p_ctg.gfa</code> for hifiasm, or
-<code>assembly_graph.gfa</code> for Flye).</li>
+<code>../02_pacbio-hifi/hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.gfa</code>
+for hifiasm, or
+<code>../03_ont-assembly/flye_ont/assembly_graph.gfa</code> for
+Flye).</li>
 <li>Explore the graph structure, identify complex regions, and visualize
 connections between contigs or scaffolds.</li>
 </ol><div id="bandage-input-format" class="callout">

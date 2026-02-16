@@ -133,7 +133,7 @@ export PATH=$PATH:/apps/biocontainers/exported-wrappers/bionano/3.8.0
 run_hybridscaffold.sh \
   -c /opt/Solve3.7_10192021_74_1/HybridScaffold/1.0/hybridScaffold_DLE1_config.xml\
   -b Evry.OpticalMap.Col-0.cmap \
-  -n hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta \
+  -n ../02_pacbio-hifi/hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta \
   -u CTTAAG \
   -z results_bionano_hifiasm_scaffolding.zip \
   -w log.txt \
@@ -158,7 +158,7 @@ export PATH=$PATH:/apps/biocontainers/exported-wrappers/bionano/3.8.0
 run_hybridscaffold.sh \
   -c /opt/Solve3.7_10192021_74_1/HybridScaffold/1.0/hybridScaffold_DLE1_config.xml\
   -b Evry.OpticalMap.Col-0.cmap \
-  -n flye_ont/assembly.fasta \
+  -n ../03_ont-assembly/flye_ont/assembly.fasta \
   -u CTTAAG \
   -z results_bionano_flye_scaffolding.zip \
   -w log.txt \

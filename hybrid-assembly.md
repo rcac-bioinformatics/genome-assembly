@@ -33,22 +33,22 @@ ml --force purge
 ml biocontainers
 ml flye
 # reads
-PBREADS="At_pacbio-hifi-filtered.fastq"
-ONTREADS="At_ont-reads-filtered.fastq"
+PBREADS="../01_data-qc/At_pacbio-hifi-filtered.fastq"
+ONTREADS="../01_data-qc/At_ont-reads-filtered.fastq"
 # round 1
 flye \
     --pacbio-raw $PBREADS $ONTREADS \
     --iterations 0 \
     --out-dir hybrid_flye_out \
     --genome-size 135m \
-    --threads ${SLURM_CPUS_ON_NODE}
+    --threads ${SLURM_CPUS_PER_TASK}
 # round 2
 flye \
    --pacbio-raw $PBREADS \
    --resume-from polishing \
    --out-dir hybrid_flye_out  \
    --genome-size 135m \
-   --threads ${SLURM_CPUS_ON_NODE}
+   --threads ${SLURM_CPUS_PER_TASK}
 
 ```
 
@@ -77,14 +77,14 @@ ml compleasm
 fasta="hybrid_flye_out/assembly.fasta"
 quast.py \
   --fast \
-  --threads ${SLURM_CPUS_ON_NODE} \
+  --threads ${SLURM_CPUS_PER_TASK} \
   -o quast_basic \
     ${fasta}
 compleasm run \
    -a ${fasta} \
    -o compleasm_out \
    -l brassicales_odb10  \
-   -t ${SLURM_CPUS_ON_NODE}
+   -t ${SLURM_CPUS_PER_TASK}
 ```
 
 ## Scaffolding with Bionano
@@ -99,7 +99,7 @@ export PATH=$PATH:/apps/biocontainers/exported-wrappers/bionano/3.8.0
 fasta="hybrid_flye_out/assembly.fasta"
 run_hybridscaffold.sh \
   -c /opt/Solve3.7_10192021_74_1/HybridScaffold/1.0/hybridScaffold_DLE1_config.xml\
-  -b Evry.OpticalMap.Col-0.cmap \
+  -b ../05_scaffolding/Evry.OpticalMap.Col-0.cmap \
   -n ${fasta} \
   -u CTTAAG \
   -z results_bionano_hybrid_scaffolding.zip \
@@ -129,14 +129,14 @@ You can evaluate the final assembly using `quast` and `compleasm` as before.
 fasta="assembly_scaffolds.fasta"
 quast.py \
   --fast \
-  --threads ${SLURM_CPUS_ON_NODE} \
+  --threads ${SLURM_CPUS_PER_TASK} \
   -o quast_scaffolds \
     ${fasta}
 compleasm run \
    -a ${fasta} \
    -o compleasm_scaffolds_out \
    -l brassicales_odb10  \
-   -t ${SLURM_CPUS_ON_NODE}
+   -t ${SLURM_CPUS_PER_TASK}
 ```
 
 

@@ -90,9 +90,9 @@ ml --force purge
 ml biocontainers
 ml hifiasm
 hifiasm \
-    -t ${SLURM_CPUS_ON_NODE} \
-    -o hifiasm_default/At_hifiasm_default.asm\
-    At_pacbio-hifi-filtered.fastq
+    -t ${SLURM_CPUS_PER_TASK} \
+    -o hifiasm_default/At_hifiasm_default.asm \
+    ../01_data-qc/At_pacbio-hifi-filtered.fastq
 ```
 
 ::: callout
@@ -109,10 +109,10 @@ For plant genomes, you can also specify the telomere motif to help hifiasm ident
 
 ```bash
 hifiasm \
-    -t ${SLURM_CPUS_ON_NODE} \
+    -t ${SLURM_CPUS_PER_TASK} \
     --telo-m CCCTAAA \
     -o hifiasm_default/At_hifiasm_default.asm \
-    At_pacbio-hifi-filtered.fastq
+    ../01_data-qc/At_pacbio-hifi-filtered.fastq
 ```
 
 The `--telo-m CCCTAAA` flag tells hifiasm to look for the canonical plant telomere repeat, which helps identify complete chromosome arms in the assembly.
@@ -167,9 +167,11 @@ The sequences are represented as lines starting with `S` followed by the contig 
 
 
 ```bash
+cd hifiasm_default
 for ctg in *_ctg.gfa; do
     awk '/^S/{print ">"$2"\n"$3}' ${ctg} > ${ctg%.gfa}.fasta
 done
+cd ..
 ```
 
 :::::::::::::::::::::::::::::::::::::::
@@ -183,9 +185,9 @@ ml biocontainers
 ml quast
 quast.py \
     --fast \
-    --threads ${SLURM_CPUS_ON_NODE} \
-    -o quast_basic_stats \
-    *p_ctg.fasta
+    --threads ${SLURM_CPUS_PER_TASK} \
+    -o hifiasm_default/quast_basic_stats \
+    hifiasm_default/*p_ctg.fasta
 ```
 
 ::: callout
@@ -225,8 +227,8 @@ The haplotype-resolved contigs, as-is, is still valuable information, and can be
 The primary contigs represent the consensus sequence, and is usually more complete than either of the haplotype only assemblies.
 
 - Hifiasm purges haplotig duplications by default (to produce two sets of partially phased contigs)
-- For inbred or homozygous genomes, you may disable purging with option `-l 0` ((`hifiasm -o prefix.asm -l 0 -t ${SLURM_CPUS_ON_NODE} input.fq.gz`)
-- To get primary/alternate assemblies, the option `--primary` should be set (`hifiasm -o prefix.asm --primary -t ${SLURM_CPUS_ON_NODE} input.fq.gz`)
+- For inbred or homozygous genomes, you may disable purging with option `-l 0` ((`hifiasm -o prefix.asm -l 0 -t ${SLURM_CPUS_PER_TASK} input.fq.gz`)
+- To get primary/alternate assemblies, the option `--primary` should be set (`hifiasm -o prefix.asm --primary -t ${SLURM_CPUS_PER_TASK} input.fq.gz`)
 - For heterozygous genomes, you can set `-l 1`, `-l 2`, or `-l 3`, to adjust purging of haplotigs
     * `-l 1` to only purge contained haplotigs
     * `-l 2` to purge all types of haplotigs
@@ -250,8 +252,8 @@ mkdir -p hifiasm_purge-0
 hifiasm \
   -o hifiasm_purge-0/At_hifiasm_purge-0.asm \
   -l 0 \
-  -t ${SLURM_CPUS_ON_NODE} \
-  At_pacbio-hifi-filtered.fastq
+  -t ${SLURM_CPUS_PER_TASK} \
+  ../01_data-qc/At_pacbio-hifi-filtered.fastq
 ```
 
 ### purge `l=1`
@@ -265,8 +267,8 @@ mkdir -p hifiasm_purge-1
 hifiasm \
   -o hifiasm_purge-1/At_hifiasm_purge-1.asm \
   -l 1 \
-  -t ${SLURM_CPUS_ON_NODE} \
-  At_pacbio-hifi-filtered.fastq
+  -t ${SLURM_CPUS_PER_TASK} \
+  ../01_data-qc/At_pacbio-hifi-filtered.fastq
 ```
 
 ### purge `l=2`
@@ -280,8 +282,8 @@ mkdir -p hifiasm_purge-2
 hifiasm \
   -o hifiasm_purge-2/At_hifiasm_purge-2.asm \
   -l 2 \
-  -t ${SLURM_CPUS_ON_NODE} \
-  At_pacbio-hifi-filtered.fastq
+  -t ${SLURM_CPUS_PER_TASK} \
+  ../01_data-qc/At_pacbio-hifi-filtered.fastq
 ```
 
 ### purge `l=3`
@@ -295,8 +297,8 @@ mkdir -p hifiasm_purge-3
 hifiasm \
   -o hifiasm_purge-3/At_hifiasm_purge-3.asm \
   -l 3 \
-  -t ${SLURM_CPUS_ON_NODE} \
-  At_pacbio-hifi-filtered.fastq
+  -t ${SLURM_CPUS_PER_TASK} \
+  ../01_data-qc/At_pacbio-hifi-filtered.fastq
 ```
 
 :::
@@ -339,7 +341,7 @@ done
 cd quast_stats
 quast.py \
     --fast \
-    --threads ${SLURM_CPUS_ON_NODE} \
+    --threads ${SLURM_CPUS_PER_TASK} \
     -o quast_purge_level_stats \
     *_p_ctg.fasta
 ```
@@ -362,7 +364,7 @@ for fasta in *_p_ctg.fasta; do
        -a ${fasta} \
        -o ${fasta%.*} \
        -l brassicales_odb10 \
-       -t ${SLURM_CPUS_ON_NODE}
+       -t ${SLURM_CPUS_PER_TASK}
 done
 ```
 
@@ -397,10 +399,10 @@ ml --force purge
 ml biocontainers
 ml flye
 flye \
-  --pacbio-hifi At_pacbio-hifi-filtered.fastq \
+  --pacbio-hifi ../01_data-qc/At_pacbio-hifi-filtered.fastq \
   --genome-size 135m \
-  --out-dir flye_default \
-  --threads ${SLURM_CPUS_ON_NODE}
+  --out-dir flye_hifi \
+  --threads ${SLURM_CPUS_PER_TASK}
 ```
 
 ::: callout
@@ -433,15 +435,15 @@ ml biocontainers
 ml quast
 quast.py \
     --fast \
-    --threads ${SLURM_CPUS_ON_NODE} \
+    --threads ${SLURM_CPUS_PER_TASK} \
     -o quast_flye_stats \
-    flye_default/assembly.fasta
+    flye_hifi/assembly.fasta
 ml compleasm
 compleasm run \
-  -a flye_default/assembly.fasta \
-  -o flye_default \
+  -a flye_hifi/assembly.fasta \
+  -o flye_hifi \
   -l brassicales_odb10 \
-  -t ${SLURM_CPUS_ON_NODE}
+  -t ${SLURM_CPUS_PER_TASK}
 ```
 
 Which assembler did  a better job at assembling the genome? Compare the statistics from QUAST and Compleasm for Flye and HiFiasm assemblies to evaluate their performance.

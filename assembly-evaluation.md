@@ -48,19 +48,22 @@ ml quast
 mkdir -p quast_evaluation
 # Link your assemblies to a common directory for comparison
 mkdir -p all_assemblies
-ln -s ../hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta all_assemblies/hifiasm_assembly.fasta
-ln -s ../flye_ont/assembly.fasta all_assemblies/flye_ont_assembly.fasta
-# link any other assemblies you want to compare (e.g., hybrid, scaffolded)
+ln -sf ../02_pacbio-hifi/hifiasm_default/*p_ctg.fasta all_assemblies/hifiasm_default.fasta
+ln -sf ../03_ont-assembly/flye_ont/assembly.fasta all_assemblies/flye_ont.fasta
+ln -sf ../03_ont-assembly/medaka_polished/polished_1.fasta all_assemblies/medaka_polished.fasta
+ln -sf ../04_hybrid-assembly/hybrid_flye_out/assembly.fasta all_assemblies/hybrid_flye.fasta
+# link any other assemblies you want to compare (e.g., purge variants, scaffolded)
 # Download the reference genome
-wget https://ftp.ensemblgenomes.ebi.ac.uk/pub/plants/release-60/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz
-gunzip Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz
+wget -q -O TAIR10_reference.fasta.gz \
+   "https://ftp.ensemblgenomes.org/pub/plants/release-57/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz"
+gunzip TAIR10_reference.fasta.gz
 quast.py \
    --output-dir quast_complete_stats \
    --no-read-stats \
-   -r Arabidopsis_thaliana.TAIR10.dna.toplevel.fa \
-   --threads ${SLURM_CPUS_ON_NODE} \
+   -r TAIR10_reference.fasta \
+   --threads ${SLURM_CPUS_PER_TASK} \
    --eukaryote \
-   --pacbio At_pacbio-hifi-filtered.fastq \
+   --pacbio ../01_data-qc/At_pacbio-hifi-filtered.fastq \
    all_assemblies/*.fasta
 ```
 
@@ -84,7 +87,7 @@ for fasta in ../all_assemblies/*.fasta; do
     -a ${fasta} \
     -o ${fasta%.*}_out \
     -l brassicales_odb10  \
-    -t ${SLURM_CPUS_ON_NODE}
+    -t ${SLURM_CPUS_PER_TASK}
 done
 ```
 
@@ -132,25 +135,25 @@ ml merqury
 ml meryl
 mkdir -p merqury_evaluation
 cd merqury_evaluation
-# Step 1: Build a meryl k-mer database from the reads
+# Step 1: Build a meryl k-mer database from the filtered HiFi reads
 meryl \
    count k=21 \
-   threads=${SLURM_CPUS_ON_NODE} \
+   threads=${SLURM_CPUS_PER_TASK} \
    memory=8g \
-   output At_pacbio-hifi-filtered.meryl \
-   ../At_pacbio-hifi-filtered.fastq
+   output reads.meryl \
+   ../../01_data-qc/At_pacbio-hifi-filtered.fastq
 # Step 2: Run merqury to evaluate assemblies
 # Syntax: merqury.sh <read-db.meryl> <asm1.fasta> [asm2.fasta] <output_prefix>
 # For a single assembly:
 merqury.sh \
-   At_pacbio-hifi-filtered.meryl \
-   ../hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta \
+   reads.meryl \
+   ../../02_pacbio-hifi/hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta \
    merqury_hifiasm
 # For comparing multiple assemblies:
 merqury.sh \
-   At_pacbio-hifi-filtered.meryl \
-   ../hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta \
-   ../flye_ont/assembly.fasta \
+   reads.meryl \
+   ../../02_pacbio-hifi/hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta \
+   ../../03_ont-assembly/flye_ont/assembly.fasta \
    merqury_comparison
 ```
 
@@ -189,7 +192,7 @@ ml bandage
 Bandage
 ```
 
-4. In the Bandage interface, navigate to your assembly folder and load your assembly graph in GFA format (e.g., `At_hifiasm_default.asm.bp.p_ctg.gfa` for hifiasm, or `assembly_graph.gfa` for Flye).
+4. In the Bandage interface, navigate to your assembly folder and load your assembly graph in GFA format (e.g., `../02_pacbio-hifi/hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.gfa` for hifiasm, or `../03_ont-assembly/flye_ont/assembly_graph.gfa` for Flye).
 5. Explore the graph structure, identify complex regions, and visualize connections between contigs or scaffolds.
 
 ::: callout

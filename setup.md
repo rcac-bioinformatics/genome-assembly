@@ -6,23 +6,25 @@ title: Setup
 
 1. **Arun Seetharam, Ph.D.**: Arun is a lead bioinformatics scientist at Purdue University’s Rosen Center for Advanced Computing. With extensive expertise in comparative genomics, genome assembly, annotation, single-cell genomics,  NGS data analysis, metagenomics, proteomics, and metabolomics. Arun supports a diverse range of bioinformatics projects across various organisms, including human model systems.
 
-2. **Charles Christoffer, Ph.D.**: Charles is a Senior Computational Scientist at Purdue University’s Rosen Center for Advanced Computing. He has a Ph.D. in Computer Science in the area of structural bioinformatics and has extensive experience in protein structure prediction. 
 
 
 ## Schedule
 
-| **Time**  | **Session**  |
+| **Time** | **Session** |
 |:---|-------------|
-| **8:30 AM** | Arrival & Setup  |
-| **9:00 AM** | **Introduction & UNIX/HPC refresher** – Cluster setup and essential UNIX commands for assembly workflows |
-| **10:30 AM** | **Break** |
-| **10:40 AM** | **Introduction to Genome Assembly** – Overview of long-read assembly strategies, challenges, and tools  |
-| **11:00 AM** | **Genome Assembly with HiFiasm/Flye** – Running HiFiasm on **RCAC clusters**, parameter selection, and best practices  |
+| **9:00 AM** | **Introduction to Genome Assembly** – Sequencing technologies, assembly concepts, and workshop overview |
+| **9:30 AM** | **Assembly Strategies** – Comparing approaches, evaluation metrics, and resource planning |
+| **9:50 AM** | **Data Quality Control** – NanoPlot, Filtlong, KMC, and GenomeScope2 for read QC |
+| **10:30 AM** | **Morning Break** |
+| **10:45 AM** | **PacBio HiFi Assembly** – HiFiasm assembly, purge levels, GFA conversion, and Flye for HiFi |
 | **12:00 PM** | **Lunch Break** |
-| **1:00 PM** | **Hybrid Assembly (ONT + PacBio) and scaffolding** – Combining long-read technologies for improved assembly accuracy, and scaffolding with **Bionano optical maps** |
-| **2:50 PM** | **Break** |
-| **3:10 PM** | **Assembly Evaluation & Visualization** – QC metrics, polishing |
-| **4:30 PM** | **Wrap-Up & Discussion** – Troubleshooting, Q&A, and next steps |
+| **1:00 PM** | **Oxford Nanopore Assembly** – Flye assembler, Medaka polishing, and HiFiasm for ONT |
+| **1:45 PM** | **Hybrid Assembly** – Combining ONT + HiFi reads with Flye, Bionano scaffolding |
+| **2:30 PM** | **Afternoon Break** |
+| **2:45 PM** | **Scaffolding with Optical Genome Mapping** – Bionano Solve for HiFiasm and Flye assemblies |
+| **3:15 PM** | **Assembly Evaluation** – QUAST, Compleasm, Merqury, Bandage, and comparative analysis |
+| **3:50 PM** | **Wrap-Up & Discussion** – Summary, Q&A, and next steps |
+| **4:00 PM** | **Dismissal** |
 
 
 ## What is not covered

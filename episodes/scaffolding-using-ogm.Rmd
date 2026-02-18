@@ -189,8 +189,20 @@ The output of the Bionano Solve pipeline includes scaffolded genome assemblies i
 | **results_output.zip** | Compressed archive containing essential scaffolding results for easy sharing. |
 
 
-Within `hybrid_scaffolds`, the files ending with `HYBRID_SCAFFOLD.fasta` and `HYBRID_SCAFFOLD_NOT_SCAFFOLDED.fasta` represent the final scaffolded genome and unplaced contigs, respectively. 
-You will need to merge these files to obtain your final scaffolded genome assembly.
+Within `hybrid_scaffolds`, the files ending with `HYBRID_SCAFFOLD_NCBI.fasta` and `HYBRID_SCAFFOLD_NOT_SCAFFOLDED.fasta` represent the final scaffolded genome and unplaced contigs, respectively.
+You will need to merge these files to obtain your final scaffolded genome assembly:
+
+```bash
+# For the HiFiasm scaffolded assembly:
+cat bionano_hifiasm_scaffolding/hybrid_scaffolds/*HYBRID_SCAFFOLD_NCBI.fasta \
+    bionano_hifiasm_scaffolding/hybrid_scaffolds/*HYBRID_SCAFFOLD_NOT_SCAFFOLDED.fasta \
+    > hifiasm_bionano_scaffolded.fasta
+
+# For the Flye scaffolded assembly:
+cat bionano_flye_scaffolding/hybrid_scaffolds/*HYBRID_SCAFFOLD_NCBI.fasta \
+    bionano_flye_scaffolding/hybrid_scaffolds/*HYBRID_SCAFFOLD_NOT_SCAFFOLDED.fasta \
+    > flye_bionano_scaffolded.fasta
+```
 
 
 ## Quality Assessment of Hybrid Scaffolds
@@ -198,61 +210,62 @@ You will need to merge these files to obtain your final scaffolded genome assemb
 
 The hybrid scaffolds report file will be in the `hybrid_scaffolds` directory and will provide a summary of the scaffolding process, including alignment statistics, conflict resolution, and scaffold N50 values. This report is essential for evaluating the quality and completeness of the hybrid scaffolds and identifying any potential issues that need further investigation.
 
-| **Category**                                  | **PacBio HiFi (hifiasm)**   | **ONT (Flye)**                                   |
+| **Category**                                  | **PacBio HiFi (hifiasm)**   | **ONT (Flye)**    |
 |:--------------------------------------------|-------------:|-------------:|
-| **Original BioNano Genome Map**             |                                           |                                           |
-| Count                                        | 18        | 18            |
-| Min length (Mbp)                             |   0.342    | 0.342         |
-| Median length (Mbp)                          |   3.956    | 3.956         |
-| Mean length (Mbp)                            |   7.396    | 7.396         |
-| N50 length (Mbp)                             |  15.529    | 15.529        |
-| Max length (Mbp)                             |  17.518    | 17.518        |
-| Total length (Mbp)                           | 133.124   | 133.124       |
-| **Original NGS Sequences**                   |           |               |
-| Count                                        | 152       | 43            |
-| Min length (Mbp)                             | 0.027     | 0.008         |
-| Median length (Mbp)                          | 0.050     | 0.276         |
-| Mean length (Mbp)                            | 0.896     | 2.797         |
-| N50 length (Mbp)                             | 7.981     | 9.261         |
-| Max length (Mbp)                             | 13.758    | 14.609        |
-| Total length (Mbp)                           | 136.156   | 120.259       |
-| **Conflict Resolution (BNG-NGS Alignment)**  |           |               |
-| Conflict cuts made to Bionano maps           | 2         | 0             |
-| Conflict cuts made to NGS sequences          | 30        | 0             |
-| Bionano maps to be cut                       | 2         | 0             |
-| NGS sequences to be cut                      | 18        | 0             |
-| **NGS FASTA Sequence in Hybrid Scaffold**    |           |               |
-| Count                                        | 40        | 26            |
-| Min length (Mbp)                             | 0.033     | 0.065         |
-| Median length (Mbp)                          | 0.945     | 1.681         |
-| Mean length (Mbp)                            | 2.689     | 4.558         |
-| N50 length (Mbp)                             | 8.437     | 9.261         |
-| Max length (Mbp)                             | 13.484    | 14.609        |
-| Total length (Mbp)                           | 107.558   | 118.508       |
-| **Hybrid Scaffold FASTA**                    |           |               |
-| Count                                        | 11        | 12            |
-| Min length (Mbp)                             | 0.104     | 0.524         |
-| Median length (Mbp)                          | 11.824    | 12.426        |
-| Mean length (Mbp)                            | 10.518    | 9.891         |
-| N50 length (Mbp)                             | 14.479    | 14.886        |
-| Max length (Mbp)                             | 15.227    | 16.188        |
-| Total length (Mbp)                           | 115.698   | 118.689       |
-| **Hybrid Scaffold FASTA + Not Scaffolded NGS** |         |               |
-| Count                                        | 161       | 33            |
-| Min length (Mbp)                             | 0.024     | 0.006         |
-| Median length (Mbp)                          | 0.051     | 0.159         |
-| Mean length (Mbp)                            | 0.896     | 3.650         |
-| N50 length (Mbp)                             | 14.083    | 14.886        |
-| Max length (Mbp)                             | 15.227    | 16.188        |
-| Total length (Mbp)                           | 144.295   | 120.440       |
+| **Original BioNano Genome Map**             |              |              |
+| Count                                        | 18           | 18           |
+| Min length (Mbp)                             | 0.342        | 0.342        |
+| Median length (Mbp)                          | 3.956        | 3.956        |
+| Mean length (Mbp)                            | 7.396        | 7.396        |
+| N50 length (Mbp)                             | 15.529       | 15.529       |
+| Max length (Mbp)                             | 17.518       | 17.518       |
+| Total length (Mbp)                           | 133.124      | 133.124      |
+| **Original NGS Sequences**                   |              |              |
+| Count                                        | 146          | 50           |
+| Min length (Mbp)                             | 0.027        | 0.007        |
+| Median length (Mbp)                          | 0.050        | 0.132        |
+| Mean length (Mbp)                            | 0.930        | 2.575        |
+| N50 length (Mbp)                             | 7.981        | 11.822       |
+| Max length (Mbp)                             | 13.758       | 15.517       |
+| Total length (Mbp)                           | 135.747      | 128.743      |
+| **Conflict Resolution (BNG-NGS Alignment)**  |              |              |
+| Conflict cuts made to Bionano maps           | 2            | 0            |
+| Conflict cuts made to NGS sequences          | 30           | 1            |
+| Bionano maps to be cut                       | 2            | 0            |
+| NGS sequences to be cut                      | 18           | 1            |
+| **NGS FASTA Sequence in Hybrid Scaffold**    |              |              |
+| Count                                        | 41           | 21           |
+| Min length (Mbp)                             | 0.033        | 0.064        |
+| Median length (Mbp)                          | 0.936        | 3.272        |
+| Mean length (Mbp)                            | 2.633        | 5.797        |
+| N50 length (Mbp)                             | 8.437        | 11.250       |
+| Max length (Mbp)                             | 13.484       | 15.517       |
+| Total length (Mbp)                           | 107.968      | 121.743      |
+| **Hybrid Scaffold FASTA**                    |              |              |
+| Count                                        | 10           | 12           |
+| Min length (Mbp)                             | 4.083        | 0.129        |
+| Median length (Mbp)                          | 13.162       | 12.662       |
+| Mean length (Mbp)                            | 11.601       | 10.164       |
+| N50 length (Mbp)                             | 14.479       | 15.517       |
+| Max length (Mbp)                             | 15.229       | 17.656       |
+| Total length (Mbp)                           | 116.011      | 121.972      |
+| **Hybrid Scaffold FASTA + Not Scaffolded NGS** |            |              |
+| Count                                        | 153          | 43           |
+| Min length (Mbp)                             | 0.024        | 0.000        |
+| Median length (Mbp)                          | 0.050        | 0.135        |
+| Mean length (Mbp)                            | 0.940        | 2.999        |
+| N50 length (Mbp)                             | 14.052       | 15.517       |
+| Max length (Mbp)                             | 15.229       | 17.656       |
+| Total length (Mbp)                           | 143.790      | 128.972      |
 
 ::: callout
 
 ## Which assembler and data performed better?
 
-- The HiFiasm assembly with PacBio HiFi data resulted in a higher N50 length and total length in the hybrid scaffold compared to the Flye assembly with ONT data.
-- The conflict resolution process involved more cuts in the NGS sequences for the HiFiasm assembly, indicating a higher level of alignment discrepancies.
-- The final hybrid scaffold from the HiFiasm assembly had a higher N50 length and total length, suggesting better contiguity and completeness compared to the Flye assembly.
+- The Flye ONT assembly produced **fewer conflict cuts** (1 NGS cut vs 30 for HiFiasm), indicating better structural agreement with the optical map.
+- Flye + Bionano achieved a **higher scaffold N50** (15.517 Mbp vs 14.479 Mbp) and **larger scaffold max** (17.656 Mbp vs 15.229 Mbp).
+- HiFiasm + Bionano retained more total sequence (143.790 Mbp vs 128.972 Mbp), partly due to haplotig duplications inflating the total.
+- Both assemblies have 5 chromosome-scale scaffolds (evidenced by high N50 values close to Arabidopsis chromosome sizes).
 
 :::
 

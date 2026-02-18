@@ -278,6 +278,33 @@ Examine the `At_PacBio_NanoPlot-report.html` file
 - **KDE plots**: Kernel Density Estimation plots for read length and quality score distributions.
 - **Summary statistics**: N50 value, maximum read length, and other key metrics.
 
+:::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### Expected NanoPlot scatter plot for PacBio HiFi reads
+
+![PacBio HiFi read length vs quality](fig/nanoplot-pacbio-pre-length-vs-quality.png){alt="KDE scatter plot of PacBio HiFi read length versus average read quality showing a tight cluster of reads between 15-30 kb with quality scores predominantly above Q20"}
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### Expected NanoStats for PacBio HiFi reads
+
+| Metric | Value |
+|--------|-------|
+| Number of reads | 837,586 |
+| Total bases | 18,636,790,429 (~18.6 Gb) |
+| Mean read length | 22,250.6 |
+| Median read length | 21,506.0 |
+| Read length N50 | 22,587 |
+| Mean read quality | 26.3 |
+| Median read quality | 28.4 |
+| Reads >Q10 | 837,586 (100.0%) |
+| Reads >Q20 | 837,586 (100.0%) |
+| Reads >Q30 | 333,658 (39.8%) |
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
 ::: callout
 
 **What filtering should be applied to the PacBio HiFi reads based on the quality assessment?**
@@ -346,6 +373,33 @@ Examine the `At_ONT_NanoPlot-report.html` file.
 - **KDE plots**: Kernel Density Estimation plots for read length and quality score distributions.
 - **Summary statistics**: N50 value, maximum read length, and other key metrics.
 
+:::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### Expected NanoPlot scatter plot for ONT reads
+
+![ONT read length vs quality](fig/nanoplot-ont-pre-length-vs-quality.png){alt="KDE scatter plot of ONT read length versus average read quality showing a broad spread of reads from 1-200 kb with quality scores ranging from Q5 to Q20"}
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### Expected NanoStats for ONT reads
+
+| Metric | Value |
+|--------|-------|
+| Number of reads | 579,482 |
+| Total bases | 14,055,262,695 (~14.1 Gb) |
+| Mean read length | 24,254.9 |
+| Median read length | 22,554.0 |
+| Read length N50 | 36,292 |
+| Mean read quality | 12.1 |
+| Median read quality | 13.7 |
+| Reads >Q10 | 521,512 (90.0%) |
+| Reads >Q15 | 176,536 (30.5%) |
+| Reads >Q20 | 155 (0.0%) |
+| Longest read | 298,974 bp |
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::: callout
 
@@ -455,6 +509,39 @@ NanoPlot \
 Now, examine the `At_PacBio_post_NanoPlot-report.html` and `At_ONT_post_NanoPlot-report.html` files to assess the quality of the filtered HiFi and ONT reads. Do you observe any improvements in read quality after filtering?
 We will use these filtered reads for downstream genome assembly.
 
+:::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### Expected NanoPlot: ONT reads after filtering
+
+![ONT read length vs quality after filtering](fig/nanoplot-ont-post-length-vs-quality.png){alt="KDE scatter plot of ONT read length versus quality after Filtlong filtering showing reads concentrated between 20-80 kb with the shortest and lowest-quality reads removed"}
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### Expected NanoStats: before vs after filtering
+
+| Metric | PacBio HiFi (raw) | PacBio HiFi (filtered) | ONT (raw) | ONT (filtered) |
+|--------|-------------------|----------------------|-----------|----------------|
+| Number of reads | 837,586 | 251,246 | 579,482 | 133,217 |
+| Total bases | 18.6 Gb | 5.4 Gb | 14.1 Gb | 5.4 Gb |
+| Mean read length | 22,251 | 21,493 | 24,255 | 40,535 |
+| N50 read length | 22,587 | 21,636 | 36,292 | 42,129 |
+| Mean quality | Q26.3 | Q33.5 | Q12.1 | Q15.3 |
+| Reads >Q20 | 100.0% | 100.0% | 0.0% | 0.1% |
+| Reads >Q30 | 39.8% | 95.9% | 0.0% | 0.0% |
+| Coverage (~135 Mb) | ~138x | ~40x | ~104x | ~40x |
+
+Key observations:
+
+- **Both datasets filtered to ~40x** (5.4 Gb target), matching our assembly target
+- **PacBio HiFi quality improved dramatically**: mean Q26.3 → Q33.5, and 95.9% reads now >Q30 (was 39.8%)
+- **ONT read lengths increased after filtering**: mean 24 kb → 41 kb, N50 36 kb → 42 kb — Filtlong retained the longest, highest-quality reads
+- **ONT quality remains below Q20**: this is expected for HAC basecalled ONT data and does not affect assembly quality with modern assemblers
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
 
 ## D. K-mer Based Quality Checks (Optional) 
 
@@ -502,7 +589,20 @@ genomescope2 -i reads-ont.histo -o genomescope_ont -k 21 -p 2 --name_prefix "Oxf
 
 Alternatively, you can use the [GenomeScope web interface](https://genomescope.org/genomescope2.0/) to upload the `.histo` files and generate plots interactively (note: the web server may occasionally be unavailable).
 
+:::::::::::::::::::::::::::::::::::::::::: spoiler
 
+### Expected GenomeScope2 results
+
+**PacBio HiFi k-mer histogram** shows a clear unimodal peak at ~30-31x coverage, confirming the expected ~40x coverage after filtering and a homozygous genome. The histogram can be used to estimate genome size (~135 Mb) from the peak position.
+
+**However**, GenomeScope2 may fail or produce incomplete results depending on the input:
+
+- **PacBio HiFi**: GenomeScope2 may only show "starting" in its progress file without producing a model. This can happen when the k-mer distribution is too clean (very low error rate in HiFi reads) for GenomeScope's error model.
+- **ONT reads**: GenomeScope2 reports "unconverged" across all rounds. The high error rate in ONT reads (~Q12-15) inflates the error k-mer peak and overwhelms the genomic signal, preventing model convergence.
+
+These failures are expected and illustrate why k-mer-based genome profiling works best with high-accuracy reads (HiFi) at moderate coverage, and why the ONT KMC histogram contains all zeros (error k-mers dominate at low multiplicity and are filtered out).
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: challenge
 

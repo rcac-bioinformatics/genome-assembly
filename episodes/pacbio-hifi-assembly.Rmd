@@ -187,7 +187,7 @@ quast.py \
     --fast \
     --threads ${SLURM_CPUS_PER_TASK} \
     -o hifiasm_default/quast_basic_stats \
-    hifiasm_default/*p_ctg.fasta
+    hifiasm_default/*.bp.p_ctg.fasta
 ```
 
 ::: callout
@@ -213,9 +213,28 @@ quast.py \
 - **High N50 and low L50** suggest a well-assembled genome with fewer, larger contigs.  
 - **Total Length** should be close to the estimated genome size, ensuring completeness.  
 - **Low # of contigs** indicates better continuity, meaning fewer breaks in the genome.  
-- **No `N` bases** means the assembly is gap-free and doesn’t contain unresolved regions.  
+- **No `N` bases** means the assembly is gap-free and doesn't contain unresolved regions.
 :::
 
+:::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### Expected QUAST output for HiFiasm default assembly
+
+| Metric | Primary contigs |
+|--------|----------------:|
+| # Contigs | 146 |
+| Largest contig | 13.76 Mb |
+| Total length | 135.75 Mb |
+| N50 | 7.98 Mb |
+| N90 | 1.13 Mb |
+| auN | 7.70 Mb |
+| L50 | 7 |
+| L90 | 21 |
+| # N's per 100 kbp | 0.00 |
+
+The total assembly size (135.75 Mb) is close to the expected _A. thaliana_ genome size (~135 Mb), and the N50 of ~8 Mb indicates good contiguity. Zero `N` bases means the assembly is completely gap-free.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 
@@ -335,7 +354,7 @@ ml --force purge
 ml biocontainers
 ml quast
 mkdir -p quast_stats
-for fasta in hifiasm_purge-{0..3}/*_p_ctg.fasta; do
+for fasta in hifiasm_purge-{0..3}/*.bp.p_ctg.fasta; do
     ln -s ../${fasta} quast_stats/
 done
 cd quast_stats
@@ -343,7 +362,7 @@ quast.py \
     --fast \
     --threads ${SLURM_CPUS_PER_TASK} \
     -o quast_purge_level_stats \
-    *_p_ctg.fasta
+    *.bp.p_ctg.fasta
 ```
 
 
@@ -355,11 +374,11 @@ ml --force purge
 ml biocontainers
 ml compleasm
 mkdir -p compleasm_stats
-for fasta in hifiasm_purge-{0..3}/*_p_ctg.fasta; do
+for fasta in hifiasm_purge-{0..3}/*.bp.p_ctg.fasta; do
     ln -s ${fasta} compleasm_stats/
 done
 cd compleasm_stats
-for fasta in *_p_ctg.fasta; do
+for fasta in *.bp.p_ctg.fasta; do
     compleasm run \
        -a ${fasta} \
        -o ${fasta%.*} \
@@ -373,9 +392,36 @@ Examining the results from QUAST and Compleasm, compare the assembly statistics 
 
 :::::::::::::::::::::::::::::::::::::::
 
+:::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### Expected purge level comparison results
+
+**QUAST comparison (primary contigs only)**
+
+| Metric | purge-0 (`-l 0`) | purge-1 (`-l 1`) | purge-2 (`-l 2`) | purge-3 (`-l 3`) |
+|--------|------------------:|------------------:|------------------:|------------------:|
+| # Contigs | 179 | 172 | 162 | 146 |
+| Total length (Mb) | 143.60 | 142.77 | 141.53 | 135.75 |
+| Largest contig (Mb) | 13.76 | 13.76 | 13.76 | 13.76 |
+| N50 (Mb) | 4.92 | 4.92 | 4.95 | 7.98 |
+| L50 | 8 | 8 | 8 | 7 |
+| auN (Mb) | 6.62 | 6.66 | 6.74 | 7.70 |
+
+**Compleasm results (primary contigs, brassicales_odb10)**
+
+| Category | purge-0 | purge-1 | purge-2 | purge-3 |
+|----------|--------:|--------:|--------:|--------:|
+| Single (S) | 98.89% | 98.89% | 98.89% | 95.97% |
+| Duplicated (D) | 1.04% | 1.04% | 1.04% | 1.11% |
+| Fragmented (F) | 0.02% | 0.02% | 0.02% | 0.02% |
+| Missing (M) | 0.04% | 0.04% | 0.04% | 2.89% |
+
+Notice that purge-3 (`-l 3`, the default) has the highest N50 (7.98 Mb) and smallest total size (135.75 Mb, closest to the expected ~135 Mb genome size), but also has ~2.89% missing BUSCO genes due to aggressive purging. Purge levels 0-2 retain nearly all genes (only 0.04% missing) but have inflated assembly sizes due to retained haplotig duplications. For _A. thaliana_ (a highly inbred, near-homozygous line), `-l 3` produces an assembly closest to the true haploid genome size.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-## Improving Assembly Quality  
+## Improving Assembly Quality
 
 After the first round of assembly, you will have the files `*.ec.bin`, `*.ovlp.source.bin`, and `*.ovlp.reverse.bin`. Save these files and try various options to see if you can improve the assembly.
 First, make a folder to move the .gfa, .fasta, and .bed files. 
@@ -441,15 +487,44 @@ quast.py \
 ml compleasm
 compleasm run \
   -a flye_hifi/assembly.fasta \
-  -o flye_hifi \
+  -o flye_hifi_compleasm \
   -l brassicales_odb10 \
   -t ${SLURM_CPUS_PER_TASK}
 ```
 
-Which assembler did  a better job at assembling the genome? Compare the statistics from QUAST and Compleasm for Flye and HiFiasm assemblies to evaluate their performance.
+Which assembler did a better job at assembling the genome? Compare the statistics from QUAST and Compleasm for Flye and HiFiasm assemblies to evaluate their performance.
 
 :::::::::::::::::::::::::::::::::::::::
 
+:::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### Expected Flye HiFi results
+
+**QUAST results**
+
+| Metric | Flye HiFi | HiFiasm default |
+|--------|----------:|----------------:|
+| # Contigs | 87 | 146 |
+| Largest contig (Mb) | 11.08 | 13.76 |
+| Total length (Mb) | 133.69 | 135.75 |
+| N50 (Mb) | 5.97 | 7.98 |
+| L50 | 8 | 7 |
+| auN (Mb) | 5.64 | 7.70 |
+| N90 (Mb) | 0.96 | 1.13 |
+| # N's per 100 kbp | 0.00 | 0.00 |
+
+**Compleasm results (brassicales_odb10)**
+
+| Category | Flye HiFi | HiFiasm default |
+|----------|----------:|----------------:|
+| Single (S) | 98.89% | 95.97% |
+| Duplicated (D) | 1.04% | 1.11% |
+| Fragmented (F) | 0.02% | 0.02% |
+| Missing (M) | 0.04% | 2.89% |
+
+Flye produces fewer contigs (87 vs 146) but with a lower N50 (5.97 vs 7.98 Mb). Flye's total size (133.69 Mb) is slightly smaller than expected. Both assemblers produce gap-free assemblies. Notably, Flye retains more complete BUSCO genes (98.89% single-copy) compared to HiFiasm's default purge level 3 (95.97%), because HiFiasm's aggressive purging removes some legitimate single-copy regions. For a fairer BUSCO comparison, consider HiFiasm at purge level 0-2 (which also shows 98.89% single-copy).
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 

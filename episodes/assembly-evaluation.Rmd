@@ -48,18 +48,24 @@ ml quast
 mkdir -p quast_evaluation
 # Link your assemblies to a common directory for comparison
 mkdir -p all_assemblies
-ln -sf ../02_pacbio-hifi/hifiasm_default/*p_ctg.fasta all_assemblies/hifiasm_default.fasta
+# PacBio HiFi assemblies
+ln -sf ../02_pacbio-hifi/hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta all_assemblies/hifiasm_default.fasta
+ln -sf ../02_pacbio-hifi/flye_hifi/assembly.fasta all_assemblies/flye_hifi.fasta
+# ONT assemblies
 ln -sf ../03_ont-assembly/flye_ont/assembly.fasta all_assemblies/flye_ont.fasta
-ln -sf ../03_ont-assembly/medaka_polished/polished_1.fasta all_assemblies/medaka_polished.fasta
+ln -sf ../03_ont-assembly/hifiasm_ont/At_hifiasm_ont.asm.bp.p_ctg.fasta all_assemblies/hifiasm_ont.fasta
+# Hybrid assembly
 ln -sf ../04_hybrid-assembly/hybrid_flye_out/assembly.fasta all_assemblies/hybrid_flye.fasta
-# link any other assemblies you want to compare (e.g., purge variants, scaffolded)
+# Bionano scaffolded assemblies
+ln -sf ../05_scaffolding/hifiasm_bionano_scaffolded.fasta all_assemblies/hifiasm_bionano.fasta
+ln -sf ../05_scaffolding/flye_bionano_scaffolded.fasta all_assemblies/flye_bionano.fasta
 # Download the reference genome
 wget -q -O TAIR10_reference.fasta.gz \
    "https://ftp.ensemblgenomes.org/pub/plants/release-57/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz"
 gunzip TAIR10_reference.fasta.gz
 quast.py \
-   --output-dir quast_complete_stats \
-   --no-read-stats \
+   --output-dir quast_comparison \
+   --min-contig 3000 \
    -r TAIR10_reference.fasta \
    --threads ${SLURM_CPUS_PER_TASK} \
    --eukaryote \
@@ -67,7 +73,42 @@ quast.py \
    all_assemblies/*.fasta
 ```
 
-This will generate a detailed report in the `quast_complete_stats` directory, including key metrics for each assembly and a summary of their quality. You can use this information to compare different assemblies and select the best one for downstream analysis.
+This will generate a detailed report in the `quast_comparison` directory, including key metrics for each assembly and a summary of their quality. You can use this information to compare different assemblies and select the best one for downstream analysis.
+
+::: callout
+
+## Viewing QUAST reports
+
+Open `quast_comparison/report.html` in your browser for an interactive QUAST report with sortable tables and plots. The Icarus viewer (`icarus.html`) provides a visual alignment of your contigs against the TAIR10 reference chromosomes.
+
+:::
+
+:::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### Expected QUAST comparison results (vs TAIR10 reference)
+
+| Metric | flye_bionano | flye_hifi | flye_ont | hifiasm_bionano | hifiasm_default | hifiasm_ont | hybrid_flye |
+|--------|---:|---:|---:|---:|---:|---:|---:|
+| # Contigs | 42 | 83 | 50 | 153 | 146 | 105 | 333 |
+| Total length (Mb) | 128.97 | 133.68 | 128.74 | 143.79 | 135.75 | 127.42 | 121.11 |
+| N50 (Mb) | 15.52 | 5.97 | 11.82 | 14.05 | 7.98 | 11.34 | 4.06 |
+| L50 | 4 | 8 | 5 | 5 | 7 | 6 | 9 |
+| auN (Mb) | 13.77 | 5.64 | 10.68 | 10.87 | 7.70 | 8.70 | 4.58 |
+| Genome fraction (%) | 99.41 | 90.47 | 99.43 | 86.71 | 86.68 | 95.58 | 90.76 |
+| # Misassemblies | 198 | 484 | 183 | 836 | 824 | 59 | 480 |
+| Mismatches/100kbp | 26.71 | 707.09 | 26.76 | 695.76 | 660.03 | 65.99 | 702.30 |
+| Indels/100kbp | 20.77 | 113.17 | 20.77 | 111.45 | 111.66 | 38.96 | 115.37 |
+| N's per 100kbp | 177.79 | 0.00 | 0.00 | 5593.53 | 0.00 | 0.00 | 0.00 |
+| Avg. coverage depth | 67x | 45x | 67x | 60x | 63x | 86x | 60x |
+
+Key observations:
+- **Best contiguity**: flye_bionano (N50=15.52 Mb, only 42 contigs)
+- **Best genome fraction**: flye_ont (99.43%) and flye_bionano (99.41%)
+- **Fewest misassemblies**: hifiasm_ont (59), far fewer than any other assembly
+- **Best base accuracy**: Flye-based ONT assemblies (26.7 mismatches/100kbp) vs HiFi-based (~660-707 mismatches/100kbp) — this counterintuitive result is because QUAST aligns to TAIR10 and HiFi assemblies retain haplotypic variants that score as "mismatches"
+- **N's only in Bionano-scaffolded assemblies**: gaps introduced during scaffolding
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 ## Compleasm for genome completeness (gene-space)
@@ -99,6 +140,27 @@ The assessment result by compleasm is saved in the file `summary.txt` in the `co
 - `F` (Fragmented Genes, subclass 1): The BUSCO genes which only a portion of the gene is present in the assembly, and the rest of the gene cannot be aligned.
 - `I` (Fragmented Genes, subclass 2): The BUSCO genes in which a section of the gene aligns to one position in the assembly, while the remaining part aligns to another position.
 - `M` (Missing Genes): The BUSCO genes with no alignment present in the assembly.
+
+:::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### Expected Compleasm results (brassicales_odb10)
+
+| Assembly | Single (S) | Duplicated (D) | Fragmented (F) | Missing (M) |
+|----------|---:|---:|---:|---:|
+| flye_bionano | 98.93% | 1.07% | 0.00% | 0.00% |
+| flye_hifi | 98.89% | 1.04% | 0.02% | 0.04% |
+| flye_ont | 98.93% | 1.07% | 0.00% | 0.00% |
+| hifiasm_bionano | 95.97% | 1.09% | 0.02% | 2.92% |
+| hifiasm_default | 95.97% | 1.11% | 0.02% | 2.89% |
+| hifiasm_ont | 98.61% | 1.04% | 0.00% | 0.35% |
+| hybrid_flye | 98.50% | 1.41% | 0.02% | 0.07% |
+
+Key observations:
+- **Best completeness**: flye_bionano and flye_ont (98.93% single, 0% missing)
+- **HiFiasm default has ~3% missing genes**: This is due to aggressive purging (`-l 3`), which removes some legitimate single-copy regions along with haplotigs
+- **Bionano scaffolding does not change BUSCO scores**: hifiasm_default and hifiasm_bionano have identical completeness, confirming scaffolding only reorders contigs
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
 ## Merqury for evaluating genome assembly
@@ -173,6 +235,33 @@ The output prefix determines the names of all generated files. When comparing tw
 
 This will generate numerous files with the specified output prefix, including k-mer spectra plots, completeness metrics, and consensus quality (QV) estimates for each assembly. You can use these results to evaluate the accuracy, completeness, and structural integrity of your genome assemblies.
 
+:::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### Expected Merqury results
+
+**For the hifiasm_bionano assembly:**
+
+| Metric | Value |
+|--------|------:|
+| Consensus Quality (QV) | 62.91 |
+| Error rate | 5.11 x 10^-7 |
+| K-mer completeness | 95.73% |
+| K-mers found | 104,602,794 / 109,271,894 |
+
+A QV of 62.91 corresponds to approximately 1 error per ~2 million bases, indicating extremely high base-level accuracy. The k-mer completeness of 95.73% means nearly all reliable k-mers from the reads are represented in the assembly.
+
+**Interpreting Merqury output files:**
+- `merqury_out.qv`: Assembly name, error k-mers, total k-mers, QV score, error rate
+- `merqury_out.completeness.stats`: Assembly name, set type, found k-mers, total k-mers, completeness %
+- `merqury_out.spectra-cn.*.png`: Copy number spectrum plot
+- `merqury_out.spectra-asm.*.png`: Assembly spectrum plot
+
+![Merqury copy number spectrum](fig/merqury-spectra-cn-hifiasm-bionano.png){alt="Merqury copy number spectrum plot for the hifiasm Bionano-scaffolded assembly showing a sharp unimodal peak at approximately 30x indicating a homozygous genome with high completeness"}
+
+![Merqury assembly spectrum](fig/merqury-spectra-asm-hifiasm-bionano.png){alt="Merqury assembly spectrum plot comparing k-mers found in the assembly versus read-only k-mers showing most k-mers are shared between reads and assembly"}
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 ## Assembly graph visualization using Bandage
 
@@ -212,16 +301,19 @@ Bandage requires assembly **graph** files (`.gfa` format), not FASTA files. HiFi
 
 After running all evaluation tools, compile your results into a summary table to compare assemblies side by side:
 
-| Metric | HiFiasm (HiFi) | Flye (ONT) | Hybrid (Flye) | HiFiasm + Bionano | Flye + Bionano |
-|--------|----------------|------------|----------------|-------------------|----------------|
-| # Contigs | | | | | |
-| Total size (Mb) | | | | | |
-| N50 (Mb) | | | | | |
-| L50 | | | | | |
-| BUSCO Complete (%) | | | | | |
-| BUSCO Duplicated (%) | | | | | |
-| Merqury QV | | | | | |
-| K-mer completeness (%) | | | | | |
+| Metric | HiFiasm (HiFi) | Flye (HiFi) | Flye (ONT) | HiFiasm (ONT) | Hybrid (Flye) | HiFiasm + Bionano | Flye + Bionano |
+|--------|---:|---:|---:|---:|---:|---:|---:|
+| # Contigs | 146 | 83 | 50 | 105 | 333 | 153 | 42 |
+| Total size (Mb) | 135.75 | 133.68 | 128.74 | 127.42 | 121.11 | 143.79 | 128.97 |
+| N50 (Mb) | 7.98 | 5.97 | 11.82 | 11.34 | 4.06 | 14.05 | 15.52 |
+| L50 | 7 | 8 | 5 | 6 | 9 | 5 | 4 |
+| BUSCO Complete (%) | 97.08 | 99.93 | 100.00 | 99.65 | 99.91 | 97.06 | 100.00 |
+| BUSCO Single (%) | 95.97 | 98.89 | 98.93 | 98.61 | 98.50 | 95.97 | 98.93 |
+| BUSCO Duplicated (%) | 1.11 | 1.04 | 1.07 | 1.04 | 1.41 | 1.09 | 1.07 |
+| Genome fraction (%) | 86.68 | 90.47 | 99.43 | 95.58 | 90.76 | 86.71 | 99.41 |
+| Misassemblies | 824 | 484 | 183 | 59 | 480 | 836 | 198 |
+| Merqury QV | — | — | — | — | — | 62.91 | — |
+| K-mer completeness (%) | — | — | — | — | — | 95.73 | — |
 
 ::: callout
 

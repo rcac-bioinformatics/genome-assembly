@@ -342,7 +342,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>PacBio HiFi Assembly using HiFiasm</h1>
-        <p>Last updated on 2026-02-17 |
+        <p>Last updated on 2026-02-18 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/pacbio-hifi-assembly.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -611,7 +611,7 @@ Assembly) format. You can extract the sequences from this file using
 <span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>    <span class="at">--fast</span> <span class="dt">\</span></span>
 <span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>    <span class="at">--threads</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
 <span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>    <span class="at">-o</span> hifiasm_default/quast_basic_stats <span class="dt">\</span></span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>    hifiasm_default/<span class="pp">*</span>p_ctg.fasta</span></code></pre>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>    hifiasm_default/<span class="pp">*</span>.bp.p_ctg.fasta</span></code></pre>
 </div>
 <div id="quast-metrics" class="callout">
 <div class="callout-square">
@@ -663,8 +663,46 @@ genome size, ensuring completeness.<br></li>
 meaning fewer breaks in the genome.<br></li>
 <li>
 <strong>No <code>N</code> bases</strong> means the assembly is
-gap-free and doesn’t contain unresolved regions.<br></li>
+gap-free and doesn’t contain unresolved regions.</li>
 </ul></div>
+</div>
+</div>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Expected QUAST output for HiFiasm default assembly
+  </h3>
+</button>
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div class="accordion-body">
+<table class="table"><thead><tr class="header"><th>Metric</th>
+<th align="right">Primary contigs</th>
+</tr></thead><tbody><tr class="odd"><td># Contigs</td>
+<td align="right">146</td>
+</tr><tr class="even"><td>Largest contig</td>
+<td align="right">13.76 Mb</td>
+</tr><tr class="odd"><td>Total length</td>
+<td align="right">135.75 Mb</td>
+</tr><tr class="even"><td>N50</td>
+<td align="right">7.98 Mb</td>
+</tr><tr class="odd"><td>N90</td>
+<td align="right">1.13 Mb</td>
+</tr><tr class="even"><td>auN</td>
+<td align="right">7.70 Mb</td>
+</tr><tr class="odd"><td>L50</td>
+<td align="right">7</td>
+</tr><tr class="even"><td>L90</td>
+<td align="right">21</td>
+</tr><tr class="odd"><td># N’s per 100 kbp</td>
+<td align="right">0.00</td>
+</tr></tbody></table><p>The total assembly size (135.75 Mb) is close to the expected <em>A.
+thaliana</em> genome size (~135 Mb), and the N50 of ~8 Mb indicates good
+contiguity. Zero <code>N</code> bases means the assembly is completely
+gap-free.</p>
+</div>
+</div>
 </div>
 </div>
 </section><section><h2 class="section-heading" id="handling-haplotype-resolved-contigs">Handling haplotype-resolved contigs<a class="anchor" aria-label="anchor" href="#handling-haplotype-resolved-contigs"></a></h2>
@@ -833,7 +871,7 @@ them faster.</p>
 <span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="ex">ml</span> quast</span>
 <span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> quast_stats</span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> hifiasm_purge-{0..3}/<span class="pp">*</span>_p_ctg.fasta<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> hifiasm_purge-{0..3}/<span class="pp">*</span>.bp.p_ctg.fasta<span class="kw">;</span> <span class="cf">do</span></span>
 <span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>    <span class="fu">ln</span> <span class="at">-s</span> ../<span class="va">${fasta}</span> quast_stats/</span>
 <span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="cf">done</span></span>
 <span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="bu">cd</span> quast_stats</span>
@@ -841,7 +879,7 @@ them faster.</p>
 <span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a>    <span class="at">--fast</span> <span class="dt">\</span></span>
 <span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a>    <span class="at">--threads</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
 <span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a>    <span class="at">-o</span> quast_purge_level_stats <span class="dt">\</span></span>
-<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a>    <span class="pp">*</span>_p_ctg.fasta</span></code></pre>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a>    <span class="pp">*</span>.bp.p_ctg.fasta</span></code></pre>
 </div>
 <p>Run Compleasm to compare the assemblies</p>
 <div class="codewrapper sourceCode" id="cb13">
@@ -851,11 +889,11 @@ them faster.</p>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="ex">ml</span> compleasm</span>
 <span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> compleasm_stats</span>
-<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> hifiasm_purge-{0..3}/<span class="pp">*</span>_p_ctg.fasta<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> hifiasm_purge-{0..3}/<span class="pp">*</span>.bp.p_ctg.fasta<span class="kw">;</span> <span class="cf">do</span></span>
 <span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>    <span class="fu">ln</span> <span class="at">-s</span> <span class="va">${fasta}</span> compleasm_stats/</span>
 <span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="cf">done</span></span>
 <span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="bu">cd</span> compleasm_stats</span>
-<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> <span class="pp">*</span>_p_ctg.fasta<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> <span class="pp">*</span>.bp.p_ctg.fasta<span class="kw">;</span> <span class="cf">do</span></span>
 <span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a>    <span class="ex">compleasm</span> run <span class="dt">\</span></span>
 <span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a>       <span class="at">-a</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
 <span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a>       <span class="at">-o</span> <span class="va">${fasta</span><span class="op">%</span>.<span class="pp">*</span><span class="va">}</span> <span class="dt">\</span></span>
@@ -867,6 +905,91 @@ them faster.</p>
 statistics and assess the impact of different purging levels on the
 assembly quality. Look for metrics like N50, L50, and total assembly
 size to evaluate the contiguity and completeness of the assemblies.</p>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
+  <h3 class="accordion-header" id="headingSpoiler2">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Expected purge level comparison results
+  </h3>
+</button>
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div class="accordion-body">
+<p><strong>QUAST comparison (primary contigs only)</strong></p>
+<table style="width:100%;" class="table"><colgroup><col width="9%"><col width="22%"><col width="22%"><col width="22%"><col width="22%"></colgroup><thead><tr class="header"><th>Metric</th>
+<th align="right">purge-0 (<code>-l 0</code>)</th>
+<th align="right">purge-1 (<code>-l 1</code>)</th>
+<th align="right">purge-2 (<code>-l 2</code>)</th>
+<th align="right">purge-3 (<code>-l 3</code>)</th>
+</tr></thead><tbody><tr class="odd"><td># Contigs</td>
+<td align="right">179</td>
+<td align="right">172</td>
+<td align="right">162</td>
+<td align="right">146</td>
+</tr><tr class="even"><td>Total length (Mb)</td>
+<td align="right">143.60</td>
+<td align="right">142.77</td>
+<td align="right">141.53</td>
+<td align="right">135.75</td>
+</tr><tr class="odd"><td>Largest contig (Mb)</td>
+<td align="right">13.76</td>
+<td align="right">13.76</td>
+<td align="right">13.76</td>
+<td align="right">13.76</td>
+</tr><tr class="even"><td>N50 (Mb)</td>
+<td align="right">4.92</td>
+<td align="right">4.92</td>
+<td align="right">4.95</td>
+<td align="right">7.98</td>
+</tr><tr class="odd"><td>L50</td>
+<td align="right">8</td>
+<td align="right">8</td>
+<td align="right">8</td>
+<td align="right">7</td>
+</tr><tr class="even"><td>auN (Mb)</td>
+<td align="right">6.62</td>
+<td align="right">6.66</td>
+<td align="right">6.74</td>
+<td align="right">7.70</td>
+</tr></tbody></table><p><strong>Compleasm results (primary contigs,
+brassicales_odb10)</strong></p>
+<table class="table"><thead><tr class="header"><th>Category</th>
+<th align="right">purge-0</th>
+<th align="right">purge-1</th>
+<th align="right">purge-2</th>
+<th align="right">purge-3</th>
+</tr></thead><tbody><tr class="odd"><td>Single (S)</td>
+<td align="right">98.89%</td>
+<td align="right">98.89%</td>
+<td align="right">98.89%</td>
+<td align="right">95.97%</td>
+</tr><tr class="even"><td>Duplicated (D)</td>
+<td align="right">1.04%</td>
+<td align="right">1.04%</td>
+<td align="right">1.04%</td>
+<td align="right">1.11%</td>
+</tr><tr class="odd"><td>Fragmented (F)</td>
+<td align="right">0.02%</td>
+<td align="right">0.02%</td>
+<td align="right">0.02%</td>
+<td align="right">0.02%</td>
+</tr><tr class="even"><td>Missing (M)</td>
+<td align="right">0.04%</td>
+<td align="right">0.04%</td>
+<td align="right">0.04%</td>
+<td align="right">2.89%</td>
+</tr></tbody></table><p>Notice that purge-3 (<code>-l 3</code>, the default) has the highest
+N50 (7.98 Mb) and smallest total size (135.75 Mb, closest to the
+expected ~135 Mb genome size), but also has ~2.89% missing BUSCO genes
+due to aggressive purging. Purge levels 0-2 retain nearly all genes
+(only 0.04% missing) but have inflated assembly sizes due to retained
+haplotig duplications. For <em>A. thaliana</em> (a highly inbred,
+near-homozygous line), <code>-l 3</code> produces an assembly closest to
+the true haploid genome size.</p>
+</div>
 </div>
 </div>
 </div>
@@ -953,13 +1076,79 @@ assembly graph, contigs, and other relevant files.</p>
 <span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a><span class="ex">ml</span> compleasm</span>
 <span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="ex">compleasm</span> run <span class="dt">\</span></span>
 <span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a>  <span class="at">-a</span> flye_hifi/assembly.fasta <span class="dt">\</span></span>
-<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a>  <span class="at">-o</span> flye_hifi <span class="dt">\</span></span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a>  <span class="at">-o</span> flye_hifi_compleasm <span class="dt">\</span></span>
 <span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a>  <span class="at">-l</span> brassicales_odb10 <span class="dt">\</span></span>
 <span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a>  <span class="at">-t</span> <span class="va">${SLURM_CPUS_PER_TASK}</span></span></code></pre>
 </div>
 <p>Which assembler did a better job at assembling the genome? Compare
 the statistics from QUAST and Compleasm for Flye and HiFiasm assemblies
 to evaluate their performance.</p>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler3" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
+  <h3 class="accordion-header" id="headingSpoiler3">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Expected Flye HiFi results
+  </h3>
+</button>
+<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div class="accordion-body">
+<p><strong>QUAST results</strong></p>
+<table class="table"><thead><tr class="header"><th>Metric</th>
+<th align="right">Flye HiFi</th>
+<th align="right">HiFiasm default</th>
+</tr></thead><tbody><tr class="odd"><td># Contigs</td>
+<td align="right">87</td>
+<td align="right">146</td>
+</tr><tr class="even"><td>Largest contig (Mb)</td>
+<td align="right">11.08</td>
+<td align="right">13.76</td>
+</tr><tr class="odd"><td>Total length (Mb)</td>
+<td align="right">133.69</td>
+<td align="right">135.75</td>
+</tr><tr class="even"><td>N50 (Mb)</td>
+<td align="right">5.97</td>
+<td align="right">7.98</td>
+</tr><tr class="odd"><td>L50</td>
+<td align="right">8</td>
+<td align="right">7</td>
+</tr><tr class="even"><td>auN (Mb)</td>
+<td align="right">5.64</td>
+<td align="right">7.70</td>
+</tr><tr class="odd"><td>N90 (Mb)</td>
+<td align="right">0.96</td>
+<td align="right">1.13</td>
+</tr><tr class="even"><td># N’s per 100 kbp</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+</tr></tbody></table><p><strong>Compleasm results (brassicales_odb10)</strong></p>
+<table class="table"><thead><tr class="header"><th>Category</th>
+<th align="right">Flye HiFi</th>
+<th align="right">HiFiasm default</th>
+</tr></thead><tbody><tr class="odd"><td>Single (S)</td>
+<td align="right">98.89%</td>
+<td align="right">95.97%</td>
+</tr><tr class="even"><td>Duplicated (D)</td>
+<td align="right">1.04%</td>
+<td align="right">1.11%</td>
+</tr><tr class="odd"><td>Fragmented (F)</td>
+<td align="right">0.02%</td>
+<td align="right">0.02%</td>
+</tr><tr class="even"><td>Missing (M)</td>
+<td align="right">0.04%</td>
+<td align="right">2.89%</td>
+</tr></tbody></table><p>Flye produces fewer contigs (87 vs 146) but with a lower N50 (5.97 vs
+7.98 Mb). Flye’s total size (133.69 Mb) is slightly smaller than
+expected. Both assemblers produce gap-free assemblies. Notably, Flye
+retains more complete BUSCO genes (98.89% single-copy) compared to
+HiFiasm’s default purge level 3 (95.97%), because HiFiasm’s aggressive
+purging removes some legitimate single-copy regions. For a fairer BUSCO
+comparison, consider HiFiasm at purge level 0-2 (which also shows 98.89%
+single-copy).</p>
+</div>
 </div>
 </div>
 </div>
@@ -1050,8 +1239,8 @@ any links that you are not going to use.
   "url": "https://genome-assembly.github.io/NA/pacbio-hifi-assembly.html",
   "identifier": "https://genome-assembly.github.io/NA/pacbio-hifi-assembly.html",
   "dateCreated": "2025-02-05",
-  "dateModified": "2026-02-17",
-  "datePublished": "2026-02-17"
+  "dateModified": "2026-02-18",
+  "datePublished": "2026-02-18"
 }
 
   </script><script>

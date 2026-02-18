@@ -342,7 +342,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Oxford Nanopore Assembly using Flye</h1>
-        <p>Last updated on 2026-02-17 |
+        <p>Last updated on 2026-02-18 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/oxford-nanopore-assembly.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -572,7 +572,122 @@ components of the Flye output include:</p>
 <td>Summary information about the assembly.</td>
 </tr><tr class="even"><td align="left">flye.log</td>
 <td>Log file detailing the Flye run.</td>
-</tr></tbody></table><div id="which-file-should-i-use-as-my-final-assembly" class="callout prereq">
+</tr></tbody></table><div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Expected assembly_info.txt (top 15 contigs)
+  </h3>
+</button>
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div class="accordion-body">
+<table class="table"><thead><tr class="header"><th>Contig</th>
+<th align="right">Length (Mb)</th>
+<th align="right">Coverage</th>
+<th align="center">Circular</th>
+<th align="center">Repeat</th>
+<th align="right">Multiplicity</th>
+</tr></thead><tbody><tr class="odd"><td>contig_5</td>
+<td align="right">15.52</td>
+<td align="right">38x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr><tr class="even"><td>contig_19</td>
+<td align="right">14.50</td>
+<td align="right">39x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr><tr class="odd"><td>contig_20</td>
+<td align="right">14.08</td>
+<td align="right">37x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr><tr class="even"><td>contig_7</td>
+<td align="right">12.73</td>
+<td align="right">40x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr><tr class="odd"><td>contig_8</td>
+<td align="right">11.82</td>
+<td align="right">32x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr><tr class="even"><td>contig_36</td>
+<td align="right">11.24</td>
+<td align="right">38x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr><tr class="odd"><td>contig_6</td>
+<td align="right">10.09</td>
+<td align="right">35x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr><tr class="even"><td>contig_23</td>
+<td align="right">8.77</td>
+<td align="right">39x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr><tr class="odd"><td>contig_102</td>
+<td align="right">6.39</td>
+<td align="right">40x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr><tr class="even"><td>contig_12</td>
+<td align="right">6.23</td>
+<td align="right">34x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr><tr class="odd"><td>contig_58</td>
+<td align="right">3.27</td>
+<td align="right">31x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr><tr class="even"><td>contig_11</td>
+<td align="right">3.24</td>
+<td align="right">27x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr><tr class="odd"><td>contig_13</td>
+<td align="right">3.23</td>
+<td align="right">33x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr><tr class="even"><td>contig_10</td>
+<td align="right">2.35</td>
+<td align="right">29x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr><tr class="odd"><td>contig_15</td>
+<td align="right">0.94</td>
+<td align="right">22x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr></tbody></table><p>The assembly has 50 contigs total. The top 5 contigs (&gt;11 Mb each)
+likely correspond to the 5 chromosomes of <em>A. thaliana</em>. Notable
+entries include contig_104 (84 kb, 2769x coverage, repeat=Y, mult=64)
+and contig_34 (26 kb, 4808x, repeat=Y, mult=111), which represent
+collapsed repetitive elements (likely rDNA or centromeric repeats).</p>
+</div>
+</div>
+</div>
+</div>
+<div id="which-file-should-i-use-as-my-final-assembly" class="callout prereq">
 <div class="callout-square">
 <i class="callout-icon" data-feather="check"></i>
 </div>
@@ -616,6 +731,79 @@ assembly statistics. Based on your previous assembly using
 <code>hifiasm</code>, what assembly do you think is better? What metrics
 are you using to make this decision? Discuss which assembly has better
 contiguity and completeness based on these statistics.</p>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
+  <h3 class="accordion-header" id="headingSpoiler2">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Expected QUAST output for Flye ONT assembly
+  </h3>
+</button>
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div class="accordion-body">
+<table class="table"><thead><tr class="header"><th>Metric</th>
+<th align="right">Flye ONT</th>
+<th align="right">HiFiasm HiFi (default)</th>
+</tr></thead><tbody><tr class="odd"><td># Contigs</td>
+<td align="right">50</td>
+<td align="right">146</td>
+</tr><tr class="even"><td>Largest contig (Mb)</td>
+<td align="right">15.52</td>
+<td align="right">13.76</td>
+</tr><tr class="odd"><td>Total length (Mb)</td>
+<td align="right">128.74</td>
+<td align="right">135.75</td>
+</tr><tr class="even"><td>N50 (Mb)</td>
+<td align="right">11.82</td>
+<td align="right">7.98</td>
+</tr><tr class="odd"><td>L50</td>
+<td align="right">5</td>
+<td align="right">7</td>
+</tr><tr class="even"><td>auN (Mb)</td>
+<td align="right">10.68</td>
+<td align="right">7.70</td>
+</tr><tr class="odd"><td>N90 (Mb)</td>
+<td align="right">3.24</td>
+<td align="right">1.13</td>
+</tr><tr class="even"><td># N’s per 100 kbp</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+</tr></tbody></table><p>The Flye ONT assembly has remarkably high contiguity (N50 = 11.82 Mb)
+with only 50 contigs, significantly better than HiFiasm HiFi in terms of
+contiguity. However, the total size (128.74 Mb) is ~6 Mb smaller than
+expected (~135 Mb), suggesting some genomic regions may be missing or
+collapsed. Both assemblies are gap-free.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler3" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
+  <h3 class="accordion-header" id="headingSpoiler3">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Expected Compleasm results for Flye ONT assembly
+  </h3>
+</button>
+<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div class="accordion-body">
+<table class="table"><thead><tr class="header"><th>Category</th>
+<th align="right">Value</th>
+</tr></thead><tbody><tr class="odd"><td>Single (S)</td>
+<td align="right">98.93%</td>
+</tr><tr class="even"><td>Duplicated (D)</td>
+<td align="right">1.07%</td>
+</tr><tr class="odd"><td>Fragmented (F)</td>
+<td align="right">0.00%</td>
+</tr><tr class="even"><td>Missing (M)</td>
+<td align="right">0.00%</td>
+</tr></tbody></table><p>The Flye ONT assembly achieves near-perfect BUSCO completeness with
+0% missing genes, indicating comprehensive genome coverage despite the
+slightly smaller total size (128.74 Mb vs expected ~135 Mb).</p>
+</div>
 </div>
 </div>
 </div>
@@ -670,7 +858,7 @@ correct errors:</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="ex">ml</span> medaka</span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="ex">medaka_polish</span> <span class="dt">\</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="ex">medaka_consensus</span> <span class="dt">\</span></span>
 <span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>   <span class="at">-i</span> ../01_data-qc/At_ont-reads-filtered.fastq <span class="dt">\</span></span>
 <span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>   <span class="at">-d</span> flye_ont/assembly.fasta <span class="dt">\</span></span>
 <span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>   <span class="at">-o</span> medaka_polished <span class="dt">\</span></span>
@@ -688,8 +876,9 @@ correct errors:</p>
 <p>The <code>-m</code> flag specifies the Medaka model, which should
 match your basecalling chemistry and model. For our data (R10.4.1,
 Dorado HAC), we use <code>r1041_e82_400bps_hac_v5.0.0</code>. You can
-list available models with <code>medaka --list_models</code>. Using the
-wrong model will produce suboptimal results.</p>
+list available models with <code>medaka tools list_models</code>. Using
+the wrong model will produce suboptimal results. The output will be
+<code>consensus.fasta</code> in the specified output directory.</p>
 </div>
 </div>
 </div>
@@ -765,6 +954,67 @@ GFA to FASTA using the following command:</p>
 <span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>       <span class="at">-l</span> brassicales_odb10 <span class="dt">\</span></span>
 <span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>       <span class="at">-t</span> <span class="va">${SLURM_CPUS_PER_TASK}</span></span>
 <span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler4" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler4" aria-expanded="false" aria-controls="collapseSpoiler4">
+  <h3 class="accordion-header" id="headingSpoiler4">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Expected HiFiasm ONT results
+  </h3>
+</button>
+<div id="collapseSpoiler4" class="accordion-collapse collapse" aria-labelledby="headingSpoiler4" data-bs-parent="#accordionSpoiler4">
+<div class="accordion-body">
+<p><strong>QUAST results</strong></p>
+<table class="table"><thead><tr class="header"><th>Metric</th>
+<th align="right">Primary</th>
+<th align="right">Hap1</th>
+<th align="right">Hap2</th>
+</tr></thead><tbody><tr class="odd"><td># Contigs</td>
+<td align="right">105</td>
+<td align="right">104</td>
+<td align="right">41</td>
+</tr><tr class="even"><td>Largest contig (Mb)</td>
+<td align="right">13.18</td>
+<td align="right">13.18</td>
+<td align="right">13.10</td>
+</tr><tr class="odd"><td>Total length (Mb)</td>
+<td align="right">127.42</td>
+<td align="right">125.76</td>
+<td align="right">89.21</td>
+</tr><tr class="even"><td>N50 (Mb)</td>
+<td align="right">11.34</td>
+<td align="right">11.34</td>
+<td align="right">11.46</td>
+</tr><tr class="odd"><td>L50</td>
+<td align="right">6</td>
+<td align="right">6</td>
+<td align="right">4</td>
+</tr><tr class="even"><td>auN (Mb)</td>
+<td align="right">8.70</td>
+<td align="right">8.79</td>
+<td align="right">9.90</td>
+</tr></tbody></table><p><strong>Compleasm results (primary contigs,
+brassicales_odb10)</strong></p>
+<table class="table"><thead><tr class="header"><th>Category</th>
+<th align="right">Value</th>
+</tr></thead><tbody><tr class="odd"><td>Single (S)</td>
+<td align="right">98.61%</td>
+</tr><tr class="even"><td>Duplicated (D)</td>
+<td align="right">1.04%</td>
+</tr><tr class="odd"><td>Fragmented (F)</td>
+<td align="right">0.00%</td>
+</tr><tr class="even"><td>Missing (M)</td>
+<td align="right">0.35%</td>
+</tr></tbody></table><p>HiFiasm with ONT data produces a highly contiguous assembly (N50 =
+11.34 Mb), comparable to Flye ONT. However, HiFiasm generates more
+contigs (105 vs 50) and has a total size of 127.42 Mb (smaller than
+Flye’s 128.74 Mb). The BUSCO completeness is excellent at 98.61%
+single-copy. HiFiasm also provides haplotype-resolved output, with hap2
+capturing ~89 Mb of sequence.</p>
 </div>
 </div>
 </div>
@@ -854,8 +1104,8 @@ any links that you are not going to use.
   "url": "https://genome-assembly.github.io/NA/oxford-nanopore-assembly.html",
   "identifier": "https://genome-assembly.github.io/NA/oxford-nanopore-assembly.html",
   "dateCreated": "2025-02-05",
-  "dateModified": "2026-02-17",
-  "datePublished": "2026-02-17"
+  "dateModified": "2026-02-18",
+  "datePublished": "2026-02-18"
 }
 
   </script><script>

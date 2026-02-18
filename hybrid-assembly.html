@@ -338,7 +338,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Hybrid Long Read Assembly (optional)</h1>
-        <p>Last updated on 2026-02-17 |
+        <p>Last updated on 2026-02-18 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/hybrid-assembly.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -458,6 +458,56 @@ preferred over single-technology assembly?</li>
 <span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>   <span class="at">-l</span> brassicales_odb10  <span class="dt">\</span></span>
 <span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>   <span class="at">-t</span> <span class="va">${SLURM_CPUS_PER_TASK}</span></span></code></pre>
 </div>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Expected hybrid assembly results
+  </h3>
+</button>
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div class="accordion-body">
+<p><strong>QUAST results</strong></p>
+<table class="table"><thead><tr class="header"><th>Metric</th>
+<th align="right">Hybrid Flye</th>
+</tr></thead><tbody><tr class="odd"><td># Contigs</td>
+<td align="right">336</td>
+</tr><tr class="even"><td>Largest contig (Mb)</td>
+<td align="right">10.25</td>
+</tr><tr class="odd"><td>Total length (Mb)</td>
+<td align="right">121.11</td>
+</tr><tr class="even"><td>N50 (Mb)</td>
+<td align="right">4.06</td>
+</tr><tr class="odd"><td>L50</td>
+<td align="right">9</td>
+</tr><tr class="even"><td>auN (Mb)</td>
+<td align="right">4.58</td>
+</tr><tr class="odd"><td>N90 (Mb)</td>
+<td align="right">0.16</td>
+</tr><tr class="even"><td># N’s per 100 kbp</td>
+<td align="right">0.00</td>
+</tr></tbody></table><p><strong>Compleasm results (brassicales_odb10)</strong></p>
+<table class="table"><thead><tr class="header"><th>Category</th>
+<th align="right">Value</th>
+</tr></thead><tbody><tr class="odd"><td>Single (S)</td>
+<td align="right">98.50%</td>
+</tr><tr class="even"><td>Duplicated (D)</td>
+<td align="right">1.41%</td>
+</tr><tr class="odd"><td>Fragmented (F)</td>
+<td align="right">0.02%</td>
+</tr><tr class="even"><td>Missing (M)</td>
+<td align="right">0.07%</td>
+</tr></tbody></table><p>The hybrid assembly has more contigs (336) and a smaller total size
+(121.11 Mb) than either single-technology assembly, with a lower N50
+(4.06 Mb). This is because the <code>--pacbio-raw</code> mode treats all
+reads as error-prone, which is suboptimal for HiFi reads. However, BUSCO
+completeness is excellent (98.50% single-copy). The Bionano scaffolding
+step will significantly improve contiguity.</p>
+</div>
+</div>
+</div>
+</div>
 </section><section><h2 class="section-heading" id="scaffolding-with-bionano">Scaffolding with Bionano<a class="anchor" aria-label="anchor" href="#scaffolding-with-bionano"></a></h2>
 <hr class="half-width"><p>To scaffold the assembly using Bionano data, we will use the
 <code>bionano solve</code>. We can run the following script to scaffold
@@ -490,7 +540,7 @@ assembly by merging placed and unplaced contigs in the
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="bu">cd</span> bionano_hybrid_scaffolding/hybrid_scaffolds</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">cat</span> <span class="pp">*</span>HYBRID_SCAFFOLD.fasta <span class="pp">*</span>_HYBRID_SCAFFOLD_NOT_SCAFFOLDED.fasta <span class="dt">\</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">cat</span> <span class="pp">*</span>HYBRID_SCAFFOLD_NCBI.fasta <span class="pp">*</span>HYBRID_SCAFFOLD_NOT_SCAFFOLDED.fasta <span class="dt">\</span></span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>   <span class="op">&gt;</span> ../../assembly_scaffolds.fasta</span>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="bu">cd</span> ../..</span></code></pre>
 </div>
@@ -499,17 +549,75 @@ assembly by merging placed and unplaced contigs in the
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="va">fasta</span><span class="op">=</span><span class="st">"assembly_scaffolds.fasta"</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">quast.py</span> <span class="dt">\</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="at">--fast</span> <span class="dt">\</span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="at">--threads</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="at">-o</span> quast_scaffolds <span class="dt">\</span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>    <span class="va">${fasta}</span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="ex">compleasm</span> run <span class="dt">\</span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>   <span class="at">-a</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>   <span class="at">-o</span> compleasm_scaffolds_out <span class="dt">\</span></span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>   <span class="at">-l</span> brassicales_odb10  <span class="dt">\</span></span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>   <span class="at">-t</span> <span class="va">${SLURM_CPUS_PER_TASK}</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="ex">ml</span> quast</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="ex">ml</span> compleasm</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="va">fasta</span><span class="op">=</span><span class="st">"assembly_scaffolds.fasta"</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="ex">quast.py</span> <span class="dt">\</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>  <span class="at">--fast</span> <span class="dt">\</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>  <span class="at">--threads</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>  <span class="at">-o</span> quast_scaffolds <span class="dt">\</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>    <span class="va">${fasta}</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="ex">compleasm</span> run <span class="dt">\</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>   <span class="at">-a</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>   <span class="at">-o</span> compleasm_scaffolds_out <span class="dt">\</span></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>   <span class="at">-l</span> brassicales_odb10  <span class="dt">\</span></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>   <span class="at">-t</span> <span class="va">${SLURM_CPUS_PER_TASK}</span></span></code></pre>
+</div>
+<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
+  <h3 class="accordion-header" id="headingSpoiler2">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Expected scaffolded hybrid assembly results
+  </h3>
+</button>
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div class="accordion-body">
+<p><strong>QUAST results (after Bionano scaffolding)</strong></p>
+<table class="table"><thead><tr class="header"><th>Metric</th>
+<th align="right">Before scaffolding</th>
+<th align="right">After scaffolding</th>
+</tr></thead><tbody><tr class="odd"><td># Sequences</td>
+<td align="right">336</td>
+<td align="right">310</td>
+</tr><tr class="even"><td>Total length (Mb)</td>
+<td align="right">121.11</td>
+<td align="right">133.07</td>
+</tr><tr class="odd"><td>N50 (Mb)</td>
+<td align="right">4.06</td>
+<td align="right">14.14</td>
+</tr><tr class="even"><td>L50</td>
+<td align="right">9</td>
+<td align="right">5</td>
+</tr><tr class="odd"><td>Largest sequence (Mb)</td>
+<td align="right">10.25</td>
+<td align="right">15.77</td>
+</tr><tr class="even"><td># N’s per 100 kbp</td>
+<td align="right">0.00</td>
+<td align="right">8,976.53</td>
+</tr></tbody></table><p><strong>Compleasm results (after scaffolding)</strong></p>
+<table class="table"><thead><tr class="header"><th>Category</th>
+<th align="right">Before</th>
+<th align="right">After</th>
+</tr></thead><tbody><tr class="odd"><td>Single (S)</td>
+<td align="right">98.50%</td>
+<td align="right">98.48%</td>
+</tr><tr class="even"><td>Duplicated (D)</td>
+<td align="right">1.41%</td>
+<td align="right">1.44%</td>
+</tr><tr class="odd"><td>Missing (M)</td>
+<td align="right">0.07%</td>
+<td align="right">0.07%</td>
+</tr></tbody></table><p>Bionano scaffolding dramatically improved N50 from 4.06 Mb to 14.14
+Mb and increased total length from 121 Mb to 133 Mb (closer to expected
+~135 Mb) by incorporating previously unplaced sequence into scaffolds.
+The scaffold gaps (N’s) are expected. BUSCO scores remain virtually
+unchanged.</p>
+</div>
+</div>
+</div>
 </div>
 </section><section><h2 class="section-heading" id="hybrid-assembly-summary">Hybrid Assembly Summary<a class="anchor" aria-label="anchor" href="#hybrid-assembly-summary"></a></h2>
 <hr class="half-width"><p>In this section you have learned how to perform a hybrid assembly
@@ -640,8 +748,8 @@ any links that you are not going to use.
   "url": "https://genome-assembly.github.io/NA/hybrid-assembly.html",
   "identifier": "https://genome-assembly.github.io/NA/hybrid-assembly.html",
   "dateCreated": "2025-02-05",
-  "dateModified": "2026-02-17",
-  "datePublished": "2026-02-17"
+  "dateModified": "2026-02-18",
+  "datePublished": "2026-02-18"
 }
 
   </script><script>

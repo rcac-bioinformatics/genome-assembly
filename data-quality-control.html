@@ -342,7 +342,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Data Quality Control</h1>
-        <p>Last updated on 2026-02-17 |
+        <p>Last updated on 2026-02-18 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/data-quality-control.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -691,7 +691,52 @@ length and quality score distributions.</li>
 <li>
 <strong>Summary statistics</strong>: N50 value, maximum read length,
 and other key metrics.</li>
-</ul><div id="callout2" class="callout">
+</ul><div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
+  <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Expected NanoPlot scatter plot for PacBio HiFi reads </h3>
+</button>
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div class="accordion-body">
+<figure><img src="fig/nanoplot-pacbio-pre-length-vs-quality.png" alt="KDE scatter plot of PacBio HiFi read length versus average read quality showing a tight cluster of reads between 15-30 kb with quality scores predominantly above Q20" class="figure mx-auto d-block"><div class="figcaption">PacBio HiFi read length vs quality</div>
+</figure></div>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler3" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
+  <h3 class="accordion-header" id="headingSpoiler3">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Expected NanoStats for PacBio HiFi reads </h3>
+</button>
+<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div class="accordion-body">
+<table class="table"><thead><tr class="header"><th>Metric</th>
+<th>Value</th>
+</tr></thead><tbody><tr class="odd"><td>Number of reads</td>
+<td>837,586</td>
+</tr><tr class="even"><td>Total bases</td>
+<td>18,636,790,429 (~18.6 Gb)</td>
+</tr><tr class="odd"><td>Mean read length</td>
+<td>22,250.6</td>
+</tr><tr class="even"><td>Median read length</td>
+<td>21,506.0</td>
+</tr><tr class="odd"><td>Read length N50</td>
+<td>22,587</td>
+</tr><tr class="even"><td>Mean read quality</td>
+<td>26.3</td>
+</tr><tr class="odd"><td>Median read quality</td>
+<td>28.4</td>
+</tr><tr class="even"><td>Reads &gt;Q10</td>
+<td>837,586 (100.0%)</td>
+</tr><tr class="odd"><td>Reads &gt;Q20</td>
+<td>837,586 (100.0%)</td>
+</tr><tr class="even"><td>Reads &gt;Q30</td>
+<td>333,658 (39.8%)</td>
+</tr></tbody></table></div>
+</div>
+</div>
+</div>
+<div id="callout2" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -726,12 +771,12 @@ Create a slurm script to run NanoPlot on the basecalled ONT reads.</p>
 <span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>   <span class="at">--dpi</span> 300 <span class="dt">\</span></span>
 <span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>   <span class="at">--fastq</span> ../00_rawdata/At_ont-reads.fastq.gz</span></code></pre>
 </div>
-<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
+<div id="accordionSpoiler4" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
-  <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler4" aria-expanded="false" aria-controls="collapseSpoiler4">
+  <h3 class="accordion-header" id="headingSpoiler4">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler4" class="accordion-collapse collapse" aria-labelledby="headingSpoiler4" data-bs-parent="#accordionSpoiler4">
 <div class="accordion-body">
 <p>The stdout from the NanoPlot run will look like this:</p>
 <pre><code>2025-02-13 12:15:51,066 NanoPlot 1.44.1 started with arguments Namespace(threads=8, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_ont_pre', no_static=False, prefix='At_ONT_', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['At_ont-reads.fastq.gz'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_ont_pre/At_ONT_')
@@ -781,7 +826,54 @@ length and quality score distributions.</li>
 <li>
 <strong>Summary statistics</strong>: N50 value, maximum read length,
 and other key metrics.</li>
-</ul><div id="callout3" class="callout">
+</ul><div id="accordionSpoiler5" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler5" aria-expanded="false" aria-controls="collapseSpoiler5">
+  <h3 class="accordion-header" id="headingSpoiler5">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Expected NanoPlot scatter plot for ONT reads </h3>
+</button>
+<div id="collapseSpoiler5" class="accordion-collapse collapse" aria-labelledby="headingSpoiler5" data-bs-parent="#accordionSpoiler5">
+<div class="accordion-body">
+<figure><img src="fig/nanoplot-ont-pre-length-vs-quality.png" alt="KDE scatter plot of ONT read length versus average read quality showing a broad spread of reads from 1-200 kb with quality scores ranging from Q5 to Q20" class="figure mx-auto d-block"><div class="figcaption">ONT read length vs quality</div>
+</figure></div>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler6" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler6" aria-expanded="false" aria-controls="collapseSpoiler6">
+  <h3 class="accordion-header" id="headingSpoiler6">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Expected NanoStats for ONT reads </h3>
+</button>
+<div id="collapseSpoiler6" class="accordion-collapse collapse" aria-labelledby="headingSpoiler6" data-bs-parent="#accordionSpoiler6">
+<div class="accordion-body">
+<table class="table"><thead><tr class="header"><th>Metric</th>
+<th>Value</th>
+</tr></thead><tbody><tr class="odd"><td>Number of reads</td>
+<td>579,482</td>
+</tr><tr class="even"><td>Total bases</td>
+<td>14,055,262,695 (~14.1 Gb)</td>
+</tr><tr class="odd"><td>Mean read length</td>
+<td>24,254.9</td>
+</tr><tr class="even"><td>Median read length</td>
+<td>22,554.0</td>
+</tr><tr class="odd"><td>Read length N50</td>
+<td>36,292</td>
+</tr><tr class="even"><td>Mean read quality</td>
+<td>12.1</td>
+</tr><tr class="odd"><td>Median read quality</td>
+<td>13.7</td>
+</tr><tr class="even"><td>Reads &gt;Q10</td>
+<td>521,512 (90.0%)</td>
+</tr><tr class="odd"><td>Reads &gt;Q15</td>
+<td>176,536 (30.5%)</td>
+</tr><tr class="even"><td>Reads &gt;Q20</td>
+<td>155 (0.0%)</td>
+</tr><tr class="odd"><td>Longest read</td>
+<td>298,974 bp</td>
+</tr></tbody></table></div>
+</div>
+</div>
+</div>
+<div id="callout3" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
@@ -918,6 +1010,89 @@ reads to assess the quality of the filtered datasets.</p>
 quality of the filtered HiFi and ONT reads. Do you observe any
 improvements in read quality after filtering? We will use these filtered
 reads for downstream genome assembly.</p>
+<div id="accordionSpoiler7" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler7" aria-expanded="false" aria-controls="collapseSpoiler7">
+  <h3 class="accordion-header" id="headingSpoiler7">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Expected NanoPlot: ONT reads after filtering </h3>
+</button>
+<div id="collapseSpoiler7" class="accordion-collapse collapse" aria-labelledby="headingSpoiler7" data-bs-parent="#accordionSpoiler7">
+<div class="accordion-body">
+<figure><img src="fig/nanoplot-ont-post-length-vs-quality.png" alt="KDE scatter plot of ONT read length versus quality after Filtlong filtering showing reads concentrated between 20-80 kb with the shortest and lowest-quality reads removed" class="figure mx-auto d-block"><div class="figcaption">ONT read length vs quality after filtering</div>
+</figure></div>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler8" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler8" aria-expanded="false" aria-controls="collapseSpoiler8">
+  <h3 class="accordion-header" id="headingSpoiler8">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Expected NanoStats: before vs after filtering </h3>
+</button>
+<div id="collapseSpoiler8" class="accordion-collapse collapse" aria-labelledby="headingSpoiler8" data-bs-parent="#accordionSpoiler8">
+<div class="accordion-body">
+<table class="table"><colgroup><col width="10%"><col width="25%"><col width="28%"><col width="14%"><col width="21%"></colgroup><thead><tr class="header"><th>Metric</th>
+<th>PacBio HiFi (raw)</th>
+<th>PacBio HiFi (filtered)</th>
+<th>ONT (raw)</th>
+<th>ONT (filtered)</th>
+</tr></thead><tbody><tr class="odd"><td>Number of reads</td>
+<td>837,586</td>
+<td>251,246</td>
+<td>579,482</td>
+<td>133,217</td>
+</tr><tr class="even"><td>Total bases</td>
+<td>18.6 Gb</td>
+<td>5.4 Gb</td>
+<td>14.1 Gb</td>
+<td>5.4 Gb</td>
+</tr><tr class="odd"><td>Mean read length</td>
+<td>22,251</td>
+<td>21,493</td>
+<td>24,255</td>
+<td>40,535</td>
+</tr><tr class="even"><td>N50 read length</td>
+<td>22,587</td>
+<td>21,636</td>
+<td>36,292</td>
+<td>42,129</td>
+</tr><tr class="odd"><td>Mean quality</td>
+<td>Q26.3</td>
+<td>Q33.5</td>
+<td>Q12.1</td>
+<td>Q15.3</td>
+</tr><tr class="even"><td>Reads &gt;Q20</td>
+<td>100.0%</td>
+<td>100.0%</td>
+<td>0.0%</td>
+<td>0.1%</td>
+</tr><tr class="odd"><td>Reads &gt;Q30</td>
+<td>39.8%</td>
+<td>95.9%</td>
+<td>0.0%</td>
+<td>0.0%</td>
+</tr><tr class="even"><td>Coverage (~135 Mb)</td>
+<td>~138x</td>
+<td>~40x</td>
+<td>~104x</td>
+<td>~40x</td>
+</tr></tbody></table><p>Key observations:</p>
+<ul><li>
+<strong>Both datasets filtered to ~40x</strong> (5.4 Gb target),
+matching our assembly target</li>
+<li>
+<strong>PacBio HiFi quality improved dramatically</strong>: mean
+Q26.3 → Q33.5, and 95.9% reads now &gt;Q30 (was 39.8%)</li>
+<li>
+<strong>ONT read lengths increased after filtering</strong>: mean 24
+kb → 41 kb, N50 36 kb → 42 kb — Filtlong retained the longest,
+highest-quality reads</li>
+<li>
+<strong>ONT quality remains below Q20</strong>: this is expected for
+HAC basecalled ONT data and does not affect assembly quality with modern
+assemblers</li>
+</ul></div>
+</div>
+</div>
+</div>
 </section><section><h2 class="section-heading" id="d--k-mer-based-quality-checks-optional">D. K-mer Based Quality Checks (Optional)<a class="anchor" aria-label="anchor" href="#d--k-mer-based-quality-checks-optional"></a></h2>
 <hr class="half-width"><p><a href="https://github.com/tbenavi1/genomescope2.0" class="external-link">GenomeScope</a>
 is a k-mer-based tool used to profile genomes without requiring a
@@ -974,6 +1149,37 @@ command-line version of GenomeScope2:</p>
 interface</a> to upload the <code>.histo</code> files and generate plots
 interactively (note: the web server may occasionally be
 unavailable).</p>
+<div id="accordionSpoiler9" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler9" aria-expanded="false" aria-controls="collapseSpoiler9">
+  <h3 class="accordion-header" id="headingSpoiler9">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Expected GenomeScope2 results </h3>
+</button>
+<div id="collapseSpoiler9" class="accordion-collapse collapse" aria-labelledby="headingSpoiler9" data-bs-parent="#accordionSpoiler9">
+<div class="accordion-body">
+<p><strong>PacBio HiFi k-mer histogram</strong> shows a clear unimodal
+peak at ~30-31x coverage, confirming the expected ~40x coverage after
+filtering and a homozygous genome. The histogram can be used to estimate
+genome size (~135 Mb) from the peak position.</p>
+<p><strong>However</strong>, GenomeScope2 may fail or produce incomplete
+results depending on the input:</p>
+<ul><li>
+<strong>PacBio HiFi</strong>: GenomeScope2 may only show “starting”
+in its progress file without producing a model. This can happen when the
+k-mer distribution is too clean (very low error rate in HiFi reads) for
+GenomeScope’s error model.</li>
+<li>
+<strong>ONT reads</strong>: GenomeScope2 reports “unconverged”
+across all rounds. The high error rate in ONT reads (~Q12-15) inflates
+the error k-mer peak and overwhelms the genomic signal, preventing model
+convergence.</li>
+</ul><p>These failures are expected and illustrate why k-mer-based genome
+profiling works best with high-accuracy reads (HiFi) at moderate
+coverage, and why the ONT KMC histogram contains all zeros (error k-mers
+dominate at low multiplicity and are filtered out).</p>
+</div>
+</div>
+</div>
+</div>
 <div id="challenge1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -1107,8 +1313,8 @@ any links that you are not going to use.
   "url": "https://genome-assembly.github.io/NA/data-quality-control.html",
   "identifier": "https://genome-assembly.github.io/NA/data-quality-control.html",
   "dateCreated": "2025-02-05",
-  "dateModified": "2026-02-17",
-  "datePublished": "2026-02-17"
+  "dateModified": "2026-02-18",
+  "datePublished": "2026-02-18"
 }
 
   </script><script>

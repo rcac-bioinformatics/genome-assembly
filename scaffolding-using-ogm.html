@@ -340,7 +340,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Scaffolding using Optical Genome Mapping</h1>
-        <p>Last updated on 2026-02-17 |
+        <p>Last updated on 2026-02-18 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/scaffolding-using-ogm.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -627,10 +627,23 @@ including hybrid scaffold progress.</td>
 <td>Compressed archive containing essential scaffolding results for easy
 sharing.</td>
 </tr></tbody></table><p>Within <code>hybrid_scaffolds</code>, the files ending with
-<code>HYBRID_SCAFFOLD.fasta</code> and
+<code>HYBRID_SCAFFOLD_NCBI.fasta</code> and
 <code>HYBRID_SCAFFOLD_NOT_SCAFFOLDED.fasta</code> represent the final
 scaffolded genome and unplaced contigs, respectively. You will need to
-merge these files to obtain your final scaffolded genome assembly.</p>
+merge these files to obtain your final scaffolded genome assembly:</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># For the HiFiasm scaffolded assembly:</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">cat</span> bionano_hifiasm_scaffolding/hybrid_scaffolds/<span class="pp">*</span>HYBRID_SCAFFOLD_NCBI.fasta <span class="dt">\</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>    bionano_hifiasm_scaffolding/hybrid_scaffolds/<span class="pp">*</span>HYBRID_SCAFFOLD_NOT_SCAFFOLDED.fasta <span class="dt">\</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>    <span class="op">&gt;</span> hifiasm_bionano_scaffolded.fasta</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co"># For the Flye scaffolded assembly:</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="fu">cat</span> bionano_flye_scaffolding/hybrid_scaffolds/<span class="pp">*</span>HYBRID_SCAFFOLD_NCBI.fasta <span class="dt">\</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>    bionano_flye_scaffolding/hybrid_scaffolds/<span class="pp">*</span>HYBRID_SCAFFOLD_NOT_SCAFFOLDED.fasta <span class="dt">\</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>    <span class="op">&gt;</span> flye_bionano_scaffolded.fasta</span></code></pre>
+</div>
 </section><section><h2 class="section-heading" id="quality-assessment-of-hybrid-scaffolds">Quality Assessment of Hybrid Scaffolds<a class="anchor" aria-label="anchor" href="#quality-assessment-of-hybrid-scaffolds"></a></h2>
 <hr class="half-width"><p>The hybrid scaffolds report file will be in the
 <code>hybrid_scaffolds</code> directory and will provide a summary of
@@ -669,26 +682,26 @@ identifying any potential issues that need further investigation.</p>
 <td align="right"></td>
 <td align="right"></td>
 </tr><tr class="even"><td align="left">Count</td>
-<td align="right">152</td>
-<td align="right">43</td>
+<td align="right">146</td>
+<td align="right">50</td>
 </tr><tr class="odd"><td align="left">Min length (Mbp)</td>
 <td align="right">0.027</td>
-<td align="right">0.008</td>
+<td align="right">0.007</td>
 </tr><tr class="even"><td align="left">Median length (Mbp)</td>
 <td align="right">0.050</td>
-<td align="right">0.276</td>
+<td align="right">0.132</td>
 </tr><tr class="odd"><td align="left">Mean length (Mbp)</td>
-<td align="right">0.896</td>
-<td align="right">2.797</td>
+<td align="right">0.930</td>
+<td align="right">2.575</td>
 </tr><tr class="even"><td align="left">N50 length (Mbp)</td>
 <td align="right">7.981</td>
-<td align="right">9.261</td>
+<td align="right">11.822</td>
 </tr><tr class="odd"><td align="left">Max length (Mbp)</td>
 <td align="right">13.758</td>
-<td align="right">14.609</td>
+<td align="right">15.517</td>
 </tr><tr class="even"><td align="left">Total length (Mbp)</td>
-<td align="right">136.156</td>
-<td align="right">120.259</td>
+<td align="right">135.747</td>
+<td align="right">128.743</td>
 </tr><tr class="odd"><td align="left"><strong>Conflict Resolution (BNG-NGS
 Alignment)</strong></td>
 <td align="right"></td>
@@ -698,87 +711,87 @@ Alignment)</strong></td>
 <td align="right">0</td>
 </tr><tr class="odd"><td align="left">Conflict cuts made to NGS sequences</td>
 <td align="right">30</td>
-<td align="right">0</td>
+<td align="right">1</td>
 </tr><tr class="even"><td align="left">Bionano maps to be cut</td>
 <td align="right">2</td>
 <td align="right">0</td>
 </tr><tr class="odd"><td align="left">NGS sequences to be cut</td>
 <td align="right">18</td>
-<td align="right">0</td>
+<td align="right">1</td>
 </tr><tr class="even"><td align="left"><strong>NGS FASTA Sequence in Hybrid
 Scaffold</strong></td>
 <td align="right"></td>
 <td align="right"></td>
 </tr><tr class="odd"><td align="left">Count</td>
-<td align="right">40</td>
-<td align="right">26</td>
+<td align="right">41</td>
+<td align="right">21</td>
 </tr><tr class="even"><td align="left">Min length (Mbp)</td>
 <td align="right">0.033</td>
-<td align="right">0.065</td>
+<td align="right">0.064</td>
 </tr><tr class="odd"><td align="left">Median length (Mbp)</td>
-<td align="right">0.945</td>
-<td align="right">1.681</td>
+<td align="right">0.936</td>
+<td align="right">3.272</td>
 </tr><tr class="even"><td align="left">Mean length (Mbp)</td>
-<td align="right">2.689</td>
-<td align="right">4.558</td>
+<td align="right">2.633</td>
+<td align="right">5.797</td>
 </tr><tr class="odd"><td align="left">N50 length (Mbp)</td>
 <td align="right">8.437</td>
-<td align="right">9.261</td>
+<td align="right">11.250</td>
 </tr><tr class="even"><td align="left">Max length (Mbp)</td>
 <td align="right">13.484</td>
-<td align="right">14.609</td>
+<td align="right">15.517</td>
 </tr><tr class="odd"><td align="left">Total length (Mbp)</td>
-<td align="right">107.558</td>
-<td align="right">118.508</td>
+<td align="right">107.968</td>
+<td align="right">121.743</td>
 </tr><tr class="even"><td align="left"><strong>Hybrid Scaffold FASTA</strong></td>
 <td align="right"></td>
 <td align="right"></td>
 </tr><tr class="odd"><td align="left">Count</td>
-<td align="right">11</td>
+<td align="right">10</td>
 <td align="right">12</td>
 </tr><tr class="even"><td align="left">Min length (Mbp)</td>
-<td align="right">0.104</td>
-<td align="right">0.524</td>
+<td align="right">4.083</td>
+<td align="right">0.129</td>
 </tr><tr class="odd"><td align="left">Median length (Mbp)</td>
-<td align="right">11.824</td>
-<td align="right">12.426</td>
+<td align="right">13.162</td>
+<td align="right">12.662</td>
 </tr><tr class="even"><td align="left">Mean length (Mbp)</td>
-<td align="right">10.518</td>
-<td align="right">9.891</td>
+<td align="right">11.601</td>
+<td align="right">10.164</td>
 </tr><tr class="odd"><td align="left">N50 length (Mbp)</td>
 <td align="right">14.479</td>
-<td align="right">14.886</td>
+<td align="right">15.517</td>
 </tr><tr class="even"><td align="left">Max length (Mbp)</td>
-<td align="right">15.227</td>
-<td align="right">16.188</td>
+<td align="right">15.229</td>
+<td align="right">17.656</td>
 </tr><tr class="odd"><td align="left">Total length (Mbp)</td>
-<td align="right">115.698</td>
-<td align="right">118.689</td>
+<td align="right">116.011</td>
+<td align="right">121.972</td>
 </tr><tr class="even"><td align="left"><strong>Hybrid Scaffold FASTA + Not Scaffolded
 NGS</strong></td>
 <td align="right"></td>
 <td align="right"></td>
 </tr><tr class="odd"><td align="left">Count</td>
-<td align="right">161</td>
-<td align="right">33</td>
+<td align="right">153</td>
+<td align="right">43</td>
 </tr><tr class="even"><td align="left">Min length (Mbp)</td>
 <td align="right">0.024</td>
-<td align="right">0.006</td>
+<td align="right">0.000</td>
 </tr><tr class="odd"><td align="left">Median length (Mbp)</td>
-<td align="right">0.051</td>
-<td align="right">0.159</td>
+<td align="right">0.050</td>
+<td align="right">0.135</td>
 </tr><tr class="even"><td align="left">Mean length (Mbp)</td>
-<td align="right">0.896</td>
-<td align="right">3.650</td>
+<td align="right">0.940</td>
+<td align="right">2.999</td>
 </tr><tr class="odd"><td align="left">N50 length (Mbp)</td>
-<td align="right">14.083</td>
-<td align="right">14.886</td>
+<td align="right">14.052</td>
+<td align="right">15.517</td>
 </tr><tr class="even"><td align="left">Max length (Mbp)</td>
-<td align="right">15.227</td>
-<td align="right">16.188</td>
+<td align="right">15.229</td>
+<td align="right">17.656</td>
 </tr><tr class="odd"><td align="left">Total length (Mbp)</td>
-<td align="right">144.295</td>
-<td align="right">120.440</td>
+<td align="right">143.790</td>
+<td align="right">128.972</td>
 </tr></tbody></table><div id="which-assembler-and-data-performed-better" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -788,15 +801,17 @@ NGS</strong></td>
 <h3 class="callout-title">Which assembler and data performed
 better?</h3>
 <div class="callout-content">
-<ul><li>The HiFiasm assembly with PacBio HiFi data resulted in a higher N50
-length and total length in the hybrid scaffold compared to the Flye
-assembly with ONT data.</li>
-<li>The conflict resolution process involved more cuts in the NGS
-sequences for the HiFiasm assembly, indicating a higher level of
-alignment discrepancies.</li>
-<li>The final hybrid scaffold from the HiFiasm assembly had a higher N50
-length and total length, suggesting better contiguity and completeness
-compared to the Flye assembly.</li>
+<ul><li>The Flye ONT assembly produced <strong>fewer conflict cuts</strong>
+(1 NGS cut vs 30 for HiFiasm), indicating better structural agreement
+with the optical map.</li>
+<li>Flye + Bionano achieved a <strong>higher scaffold N50</strong>
+(15.517 Mbp vs 14.479 Mbp) and <strong>larger scaffold max</strong>
+(17.656 Mbp vs 15.229 Mbp).</li>
+<li>HiFiasm + Bionano retained more total sequence (143.790 Mbp vs
+128.972 Mbp), partly due to haplotig duplications inflating the
+total.</li>
+<li>Both assemblies have 5 chromosome-scale scaffolds (evidenced by high
+N50 values close to Arabidopsis chromosome sizes).</li>
 </ul></div>
 </div>
 </div>
@@ -886,8 +901,8 @@ any links that you are not going to use.
   "url": "https://genome-assembly.github.io/NA/scaffolding-using-ogm.html",
   "identifier": "https://genome-assembly.github.io/NA/scaffolding-using-ogm.html",
   "dateCreated": "2025-02-05",
-  "dateModified": "2026-02-17",
-  "datePublished": "2026-02-17"
+  "dateModified": "2026-02-18",
+  "datePublished": "2026-02-18"
 }
 
   </script><script>

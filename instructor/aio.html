@@ -386,7 +386,7 @@
         
 <section id="aio-introduction"><p>Content from <a href="introduction.html">Introduction to Genome assembly</a></p>
 <hr>
-<p>Last updated on 2026-02-17 |
+<p>Last updated on 2026-02-18 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/introduction.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 30 minutes</p>
@@ -628,7 +628,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-assembly-strategies"><p>Content from <a href="assembly-strategies.html">Assembly Strategies</a></p>
 <hr>
-<p>Last updated on 2026-02-17 |
+<p>Last updated on 2026-02-18 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/assembly-strategies.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 20 minutes</p>
@@ -1161,7 +1161,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-data-quality-control"><p>Content from <a href="data-quality-control.html">Data Quality Control</a></p>
 <hr>
-<p>Last updated on 2026-02-17 |
+<p>Last updated on 2026-02-18 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/data-quality-control.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 60 minutes</p>
@@ -1579,6 +1579,78 @@ length and quality score distributions.</li>
 <strong>Summary statistics</strong>: N50 value, maximum read length,
 and other key metrics.</li>
 </ul>
+<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
+  <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Expected NanoPlot scatter plot for PacBio HiFi reads </h3>
+</button>
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div class="accordion-body">
+<figure><img src="../fig/nanoplot-pacbio-pre-length-vs-quality.png" alt="KDE scatter plot of PacBio HiFi read length versus average read quality showing a tight cluster of reads between 15-30 kb with quality scores predominantly above Q20" class="figure mx-auto d-block"><div class="figcaption">PacBio HiFi read length vs quality</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler3" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
+  <h3 class="accordion-header" id="headingSpoiler3">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Expected NanoStats for PacBio HiFi reads </h3>
+</button>
+<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div class="accordion-body">
+<table class="table">
+<thead><tr class="header">
+<th>Metric</th>
+<th>Value</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Number of reads</td>
+<td>837,586</td>
+</tr>
+<tr class="even">
+<td>Total bases</td>
+<td>18,636,790,429 (~18.6 Gb)</td>
+</tr>
+<tr class="odd">
+<td>Mean read length</td>
+<td>22,250.6</td>
+</tr>
+<tr class="even">
+<td>Median read length</td>
+<td>21,506.0</td>
+</tr>
+<tr class="odd">
+<td>Read length N50</td>
+<td>22,587</td>
+</tr>
+<tr class="even">
+<td>Mean read quality</td>
+<td>26.3</td>
+</tr>
+<tr class="odd">
+<td>Median read quality</td>
+<td>28.4</td>
+</tr>
+<tr class="even">
+<td>Reads &gt;Q10</td>
+<td>837,586 (100.0%)</td>
+</tr>
+<tr class="odd">
+<td>Reads &gt;Q20</td>
+<td>837,586 (100.0%)</td>
+</tr>
+<tr class="even">
+<td>Reads &gt;Q30</td>
+<td>333,658 (39.8%)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
 <div id="callout2" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -1614,12 +1686,12 @@ Create a slurm script to run NanoPlot on the basecalled ONT reads.</p>
 <span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>   <span class="at">--dpi</span> 300 <span class="dt">\</span></span>
 <span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>   <span class="at">--fastq</span> ../00_rawdata/At_ont-reads.fastq.gz</span></code></pre>
 </div>
-<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
+<div id="accordionSpoiler4" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
-  <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler4" aria-expanded="false" aria-controls="collapseSpoiler4">
+  <h3 class="accordion-header" id="headingSpoiler4">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Show details </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler4" class="accordion-collapse collapse" aria-labelledby="headingSpoiler4" data-bs-parent="#accordionSpoiler4">
 <div class="accordion-body">
 <p>The stdout from the NanoPlot run will look like this:</p>
 <pre><code>2025-02-13 12:15:51,066 NanoPlot 1.44.1 started with arguments Namespace(threads=8, verbose=True, store=False, raw=False, huge=False, outdir='nanoplot_ont_pre', no_static=False, prefix='At_ONT_', tsv_stats=False, only_report=False, info_in_report=False, maxlength=None, minlength=None, drop_outliers=False, downsample=None, loglength=False, percentqual=False, alength=False, minqual=None, runtime_until=None, barcoded=False, no_supplementary=False, color='#4CB391', colormap='Greens', format=['png'], plots=['kde'], legacy=None, listcolors=False, listcolormaps=False, no_N50=False, N50=True, title=None, font_scale=1, dpi=300, hide_stats=False, fastq=['At_ont-reads.fastq.gz'], fasta=None, fastq_rich=None, fastq_minimal=None, summary=None, bam=None, ubam=None, cram=None, pickle=None, feather=None, path='nanoplot_ont_pre/At_ONT_')
@@ -1671,6 +1743,82 @@ length and quality score distributions.</li>
 <strong>Summary statistics</strong>: N50 value, maximum read length,
 and other key metrics.</li>
 </ul>
+<div id="accordionSpoiler5" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler5" aria-expanded="false" aria-controls="collapseSpoiler5">
+  <h3 class="accordion-header" id="headingSpoiler5">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Expected NanoPlot scatter plot for ONT reads </h3>
+</button>
+<div id="collapseSpoiler5" class="accordion-collapse collapse" aria-labelledby="headingSpoiler5" data-bs-parent="#accordionSpoiler5">
+<div class="accordion-body">
+<figure><img src="../fig/nanoplot-ont-pre-length-vs-quality.png" alt="KDE scatter plot of ONT read length versus average read quality showing a broad spread of reads from 1-200 kb with quality scores ranging from Q5 to Q20" class="figure mx-auto d-block"><div class="figcaption">ONT read length vs quality</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler6" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler6" aria-expanded="false" aria-controls="collapseSpoiler6">
+  <h3 class="accordion-header" id="headingSpoiler6">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Expected NanoStats for ONT reads </h3>
+</button>
+<div id="collapseSpoiler6" class="accordion-collapse collapse" aria-labelledby="headingSpoiler6" data-bs-parent="#accordionSpoiler6">
+<div class="accordion-body">
+<table class="table">
+<thead><tr class="header">
+<th>Metric</th>
+<th>Value</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Number of reads</td>
+<td>579,482</td>
+</tr>
+<tr class="even">
+<td>Total bases</td>
+<td>14,055,262,695 (~14.1 Gb)</td>
+</tr>
+<tr class="odd">
+<td>Mean read length</td>
+<td>24,254.9</td>
+</tr>
+<tr class="even">
+<td>Median read length</td>
+<td>22,554.0</td>
+</tr>
+<tr class="odd">
+<td>Read length N50</td>
+<td>36,292</td>
+</tr>
+<tr class="even">
+<td>Mean read quality</td>
+<td>12.1</td>
+</tr>
+<tr class="odd">
+<td>Median read quality</td>
+<td>13.7</td>
+</tr>
+<tr class="even">
+<td>Reads &gt;Q10</td>
+<td>521,512 (90.0%)</td>
+</tr>
+<tr class="odd">
+<td>Reads &gt;Q15</td>
+<td>176,536 (30.5%)</td>
+</tr>
+<tr class="even">
+<td>Reads &gt;Q20</td>
+<td>155 (0.0%)</td>
+</tr>
+<tr class="odd">
+<td>Longest read</td>
+<td>298,974 bp</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
 <div id="callout3" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -1814,6 +1962,121 @@ reads to assess the quality of the filtered datasets.</p>
 quality of the filtered HiFi and ONT reads. Do you observe any
 improvements in read quality after filtering? We will use these filtered
 reads for downstream genome assembly.</p>
+<div id="accordionSpoiler7" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler7" aria-expanded="false" aria-controls="collapseSpoiler7">
+  <h3 class="accordion-header" id="headingSpoiler7">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Expected NanoPlot: ONT reads after filtering </h3>
+</button>
+<div id="collapseSpoiler7" class="accordion-collapse collapse" aria-labelledby="headingSpoiler7" data-bs-parent="#accordionSpoiler7">
+<div class="accordion-body">
+<figure><img src="../fig/nanoplot-ont-post-length-vs-quality.png" alt="KDE scatter plot of ONT read length versus quality after Filtlong filtering showing reads concentrated between 20-80 kb with the shortest and lowest-quality reads removed" class="figure mx-auto d-block"><div class="figcaption">ONT read length vs quality after filtering</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler8" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler8" aria-expanded="false" aria-controls="collapseSpoiler8">
+  <h3 class="accordion-header" id="headingSpoiler8">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Expected NanoStats: before vs after filtering </h3>
+</button>
+<div id="collapseSpoiler8" class="accordion-collapse collapse" aria-labelledby="headingSpoiler8" data-bs-parent="#accordionSpoiler8">
+<div class="accordion-body">
+<table class="table">
+<colgroup>
+<col width="10%">
+<col width="25%">
+<col width="28%">
+<col width="14%">
+<col width="21%">
+</colgroup>
+<thead><tr class="header">
+<th>Metric</th>
+<th>PacBio HiFi (raw)</th>
+<th>PacBio HiFi (filtered)</th>
+<th>ONT (raw)</th>
+<th>ONT (filtered)</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Number of reads</td>
+<td>837,586</td>
+<td>251,246</td>
+<td>579,482</td>
+<td>133,217</td>
+</tr>
+<tr class="even">
+<td>Total bases</td>
+<td>18.6 Gb</td>
+<td>5.4 Gb</td>
+<td>14.1 Gb</td>
+<td>5.4 Gb</td>
+</tr>
+<tr class="odd">
+<td>Mean read length</td>
+<td>22,251</td>
+<td>21,493</td>
+<td>24,255</td>
+<td>40,535</td>
+</tr>
+<tr class="even">
+<td>N50 read length</td>
+<td>22,587</td>
+<td>21,636</td>
+<td>36,292</td>
+<td>42,129</td>
+</tr>
+<tr class="odd">
+<td>Mean quality</td>
+<td>Q26.3</td>
+<td>Q33.5</td>
+<td>Q12.1</td>
+<td>Q15.3</td>
+</tr>
+<tr class="even">
+<td>Reads &gt;Q20</td>
+<td>100.0%</td>
+<td>100.0%</td>
+<td>0.0%</td>
+<td>0.1%</td>
+</tr>
+<tr class="odd">
+<td>Reads &gt;Q30</td>
+<td>39.8%</td>
+<td>95.9%</td>
+<td>0.0%</td>
+<td>0.0%</td>
+</tr>
+<tr class="even">
+<td>Coverage (~135 Mb)</td>
+<td>~138x</td>
+<td>~40x</td>
+<td>~104x</td>
+<td>~40x</td>
+</tr>
+</tbody>
+</table>
+<p>Key observations:</p>
+<ul>
+<li>
+<strong>Both datasets filtered to ~40x</strong> (5.4 Gb target),
+matching our assembly target</li>
+<li>
+<strong>PacBio HiFi quality improved dramatically</strong>: mean
+Q26.3 → Q33.5, and 95.9% reads now &gt;Q30 (was 39.8%)</li>
+<li>
+<strong>ONT read lengths increased after filtering</strong>: mean 24
+kb → 41 kb, N50 36 kb → 42 kb — Filtlong retained the longest,
+highest-quality reads</li>
+<li>
+<strong>ONT quality remains below Q20</strong>: this is expected for
+HAC basecalled ONT data and does not affect assembly quality with modern
+assemblers</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 </section><section><h2 class="section-heading" id="d--k-mer-based-quality-checks-optional">D. K-mer Based Quality Checks (Optional)<a class="anchor" aria-label="anchor" href="#d--k-mer-based-quality-checks-optional"></a>
 </h2>
 <hr class="half-width">
@@ -1872,6 +2135,39 @@ command-line version of GenomeScope2:</p>
 interface</a> to upload the <code>.histo</code> files and generate plots
 interactively (note: the web server may occasionally be
 unavailable).</p>
+<div id="accordionSpoiler9" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler9" aria-expanded="false" aria-controls="collapseSpoiler9">
+  <h3 class="accordion-header" id="headingSpoiler9">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Expected GenomeScope2 results </h3>
+</button>
+<div id="collapseSpoiler9" class="accordion-collapse collapse" aria-labelledby="headingSpoiler9" data-bs-parent="#accordionSpoiler9">
+<div class="accordion-body">
+<p><strong>PacBio HiFi k-mer histogram</strong> shows a clear unimodal
+peak at ~30-31x coverage, confirming the expected ~40x coverage after
+filtering and a homozygous genome. The histogram can be used to estimate
+genome size (~135 Mb) from the peak position.</p>
+<p><strong>However</strong>, GenomeScope2 may fail or produce incomplete
+results depending on the input:</p>
+<ul>
+<li>
+<strong>PacBio HiFi</strong>: GenomeScope2 may only show “starting”
+in its progress file without producing a model. This can happen when the
+k-mer distribution is too clean (very low error rate in HiFi reads) for
+GenomeScope’s error model.</li>
+<li>
+<strong>ONT reads</strong>: GenomeScope2 reports “unconverged”
+across all rounds. The high error rate in ONT reads (~Q12-15) inflates
+the error k-mer peak and overwhelms the genomic signal, preventing model
+convergence.</li>
+</ul>
+<p>These failures are expected and illustrate why k-mer-based genome
+profiling works best with high-accuracy reads (HiFi) at moderate
+coverage, and why the ONT KMC histogram contains all zeros (error k-mers
+dominate at low multiplicity and are filtered out).</p>
+</div>
+</div>
+</div>
+</div>
 <div id="challenge1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -1951,7 +2247,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-pacbio-hifi-assembly"><p>Content from <a href="pacbio-hifi-assembly.html">PacBio HiFi Assembly using HiFiasm</a></p>
 <hr>
-<p>Last updated on 2026-02-17 |
+<p>Last updated on 2026-02-18 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/pacbio-hifi-assembly.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 60 minutes</p>
@@ -2279,7 +2575,7 @@ Assembly) format. You can extract the sequences from this file using
 <span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>    <span class="at">--fast</span> <span class="dt">\</span></span>
 <span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>    <span class="at">--threads</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
 <span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>    <span class="at">-o</span> hifiasm_default/quast_basic_stats <span class="dt">\</span></span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>    hifiasm_default/<span class="pp">*</span>p_ctg.fasta</span></code></pre>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>    hifiasm_default/<span class="pp">*</span>.bp.p_ctg.fasta</span></code></pre>
 </div>
 <div id="quast-metrics" class="callout">
 <div class="callout-square">
@@ -2363,9 +2659,70 @@ meaning fewer breaks in the genome.<br>
 </li>
 <li>
 <strong>No <code>N</code> bases</strong> means the assembly is
-gap-free and doesn’t contain unresolved regions.<br>
-</li>
+gap-free and doesn’t contain unresolved regions.</li>
 </ul>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Expected QUAST output for HiFiasm default assembly
+  </h3>
+</button>
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div class="accordion-body">
+<table class="table">
+<thead><tr class="header">
+<th>Metric</th>
+<th align="right">Primary contigs</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td># Contigs</td>
+<td align="right">146</td>
+</tr>
+<tr class="even">
+<td>Largest contig</td>
+<td align="right">13.76 Mb</td>
+</tr>
+<tr class="odd">
+<td>Total length</td>
+<td align="right">135.75 Mb</td>
+</tr>
+<tr class="even">
+<td>N50</td>
+<td align="right">7.98 Mb</td>
+</tr>
+<tr class="odd">
+<td>N90</td>
+<td align="right">1.13 Mb</td>
+</tr>
+<tr class="even">
+<td>auN</td>
+<td align="right">7.70 Mb</td>
+</tr>
+<tr class="odd">
+<td>L50</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td>L90</td>
+<td align="right">21</td>
+</tr>
+<tr class="odd">
+<td># N’s per 100 kbp</td>
+<td align="right">0.00</td>
+</tr>
+</tbody>
+</table>
+<p>The total assembly size (135.75 Mb) is close to the expected <em>A.
+thaliana</em> genome size (~135 Mb), and the N50 of ~8 Mb indicates good
+contiguity. Zero <code>N</code> bases means the assembly is completely
+gap-free.</p>
+</div>
 </div>
 </div>
 </div>
@@ -2541,7 +2898,7 @@ them faster.</p>
 <span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="ex">ml</span> quast</span>
 <span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> quast_stats</span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> hifiasm_purge-{0..3}/<span class="pp">*</span>_p_ctg.fasta<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> hifiasm_purge-{0..3}/<span class="pp">*</span>.bp.p_ctg.fasta<span class="kw">;</span> <span class="cf">do</span></span>
 <span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>    <span class="fu">ln</span> <span class="at">-s</span> ../<span class="va">${fasta}</span> quast_stats/</span>
 <span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="cf">done</span></span>
 <span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="bu">cd</span> quast_stats</span>
@@ -2549,7 +2906,7 @@ them faster.</p>
 <span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a>    <span class="at">--fast</span> <span class="dt">\</span></span>
 <span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a>    <span class="at">--threads</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
 <span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a>    <span class="at">-o</span> quast_purge_level_stats <span class="dt">\</span></span>
-<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a>    <span class="pp">*</span>_p_ctg.fasta</span></code></pre>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a>    <span class="pp">*</span>.bp.p_ctg.fasta</span></code></pre>
 </div>
 <p>Run Compleasm to compare the assemblies</p>
 <div class="codewrapper sourceCode" id="cb13">
@@ -2559,11 +2916,11 @@ them faster.</p>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="ex">ml</span> compleasm</span>
 <span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> compleasm_stats</span>
-<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> hifiasm_purge-{0..3}/<span class="pp">*</span>_p_ctg.fasta<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> hifiasm_purge-{0..3}/<span class="pp">*</span>.bp.p_ctg.fasta<span class="kw">;</span> <span class="cf">do</span></span>
 <span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a>    <span class="fu">ln</span> <span class="at">-s</span> <span class="va">${fasta}</span> compleasm_stats/</span>
 <span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="cf">done</span></span>
 <span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="bu">cd</span> compleasm_stats</span>
-<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> <span class="pp">*</span>_p_ctg.fasta<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a><span class="cf">for</span> fasta <span class="kw">in</span> <span class="pp">*</span>.bp.p_ctg.fasta<span class="kw">;</span> <span class="cf">do</span></span>
 <span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a>    <span class="ex">compleasm</span> run <span class="dt">\</span></span>
 <span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a>       <span class="at">-a</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
 <span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a>       <span class="at">-o</span> <span class="va">${fasta</span><span class="op">%</span>.<span class="pp">*</span><span class="va">}</span> <span class="dt">\</span></span>
@@ -2575,6 +2932,130 @@ them faster.</p>
 statistics and assess the impact of different purging levels on the
 assembly quality. Look for metrics like N50, L50, and total assembly
 size to evaluate the contiguity and completeness of the assemblies.</p>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
+  <h3 class="accordion-header" id="headingSpoiler2">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Expected purge level comparison results
+  </h3>
+</button>
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div class="accordion-body">
+<p><strong>QUAST comparison (primary contigs only)</strong></p>
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="9%">
+<col width="22%">
+<col width="22%">
+<col width="22%">
+<col width="22%">
+</colgroup>
+<thead><tr class="header">
+<th>Metric</th>
+<th align="right">purge-0 (<code>-l 0</code>)</th>
+<th align="right">purge-1 (<code>-l 1</code>)</th>
+<th align="right">purge-2 (<code>-l 2</code>)</th>
+<th align="right">purge-3 (<code>-l 3</code>)</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td># Contigs</td>
+<td align="right">179</td>
+<td align="right">172</td>
+<td align="right">162</td>
+<td align="right">146</td>
+</tr>
+<tr class="even">
+<td>Total length (Mb)</td>
+<td align="right">143.60</td>
+<td align="right">142.77</td>
+<td align="right">141.53</td>
+<td align="right">135.75</td>
+</tr>
+<tr class="odd">
+<td>Largest contig (Mb)</td>
+<td align="right">13.76</td>
+<td align="right">13.76</td>
+<td align="right">13.76</td>
+<td align="right">13.76</td>
+</tr>
+<tr class="even">
+<td>N50 (Mb)</td>
+<td align="right">4.92</td>
+<td align="right">4.92</td>
+<td align="right">4.95</td>
+<td align="right">7.98</td>
+</tr>
+<tr class="odd">
+<td>L50</td>
+<td align="right">8</td>
+<td align="right">8</td>
+<td align="right">8</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td>auN (Mb)</td>
+<td align="right">6.62</td>
+<td align="right">6.66</td>
+<td align="right">6.74</td>
+<td align="right">7.70</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Compleasm results (primary contigs,
+brassicales_odb10)</strong></p>
+<table class="table">
+<thead><tr class="header">
+<th>Category</th>
+<th align="right">purge-0</th>
+<th align="right">purge-1</th>
+<th align="right">purge-2</th>
+<th align="right">purge-3</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Single (S)</td>
+<td align="right">98.89%</td>
+<td align="right">98.89%</td>
+<td align="right">98.89%</td>
+<td align="right">95.97%</td>
+</tr>
+<tr class="even">
+<td>Duplicated (D)</td>
+<td align="right">1.04%</td>
+<td align="right">1.04%</td>
+<td align="right">1.04%</td>
+<td align="right">1.11%</td>
+</tr>
+<tr class="odd">
+<td>Fragmented (F)</td>
+<td align="right">0.02%</td>
+<td align="right">0.02%</td>
+<td align="right">0.02%</td>
+<td align="right">0.02%</td>
+</tr>
+<tr class="even">
+<td>Missing (M)</td>
+<td align="right">0.04%</td>
+<td align="right">0.04%</td>
+<td align="right">0.04%</td>
+<td align="right">2.89%</td>
+</tr>
+</tbody>
+</table>
+<p>Notice that purge-3 (<code>-l 3</code>, the default) has the highest
+N50 (7.98 Mb) and smallest total size (135.75 Mb, closest to the
+expected ~135 Mb genome size), but also has ~2.89% missing BUSCO genes
+due to aggressive purging. Purge levels 0-2 retain nearly all genes
+(only 0.04% missing) but have inflated assembly sizes due to retained
+haplotig duplications. For <em>A. thaliana</em> (a highly inbred,
+near-homozygous line), <code>-l 3</code> produces an assembly closest to
+the true haploid genome size.</p>
+</div>
 </div>
 </div>
 </div>
@@ -2668,13 +3149,115 @@ assembly graph, contigs, and other relevant files.</p>
 <span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a><span class="ex">ml</span> compleasm</span>
 <span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="ex">compleasm</span> run <span class="dt">\</span></span>
 <span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a>  <span class="at">-a</span> flye_hifi/assembly.fasta <span class="dt">\</span></span>
-<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a>  <span class="at">-o</span> flye_hifi <span class="dt">\</span></span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a>  <span class="at">-o</span> flye_hifi_compleasm <span class="dt">\</span></span>
 <span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a>  <span class="at">-l</span> brassicales_odb10 <span class="dt">\</span></span>
 <span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a>  <span class="at">-t</span> <span class="va">${SLURM_CPUS_PER_TASK}</span></span></code></pre>
 </div>
 <p>Which assembler did a better job at assembling the genome? Compare
 the statistics from QUAST and Compleasm for Flye and HiFiasm assemblies
 to evaluate their performance.</p>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler3" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
+  <h3 class="accordion-header" id="headingSpoiler3">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Expected Flye HiFi results
+  </h3>
+</button>
+<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div class="accordion-body">
+<p><strong>QUAST results</strong></p>
+<table class="table">
+<thead><tr class="header">
+<th>Metric</th>
+<th align="right">Flye HiFi</th>
+<th align="right">HiFiasm default</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td># Contigs</td>
+<td align="right">87</td>
+<td align="right">146</td>
+</tr>
+<tr class="even">
+<td>Largest contig (Mb)</td>
+<td align="right">11.08</td>
+<td align="right">13.76</td>
+</tr>
+<tr class="odd">
+<td>Total length (Mb)</td>
+<td align="right">133.69</td>
+<td align="right">135.75</td>
+</tr>
+<tr class="even">
+<td>N50 (Mb)</td>
+<td align="right">5.97</td>
+<td align="right">7.98</td>
+</tr>
+<tr class="odd">
+<td>L50</td>
+<td align="right">8</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td>auN (Mb)</td>
+<td align="right">5.64</td>
+<td align="right">7.70</td>
+</tr>
+<tr class="odd">
+<td>N90 (Mb)</td>
+<td align="right">0.96</td>
+<td align="right">1.13</td>
+</tr>
+<tr class="even">
+<td># N’s per 100 kbp</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Compleasm results (brassicales_odb10)</strong></p>
+<table class="table">
+<thead><tr class="header">
+<th>Category</th>
+<th align="right">Flye HiFi</th>
+<th align="right">HiFiasm default</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Single (S)</td>
+<td align="right">98.89%</td>
+<td align="right">95.97%</td>
+</tr>
+<tr class="even">
+<td>Duplicated (D)</td>
+<td align="right">1.04%</td>
+<td align="right">1.11%</td>
+</tr>
+<tr class="odd">
+<td>Fragmented (F)</td>
+<td align="right">0.02%</td>
+<td align="right">0.02%</td>
+</tr>
+<tr class="even">
+<td>Missing (M)</td>
+<td align="right">0.04%</td>
+<td align="right">2.89%</td>
+</tr>
+</tbody>
+</table>
+<p>Flye produces fewer contigs (87 vs 146) but with a lower N50 (5.97 vs
+7.98 Mb). Flye’s total size (133.69 Mb) is slightly smaller than
+expected. Both assemblers produce gap-free assemblies. Notably, Flye
+retains more complete BUSCO genes (98.89% single-copy) compared to
+HiFiasm’s default purge level 3 (95.97%), because HiFiasm’s aggressive
+purging removes some legitimate single-copy regions. For a fairer BUSCO
+comparison, consider HiFiasm at purge level 0-2 (which also shows 98.89%
+single-copy).</p>
+</div>
 </div>
 </div>
 </div>
@@ -2709,7 +3292,7 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-oxford-nanopore-assembly"><p>Content from <a href="oxford-nanopore-assembly.html">Oxford Nanopore Assembly using Flye</a></p>
 <hr>
-<p>Last updated on 2026-02-17 |
+<p>Last updated on 2026-02-18 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/oxford-nanopore-assembly.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 60 minutes</p>
@@ -2991,6 +3574,157 @@ components of the Flye output include:</p>
 </tr>
 </tbody>
 </table>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Expected assembly_info.txt (top 15 contigs)
+  </h3>
+</button>
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div class="accordion-body">
+<table class="table">
+<thead><tr class="header">
+<th>Contig</th>
+<th align="right">Length (Mb)</th>
+<th align="right">Coverage</th>
+<th align="center">Circular</th>
+<th align="center">Repeat</th>
+<th align="right">Multiplicity</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>contig_5</td>
+<td align="right">15.52</td>
+<td align="right">38x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td>contig_19</td>
+<td align="right">14.50</td>
+<td align="right">39x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>contig_20</td>
+<td align="right">14.08</td>
+<td align="right">37x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td>contig_7</td>
+<td align="right">12.73</td>
+<td align="right">40x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>contig_8</td>
+<td align="right">11.82</td>
+<td align="right">32x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td>contig_36</td>
+<td align="right">11.24</td>
+<td align="right">38x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>contig_6</td>
+<td align="right">10.09</td>
+<td align="right">35x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td>contig_23</td>
+<td align="right">8.77</td>
+<td align="right">39x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>contig_102</td>
+<td align="right">6.39</td>
+<td align="right">40x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td>contig_12</td>
+<td align="right">6.23</td>
+<td align="right">34x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>contig_58</td>
+<td align="right">3.27</td>
+<td align="right">31x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td>contig_11</td>
+<td align="right">3.24</td>
+<td align="right">27x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>contig_13</td>
+<td align="right">3.23</td>
+<td align="right">33x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td>contig_10</td>
+<td align="right">2.35</td>
+<td align="right">29x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td>contig_15</td>
+<td align="right">0.94</td>
+<td align="right">22x</td>
+<td align="center">N</td>
+<td align="center">N</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<p>The assembly has 50 contigs total. The top 5 contigs (&gt;11 Mb each)
+likely correspond to the 5 chromosomes of <em>A. thaliana</em>. Notable
+entries include contig_104 (84 kb, 2769x coverage, repeat=Y, mult=64)
+and contig_34 (26 kb, 4808x, repeat=Y, mult=111), which represent
+collapsed repetitive elements (likely rDNA or centromeric repeats).</p>
+</div>
+</div>
+</div>
+</div>
 <div id="which-file-should-i-use-as-my-final-assembly" class="callout prereq">
 <div class="callout-square">
 <i class="callout-icon" data-feather="check"></i>
@@ -3035,6 +3769,115 @@ assembly statistics. Based on your previous assembly using
 <code>hifiasm</code>, what assembly do you think is better? What metrics
 are you using to make this decision? Discuss which assembly has better
 contiguity and completeness based on these statistics.</p>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
+  <h3 class="accordion-header" id="headingSpoiler2">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Expected QUAST output for Flye ONT assembly
+  </h3>
+</button>
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div class="accordion-body">
+<table class="table">
+<thead><tr class="header">
+<th>Metric</th>
+<th align="right">Flye ONT</th>
+<th align="right">HiFiasm HiFi (default)</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td># Contigs</td>
+<td align="right">50</td>
+<td align="right">146</td>
+</tr>
+<tr class="even">
+<td>Largest contig (Mb)</td>
+<td align="right">15.52</td>
+<td align="right">13.76</td>
+</tr>
+<tr class="odd">
+<td>Total length (Mb)</td>
+<td align="right">128.74</td>
+<td align="right">135.75</td>
+</tr>
+<tr class="even">
+<td>N50 (Mb)</td>
+<td align="right">11.82</td>
+<td align="right">7.98</td>
+</tr>
+<tr class="odd">
+<td>L50</td>
+<td align="right">5</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td>auN (Mb)</td>
+<td align="right">10.68</td>
+<td align="right">7.70</td>
+</tr>
+<tr class="odd">
+<td>N90 (Mb)</td>
+<td align="right">3.24</td>
+<td align="right">1.13</td>
+</tr>
+<tr class="even">
+<td># N’s per 100 kbp</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+</tr>
+</tbody>
+</table>
+<p>The Flye ONT assembly has remarkably high contiguity (N50 = 11.82 Mb)
+with only 50 contigs, significantly better than HiFiasm HiFi in terms of
+contiguity. However, the total size (128.74 Mb) is ~6 Mb smaller than
+expected (~135 Mb), suggesting some genomic regions may be missing or
+collapsed. Both assemblies are gap-free.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler3" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
+  <h3 class="accordion-header" id="headingSpoiler3">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Expected Compleasm results for Flye ONT assembly
+  </h3>
+</button>
+<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div class="accordion-body">
+<table class="table">
+<thead><tr class="header">
+<th>Category</th>
+<th align="right">Value</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Single (S)</td>
+<td align="right">98.93%</td>
+</tr>
+<tr class="even">
+<td>Duplicated (D)</td>
+<td align="right">1.07%</td>
+</tr>
+<tr class="odd">
+<td>Fragmented (F)</td>
+<td align="right">0.00%</td>
+</tr>
+<tr class="even">
+<td>Missing (M)</td>
+<td align="right">0.00%</td>
+</tr>
+</tbody>
+</table>
+<p>The Flye ONT assembly achieves near-perfect BUSCO completeness with
+0% missing genes, indicating comprehensive genome coverage despite the
+slightly smaller total size (128.74 Mb vs expected ~135 Mb).</p>
+</div>
 </div>
 </div>
 </div>
@@ -3095,7 +3938,7 @@ correct errors:</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="ex">ml</span> medaka</span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="ex">medaka_polish</span> <span class="dt">\</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="ex">medaka_consensus</span> <span class="dt">\</span></span>
 <span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>   <span class="at">-i</span> ../01_data-qc/At_ont-reads-filtered.fastq <span class="dt">\</span></span>
 <span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>   <span class="at">-d</span> flye_ont/assembly.fasta <span class="dt">\</span></span>
 <span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>   <span class="at">-o</span> medaka_polished <span class="dt">\</span></span>
@@ -3113,8 +3956,9 @@ correct errors:</p>
 <p>The <code>-m</code> flag specifies the Medaka model, which should
 match your basecalling chemistry and model. For our data (R10.4.1,
 Dorado HAC), we use <code>r1041_e82_400bps_hac_v5.0.0</code>. You can
-list available models with <code>medaka --list_models</code>. Using the
-wrong model will produce suboptimal results.</p>
+list available models with <code>medaka tools list_models</code>. Using
+the wrong model will produce suboptimal results. The output will be
+<code>consensus.fasta</code> in the specified output directory.</p>
 </div>
 </div>
 </div>
@@ -3196,6 +4040,99 @@ GFA to FASTA using the following command:</p>
 </div>
 </div>
 </div>
+<div id="accordionSpoiler4" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler4" aria-expanded="false" aria-controls="collapseSpoiler4">
+  <h3 class="accordion-header" id="headingSpoiler4">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Expected HiFiasm ONT results
+  </h3>
+</button>
+<div id="collapseSpoiler4" class="accordion-collapse collapse" aria-labelledby="headingSpoiler4" data-bs-parent="#accordionSpoiler4">
+<div class="accordion-body">
+<p><strong>QUAST results</strong></p>
+<table class="table">
+<thead><tr class="header">
+<th>Metric</th>
+<th align="right">Primary</th>
+<th align="right">Hap1</th>
+<th align="right">Hap2</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td># Contigs</td>
+<td align="right">105</td>
+<td align="right">104</td>
+<td align="right">41</td>
+</tr>
+<tr class="even">
+<td>Largest contig (Mb)</td>
+<td align="right">13.18</td>
+<td align="right">13.18</td>
+<td align="right">13.10</td>
+</tr>
+<tr class="odd">
+<td>Total length (Mb)</td>
+<td align="right">127.42</td>
+<td align="right">125.76</td>
+<td align="right">89.21</td>
+</tr>
+<tr class="even">
+<td>N50 (Mb)</td>
+<td align="right">11.34</td>
+<td align="right">11.34</td>
+<td align="right">11.46</td>
+</tr>
+<tr class="odd">
+<td>L50</td>
+<td align="right">6</td>
+<td align="right">6</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td>auN (Mb)</td>
+<td align="right">8.70</td>
+<td align="right">8.79</td>
+<td align="right">9.90</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Compleasm results (primary contigs,
+brassicales_odb10)</strong></p>
+<table class="table">
+<thead><tr class="header">
+<th>Category</th>
+<th align="right">Value</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Single (S)</td>
+<td align="right">98.61%</td>
+</tr>
+<tr class="even">
+<td>Duplicated (D)</td>
+<td align="right">1.04%</td>
+</tr>
+<tr class="odd">
+<td>Fragmented (F)</td>
+<td align="right">0.00%</td>
+</tr>
+<tr class="even">
+<td>Missing (M)</td>
+<td align="right">0.35%</td>
+</tr>
+</tbody>
+</table>
+<p>HiFiasm with ONT data produces a highly contiguous assembly (N50 =
+11.34 Mb), comparable to Flye ONT. However, HiFiasm generates more
+contigs (105 vs 50) and has a total size of 127.42 Mb (smaller than
+Flye’s 128.74 Mb). The BUSCO completeness is excellent at 98.61%
+single-copy. HiFiasm also provides haplotype-resolved output, with hap2
+capturing ~89 Mb of sequence.</p>
+</div>
+</div>
+</div>
+</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -3225,7 +4162,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-hybrid-assembly"><p>Content from <a href="hybrid-assembly.html">Hybrid Long Read Assembly (optional)</a></p>
 <hr>
-<p>Last updated on 2026-02-17 |
+<p>Last updated on 2026-02-18 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/hybrid-assembly.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 45 minutes</p>
@@ -3350,6 +4287,92 @@ preferred over single-technology assembly?</li>
 <span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>   <span class="at">-l</span> brassicales_odb10  <span class="dt">\</span></span>
 <span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>   <span class="at">-t</span> <span class="va">${SLURM_CPUS_PER_TASK}</span></span></code></pre>
 </div>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Expected hybrid assembly results
+  </h3>
+</button>
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div class="accordion-body">
+<p><strong>QUAST results</strong></p>
+<table class="table">
+<thead><tr class="header">
+<th>Metric</th>
+<th align="right">Hybrid Flye</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td># Contigs</td>
+<td align="right">336</td>
+</tr>
+<tr class="even">
+<td>Largest contig (Mb)</td>
+<td align="right">10.25</td>
+</tr>
+<tr class="odd">
+<td>Total length (Mb)</td>
+<td align="right">121.11</td>
+</tr>
+<tr class="even">
+<td>N50 (Mb)</td>
+<td align="right">4.06</td>
+</tr>
+<tr class="odd">
+<td>L50</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td>auN (Mb)</td>
+<td align="right">4.58</td>
+</tr>
+<tr class="odd">
+<td>N90 (Mb)</td>
+<td align="right">0.16</td>
+</tr>
+<tr class="even">
+<td># N’s per 100 kbp</td>
+<td align="right">0.00</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Compleasm results (brassicales_odb10)</strong></p>
+<table class="table">
+<thead><tr class="header">
+<th>Category</th>
+<th align="right">Value</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Single (S)</td>
+<td align="right">98.50%</td>
+</tr>
+<tr class="even">
+<td>Duplicated (D)</td>
+<td align="right">1.41%</td>
+</tr>
+<tr class="odd">
+<td>Fragmented (F)</td>
+<td align="right">0.02%</td>
+</tr>
+<tr class="even">
+<td>Missing (M)</td>
+<td align="right">0.07%</td>
+</tr>
+</tbody>
+</table>
+<p>The hybrid assembly has more contigs (336) and a smaller total size
+(121.11 Mb) than either single-technology assembly, with a lower N50
+(4.06 Mb). This is because the <code>--pacbio-raw</code> mode treats all
+reads as error-prone, which is suboptimal for HiFi reads. However, BUSCO
+completeness is excellent (98.50% single-copy). The Bionano scaffolding
+step will significantly improve contiguity.</p>
+</div>
+</div>
+</div>
+</div>
 </section><section><h2 class="section-heading" id="scaffolding-with-bionano">Scaffolding with Bionano<a class="anchor" aria-label="anchor" href="#scaffolding-with-bionano"></a>
 </h2>
 <hr class="half-width">
@@ -3384,7 +4407,7 @@ assembly by merging placed and unplaced contigs in the
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="bu">cd</span> bionano_hybrid_scaffolding/hybrid_scaffolds</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">cat</span> <span class="pp">*</span>HYBRID_SCAFFOLD.fasta <span class="pp">*</span>_HYBRID_SCAFFOLD_NOT_SCAFFOLDED.fasta <span class="dt">\</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">cat</span> <span class="pp">*</span>HYBRID_SCAFFOLD_NCBI.fasta <span class="pp">*</span>HYBRID_SCAFFOLD_NOT_SCAFFOLDED.fasta <span class="dt">\</span></span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>   <span class="op">&gt;</span> ../../assembly_scaffolds.fasta</span>
 <span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="bu">cd</span> ../..</span></code></pre>
 </div>
@@ -3393,17 +4416,105 @@ assembly by merging placed and unplaced contigs in the
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="va">fasta</span><span class="op">=</span><span class="st">"assembly_scaffolds.fasta"</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">quast.py</span> <span class="dt">\</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="at">--fast</span> <span class="dt">\</span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="at">--threads</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="at">-o</span> quast_scaffolds <span class="dt">\</span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>    <span class="va">${fasta}</span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="ex">compleasm</span> run <span class="dt">\</span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>   <span class="at">-a</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>   <span class="at">-o</span> compleasm_scaffolds_out <span class="dt">\</span></span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>   <span class="at">-l</span> brassicales_odb10  <span class="dt">\</span></span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>   <span class="at">-t</span> <span class="va">${SLURM_CPUS_PER_TASK}</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">ml</span> <span class="at">--force</span> purge</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">ml</span> biocontainers</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="ex">ml</span> quast</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="ex">ml</span> compleasm</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="va">fasta</span><span class="op">=</span><span class="st">"assembly_scaffolds.fasta"</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="ex">quast.py</span> <span class="dt">\</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>  <span class="at">--fast</span> <span class="dt">\</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>  <span class="at">--threads</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>  <span class="at">-o</span> quast_scaffolds <span class="dt">\</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>    <span class="va">${fasta}</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="ex">compleasm</span> run <span class="dt">\</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>   <span class="at">-a</span> <span class="va">${fasta}</span> <span class="dt">\</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>   <span class="at">-o</span> compleasm_scaffolds_out <span class="dt">\</span></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>   <span class="at">-l</span> brassicales_odb10  <span class="dt">\</span></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>   <span class="at">-t</span> <span class="va">${SLURM_CPUS_PER_TASK}</span></span></code></pre>
+</div>
+<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
+  <h3 class="accordion-header" id="headingSpoiler2">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Expected scaffolded hybrid assembly results
+  </h3>
+</button>
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div class="accordion-body">
+<p><strong>QUAST results (after Bionano scaffolding)</strong></p>
+<table class="table">
+<thead><tr class="header">
+<th>Metric</th>
+<th align="right">Before scaffolding</th>
+<th align="right">After scaffolding</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td># Sequences</td>
+<td align="right">336</td>
+<td align="right">310</td>
+</tr>
+<tr class="even">
+<td>Total length (Mb)</td>
+<td align="right">121.11</td>
+<td align="right">133.07</td>
+</tr>
+<tr class="odd">
+<td>N50 (Mb)</td>
+<td align="right">4.06</td>
+<td align="right">14.14</td>
+</tr>
+<tr class="even">
+<td>L50</td>
+<td align="right">9</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td>Largest sequence (Mb)</td>
+<td align="right">10.25</td>
+<td align="right">15.77</td>
+</tr>
+<tr class="even">
+<td># N’s per 100 kbp</td>
+<td align="right">0.00</td>
+<td align="right">8,976.53</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Compleasm results (after scaffolding)</strong></p>
+<table class="table">
+<thead><tr class="header">
+<th>Category</th>
+<th align="right">Before</th>
+<th align="right">After</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Single (S)</td>
+<td align="right">98.50%</td>
+<td align="right">98.48%</td>
+</tr>
+<tr class="even">
+<td>Duplicated (D)</td>
+<td align="right">1.41%</td>
+<td align="right">1.44%</td>
+</tr>
+<tr class="odd">
+<td>Missing (M)</td>
+<td align="right">0.07%</td>
+<td align="right">0.07%</td>
+</tr>
+</tbody>
+</table>
+<p>Bionano scaffolding dramatically improved N50 from 4.06 Mb to 14.14
+Mb and increased total length from 121 Mb to 133 Mb (closer to expected
+~135 Mb) by incorporating previously unplaced sequence into scaffolds.
+The scaffold gaps (N’s) are expected. BUSCO scores remain virtually
+unchanged.</p>
+</div>
+</div>
+</div>
 </div>
 </section><section><h2 class="section-heading" id="hybrid-assembly-summary">Hybrid Assembly Summary<a class="anchor" aria-label="anchor" href="#hybrid-assembly-summary"></a>
 </h2>
@@ -3499,7 +4610,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-scaffolding-using-ogm"><p>Content from <a href="scaffolding-using-ogm.html">Scaffolding using Optical Genome Mapping</a></p>
 <hr>
-<p>Last updated on 2026-02-17 |
+<p>Last updated on 2026-02-18 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/scaffolding-using-ogm.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 40 minutes</p>
@@ -3871,10 +4982,23 @@ sharing.</td>
 </tbody>
 </table>
 <p>Within <code>hybrid_scaffolds</code>, the files ending with
-<code>HYBRID_SCAFFOLD.fasta</code> and
+<code>HYBRID_SCAFFOLD_NCBI.fasta</code> and
 <code>HYBRID_SCAFFOLD_NOT_SCAFFOLDED.fasta</code> represent the final
 scaffolded genome and unplaced contigs, respectively. You will need to
-merge these files to obtain your final scaffolded genome assembly.</p>
+merge these files to obtain your final scaffolded genome assembly:</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># For the HiFiasm scaffolded assembly:</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">cat</span> bionano_hifiasm_scaffolding/hybrid_scaffolds/<span class="pp">*</span>HYBRID_SCAFFOLD_NCBI.fasta <span class="dt">\</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>    bionano_hifiasm_scaffolding/hybrid_scaffolds/<span class="pp">*</span>HYBRID_SCAFFOLD_NOT_SCAFFOLDED.fasta <span class="dt">\</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>    <span class="op">&gt;</span> hifiasm_bionano_scaffolded.fasta</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co"># For the Flye scaffolded assembly:</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="fu">cat</span> bionano_flye_scaffolding/hybrid_scaffolds/<span class="pp">*</span>HYBRID_SCAFFOLD_NCBI.fasta <span class="dt">\</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>    bionano_flye_scaffolding/hybrid_scaffolds/<span class="pp">*</span>HYBRID_SCAFFOLD_NOT_SCAFFOLDED.fasta <span class="dt">\</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>    <span class="op">&gt;</span> flye_bionano_scaffolded.fasta</span></code></pre>
+</div>
 </section><section><h2 class="section-heading" id="quality-assessment-of-hybrid-scaffolds">Quality Assessment of Hybrid Scaffolds<a class="anchor" aria-label="anchor" href="#quality-assessment-of-hybrid-scaffolds"></a>
 </h2>
 <hr class="half-width">
@@ -3943,38 +5067,38 @@ identifying any potential issues that need further investigation.</p>
 </tr>
 <tr class="even">
 <td align="left">Count</td>
-<td align="right">152</td>
-<td align="right">43</td>
+<td align="right">146</td>
+<td align="right">50</td>
 </tr>
 <tr class="odd">
 <td align="left">Min length (Mbp)</td>
 <td align="right">0.027</td>
-<td align="right">0.008</td>
+<td align="right">0.007</td>
 </tr>
 <tr class="even">
 <td align="left">Median length (Mbp)</td>
 <td align="right">0.050</td>
-<td align="right">0.276</td>
+<td align="right">0.132</td>
 </tr>
 <tr class="odd">
 <td align="left">Mean length (Mbp)</td>
-<td align="right">0.896</td>
-<td align="right">2.797</td>
+<td align="right">0.930</td>
+<td align="right">2.575</td>
 </tr>
 <tr class="even">
 <td align="left">N50 length (Mbp)</td>
 <td align="right">7.981</td>
-<td align="right">9.261</td>
+<td align="right">11.822</td>
 </tr>
 <tr class="odd">
 <td align="left">Max length (Mbp)</td>
 <td align="right">13.758</td>
-<td align="right">14.609</td>
+<td align="right">15.517</td>
 </tr>
 <tr class="even">
 <td align="left">Total length (Mbp)</td>
-<td align="right">136.156</td>
-<td align="right">120.259</td>
+<td align="right">135.747</td>
+<td align="right">128.743</td>
 </tr>
 <tr class="odd">
 <td align="left"><strong>Conflict Resolution (BNG-NGS
@@ -3990,7 +5114,7 @@ Alignment)</strong></td>
 <tr class="odd">
 <td align="left">Conflict cuts made to NGS sequences</td>
 <td align="right">30</td>
-<td align="right">0</td>
+<td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">Bionano maps to be cut</td>
@@ -4000,7 +5124,7 @@ Alignment)</strong></td>
 <tr class="odd">
 <td align="left">NGS sequences to be cut</td>
 <td align="right">18</td>
-<td align="right">0</td>
+<td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left"><strong>NGS FASTA Sequence in Hybrid
@@ -4010,38 +5134,38 @@ Scaffold</strong></td>
 </tr>
 <tr class="odd">
 <td align="left">Count</td>
-<td align="right">40</td>
-<td align="right">26</td>
+<td align="right">41</td>
+<td align="right">21</td>
 </tr>
 <tr class="even">
 <td align="left">Min length (Mbp)</td>
 <td align="right">0.033</td>
-<td align="right">0.065</td>
+<td align="right">0.064</td>
 </tr>
 <tr class="odd">
 <td align="left">Median length (Mbp)</td>
-<td align="right">0.945</td>
-<td align="right">1.681</td>
+<td align="right">0.936</td>
+<td align="right">3.272</td>
 </tr>
 <tr class="even">
 <td align="left">Mean length (Mbp)</td>
-<td align="right">2.689</td>
-<td align="right">4.558</td>
+<td align="right">2.633</td>
+<td align="right">5.797</td>
 </tr>
 <tr class="odd">
 <td align="left">N50 length (Mbp)</td>
 <td align="right">8.437</td>
-<td align="right">9.261</td>
+<td align="right">11.250</td>
 </tr>
 <tr class="even">
 <td align="left">Max length (Mbp)</td>
 <td align="right">13.484</td>
-<td align="right">14.609</td>
+<td align="right">15.517</td>
 </tr>
 <tr class="odd">
 <td align="left">Total length (Mbp)</td>
-<td align="right">107.558</td>
-<td align="right">118.508</td>
+<td align="right">107.968</td>
+<td align="right">121.743</td>
 </tr>
 <tr class="even">
 <td align="left"><strong>Hybrid Scaffold FASTA</strong></td>
@@ -4050,38 +5174,38 @@ Scaffold</strong></td>
 </tr>
 <tr class="odd">
 <td align="left">Count</td>
-<td align="right">11</td>
+<td align="right">10</td>
 <td align="right">12</td>
 </tr>
 <tr class="even">
 <td align="left">Min length (Mbp)</td>
-<td align="right">0.104</td>
-<td align="right">0.524</td>
+<td align="right">4.083</td>
+<td align="right">0.129</td>
 </tr>
 <tr class="odd">
 <td align="left">Median length (Mbp)</td>
-<td align="right">11.824</td>
-<td align="right">12.426</td>
+<td align="right">13.162</td>
+<td align="right">12.662</td>
 </tr>
 <tr class="even">
 <td align="left">Mean length (Mbp)</td>
-<td align="right">10.518</td>
-<td align="right">9.891</td>
+<td align="right">11.601</td>
+<td align="right">10.164</td>
 </tr>
 <tr class="odd">
 <td align="left">N50 length (Mbp)</td>
 <td align="right">14.479</td>
-<td align="right">14.886</td>
+<td align="right">15.517</td>
 </tr>
 <tr class="even">
 <td align="left">Max length (Mbp)</td>
-<td align="right">15.227</td>
-<td align="right">16.188</td>
+<td align="right">15.229</td>
+<td align="right">17.656</td>
 </tr>
 <tr class="odd">
 <td align="left">Total length (Mbp)</td>
-<td align="right">115.698</td>
-<td align="right">118.689</td>
+<td align="right">116.011</td>
+<td align="right">121.972</td>
 </tr>
 <tr class="even">
 <td align="left"><strong>Hybrid Scaffold FASTA + Not Scaffolded
@@ -4091,38 +5215,38 @@ NGS</strong></td>
 </tr>
 <tr class="odd">
 <td align="left">Count</td>
-<td align="right">161</td>
-<td align="right">33</td>
+<td align="right">153</td>
+<td align="right">43</td>
 </tr>
 <tr class="even">
 <td align="left">Min length (Mbp)</td>
 <td align="right">0.024</td>
-<td align="right">0.006</td>
+<td align="right">0.000</td>
 </tr>
 <tr class="odd">
 <td align="left">Median length (Mbp)</td>
-<td align="right">0.051</td>
-<td align="right">0.159</td>
+<td align="right">0.050</td>
+<td align="right">0.135</td>
 </tr>
 <tr class="even">
 <td align="left">Mean length (Mbp)</td>
-<td align="right">0.896</td>
-<td align="right">3.650</td>
+<td align="right">0.940</td>
+<td align="right">2.999</td>
 </tr>
 <tr class="odd">
 <td align="left">N50 length (Mbp)</td>
-<td align="right">14.083</td>
-<td align="right">14.886</td>
+<td align="right">14.052</td>
+<td align="right">15.517</td>
 </tr>
 <tr class="even">
 <td align="left">Max length (Mbp)</td>
-<td align="right">15.227</td>
-<td align="right">16.188</td>
+<td align="right">15.229</td>
+<td align="right">17.656</td>
 </tr>
 <tr class="odd">
 <td align="left">Total length (Mbp)</td>
-<td align="right">144.295</td>
-<td align="right">120.440</td>
+<td align="right">143.790</td>
+<td align="right">128.972</td>
 </tr>
 </tbody>
 </table>
@@ -4136,15 +5260,17 @@ NGS</strong></td>
 better?</h3>
 <div class="callout-content">
 <ul>
-<li>The HiFiasm assembly with PacBio HiFi data resulted in a higher N50
-length and total length in the hybrid scaffold compared to the Flye
-assembly with ONT data.</li>
-<li>The conflict resolution process involved more cuts in the NGS
-sequences for the HiFiasm assembly, indicating a higher level of
-alignment discrepancies.</li>
-<li>The final hybrid scaffold from the HiFiasm assembly had a higher N50
-length and total length, suggesting better contiguity and completeness
-compared to the Flye assembly.</li>
+<li>The Flye ONT assembly produced <strong>fewer conflict cuts</strong>
+(1 NGS cut vs 30 for HiFiasm), indicating better structural agreement
+with the optical map.</li>
+<li>Flye + Bionano achieved a <strong>higher scaffold N50</strong>
+(15.517 Mbp vs 14.479 Mbp) and <strong>larger scaffold max</strong>
+(17.656 Mbp vs 15.229 Mbp).</li>
+<li>HiFiasm + Bionano retained more total sequence (143.790 Mbp vs
+128.972 Mbp), partly due to haplotig duplications inflating the
+total.</li>
+<li>Both assemblies have 5 chromosome-scale scaffolds (evidenced by high
+N50 values close to Arabidopsis chromosome sizes).</li>
 </ul>
 </div>
 </div>
@@ -4179,7 +5305,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-assembly-evaluation"><p>Content from <a href="assembly-evaluation.html">Assembly Assessment</a></p>
 <hr>
-<p>Last updated on 2026-02-17 |
+<p>Last updated on 2026-02-18 |
 
         <a href="https://rcac-bioinformatics.github.io/genome-assembly/edit/main/episodes/assembly-evaluation.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 50 minutes</p>
@@ -4272,29 +5398,208 @@ and misassemblies.</p>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> quast_evaluation</span>
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co"># Link your assemblies to a common directory for comparison</span></span>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> all_assemblies</span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-sf</span> ../02_pacbio-hifi/hifiasm_default/<span class="pp">*</span>p_ctg.fasta all_assemblies/hifiasm_default.fasta</span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-sf</span> ../03_ont-assembly/flye_ont/assembly.fasta all_assemblies/flye_ont.fasta</span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-sf</span> ../03_ont-assembly/medaka_polished/polished_1.fasta all_assemblies/medaka_polished.fasta</span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-sf</span> ../04_hybrid-assembly/hybrid_flye_out/assembly.fasta all_assemblies/hybrid_flye.fasta</span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="co"># link any other assemblies you want to compare (e.g., purge variants, scaffolded)</span></span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="co"># Download the reference genome</span></span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-q</span> <span class="at">-O</span> TAIR10_reference.fasta.gz <span class="dt">\</span></span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>   <span class="st">"https://ftp.ensemblgenomes.org/pub/plants/release-57/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz"</span></span>
-<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="fu">gunzip</span> TAIR10_reference.fasta.gz</span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="ex">quast.py</span> <span class="dt">\</span></span>
-<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>   <span class="at">--output-dir</span> quast_complete_stats <span class="dt">\</span></span>
-<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>   <span class="at">--no-read-stats</span> <span class="dt">\</span></span>
-<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>   <span class="at">-r</span> TAIR10_reference.fasta <span class="dt">\</span></span>
-<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
-<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>   <span class="at">--eukaryote</span> <span class="dt">\</span></span>
-<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>   <span class="at">--pacbio</span> ../01_data-qc/At_pacbio-hifi-filtered.fastq <span class="dt">\</span></span>
-<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>   all_assemblies/<span class="pp">*</span>.fasta</span></code></pre>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co"># PacBio HiFi assemblies</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-sf</span> ../02_pacbio-hifi/hifiasm_default/At_hifiasm_default.asm.bp.p_ctg.fasta all_assemblies/hifiasm_default.fasta</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-sf</span> ../02_pacbio-hifi/flye_hifi/assembly.fasta all_assemblies/flye_hifi.fasta</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co"># ONT assemblies</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-sf</span> ../03_ont-assembly/flye_ont/assembly.fasta all_assemblies/flye_ont.fasta</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-sf</span> ../03_ont-assembly/hifiasm_ont/At_hifiasm_ont.asm.bp.p_ctg.fasta all_assemblies/hifiasm_ont.fasta</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="co"># Hybrid assembly</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-sf</span> ../04_hybrid-assembly/hybrid_flye_out/assembly.fasta all_assemblies/hybrid_flye.fasta</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="co"># Bionano scaffolded assemblies</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-sf</span> ../05_scaffolding/hifiasm_bionano_scaffolded.fasta all_assemblies/hifiasm_bionano.fasta</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-sf</span> ../05_scaffolding/flye_bionano_scaffolded.fasta all_assemblies/flye_bionano.fasta</span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="co"># Download the reference genome</span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-q</span> <span class="at">-O</span> TAIR10_reference.fasta.gz <span class="dt">\</span></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>   <span class="st">"https://ftp.ensemblgenomes.org/pub/plants/release-57/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz"</span></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="fu">gunzip</span> TAIR10_reference.fasta.gz</span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a><span class="ex">quast.py</span> <span class="dt">\</span></span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>   <span class="at">--output-dir</span> quast_comparison <span class="dt">\</span></span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a>   <span class="at">--min-contig</span> 3000 <span class="dt">\</span></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a>   <span class="at">-r</span> TAIR10_reference.fasta <span class="dt">\</span></span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a>   <span class="at">--threads</span> <span class="va">${SLURM_CPUS_PER_TASK}</span> <span class="dt">\</span></span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a>   <span class="at">--eukaryote</span> <span class="dt">\</span></span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a>   <span class="at">--pacbio</span> ../01_data-qc/At_pacbio-hifi-filtered.fastq <span class="dt">\</span></span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a>   all_assemblies/<span class="pp">*</span>.fasta</span></code></pre>
 </div>
 <p>This will generate a detailed report in the
-<code>quast_complete_stats</code> directory, including key metrics for
-each assembly and a summary of their quality. You can use this
-information to compare different assemblies and select the best one for
-downstream analysis.</p>
+<code>quast_comparison</code> directory, including key metrics for each
+assembly and a summary of their quality. You can use this information to
+compare different assemblies and select the best one for downstream
+analysis.</p>
+<div id="viewing-quast-reports" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="viewing-quast-reports" class="callout-inner">
+<h3 class="callout-title">Viewing QUAST reports</h3>
+<div class="callout-content">
+<p>Open <code>quast_comparison/report.html</code> in your browser for an
+interactive QUAST report with sortable tables and plots. The Icarus
+viewer (<code>icarus.html</code>) provides a visual alignment of your
+contigs against the TAIR10 reference chromosomes.</p>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Expected QUAST comparison results (vs TAIR10 reference)
+  </h3>
+</button>
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div class="accordion-body">
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="22%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+</colgroup>
+<thead><tr class="header">
+<th>Metric</th>
+<th align="right">flye_bionano</th>
+<th align="right">flye_hifi</th>
+<th align="right">flye_ont</th>
+<th align="right">hifiasm_bionano</th>
+<th align="right">hifiasm_default</th>
+<th align="right">hifiasm_ont</th>
+<th align="right">hybrid_flye</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td># Contigs</td>
+<td align="right">42</td>
+<td align="right">83</td>
+<td align="right">50</td>
+<td align="right">153</td>
+<td align="right">146</td>
+<td align="right">105</td>
+<td align="right">333</td>
+</tr>
+<tr class="even">
+<td>Total length (Mb)</td>
+<td align="right">128.97</td>
+<td align="right">133.68</td>
+<td align="right">128.74</td>
+<td align="right">143.79</td>
+<td align="right">135.75</td>
+<td align="right">127.42</td>
+<td align="right">121.11</td>
+</tr>
+<tr class="odd">
+<td>N50 (Mb)</td>
+<td align="right">15.52</td>
+<td align="right">5.97</td>
+<td align="right">11.82</td>
+<td align="right">14.05</td>
+<td align="right">7.98</td>
+<td align="right">11.34</td>
+<td align="right">4.06</td>
+</tr>
+<tr class="even">
+<td>L50</td>
+<td align="right">4</td>
+<td align="right">8</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">7</td>
+<td align="right">6</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td>auN (Mb)</td>
+<td align="right">13.77</td>
+<td align="right">5.64</td>
+<td align="right">10.68</td>
+<td align="right">10.87</td>
+<td align="right">7.70</td>
+<td align="right">8.70</td>
+<td align="right">4.58</td>
+</tr>
+<tr class="even">
+<td>Genome fraction (%)</td>
+<td align="right">99.41</td>
+<td align="right">90.47</td>
+<td align="right">99.43</td>
+<td align="right">86.71</td>
+<td align="right">86.68</td>
+<td align="right">95.58</td>
+<td align="right">90.76</td>
+</tr>
+<tr class="odd">
+<td># Misassemblies</td>
+<td align="right">198</td>
+<td align="right">484</td>
+<td align="right">183</td>
+<td align="right">836</td>
+<td align="right">824</td>
+<td align="right">59</td>
+<td align="right">480</td>
+</tr>
+<tr class="even">
+<td>Mismatches/100kbp</td>
+<td align="right">26.71</td>
+<td align="right">707.09</td>
+<td align="right">26.76</td>
+<td align="right">695.76</td>
+<td align="right">660.03</td>
+<td align="right">65.99</td>
+<td align="right">702.30</td>
+</tr>
+<tr class="odd">
+<td>Indels/100kbp</td>
+<td align="right">20.77</td>
+<td align="right">113.17</td>
+<td align="right">20.77</td>
+<td align="right">111.45</td>
+<td align="right">111.66</td>
+<td align="right">38.96</td>
+<td align="right">115.37</td>
+</tr>
+<tr class="even">
+<td>N’s per 100kbp</td>
+<td align="right">177.79</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">5593.53</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td>Avg. coverage depth</td>
+<td align="right">67x</td>
+<td align="right">45x</td>
+<td align="right">67x</td>
+<td align="right">60x</td>
+<td align="right">63x</td>
+<td align="right">86x</td>
+<td align="right">60x</td>
+</tr>
+</tbody>
+</table>
+<p>Key observations: - <strong>Best contiguity</strong>: flye_bionano
+(N50=15.52 Mb, only 42 contigs) - <strong>Best genome fraction</strong>:
+flye_ont (99.43%) and flye_bionano (99.41%) - <strong>Fewest
+misassemblies</strong>: hifiasm_ont (59), far fewer than any other
+assembly - <strong>Best base accuracy</strong>: Flye-based ONT
+assemblies (26.7 mismatches/100kbp) vs HiFi-based (~660-707
+mismatches/100kbp) — this counterintuitive result is because QUAST
+aligns to TAIR10 and HiFi assemblies retain haplotypic variants that
+score as “mismatches” - <strong>N’s only in Bionano-scaffolded
+assemblies</strong>: gaps introduced during scaffolding</p>
+</div>
+</div>
+</div>
+</div>
 </section><section><h2 class="section-heading" id="compleasm-for-genome-completeness-gene-space">Compleasm for genome completeness (gene-space)<a class="anchor" aria-label="anchor" href="#compleasm-for-genome-completeness-gene-space"></a>
 </h2>
 <hr class="half-width">
@@ -4347,7 +5652,96 @@ while the remaining part aligns to another position.</li>
 <li>
 <code>M</code> (Missing Genes): The BUSCO genes with no alignment
 present in the assembly.</li>
-</ul></section><section><h2 class="section-heading" id="merqury-for-evaluating-genome-assembly">Merqury for evaluating genome assembly<a class="anchor" aria-label="anchor" href="#merqury-for-evaluating-genome-assembly"></a>
+</ul>
+<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
+  <h3 class="accordion-header" id="headingSpoiler2">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Expected Compleasm results (brassicales_odb10)
+  </h3>
+</button>
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div class="accordion-body">
+<table class="table">
+<colgroup>
+<col width="38%">
+<col width="15%">
+<col width="15%">
+<col width="15%">
+<col width="15%">
+</colgroup>
+<thead><tr class="header">
+<th>Assembly</th>
+<th align="right">Single (S)</th>
+<th align="right">Duplicated (D)</th>
+<th align="right">Fragmented (F)</th>
+<th align="right">Missing (M)</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>flye_bionano</td>
+<td align="right">98.93%</td>
+<td align="right">1.07%</td>
+<td align="right">0.00%</td>
+<td align="right">0.00%</td>
+</tr>
+<tr class="even">
+<td>flye_hifi</td>
+<td align="right">98.89%</td>
+<td align="right">1.04%</td>
+<td align="right">0.02%</td>
+<td align="right">0.04%</td>
+</tr>
+<tr class="odd">
+<td>flye_ont</td>
+<td align="right">98.93%</td>
+<td align="right">1.07%</td>
+<td align="right">0.00%</td>
+<td align="right">0.00%</td>
+</tr>
+<tr class="even">
+<td>hifiasm_bionano</td>
+<td align="right">95.97%</td>
+<td align="right">1.09%</td>
+<td align="right">0.02%</td>
+<td align="right">2.92%</td>
+</tr>
+<tr class="odd">
+<td>hifiasm_default</td>
+<td align="right">95.97%</td>
+<td align="right">1.11%</td>
+<td align="right">0.02%</td>
+<td align="right">2.89%</td>
+</tr>
+<tr class="even">
+<td>hifiasm_ont</td>
+<td align="right">98.61%</td>
+<td align="right">1.04%</td>
+<td align="right">0.00%</td>
+<td align="right">0.35%</td>
+</tr>
+<tr class="odd">
+<td>hybrid_flye</td>
+<td align="right">98.50%</td>
+<td align="right">1.41%</td>
+<td align="right">0.02%</td>
+<td align="right">0.07%</td>
+</tr>
+</tbody>
+</table>
+<p>Key observations: - <strong>Best completeness</strong>: flye_bionano
+and flye_ont (98.93% single, 0% missing) - <strong>HiFiasm default has
+~3% missing genes</strong>: This is due to aggressive purging
+(<code>-l 3</code>), which removes some legitimate single-copy regions
+along with haplotigs - <strong>Bionano scaffolding does not change BUSCO
+scores</strong>: hifiasm_default and hifiasm_bionano have identical
+completeness, confirming scaffolding only reorders contigs</p>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="merqury-for-evaluating-genome-assembly">Merqury for evaluating genome assembly<a class="anchor" aria-label="anchor" href="#merqury-for-evaluating-genome-assembly"></a>
 </h2>
 <hr class="half-width">
 <p>Merqury is a tool for reference-free assembly evaluation based on
@@ -4467,6 +5861,58 @@ including k-mer spectra plots, completeness metrics, and consensus
 quality (QV) estimates for each assembly. You can use these results to
 evaluate the accuracy, completeness, and structural integrity of your
 genome assemblies.</p>
+<div id="accordionSpoiler3" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
+  <h3 class="accordion-header" id="headingSpoiler3">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Expected Merqury results
+  </h3>
+</button>
+<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div class="accordion-body">
+<p><strong>For the hifiasm_bionano assembly:</strong></p>
+<table class="table">
+<thead><tr class="header">
+<th>Metric</th>
+<th align="right">Value</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>Consensus Quality (QV)</td>
+<td align="right">62.91</td>
+</tr>
+<tr class="even">
+<td>Error rate</td>
+<td align="right">5.11 x 10^-7</td>
+</tr>
+<tr class="odd">
+<td>K-mer completeness</td>
+<td align="right">95.73%</td>
+</tr>
+<tr class="even">
+<td>K-mers found</td>
+<td align="right">104,602,794 / 109,271,894</td>
+</tr>
+</tbody>
+</table>
+<p>A QV of 62.91 corresponds to approximately 1 error per ~2 million
+bases, indicating extremely high base-level accuracy. The k-mer
+completeness of 95.73% means nearly all reliable k-mers from the reads
+are represented in the assembly.</p>
+<p><strong>Interpreting Merqury output files:</strong> -
+<code>merqury_out.qv</code>: Assembly name, error k-mers, total k-mers,
+QV score, error rate - <code>merqury_out.completeness.stats</code>:
+Assembly name, set type, found k-mers, total k-mers, completeness % -
+<code>merqury_out.spectra-cn.*.png</code>: Copy number spectrum plot -
+<code>merqury_out.spectra-asm.*.png</code>: Assembly spectrum plot</p>
+<figure><img src="../fig/merqury-spectra-cn-hifiasm-bionano.png" alt="Merqury copy number spectrum plot for the hifiasm Bionano-scaffolded assembly showing a sharp unimodal peak at approximately 30x indicating a homozygous genome with high completeness" class="figure mx-auto d-block"><div class="figcaption">Merqury copy number spectrum</div>
+</figure><figure><img src="../fig/merqury-spectra-asm-hifiasm-bionano.png" alt="Merqury assembly spectrum plot comparing k-mers found in the assembly versus read-only k-mers showing most k-mers are shared between reads and assembly" class="figure mx-auto d-block"><div class="figcaption">Merqury assembly spectrum</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
 </section><section><h2 class="section-heading" id="assembly-graph-visualization-using-bandage">Assembly graph visualization using Bandage<a class="anchor" aria-label="anchor" href="#assembly-graph-visualization-using-bandage"></a>
 </h2>
 <hr class="half-width">
@@ -4521,87 +5967,137 @@ connections between contigs or scaffolds.</li>
 <hr class="half-width">
 <p>After running all evaluation tools, compile your results into a
 summary table to compare assemblies side by side:</p>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="9%">
-<col width="18%">
-<col width="13%">
-<col width="18%">
-<col width="21%">
-<col width="18%">
+<col width="22%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
 </colgroup>
 <thead><tr class="header">
 <th>Metric</th>
-<th>HiFiasm (HiFi)</th>
-<th>Flye (ONT)</th>
-<th>Hybrid (Flye)</th>
-<th>HiFiasm + Bionano</th>
-<th>Flye + Bionano</th>
+<th align="right">HiFiasm (HiFi)</th>
+<th align="right">Flye (HiFi)</th>
+<th align="right">Flye (ONT)</th>
+<th align="right">HiFiasm (ONT)</th>
+<th align="right">Hybrid (Flye)</th>
+<th align="right">HiFiasm + Bionano</th>
+<th align="right">Flye + Bionano</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td># Contigs</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td align="right">146</td>
+<td align="right">83</td>
+<td align="right">50</td>
+<td align="right">105</td>
+<td align="right">333</td>
+<td align="right">153</td>
+<td align="right">42</td>
 </tr>
 <tr class="even">
 <td>Total size (Mb)</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td align="right">135.75</td>
+<td align="right">133.68</td>
+<td align="right">128.74</td>
+<td align="right">127.42</td>
+<td align="right">121.11</td>
+<td align="right">143.79</td>
+<td align="right">128.97</td>
 </tr>
 <tr class="odd">
 <td>N50 (Mb)</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td align="right">7.98</td>
+<td align="right">5.97</td>
+<td align="right">11.82</td>
+<td align="right">11.34</td>
+<td align="right">4.06</td>
+<td align="right">14.05</td>
+<td align="right">15.52</td>
 </tr>
 <tr class="even">
 <td>L50</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td align="right">7</td>
+<td align="right">8</td>
+<td align="right">5</td>
+<td align="right">6</td>
+<td align="right">9</td>
+<td align="right">5</td>
+<td align="right">4</td>
 </tr>
 <tr class="odd">
 <td>BUSCO Complete (%)</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td align="right">97.08</td>
+<td align="right">99.93</td>
+<td align="right">100.00</td>
+<td align="right">99.65</td>
+<td align="right">99.91</td>
+<td align="right">97.06</td>
+<td align="right">100.00</td>
 </tr>
 <tr class="even">
-<td>BUSCO Duplicated (%)</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>BUSCO Single (%)</td>
+<td align="right">95.97</td>
+<td align="right">98.89</td>
+<td align="right">98.93</td>
+<td align="right">98.61</td>
+<td align="right">98.50</td>
+<td align="right">95.97</td>
+<td align="right">98.93</td>
 </tr>
 <tr class="odd">
-<td>Merqury QV</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>BUSCO Duplicated (%)</td>
+<td align="right">1.11</td>
+<td align="right">1.04</td>
+<td align="right">1.07</td>
+<td align="right">1.04</td>
+<td align="right">1.41</td>
+<td align="right">1.09</td>
+<td align="right">1.07</td>
 </tr>
 <tr class="even">
+<td>Genome fraction (%)</td>
+<td align="right">86.68</td>
+<td align="right">90.47</td>
+<td align="right">99.43</td>
+<td align="right">95.58</td>
+<td align="right">90.76</td>
+<td align="right">86.71</td>
+<td align="right">99.41</td>
+</tr>
+<tr class="odd">
+<td>Misassemblies</td>
+<td align="right">824</td>
+<td align="right">484</td>
+<td align="right">183</td>
+<td align="right">59</td>
+<td align="right">480</td>
+<td align="right">836</td>
+<td align="right">198</td>
+</tr>
+<tr class="even">
+<td>Merqury QV</td>
+<td align="right">—</td>
+<td align="right">—</td>
+<td align="right">—</td>
+<td align="right">—</td>
+<td align="right">—</td>
+<td align="right">62.91</td>
+<td align="right">—</td>
+</tr>
+<tr class="odd">
 <td>K-mer completeness (%)</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td align="right">—</td>
+<td align="right">—</td>
+<td align="right">—</td>
+<td align="right">—</td>
+<td align="right">—</td>
+<td align="right">95.73</td>
+<td align="right">—</td>
 </tr>
 </tbody>
 </table>
@@ -4708,8 +6204,8 @@ any links that you are not going to use.
   "url": "https://genome-assembly.github.io/NA/instructor/aio.html",
   "identifier": "https://genome-assembly.github.io/NA/instructor/aio.html",
   "dateCreated": "2025-02-05",
-  "dateModified": "2026-02-17",
-  "datePublished": "2026-02-17"
+  "dateModified": "2026-02-18",
+  "datePublished": "2026-02-18"
 }
 
   </script><script>

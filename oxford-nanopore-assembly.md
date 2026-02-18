@@ -153,6 +153,31 @@ The output of Flye includes several files and directories that provide informati
 | assembly_info.txt    | Summary information about the assembly. |
 | flye.log            | Log file detailing the Flye run. |
 
+:::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### Expected assembly_info.txt (top 15 contigs)
+
+| Contig | Length (Mb) | Coverage | Circular | Repeat | Multiplicity |
+|--------|------------:|---------:|:--------:|:------:|-------------:|
+| contig_5 | 15.52 | 38x | N | N | 1 |
+| contig_19 | 14.50 | 39x | N | N | 1 |
+| contig_20 | 14.08 | 37x | N | N | 1 |
+| contig_7 | 12.73 | 40x | N | N | 1 |
+| contig_8 | 11.82 | 32x | N | N | 1 |
+| contig_36 | 11.24 | 38x | N | N | 1 |
+| contig_6 | 10.09 | 35x | N | N | 1 |
+| contig_23 | 8.77 | 39x | N | N | 1 |
+| contig_102 | 6.39 | 40x | N | N | 1 |
+| contig_12 | 6.23 | 34x | N | N | 1 |
+| contig_58 | 3.27 | 31x | N | N | 1 |
+| contig_11 | 3.24 | 27x | N | N | 1 |
+| contig_13 | 3.23 | 33x | N | N | 1 |
+| contig_10 | 2.35 | 29x | N | N | 1 |
+| contig_15 | 0.94 | 22x | N | N | 1 |
+
+The assembly has 50 contigs total. The top 5 contigs (>11 Mb each) likely correspond to the 5 chromosomes of _A. thaliana_. Notable entries include contig_104 (84 kb, 2769x coverage, repeat=Y, mult=64) and contig_34 (26 kb, 4808x, repeat=Y, mult=111), which represent collapsed repetitive elements (likely rDNA or centromeric repeats).
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::  prereq
 
@@ -188,6 +213,39 @@ Discuss which assembly has better contiguity and completeness based on these sta
 
 :::::::::::::::::::::::::::::::::::::::
 
+:::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### Expected QUAST output for Flye ONT assembly
+
+| Metric | Flye ONT | HiFiasm HiFi (default) |
+|--------|----------:|------------------------:|
+| # Contigs | 50 | 146 |
+| Largest contig (Mb) | 15.52 | 13.76 |
+| Total length (Mb) | 128.74 | 135.75 |
+| N50 (Mb) | 11.82 | 7.98 |
+| L50 | 5 | 7 |
+| auN (Mb) | 10.68 | 7.70 |
+| N90 (Mb) | 3.24 | 1.13 |
+| # N's per 100 kbp | 0.00 | 0.00 |
+
+The Flye ONT assembly has remarkably high contiguity (N50 = 11.82 Mb) with only 50 contigs, significantly better than HiFiasm HiFi in terms of contiguity. However, the total size (128.74 Mb) is ~6 Mb smaller than expected (~135 Mb), suggesting some genomic regions may be missing or collapsed. Both assemblies are gap-free.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### Expected Compleasm results for Flye ONT assembly
+
+| Category | Value |
+|----------|------:|
+| Single (S) | 98.93% |
+| Duplicated (D) | 1.07% |
+| Fragmented (F) | 0.00% |
+| Missing (M) | 0.00% |
+
+The Flye ONT assembly achieves near-perfect BUSCO completeness with 0% missing genes, indicating comprehensive genome coverage despite the slightly smaller total size (128.74 Mb vs expected ~135 Mb).
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Other important parameters
 
@@ -223,7 +281,7 @@ A recommended approach for polishing ONT assemblies is to use `Medaka`, which us
 ml --force purge
 ml biocontainers
 ml medaka
-medaka_polish \
+medaka_consensus \
    -i ../01_data-qc/At_ont-reads-filtered.fastq \
    -d flye_ont/assembly.fasta \
    -o medaka_polished \
@@ -235,7 +293,7 @@ medaka_polish \
 
 ## Medaka model selection
 
-The `-m` flag specifies the Medaka model, which should match your basecalling chemistry and model. For our data (R10.4.1, Dorado HAC), we use `r1041_e82_400bps_hac_v5.0.0`. You can list available models with `medaka --list_models`. Using the wrong model will produce suboptimal results.
+The `-m` flag specifies the Medaka model, which should match your basecalling chemistry and model. For our data (R10.4.1, Dorado HAC), we use `r1041_e82_400bps_hac_v5.0.0`. You can list available models with `medaka tools list_models`. Using the wrong model will produce suboptimal results. The output will be `consensus.fasta` in the specified output directory.
 
 :::
 
@@ -303,6 +361,33 @@ done
 
 :::
 
+:::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### Expected HiFiasm ONT results
+
+**QUAST results**
+
+| Metric | Primary | Hap1 | Hap2 |
+|--------|--------:|-----:|-----:|
+| # Contigs | 105 | 104 | 41 |
+| Largest contig (Mb) | 13.18 | 13.18 | 13.10 |
+| Total length (Mb) | 127.42 | 125.76 | 89.21 |
+| N50 (Mb) | 11.34 | 11.34 | 11.46 |
+| L50 | 6 | 6 | 4 |
+| auN (Mb) | 8.70 | 8.79 | 9.90 |
+
+**Compleasm results (primary contigs, brassicales_odb10)**
+
+| Category | Value |
+|----------|------:|
+| Single (S) | 98.61% |
+| Duplicated (D) | 1.04% |
+| Fragmented (F) | 0.00% |
+| Missing (M) | 0.35% |
+
+HiFiasm with ONT data produces a highly contiguous assembly (N50 = 11.34 Mb), comparable to Flye ONT. However, HiFiasm generates more contigs (105 vs 50) and has a total size of 127.42 Mb (smaller than Flye's 128.74 Mb). The BUSCO completeness is excellent at 98.61% single-copy. HiFiasm also provides haplotype-resolved output, with hap2 capturing ~89 Mb of sequence.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 

@@ -87,6 +87,36 @@ compleasm run \
    -t ${SLURM_CPUS_PER_TASK}
 ```
 
+:::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### Expected hybrid assembly results
+
+**QUAST results**
+
+| Metric | Hybrid Flye |
+|--------|------------:|
+| # Contigs | 336 |
+| Largest contig (Mb) | 10.25 |
+| Total length (Mb) | 121.11 |
+| N50 (Mb) | 4.06 |
+| L50 | 9 |
+| auN (Mb) | 4.58 |
+| N90 (Mb) | 0.16 |
+| # N's per 100 kbp | 0.00 |
+
+**Compleasm results (brassicales_odb10)**
+
+| Category | Value |
+|----------|------:|
+| Single (S) | 98.50% |
+| Duplicated (D) | 1.41% |
+| Fragmented (F) | 0.02% |
+| Missing (M) | 0.07% |
+
+The hybrid assembly has more contigs (336) and a smaller total size (121.11 Mb) than either single-technology assembly, with a lower N50 (4.06 Mb). This is because the `--pacbio-raw` mode treats all reads as error-prone, which is suboptimal for HiFi reads. However, BUSCO completeness is excellent (98.50% single-copy). The Bionano scaffolding step will significantly improve contiguity.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
 ## Scaffolding with Bionano
 
 
@@ -118,7 +148,7 @@ Once this completes, you can generate the final scaffold-level assembly by mergi
 
 ```bash
 cd bionano_hybrid_scaffolding/hybrid_scaffolds
-cat *HYBRID_SCAFFOLD.fasta *_HYBRID_SCAFFOLD_NOT_SCAFFOLDED.fasta \
+cat *HYBRID_SCAFFOLD_NCBI.fasta *HYBRID_SCAFFOLD_NOT_SCAFFOLDED.fasta \
    > ../../assembly_scaffolds.fasta
 cd ../..
 ```
@@ -126,6 +156,10 @@ cd ../..
 You can evaluate the final assembly using `quast` and `compleasm` as before.
 
 ```bash
+ml --force purge
+ml biocontainers
+ml quast
+ml compleasm
 fasta="assembly_scaffolds.fasta"
 quast.py \
   --fast \
@@ -139,6 +173,32 @@ compleasm run \
    -t ${SLURM_CPUS_PER_TASK}
 ```
 
+:::::::::::::::::::::::::::::::::::::::::: spoiler
+
+### Expected scaffolded hybrid assembly results
+
+**QUAST results (after Bionano scaffolding)**
+
+| Metric | Before scaffolding | After scaffolding |
+|--------|-------------------:|------------------:|
+| # Sequences | 336 | 310 |
+| Total length (Mb) | 121.11 | 133.07 |
+| N50 (Mb) | 4.06 | 14.14 |
+| L50 | 9 | 5 |
+| Largest sequence (Mb) | 10.25 | 15.77 |
+| # N's per 100 kbp | 0.00 | 8,976.53 |
+
+**Compleasm results (after scaffolding)**
+
+| Category | Before | After |
+|----------|-------:|------:|
+| Single (S) | 98.50% | 98.48% |
+| Duplicated (D) | 1.41% | 1.44% |
+| Missing (M) | 0.07% | 0.07% |
+
+Bionano scaffolding dramatically improved N50 from 4.06 Mb to 14.14 Mb and increased total length from 121 Mb to 133 Mb (closer to expected ~135 Mb) by incorporating previously unplaced sequence into scaffolds. The scaffold gaps (N's) are expected. BUSCO scores remain virtually unchanged.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Hybrid Assembly Summary
 

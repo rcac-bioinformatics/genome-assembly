@@ -513,6 +513,8 @@ We will use these filtered reads for downstream genome assembly.
 
 ### Expected NanoPlot: ONT reads after filtering
 
+![PacBio read length vs quality after filtering](fig/nanoplot-pacbio-post-length-vs-quality.png){alt="KDE scatter plot of PacBio read length versus quality after Filtlong filtering showing reads concentrated between 15-30 kb with the shortest and lowest-quality reads removed"}
+
 ![ONT read length vs quality after filtering](fig/nanoplot-ont-post-length-vs-quality.png){alt="KDE scatter plot of ONT read length versus quality after Filtlong filtering showing reads concentrated between 20-80 kb with the shortest and lowest-quality reads removed"}
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
